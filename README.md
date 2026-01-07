@@ -112,6 +112,17 @@ All user stories are listed in the [**GitHub Project board**](https://github.com
 
 ### Wireframes
 
+<details>
+
+<summary>Home Page</summary>
+
+A clean, modern homepage featuring a full-width hero with headline and CTA, followed by program highlights (Buy New, Rent, Pre-owned) and a mini-catalogue of featured items (popular or curated products). On mobile, the hero scales, product cards stack, buttons stay tappable, and carousels are swipeable.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-home.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-home.png)
+
+</details>
+
 > _To be defined._
 
 Wireframes will focus on:
