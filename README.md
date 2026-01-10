@@ -123,6 +123,116 @@ A clean, modern homepage featuring a full-width hero with headline and CTA, foll
 
 </details>
 
+<details>
+
+<summary>Shop All Page</summary>
+
+A grid-based product listing page with filtering and sorting options. The layout adapts to different screen sizes, ensuring easy navigation and product discovery on both desktop and mobile devices.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-all.jpg)
+![Mobile Home Page](documentation/images/wireframes/mobile-all.jpg)
+
+</details>
+
+<details>
+
+<summary>Navbar</summary>
+
+A responsive navigation bar that collapses into a hamburger menu on mobile devices. The navbar includes links to key sections of the site, a search bar, and user account access.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-navbar.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-navbar.png)
+</details>
+
+<details>
+
+<summary>About Page</summary>
+
+A clean, informative about page that highlights the brand's mission.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-about.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-about.png)
+</details>
+
+<details>
+
+<summary>How it works page</summary>
+
+A step-by-step guide explaining the process of buying, renting, and purchasing pre-owned items. 
+![Desktop Home Page](documentation/images/wireframes/desktop-how.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-how.png)
+</details>
+
+<details>
+
+<summary>Returns & Refunds</summary>
+
+A clear and concise returns and refunds page that outlines the policies and procedures for returning items. 
+
+![Desktop Home Page](documentation/images/wireframes/desktop-return.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-return.png)
+</details>
+
+<details>
+
+<summary>FAQ's page</summary>
+
+A well-organized FAQ page that addresses common questions and concerns. Questions will be hidden in collapsible sections for easy navigation on both desktop and mobile devices.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-faq.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-faq.png)
+</details>
+
+<details>
+
+<summary>Terms of Service page</summary>
+
+A comprehensive terms of service page that outlines the legal agreements between the user and the platform. 
+
+![Desktop Home Page](documentation/images/wireframes/desktop-terms.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-terms.png)
+</details>
+
+<details>
+
+<summary>Privacy page</summary>
+
+A comprehensive privacy page that outlines the legal agreements between the user and the platform. 
+
+![Desktop Home Page](documentation/images/wireframes/desktop-privacy.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-privacy.png)
+</details>
+
+<details>
+
+<summary>Contact page</summary>
+
+A user-friendly contact page featuring a form for inquiries and support requests.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-contact.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-contact.png)
+</details>
+
+<details>
+
+<summary>Sustainability page</summary>
+
+A dedicated sustainability page highlighting the brand's commitment to eco-friendly practices and circular fashion principles.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-sustainability.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-sustainability.png)
+</details>
+
+<details>
+
+<summary>Values page</summary>
+
+A dedicated values page highlighting the brand's commitment to eco-friendly practices and circular fashion principles.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-values.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-values.png)
+</details>
+
 > _To be defined._
 
 Wireframes will focus on:
@@ -288,6 +398,11 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ### Acknowledgments
+
+
+Website style and feel were inspired by:
+
+- [Framer Marketplace - Nivest Template](https://www.framer.com/marketplace/templates/nivest/)
 
 This project is developed as part of a full-stack web development course and serves as a learning and experimentation platform.
 
