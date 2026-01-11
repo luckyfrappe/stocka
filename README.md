@@ -233,6 +233,105 @@ A dedicated values page highlighting the brand's commitment to eco-friendly prac
 ![Mobile Home Page](documentation/images/wireframes/mobile-values.png)
 </details>
 
+<details>
+
+<summary>Product detail page</summary>
+
+A detailed product page showcasing multiple images, descriptions, pricing options (Buy New, Rent, Buy Pre-Owned), and user reviews.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-details.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-details.png)
+</details>
+
+<details>
+
+<summary>Bag drawer</summary>
+
+A slide-out bag drawer that provides a quick overview of selected items, quantities, and total cost. 
+
+![Desktop Home Page](documentation/images/wireframes/desktop-bag.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-bag.png)
+</details>
+
+<details>
+
+<summary>Bag review page</summary>
+
+A dedicated bag review page that allows users to review their selected items, adjust quantities, and proceed to checkout.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-adjust.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-adjust.png)
+</details>
+
+<details>
+
+<summary>Checkout page</summary>
+
+A streamlined checkout page that collects shipping, payment, and rental details (borrowed from Code Insitute eCommerce walkthrough).
+
+![Desktop Home Page](documentation/images/wireframes/desktop-checkout.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-checkout.png)
+</details>
+
+<details>
+
+<summary>Thank you page</summary>
+
+A confirmation page that thanks users for their purchase or rental and provides order details.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-thanks.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-thanks.png)
+</details>
+
+<details>
+
+<summary>User account pages</summary>
+
+A set of user authentication and account management pages will be powered by django-allauth templates, including login, registration, password reset, and profile management using crispy-forms for styling and adjusted to suit the site design.
+
+</details>
+
+<details>
+
+<summary>My profile</summary>
+
+A user profile page where users can view and manage their personal information and order history.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-profile.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-profile.png)
+
+</details>
+
+<details>
+
+<summary>Subscriptions</summary>
+
+A subscriptions management page where users can view and manage their subscriptions.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-subscriptions.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-subscriptions.png)
+
+</details>
+
+<details>
+
+<summary>Product management</summary>
+
+Product management pages will be borrowed from Code Insitute eCommerce walkthrough with adjustments for the project.
+
+</details>
+
+<details>
+
+<summary>Favorites</summary>
+
+A favorites / wishlist page where users can view and manage their favorite items.
+
+![Desktop Home Page](documentation/images/wireframes/desktop-favorites.png)
+![Mobile Home Page](documentation/images/wireframes/mobile-favorites.png)
+
+</details>
+
 > _To be defined._
 
 Wireframes will focus on:
