@@ -11,14 +11,36 @@ This project is built as an educational study project, demonstrating how a tradi
 
 <!-- 🔗 [**Live site**](https:> _To be defined._) -->
 
----
+Test Checkout (Stripe Sandbox)
+
+This store uses **Stripe’s test environment** to simulate the purchasing process.  
+No real payments are processed and **no orders will be fulfilled**.
+
+**Use the Stripe dummy card details below**
+
+- **Card number:** `4242 4242 4242 4242`
+- **Expiration date:** Any future date (`MM/YY`)
+- **CVC:** Any 3 digits
+- **Postcode:** Any 5 digits
+
+No money will be charged or transferred — this is a **simulated checkout** for testing and demonstration purposes only.
+
+> ⚠️ **Important**
+> - Do **not** use a real card as this integration is in test mode only.
+> - This is a **fictional / student project**  
+> - Orders placed here will **not** be delivered
+
+For more information about Stripe test payments, see the official documentation:
+
+👉 [Stripe Test Cards & Payments](https://stripe.com/docs/testing)
+
 
 ## Contents
 
 - [User Experience (UX)](#user-experience-ux)
   - [Business Goals](#business-goals)
+  - [Scope](#scope)
   - [Target Audience](#target-audience)
-  - [Marketing Strategy](#marketing-strategy)
   - [User Stories](#user-stories)
 - [Design](#design)
   - [Color Scheme](#color-scheme)
@@ -46,7 +68,6 @@ This project is built as an educational study project, demonstrating how a tradi
   - [Data Sources](#data-sources)
   - [Acknowledgments](#acknowledgments)
 
----
 
 ## User Experience (UX)
 
@@ -58,6 +79,16 @@ This project is built as an educational study project, demonstrating how a tradi
 - Deliver a **clean, intuitive, and distraction-free shopping experience** focused on user decision-making.
 - Establish a foundation for **personalized recommendations** based on user preferences and behaviors.
 
+### Scope
+
+This project focuses on demonstrating a **fashion marketplace** that supports
+buying, renting, pre-owned purchasing, and rental buyouts within a single
+e-commerce flow.
+
+The implementation prioritizes **core user journeys, UX clarity, and system
+structure** over commercial completeness. Real payments, logistics, and
+automation are intentionally excluded as this is an educational project.
+
 ### Target Audience
 Stocka is designed for fashion-forward, sustainability-conscious users who want flexible ways to enjoy clothing. Our primary audience includes:  
 
@@ -66,49 +97,21 @@ Stocka is designed for fashion-forward, sustainability-conscious users who want 
 - **Behaviors:** Interested in trying new styles without commitment, willing to explore rental and pre-owned options, active online shoppers  
 - **Values:** Flexibility, longevity, personalization, and reduced environmental impact
 
-<!-- ### Marketing Strategy
-Stocka’s marketing approach focuses on building awareness, trust, and engagement with users who care about sustainable fashion:
-
-1. **Content Marketing**  
-   - Blog posts highlighting rental trends, circular fashion, and sustainability tips
-   - Social media content showcasing featured items, rental experiences, and pre-owned finds
-
-2. **Social Media Marketing**  
-   - **Platforms:** Instagram, TikTok, Pinterest  
-   - **Strategies:** Visual campaigns, unboxing-style posts, influencer partnerships, interactive polls  
-
-3. **Email Marketing**  
-   - Newsletter with new arrivals, rental highlights, sustainability insights, and exclusive offers  
-   - Automated sequences for new user onboarding, rental reminders, and purchase follow-ups  
-
-4. **Search Engine Optimization (SEO)**  
-   - Optimized product pages with relevant keywords such as "sustainable fashion marketplace," "clothing rental platform," and "pre-owned clothing online"  
-   - Structured data for product availability, reviews, and rental options  
-
-5. **Paid Advertising (Future)**  
-   - Targeted social media and Google Ads campaigns focusing on eco-conscious fashion shoppers  
-   - Retargeting for users who browse items without completing rentals or purchases   -->
-
-
 ### User Stories
 
 All user stories are listed in the [**GitHub Project board**](https://github.com/users/luckyfrappe/projects/10).
 
----
 
 ## Design
 
 ### Color Scheme
 
-> _To be defined._
 
 ### Typography
 
-> _To be defined._
 
 ### Imagery
 
-> _To be defined._
 
 ### Wireframes
 
@@ -332,8 +335,6 @@ A favorites / wishlist page where users can view and manage their favorite items
 
 </details>
 
-> _To be defined._
-
 Wireframes will focus on:
 - Product browsing
 - Product detail views
@@ -342,62 +343,172 @@ Wireframes will focus on:
 
 ### Sitemap & Database Schema
 
-> _To be defined._
 
 Initial planning will include:
 - Product and image relationships
 - Rental availability logic
 - User interactions (favorites, orders, rentals)
 
----
 
 ## Features
 
+This website uses CRUD for some features (Create, Read, Update, Delete) to manage products, comments, and favorites.
+
 ### Core Features
 
-- Browse fashion products by category and gender
-- View detailed product pages with multiple images
-- Choose between **Buy New**, **Rent**, or **Buy Pre-Owned** (when available)
-- Favorites / wishlist functionality
-- Basic cart and checkout flow (educational scope)
+- Responsive navigation bar with:
+  - Logo linking to home
+  - Search bar
+  - Links to key pages 
+    - Shop
+      - Browse All
+      - Categories
+    - How It Works
+    - Company
+      - About
+      - Values
+      - Sustainability
+      - FAQs
+      - Contact
+  - User account access (login, profile)
+  - Bag icon with item count
+  - Hamburger menu on mobile
+  - Sticky behavior on scroll
+  - Favorites / wishlist access
+- View detailed product pages with:
+  - Multiple images
+  - Description and pricing options
+  - Reviews and user comments
+- Select engagement options per product:
+  - Buy New
+  - Rent (when available)
+  - Buy Pre-Owned (when available)
+- Favorites / wishlist view
+- Shopping bag with add, remove, and quantity adjustment
+- Subscription management (active)
+  - Rental-specific flows (user-facing):
+    - Rental period selection at checkout
+    - Rental Page Actions:
+      - **Extend Rental**: Opens modal asking how many weeks to extend; quick-select buttons for 1, 2, or 3 weeks; checkout new order; updates rental end date & total price
+      - **Mark as Returned**: Opens confirmation modal ("I confirm I have posted the item"); after confirmation, rental is removed from active rentals
+      - **Keep Item (Buyout)**: Displays buyout price; allows user to convert rental into purchase
+      - **Risk-Free Rental**: Return item within allowed window if size does not suit, no penalty
+- Commenting and reviewing on items
+- Secure checkout using Stripe (test mode only)
+- Order confirmation and thank-you pages
+- User account management:
+  - Login, logout, password reset
+  - Profile management
+  - View order & rental history
+- Footer links duplicated for easy access:
+  - Home, Shop, About, How It Works, Contact, FAQs, Returns & Refunds, Privacy, Terms of Service
+- Notifications for user actions (success, error messages)
+- Custom 404 and 500 error pages with return-to-home buttons
+- How It Works page explaining buying, renting, and buyout processes
+- Accordion sections & scroll spy for FAQs / How It Works pages
+- Dynamic sustainability image stays fixed on page
+- Filters for browse/shop page remain sticky
+
+
+### User Feature Access
+
+| Feature | Guest | Registered User |
+|---------|-------|-----------------|
+| Home page | ✅ Visible | ✅ Visible |
+| About page | ✅ Fully accessible | ✅ Fully accessible |
+| Shop / Browse products | ✅ Visible | ✅ Visible |
+| Search, filter & sort products | ✅ Can search | ✅ Can search |
+| Product detail page | ✅ Viewable | ✅ Viewable |
+| Bag drawer (quick bag preview) | ✅ Accessible | ✅ Accessible |
+| Add items to bag | ⚠️ Only new and pre-owned items | ✅ Can add items |
+| Favorites / wishlist | ⚠️ Prompted to log in | ✅ Can add, view & manage |
+| Rent items | ⚠️ Prompted to log in | ✅ Can rent |
+| Buy new items | ✅ Can purchase | ✅ Can purchase |
+| Buy pre-owned items | ✅ Can purchase | ✅ Can purchase |
+| Extend active rentals | ❌ Not allowed | ✅ Can extend |
+| Rental buyout (keep item) | ❌ Not allowed | ✅ Can buy out |
+| Mark rental as returned | ❌ Not allowed | ✅ Can confirm posted item |
+| Checkout (Stripe test mode) | ✅ Can checkout | ✅ Can checkout |
+| Thank you / order confirmation page | ✅ Viewable after checkout | ✅ Viewable after checkout |
+| User account pages (auth) | ❌ Not accessible | ✅ Login, logout, password reset |
+| My profile | ❌ Not accessible | ✅ View & manage profile |
+| View order & rental history | ❌ Not accessible | ✅ Can view history |
+| Manage subscriptions | ❌ Not accessible | ✅ Available to subscribed users |
+| Leave a comment | ⚠️ Prompted to log in | ✅ CRUD functionality |
+| Read comments | ✅ Visible | ✅ Visible |
+| How It Works page | ✅ Fully accessible | ✅ Fully accessible |
+| Sustainability page | ✅ Fully accessible | ✅ Fully accessible |
+| Values page | ✅ Fully accessible | ✅ Fully accessible |
+| Returns & Refunds page | ✅ Fully accessible | ✅ Fully accessible |
+| FAQs page | ✅ Fully accessible | ✅ Fully accessible |
+| Contact page | ✅ Fully accessible | ✅ Fully accessible |
+| Privacy Policy page | ✅ Fully accessible | ✅ Fully accessible |
+| Terms of Service page | ✅ Fully accessible | ✅ Fully accessible |
+| Custom 404 page | ✅ Visible | ✅ Visible |
+| Custom 500 page | ✅ Visible | ✅ Visible |
+
+
+### Admin Feature Access
+
+| Feature | Notes |
+|---------|-------|
+| Add / edit / delete products | ✅ Django Admin and website CRUD functionality |
+| Manage product images and pricing options | ✅ Django Admin |
+| View and manage orders | ✅ Django Admin |
+| View and manage rentals | ✅ Django Admin |
+| View user profiles and activity | ✅ Django Admin |
+| Manage subscriptions | ✅ Django Admin |
+| Manage static site content | ✅ Django Admin |
+| Delete confirmation modal | ✅ Website functionality – shows prompt before deletion |
+
 
 ### Page-Specific Features
 
-> _To be defined._
+- **Home** — Hero section, featured categories
+- **Shop** — Product listing with filtering and sorting  
+- **Product Detail** — Image gallery, pricing options, engagement selection  
+- **Favorites** — Saved items and quick access  
+- **Bag / Checkout** — Item review, quantity adjustment, checkout flow
+- **Thank You** — Order confirmation details
+- **Authentication** — Login, registration, password reset (django-allauth)
+- **Product Management** — Add, edit, delete products (website)
+- **Bag drawer** — Quick view of selected items
+- **Profile** — User details, order history, rental overview  
+- **Subscriptions** — Active and past subscription management  
+- **How It Works** — Explanation of buying, renting, buyout flows, scroll spy  
+- **Sustainability** — Circular fashion principles, fixed dynamic image  
+- **About** — Brand story and mission  
+- **Values** — Brand values and vision  
+- **FAQs** — Accordion, scroll spy  
+- **Contact** — User inquiries and support form  
+- **Notifications** — Success and error messages for user actions
+- **Legal Pages** — Terms of Service, Privacy Policy, Returns & Refunds
+- **Custom 404 / 500** — Friendly error pages, return-to-home buttons  
 
-Planned pages include:
-- Home
-- Shop
-- Product Detail
-- Favorites
-- About
-- Values
-- Locations
-- Newsroom
-- Contact
-- FAQs
-- Legal pages (Terms, Privacy, Returns)
-- Custom 404
 
 ### Future Implementations
 
-- Rental extensions and buy-out options
-- Smart product recommendations
-- Availability-aware rental logic
-- Sustainability insights (e.g. estimated reuse impact)
-- User rental history and item lifecycle tracking
-
----
+- Smart product recommendations (logic-based using tags, favorites, cart behavior)  
+- Availability-aware rental logic  
+- Sustainability insights (estimated reuse impact)  
+- Users' rental history and lifecycle tracking  
+- Enhanced admin rental management tools  
+- Social media sharing options for products  
+- Multi-language support  
+- Advanced search with autocomplete  
+- User notifications for rental due dates and promotions  
+- Mobile app version for iOS and Android
 
 ### Accessibility Considerations
 
-- Semantic HTML structure
-- Accessible form labels and inputs
-- Alt text for all images
-- Keyboard navigable components
-- Sufficient color contrast
+- Semantic HTML structure  
+- Accessible form labels and inputs  
+- Alt text for all images  
+- Keyboard navigable components  
+- Sufficient color contrast 
+- ARIA roles and attributes where necessary  
+- Responsive design for various screen sizes
 
----
 
 ## Technologies Used
 
@@ -437,19 +548,14 @@ Planned pages include:
 <!-- - **[Google Workspace (Gmail SMTP)](https://mail.google.com/)** – Configured to send transactional emails through Gmail’s secure SMTP service, used for account verification, password resets, and contact forms. -->
 <!-- - **[FilePond](https://pqina.nl/filepond/)** – Used for modern, user-friendly file uploads with drag-and-drop support, live image previews, and file validation. Configured to behave like a regular Django file input using `storeAsFile: true`, so uploaded files are submitted together with the form. -->
 
----
 
 ## Deployment
 
-> _To be defined._
 
----
 
 ## Local Development
 
-> _To be defined._
 
----
 
 ## Cloning and Forking
 
@@ -463,28 +569,44 @@ Planned pages include:
 
 ### Local vs Deployed Version
 
----
 
 ## Agile Development Process
 
 This project follows an Agile-inspired workflow using **GitHub Projects**.  
-User stories, tasks, and bugs were tracked on a Kanban board with columns for **Backlog**, **Todo**, **In progress**, and **Done**.  
+User stories were tracked on a Kanban board with columns for **Backlog**, **Todo**, **In progress**, and **Done**.  
 
 Features were prioritized using a simplified **MoSCoW approach**:  
 - **Must Have:** Core marketplace functionality (browse, buy, rent, buyout).  
 - **Should Have:** Enhancements like search, filters, and wishlists.  
 - **Could Have:** Optional UI improvements or future features.  
-- **Won’t Have:** Deferred or stretch goals for later iterations.  
+- **Won’t Have:** Deferred or stretch goals for future iterations.  
 
 This setup provided clear visibility, focus on priorities, and iterative progress during development.
 
----
+### Sprints & Milestones
+
+I have broken the project into sprints with buffer days to guide development and account for planning, debugging, and testing.  
+
+The goal is to complete the full project within one month, while allowing a few extra days for unforeseen delays.
+
+| Sprint | Dates | Focus / Milestone | Notes |
+|--------|-------|-------------------|-------|
+| Sprint 0 | Jan 6–Jan 12 | Project Planning | Initialize Django project, Wireframes, Database Schema, repo setup, initial research, sitemap |
+| Sprint 1 | Jan 13–Jan 19 | **Milestone 1: Core Product Browsing** | Browse all products, category filters, product detail pages, basic responsive UI, dataset adjustments, DB models, basic templates |
+| Sprint 2 | Jan 20–Jan 26 | **Milestone 2: Checkout & User Account** | Bag, Orders, Authentication, Profile, Stripe test payments |
+| Sprint 3 | Jan 27–Feb 1 | **Milestone 3: Rental Management** | Subscriptions, extend rentals, buyouts, mark returned, rental logic |
+| Sprint 4 | Feb 2–Feb 7 | **Milestone 4: Stretch / Nice-to-Have Features** | Comments, favorites/wishlist, optional recommendations, admin metrics |
+| Sprint 5 | Feb 8–Feb 10 | Testing & Deployment | QA, bug fixing, cross-browser & mobile, deployment, documentation |
+
+View all [Milestones](https://github.com/luckyfrappe/stocka/milestones)
+
+Each sprint has been given buffer days to accommodate planning, debugging, or unexpected delays while staying within a one-month timeframe.
+
 
 ## Testing
 
 See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs.
 
----
 
 ## Credits
 
