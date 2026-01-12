@@ -624,6 +624,7 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 Website style and feel were inspired by:
 
 - [Framer Marketplace - Nivest Template](https://www.framer.com/marketplace/templates/nivest/)
+- Most of the models for order, checkout, backend logic, and the overall site structure were inspired by **Boutique Ado** by Code Institute. This project acted as a skeleton for my site, and I adapted and adjusted aspects of it to create the project as it is now. [GitHub Repository – Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
 
 This project is developed as part of a full-stack web development course and serves as a learning and experimentation platform.
 
