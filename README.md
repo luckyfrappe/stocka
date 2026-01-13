@@ -47,7 +47,7 @@ For more information about Stripe test payments, see the official documentation:
   - [Typography](#typography)
   - [Imagery](#imagery)
   - [Wireframes](#wireframes)
-  - [Sitemap & Database Schema](#sitemap--database-schema)
+  - [Database Schema](#database-schema)
 - [Features](#features)
   - [Core Features](#core-features)
   - [Page-Specific Features](#page-specific-features)
@@ -341,14 +341,11 @@ Wireframes will focus on:
 - Rental / purchase option selection
 - User account flows
 
-### Sitemap & Database Schema
+### Database Schema
 
+![Database Schema](documentation/images/database/erd-1.png)
 
-Initial planning will include:
-- Product and image relationships
-- Rental availability logic
-- User interactions (favorites, orders, rentals)
-
+The database is structured to handle the complexity of a multi-modal marketplace, centering on a Product model linked to specific OrderLineItems and Subscriptions. To handle the raw Kaggle dataset—which provides attributes as two separate lists (outfit_tags and tag_categories) — the schema utilizes an AttributeType and AttributeValue system. This design was specifically chosen to "clean" the unstructured data; by mapping the tag_categories (e.g., 'Color', 'Occasion', 'Brand') to AttributeType and the outfit_tags (e.g., 'Yellow', 'Statement', 'ILAG') to AttributeValue, the platform can programmatically pair them into a single ProductAttribute join table.
 
 ## Features
 
@@ -535,6 +532,7 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 <!-- - **[JSHint](https://jshint.com/)** – JavaScript validation. -->
 <!-- - **[ESLint](https://eslint.org/)** – JavaScript linter for finding and fixing code issues, enforcing consistent style, and preventing bugs. -->
 - **[Prettier](https://prettier.io/)** – Code formatter that ensures consistent style across your JavaScript, CSS, JSON, and other files.
+- **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
 <!-- - **[Canva](https://www.canva.com/create/logos/)** was used for creating the collage assets and favicon design. -->
 - **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
 - The virtual environment was installed following Code Institute’s setup instructions.
