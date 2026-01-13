@@ -589,7 +589,7 @@ The goal is to complete the full project within one month, while allowing a few 
 
 | Sprint | Dates | Focus / Milestone | Notes |
 |--------|-------|-------------------|-------|
-| Sprint 0 | Jan 6–Jan 12 | Project Planning | Initialize Django project, Wireframes, Database Schema, repo setup, initial research, sitemap |
+| Sprint 0 | Jan 6–Jan 12 | Project Planning | Initialize Django project, Wireframes, Database Schema, repo setup, initial research |
 | Sprint 1 | Jan 13–Jan 19 | **Milestone 1: Core Product Browsing** | Browse all products, category filters, product detail pages, basic responsive UI, dataset adjustments, DB models, basic templates |
 | Sprint 2 | Jan 20–Jan 26 | **Milestone 2: Checkout & User Account** | Bag, Orders, Authentication, Profile, Stripe test payments |
 | Sprint 3 | Jan 27–Feb 1 | **Milestone 3: Rental Management** | Subscriptions, extend rentals, buyouts, mark returned, rental logic |
