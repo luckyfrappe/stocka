@@ -240,7 +240,7 @@ A dedicated values page highlighting the brand's commitment to eco-friendly prac
 
 <summary>Product detail page</summary>
 
-A detailed product page showcasing multiple images, descriptions, pricing options (Buy New, Rent, Buy Pre-Owned), and user reviews.
+A detailed product page showcasing multiple images, descriptions and pricing options (Buy New, Rent, Buy Pre-Owned).
 
 ![Desktop Home Page](documentation/images/wireframes/desktop-details.png)
 ![Mobile Home Page](documentation/images/wireframes/mobile-details.png)
@@ -349,7 +349,7 @@ The database is structured to handle the complexity of a multi-modal marketplace
 
 ## Features
 
-This website uses CRUD for some features (Create, Read, Update, Delete) to manage products, comments, and favorites.
+This website uses CRUD for some features (Create, Read, Update, Delete) to manage products and favorites.
 
 ### Core Features
 
@@ -375,7 +375,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - View detailed product pages with:
   - Multiple images
   - Description and pricing options
-  - Reviews and user comments
 - Select engagement options per product:
   - Buy New
   - Rent (when available)
@@ -390,7 +389,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
       - **Mark as Returned**: Opens confirmation modal ("I confirm I have posted the item"); after confirmation, rental is removed from active rentals
       - **Keep Item (Buyout)**: Displays buyout price; allows user to convert rental into purchase
       - **Risk-Free Rental**: Return item within allowed window if size does not suit, no penalty
-- Commenting and reviewing on items
 - Secure checkout using Stripe (test mode only)
 - Order confirmation and thank-you pages
 - User account management:
@@ -432,7 +430,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 | View order & rental history | ❌ Not accessible | ✅ Can view history |
 | Manage subscriptions | ❌ Not accessible | ✅ Available to subscribed users |
 | Leave a comment | ⚠️ Prompted to log in | ✅ CRUD functionality |
-| Read comments | ✅ Visible | ✅ Visible |
 | How It Works page | ✅ Fully accessible | ✅ Fully accessible |
 | Sustainability page | ✅ Fully accessible | ✅ Fully accessible |
 | Values page | ✅ Fully accessible | ✅ Fully accessible |
@@ -465,7 +462,7 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **Shop** — Product listing with filtering and sorting  
 - **Product Detail** — Image gallery, pricing options, engagement selection  
 - **Favorites** — Saved items and quick access  
-- **Bag / Checkout** — Item review, quantity adjustment, checkout flow
+- **Bag / Checkout** — Quantity adjustment, checkout flow
 - **Thank You** — Order confirmation details
 - **Authentication** — Login, registration, password reset (django-allauth)
 - **Product Management** — Add, edit, delete products (website)
@@ -593,7 +590,7 @@ The goal is to complete the full project within one month, while allowing a few 
 | Sprint 1 | Jan 13–Jan 19 | **Milestone 1: Core Product Browsing** | Browse all products, category filters, product detail pages, basic responsive UI, dataset adjustments, DB models, basic templates |
 | Sprint 2 | Jan 20–Jan 26 | **Milestone 2: Checkout & User Account** | Bag, Orders, Authentication, Profile, Stripe test payments |
 | Sprint 3 | Jan 27–Feb 1 | **Milestone 3: Rental Management** | Subscriptions, extend rentals, buyouts, mark returned, rental logic |
-| Sprint 4 | Feb 2–Feb 7 | **Milestone 4: Stretch / Nice-to-Have Features** | Comments, favorites/wishlist, optional recommendations, admin metrics |
+| Sprint 4 | Feb 2–Feb 7 | **Milestone 4: Stretch / Nice-to-Have Features** | Favorites/wishlist, optional recommendations, admin metrics |
 | Sprint 5 | Feb 8–Feb 10 | Testing & Deployment | QA, bug fixing, cross-browser & mobile, deployment, documentation |
 
 View all [Milestones](https://github.com/luckyfrappe/stocka/milestones)
