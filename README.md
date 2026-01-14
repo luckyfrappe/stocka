@@ -360,7 +360,7 @@ This approach pairs each category with its corresponding value and connects them
 
 <details>
 
-<summary>The Core Import Script (`import_data.py`)</summary>
+<summary>Import Script (`import_data.py`)</summary>
 
 This script acts as the structural backbone of the data layer, responsible for assembling the full product graph. Successfully connected 15,000+ products with over 150,000 attribute relations and their associated images.
 
@@ -372,9 +372,9 @@ Note: The `time_created` field was not populated during this initial import so t
 
 <details>
 
-<summary>The Optimization Patch (`patch_time.py`)</summary>
+<summary>Date creation Patch (`patch_time.py`)</summary>
 
-To efficiently complete the dataset, a dedicated patch script was made. Restored accurate creation timestamps for all 15,649 products, enabling correct “Newest Arrivals” sorting without reprocessing the full dataset.
+Restored accurate creation dates for all 15,649 products, enabling correct “Newest Arrivals” sorting without reprocessing the full dataset.
 
 </details>
 
