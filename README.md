@@ -341,11 +341,42 @@ Wireframes will focus on:
 - Rental / purchase option selection
 - User account flows
 
-### Database Schema
+### Database Schema & Data Engineering
 
 ![Database Schema](documentation/images/database/erd-1.png)
 
-The database is structured to handle the complexity of a multi-modal marketplace, centering on a Product model linked to specific OrderLineItems and Subscriptions. To handle the raw Kaggle dataset—which provides attributes as two separate lists (outfit_tags and tag_categories) — the schema utilizes an AttributeType and AttributeValue system. This design was specifically chosen to "clean" the unstructured data; by mapping the tag_categories (e.g., 'Color', 'Occasion', 'Brand') to AttributeType and the outfit_tags (e.g., 'Yellow', 'Statement', 'ILAG') to AttributeValue, the platform can programmatically pair them into a single ProductAttribute join table.
+The Stocka database is built to support a flexible, scalable marketplace. While the system is centered around a core `Product` model, the most critical part of the work was transforming and structuring over 18,000 rows of semi-structured data from the Vibrent Kaggle Dataset into a clean, relational format.
+
+<details>
+
+<summary>The Challenge: Structuring Semi-Structured Data</summary>
+
+The original dataset stored key product information as fragmented string-based lists (for example: `outfit_tags = "['Yellow', 'Silk']"` and `tag_categories = "['Color', 'Material']"`).  
+To convert this into a searchable and extensible system, an `AttributeType` and `AttributeValue` model structure was introduced.
+
+This approach pairs each category with its corresponding value and connects them to products through a dedicated `ProductAttribute` join table. The result is a normalized data model that remains flexible while avoiding duplication and hard-coded logic.
+
+</details>
+
+<details>
+
+<summary>The Core Import Script (`import_data.py`)</summary>
+
+This script acts as the structural backbone of the data layer, responsible for assembling the full product graph. Successfully connected 15,000+ products with over 150,000 attribute relations and their associated images.
+
+This step established the foundational structure on which all filtering, categorization, and future features are built.
+
+Note: The `time_created` field was not populated during this initial import so the patch script was created to update this field.
+
+</details>
+
+<details>
+
+<summary>The Optimization Patch (`patch_time.py`)</summary>
+
+To efficiently complete the dataset, a dedicated patch script was made. Restored accurate creation timestamps for all 15,649 products, enabling correct “Newest Arrivals” sorting without reprocessing the full dataset.
+
+</details>
 
 ## Features
 
@@ -532,7 +563,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
 <!-- - **[Canva](https://www.canva.com/create/logos/)** was used for creating the collage assets and favicon design. -->
 - **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
-- The virtual environment was installed following Code Institute’s setup instructions.
 - **[Django](https://www.djangoproject.com/)** – High-level Python web framework powering the backend of the application.  
 <!-- - **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production. -->
 <!-- - **dj-database-url** – Simplifies database configuration in Django by allowing the database URL to be parsed and set as Django settings.   -->
