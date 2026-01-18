@@ -44,13 +44,14 @@
   </div>
   <div class="collapse navbar-collapse w-100" id="navMenu">
     <ul class="navbar-nav pt-3 pb-2">
-        <!-- Debugging and enhancement help from Gemini (AI by Google) for the accordions -->
+      <!-- Debugging and enhancement help from Gemini (AI by Google) for the accordions -->
       <li class="nav-item border-bottom">
         <a
-          class="nav-link d-flex justify-content-between align-items-center py-3 fw-bold text-uppercase"
+          class="nav-link d-flex justify-content-between align-items-center py-3"
           data-bs-toggle="collapse"
           href="#mobileShopMenu"
           role="button"
+          aria-expanded="false"
         >
           Shop
           <i class="fa-solid fa-chevron-down nav-chevron"></i>
@@ -60,7 +61,21 @@
         </div>
       </li>
       <li class="nav-item"><a class="nav-link" href="#">Concept</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Company</a></li>
+      <li class="nav-item border-bottom">
+        <a
+          class="nav-link d-flex justify-content-between align-items-center py-3"
+          data-bs-toggle="collapse"
+          href="#mobileCompanyMenu"
+          role="button"
+          aria-expanded="false"
+        >
+          Company
+          <i class="fa-solid fa-chevron-down nav-chevron"></i>
+        </a>
+        <div class="collapse border-top" id="mobileCompanyMenu">
+          {% include "includes/mobile_company_dropdown.html" %}
+        </div>
+      </li>
     </ul>
   </div>
   <div class="w-100 pb-2">

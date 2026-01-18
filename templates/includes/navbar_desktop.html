@@ -17,7 +17,20 @@
           {% include "includes/shop_dropdown.html" %}
         </li>
         <li class="nav-item"><a class="nav-link px-2" href="#">Concept</a></li>
-        <li class="nav-item"><a class="nav-link px-2" href="#">Company</a></li>
+        <li class="nav-item dropdown position-static">
+            <a
+                class="nav-link px-2 dropdown-toggle border-0 shadow-none"
+                href="#"
+                id="companyMegaMenu"
+                role="button"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+            >
+                Company
+            </a>
+            {% include "includes/company_dropdown.html" %}
+        </li>
       </ul>
     </div>
 
