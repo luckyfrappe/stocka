@@ -42,9 +42,9 @@
       ></a>
     </div>
   </div>
-  <div class="collapse navbar-collapse w-100" id="navMenu">
+  <div class="collapse navbar-collapse w-100" id="navMenu" style="max-height: 90vh; overflow-y: auto;">
     <ul class="navbar-nav pt-3 pb-2">
-      <!-- Debugging and enhancement help from Gemini (AI by Google) for the accordions -->
+      
       <li class="nav-item border-bottom">
         <a
           class="nav-link d-flex justify-content-between align-items-center py-3"
@@ -56,11 +56,13 @@
           Shop
           <i class="fa-solid fa-chevron-down nav-chevron"></i>
         </a>
-        <div class="collapse border-top" id="mobileShopMenu">
+        <div class="collapse border-top" id="mobileShopMenu" data-bs-parent="#navMenu">
           {% include "includes/mobile_shop_dropdown.html" %}
         </div>
       </li>
+
       <li class="nav-item"><a class="nav-link" href="#">Concept</a></li>
+
       <li class="nav-item border-bottom">
         <a
           class="nav-link d-flex justify-content-between align-items-center py-3"
@@ -72,10 +74,11 @@
           Company
           <i class="fa-solid fa-chevron-down nav-chevron"></i>
         </a>
-        <div class="collapse border-top" id="mobileCompanyMenu">
+        <div class="collapse border-top" id="mobileCompanyMenu" data-bs-parent="#navMenu">
           {% include "includes/mobile_company_dropdown.html" %}
         </div>
       </li>
+      
     </ul>
   </div>
   <div class="w-100 pb-2">

@@ -168,6 +168,9 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 
 ### Solved Bugs
 - Shopping Bag icon and the Price text were sitting side-by-side in a horizontal row. Because the price text takes up quite a bit of width, it was pushing the icon out behind logo. I stacked the price directly underneath the icon to solve this issue.
+- In the mobile navigation, the collapsible submenu items were not scrollable when the content exceeded the viewport height. I added CSS styles to the navbar collapse div to set a maximum height and enable vertical scrolling.
+- The mobile navigation menu's maximum height was set too low, causing some submenu items to be inaccessible on smaller screens. I increased the max-height to 90vh to ensure all items are reachable.
+- In the mobile navigation, the submenu items were not collapsing when another submenu was opened. I added the `data-bs-parent` attribute to each submenu collapse div to ensure only one submenu is open at a time.
 
 ---
 
