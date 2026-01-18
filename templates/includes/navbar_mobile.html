@@ -1,0 +1,47 @@
+<div class="container-fluid d-block d-lg-none">
+    <div class="row w-100 align-items-center g-0">
+        <div class="col-4 d-flex align-items-center">
+            <button class="navbar-toggler border-0 px-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="ms-3">
+                <span class="icon"><i class="fa-regular fa-heart"></i></span>
+            </a>
+        </div>
+
+        <div class="col-4 text-center">
+            <a class="navbar-brand m-0 fw-bold" href="#">
+                Stocka<sup>&reg;</sup>
+            </a>
+        </div>
+
+        <div class="col-4 d-flex justify-content-end align-items-center">
+            <a class="nav-link d-flex flex-column align-items-center ps-2" href="#">
+                <span class="icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </span>
+                {% if bag %}
+                <span class="cart-total text-muted" style="font-size: 0.6rem;">
+                    1.250 kr
+                </span>
+                {% endif %}
+            </a>
+            <a class="nav-link ps-2" href="#"><span class="icon"><i class="fa-regular fa-user"></i></span></a>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse w-100" id="navMenu">
+        <ul class="navbar-nav pt-3 pb-2">
+            <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Concept</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Company</a></li>
+        </ul>
+    </div>
+    <div class="w-100 pb-2">
+        <div class="col-12">
+            <form class="position-relative">
+                <i class="fa-solid fa-magnifying-glass position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); color: #888"></i>
+                <input class="form-control ps-5 search-input" type="search" placeholder="Search">
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-fluid d-none d-lg-block">
+    <div class="row w-100 align-items-center g-0">
+        <div class="col-4 d-flex align-items-center">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link px-2" href="#">Shop</a></li>
+                <li class="nav-item"><a class="nav-link px-2" href="#">Concept</a></li>
+                <li class="nav-item"><a class="nav-link px-2" href="#">Company</a></li>
+            </ul>
+        </div>
+        
+        <div class="col-4 text-center">
+            <a class="navbar-brand m-0 fw-bold" href="#">
+                Stocka<sup>&reg;</sup>
+            </a>
+        </div>
+
+        <div class="col-4 d-flex justify-content-end align-items-center">
+            <form class="position-relative me-3">
+                <i class="fa-solid fa-magnifying-glass position-absolute" style="left: 15px; top: 50%; transform: translateY(-50%); color: #888"></i>
+                <input class="form-control ps-5 search-input" type="search" placeholder="Search">
+            </form>
+            <a class="nav-link px-2" href="#"><span class="icon"><i class="fa-regular fa-heart"></i></span></a>
+            <a class="nav-link d-flex align-items-center px-2" href="#">
+                <span class="icon{% if bag %} me-2 {% endif %}">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </span>
+                {% if bag %}
+                    <span class="cart-total border-start ps-2 text-muted" style="font-size: 0.9rem;">
+                        1.250 kr
+                    </span>
+                {% endif %}
+            </a>
+            <a class="nav-link ps-2" href="#"><span class="icon"><i class="fa-regular fa-user"></i></span></a>
+        </div>
+    </div>
+</div>
