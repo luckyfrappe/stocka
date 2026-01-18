@@ -150,6 +150,58 @@ section {
     opacity: 0.85;
 }
 
+/* Shop menu enhancements made with help from Gemini (AI by Google) */
+
+/* Navbar Dropdown Chevron Behavior */
+.nav-chevron {
+    font-size: 0.7rem;
+    transition: transform 0.2s ease-in-out;
+    color: #6c757d; /* text-muted */
+}
+
+[aria-expanded="true"] .nav-chevron {
+    transform: rotate(180deg);
+    color: #000; /* Darker color when active */
+}
+
+.x-small {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+}
+
+.mega-menu.show {
+    display: block;
+    animation: fadeIn 0.1s ease-out;
+}
+
+/* Underline the 'Shop' text when the menu is open */
+.nav-item.dropdown .nav-link.show {
+    color: #000 !important;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+.mega-menu .dropdown-item {
+    padding: 6px 12px !important; 
+    border-radius: var(--rounded-sm);
+    transition: all 0.2s ease;
+}
+
+.mega-menu .dropdown-item:hover {
+    color: var(--black) !important;
+    padding-left: 16px !important; 
+}
+
+.mega-menu h6 {
+    /* Matching the padding of the links */
+    padding-left: 12px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* For large (lg) and up (992px+) */
 @media (min-width: 992px) {
     body {
