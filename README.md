@@ -107,6 +107,8 @@ All user stories are listed in the [**GitHub Project board**](https://github.com
 ### Color Scheme
 
 
+
+
 ### Typography
 
 
@@ -559,6 +561,8 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 <!-- - **[WAVE](https://wave.webaim.org/)** – Web Accessibility Evaluation Tools. -->
 <!-- - **[JSHint](https://jshint.com/)** – JavaScript validation. -->
 <!-- - **[ESLint](https://eslint.org/)** – JavaScript linter for finding and fixing code issues, enforcing consistent style, and preventing bugs. -->
+- **[Bootstrap 5](https://getbootstrap.com/)** – CSS framework for responsive, mobile-first front-end development.
+- **[Adobe Color](https://color.adobe.com/)** – Color scheme generation and inspiration.
 - **[Prettier](https://prettier.io/)** – Code formatter that ensures consistent style across your JavaScript, CSS, JSON, and other files.
 - **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
 <!-- - **[Canva](https://www.canva.com/create/logos/)** was used for creating the collage assets and favicon design. -->
@@ -639,9 +643,8 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 
 - [Vibrent Clothes Rental Dataset (Kaggle)](https://www.kaggle.com/datasets/kaborg15/vibrent-clothes-rental-dataset?select=images)  
 - Academic reference:  
-  *[A Dataset for Adapting Recommender Systems to the Fashion Rental Economy](https://dl.acm.org/doi/10.1145/3640457.3688174)* (RecSys 2024)  
-
-**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  *[A Dataset for Adapting Recommender Systems to the Fashion Rental Economy](https://dl.acm.org/doi/10.1145/3640457.3688174)* (RecSys 2024)  **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+-[Adobe Colors](https://stock.adobe.com/se/images/flat-lay-with-woman-fashion-accessories-in-yellow-colors-fashion-blog-summer-style-shopping-and-trends-idea/315730695) – Colors inspiration.
 
 ### Acknowledgments
 

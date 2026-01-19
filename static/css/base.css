@@ -4,14 +4,19 @@ html {
 }
 :root {
     /* Brand Colors */
-    --black: #000000;
+    --black: #0D0D0D;
     --white: #ffffff;
-    --gray-light: #f5f5f7; /* Modern off-white/gray for backgrounds */
+    --gray-light: #F2F2F2; /* Modern off-white/gray for backgrounds */
+    --gray-dark: #161A1A; 
+    --brand-secondary: #F2B90F; /* Soft gold */
+    --brand-secondary-light: #F2B749; /* Lighter soft gold */
+    --brand-primary: #D93D04; /* Vibrant lime green */
+    --brand-accent: #590202; /* Deep red accent */
     
     /* Rounding Schema */
     --rounded-sm: 8px;
     --rounded-md: 16px;
-    --rounded-lg: 32px; /* For images and large cards */
+    --rounded-lg: 0.5rem; /* For images and large cards */
     --rounded-full: 9999px; /* For buttons and search bars (Pill style) */
     
     /* Spacing */
@@ -131,6 +136,7 @@ input[type="text"], input[type="search"], .form-control {
 
 .search-input:focus {
     background-color: #ffffff;
+    min-width: 25vw;
 }
 
 /* Consistent Section Spacing */
@@ -184,20 +190,28 @@ section {
     text-underline-offset: 8px;
 }
 
-.mega-menu .dropdown-item {
+.dropdown-item {
     padding: 6px 12px !important; 
     border-radius: var(--rounded-sm);
     transition: all 0.2s ease;
 }
 
 .mega-menu .dropdown-item:hover {
-    color: var(--black) !important;
-    padding-left: 16px !important; 
+    padding-left: 16px !important;
 }
 
-.mega-menu h3 {
+footer .dropdown-item:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.mega-menu h3, footer h3 {
     /* Matching the padding of the links */
     padding-left: 12px;
+}
+
+.new-arrivals-overlay {
+    border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
 }
 
 .navbar-collapse {
@@ -205,6 +219,26 @@ section {
     overflow-y: auto;
 }
 
+.footer-class {
+    background-color: var(--black) !important;
+}
+
+.footer-class footer a, .footer-class footer p, .footer span, .footer-class footer div {
+    color: var(--white) !important;
+}
+
+.footer-class .card {
+    background-color: var(--gray-dark);
+    i {
+        color: var(--brand-primary);
+        font-size: 1.5rem;
+    }
+    p {
+        width: 220px;
+    }
+}
+
+/* Fade-in animation for dropdown */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -215,4 +249,5 @@ section {
     body {
         padding-top: 49.4px; /* Height of navbar on desktop */
     }
+
 }
