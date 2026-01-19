@@ -1,4 +1,7 @@
 /* Design System */
+html {
+  scroll-behavior: smooth;
+}
 :root {
     /* Brand Colors */
     --black: #000000;
@@ -195,6 +198,11 @@ section {
 .mega-menu h3 {
     /* Matching the padding of the links */
     padding-left: 12px;
+}
+
+.navbar-collapse {
+    max-height: calc(100vh - 92.99px); /* Viewport height minus navbar height */
+    overflow-y: auto;
 }
 
 @keyframes fadeIn {
