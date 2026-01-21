@@ -67,6 +67,11 @@
     animation: marquee-ltr 30s linear infinite;
 }
 
+.stocka-loop-card {
+    height: 600px;  
+    background-size: cover; /* Ensures the image fills the card nicely */
+}
+
 .stocka-reuse-card {
     background-color: var(--brand-secondary);
 }
