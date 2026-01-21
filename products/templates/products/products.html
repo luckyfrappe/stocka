@@ -6,6 +6,16 @@
 <link rel="stylesheet" href="{% static 'products/css/pagination.css' %}">
 {% endblock %}
 
+{% block extra_title %}| {% if current_attributes %}
+    {{ current_attributes.first.value }}
+{% elif search_term %}
+    Results for "{{ search_term }}"
+{% elif request.GET.new_arrivals %}
+    New Arrivals
+{% else %}
+    Products
+{% endif %}{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
