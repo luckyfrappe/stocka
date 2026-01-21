@@ -18,13 +18,12 @@
     <div class="container-fluid">
         <div class="d-flex flex-column align-items-start mb-5">
             <div>
-                <h1 class="mb-0 mt-5 mb-1">
+                <h1 class="mb-0 mt-5 mb-1 {% if search_term %}display-6{% endif %}">
                     {% if current_attributes %}
                         {{ current_attributes.first.value }}
-
                     {% elif search_term %}
                         Search results for "{{ search_term }}"
-                    {% elif new_arrivals == true %}
+                    {% elif request.GET.new_arrivals %}
                         New Arrivals
                     {% else %}
                         Products

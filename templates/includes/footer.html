@@ -35,9 +35,9 @@
             <div class="col-6 col-md-2 mb-3">
                 <h3 class="small mb-3">Shop</h3>
                 <ul class="list-unstyled d-grid gap-2">
-                    <li><a class="dropdown-item p-0 small" href="#">All</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">Women</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">Men</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'products' %}">All</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=women">Women</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=men">Men</a></li>
                 </ul>
             </div>
 
@@ -63,7 +63,7 @@
                 <h3 class="small mb-3">Others</h3>
                 <ul class="list-unstyled d-grid gap-2">
                     <li><a class="dropdown-item p-0 small" href="#">Contact</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">FAQ's</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'home' %}#faqs">FAQ's</a></li>
                 </ul>
             </div>
 

@@ -83,7 +83,7 @@
   </div>
   <div class="w-100 pb-2">
     <div class="col-12">
-      <form class="position-relative">
+      <form method="GET" action="{% url 'products' %}" class="position-relative">
         <i
           class="fa-solid fa-magnifying-glass position-absolute"
           style="left: 15px; top: 50%; transform: translateY(-50%); color: #888"
@@ -92,6 +92,7 @@
           class="form-control ps-5 search-input"
           type="search"
           placeholder="Search"
+          name="q"
         />
       </form>
     </div>
