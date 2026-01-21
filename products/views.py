@@ -13,7 +13,9 @@ from .forms import ProductForm
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
-    products = Product.objects.all()
+    products = Product.objects.prefetch_related(
+        'attributes__attribute_value__attribute_type'
+    ).all()
     query = None
     categories = None
     sort = None
@@ -38,7 +40,7 @@ def all_products(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
+            products = products.filter(attributes__attribute_value__attribute_type__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
         if 'q' in request.GET:

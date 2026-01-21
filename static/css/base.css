@@ -244,6 +244,21 @@ footer .dropdown-item:hover, .simple-button:hover {
     }
 }
 
+.btt-button {
+    background-color: var(--brand-secondary-light);
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 /* Fade-in animation for dropdown */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
