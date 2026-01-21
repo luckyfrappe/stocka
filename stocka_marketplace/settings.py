@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     # 'profiles',
 
     # other
-    #'crispy_forms',
+    'crispy_forms',
     #'storages',
 ]
 
@@ -72,7 +72,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'stocka_marketplace.urls'
 
-# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -91,10 +91,10 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 # 'bag.contexts.bag_contents',
             ],
-            # 'builtins': [
-            #     'crispy_forms.templatetags.crispy_forms_tags',
-            #     'crispy_forms.templatetags.crispy_forms_field',
-            # ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ],
         },
     },
 ]
