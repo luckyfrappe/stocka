@@ -9,34 +9,34 @@
         <div class="row">
           <div class="col-12 genders mb-4">
             <div class="d-flex gap-3">
-              <a href="" class="btn btn-outline-dark btn-sm rounded-0 px-4"
+              <a href="{% url 'products' %}?attribute_type=men" class="btn btn-outline-dark btn-sm rounded-0 px-4"
                 >Men</a
               >
-              <a href="" class="btn btn-outline-dark btn-sm rounded-0 px-4"
+              <a href="{% url 'products' %}?attribute_type=women" class="btn btn-outline-dark btn-sm rounded-0 px-4"
                 >Women</a
               >
-              <a href="" class="btn btn-dark btn-sm rounded-0 px-4">All</a>
+              <a href="{% url 'products' %}" class="btn btn-dark btn-sm rounded-0 px-4">All</a>
             </div>
           </div>
           <div class="col-12">
             <h3 class="small mb-3">Clothing</h3>
             <ul class="list-unstyled row row-cols-2 g-2">
-              <li><a class="dropdown-item p-0 small" href="">Shorts</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Shoes</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Cardigans</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Vests</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Sweaters</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Skirts</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Jumpsuits</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Jackets</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Coats</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Shirts</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Blazers</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Trousers</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Knitwear</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Blouses</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Tops</a></li>
-              <li><a class="dropdown-item p-0 small" href="">Dresses</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=shorts">Shorts</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=shoes">Shoes</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=cardigans">Cardigans</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=vests">Vests</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=sweaters">Sweaters</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=skirts">Skirts</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jumpsuits">Jumpsuits</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jackets">Jackets</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=coats">Coats</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=shirts">Shirts</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=blazers">Blazers</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=trousers">Trousers</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=knitwear">Knitwear</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=blouses">Blouses</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=tops">Tops</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=dresses">Dresses</a></li>
             </ul>
           </div>
         </div>
@@ -45,45 +45,45 @@
       <div class="col-lg-2 border-end ps-lg-4">
         <h3 class="small mb-3">Occasion</h3>
         <ul class="list-unstyled d-grid gap-2">
-          <li><a class="dropdown-item p-0 small" href="">Active</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Formal</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Business</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Dressed-up</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Everyday</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Statement</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=active">Active</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=formal">Formal</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=business">Business</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=dressed-up">Dressed-up</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=everyday">Everyday</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=statement">Statement</a></li>
         </ul>
       </div>
 
       <div class="col-lg-2 border-end ps-lg-4">
         <h3 class="small mb-3">Seasons</h3>
         <ul class="list-unstyled d-grid gap-2 mb-4">
-          <li><a class="dropdown-item p-0 small" href="">Fall</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Winter</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Summer</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Spring</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Multi Season</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=fall">Fall</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=winter">Winter</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=summer">Summer</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=spring">Spring</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=multi-season">Multi Season</a></li>
         </ul>
         <h3 class="small mb-3">Fit</h3>
         <ul class="list-unstyled d-grid gap-2">
-          <li><a class="dropdown-item p-0 small" href="">Cropped</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Curve</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Oversized</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Maternity</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Stretchy</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Wrap</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=cropped">Cropped</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=curve">Curve</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=oversized">Oversized</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=maternity">Maternity</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=stretchy">Stretchy</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=wrap">Wrap</a></li>
         </ul>
       </div>
 
       <div class="col-lg-4 ps-lg-4">
         <h3 class="small mb-3">Accessories</h3>
         <ul class="list-unstyled d-flex gap-3 mb-4">
-          <li><a class="dropdown-item p-0 small" href="">Bags</a></li>
-          <li><a class="dropdown-item p-0 small" href="">Jewelry</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=bags">Bags</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jewelry">Jewelry</a></li>
           <li>
-            <a class="dropdown-item p-0 small" href="">All Accessories</a>
+            <a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=accessories">Glasses, scarves and others</a>
           </li>
         </ul>
-        <a href="" class="d-block text-decoration-none">
+        <a href="{% url 'products' %}?new_arrivals=true" class="d-block text-decoration-none">
           <div
             class="featured-nav-img position-relative card"
             style="

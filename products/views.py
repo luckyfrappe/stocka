@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
-from .models import Product, ProductAttribute, ProductImage, AttributeType
+from .models import AttributeValue, Product, ProductAttribute, ProductImage, AttributeType
 from .forms import ProductForm
 
 # Create your views here.
@@ -20,31 +20,22 @@ def all_products(request):
     products_images = ProductImage.objects.all()
 
     query = None
-    categories = None
+    attribute_type = None
     sort = None
     direction = None
 
     if request.GET:
-        if 'sort' in request.GET:
-            sortkey = request.GET['sort']
-            sort = sortkey
-            if sortkey == 'name':
-                sortkey = 'lower_name'
-                products = products.annotate(lower_name=Lower('name'))
+        if 'new_arrivals' in request.GET:
+            new_arrival_ids = products.order_by('-time_created').values_list('id', flat=True)[:100]
+            products = products.filter(id__in=list(new_arrival_ids))
 
-            if sortkey == 'category':
-                sortkey = 'category__name'
-
-            if 'direction' in request.GET:
-                direction = request.GET['direction']
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)
-
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            products = products.filter(attributes__attribute_value__attribute_type__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+        if 'attribute_type' in request.GET:
+            attr_values = request.GET['attribute_type'].split(',')
+            products = products.filter(attributes__attribute_value__slug__in=attr_values).distinct()
+            
+            attribute_type = AttributeValue.objects.filter(slug__in=attr_values)
+        else:
+            attribute_type = None
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -54,14 +45,24 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+
+            if sortkey == 'attribute_type':
+                sortkey = 'attribute_value'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
     current_sorting = f'{sort}_{direction}'
 
-    context = {
-        'products': products,
-        'search_term': query,
-        'current_categories': categories,
-        'current_sorting': current_sorting,
-    }
 
     paginator = Paginator(products, 20) 
     page_number = request.GET.get('page')
@@ -72,7 +73,7 @@ def all_products(request):
     context = {
         'products': page_obj, 
         'search_term': query,
-        'current_categories': categories,
+        'current_attributes': attribute_type,
         'current_sorting': current_sorting,
     }
 

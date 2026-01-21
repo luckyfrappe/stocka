@@ -3,9 +3,9 @@
 <div class="px-3 pb-4" id="mobileSubMenuContainer">
   <div class="py-3 border-bottom mb-3">
     <div class="d-flex gap-2">
-      <a href="" class="btn btn-outline-dark flex-fill px-2">Men</a>
-      <a href="" class="btn btn-outline-dark flex-fill px-2">Women</a>
-      <a href="" class="btn btn-dark flex-fill px-2">All</a>
+      <a href="{% url 'products' %}?category=men" class="btn btn-outline-dark flex-fill px-2">Men</a>
+      <a href="{% url 'products' %}?category=women" class="btn btn-outline-dark flex-fill px-2">Women</a>
+      <a href="{% url 'products' %}" class="btn btn-dark flex-fill px-2">All</a>
     </div>
   </div>
 
@@ -22,32 +22,32 @@
       </div>
       <div class="collapse" id="subClothing" data-bs-parent="#mobileSubMenuContainer">
         <ul class="list-unstyled row row-cols-2 g-0 ps-1">
-          <li><a class="nav-link py-1 small text-muted" href="">Shorts</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Shoes</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=shorts">Shorts</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=shoes">Shoes</a></li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Cardigans</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=cardigans">Cardigans</a>
           </li>
-          <li><a class="nav-link py-1 small text-muted" href="">Vests</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=vests">Vests</a></li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Sweaters</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=sweaters">Sweaters</a>
           </li>
-          <li><a class="nav-link py-1 small text-muted" href="">Skirts</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=skirts">Skirts</a></li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Jumpsuits</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=jumpsuits">Jumpsuits</a>
           </li>
-          <li><a class="nav-link py-1 small text-muted" href="">Jackets</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Coats</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Shirts</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Blazers</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=jackets">Jackets</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=coats">Coats</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=shirts">Shirts</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=blazers">Blazers</a></li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Trousers</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=trousers">Trousers</a>
           </li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Knitwear</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=knitwear">Knitwear</a>
           </li>
-          <li><a class="nav-link py-1 small text-muted" href="">Blouses</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Tops</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Dresses</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=blouses">Blouses</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=tops">Tops</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=dresses">Dresses</a></li>
         </ul>
       </div>
     </div>
@@ -63,19 +63,19 @@
       </div>
       <div class="collapse" id="subOccasion" data-bs-parent="#mobileSubMenuContainer">
         <ul class="list-unstyled ps-1">
-          <li><a class="nav-link py-1 small text-muted" href="">Active</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Formal</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=active">Active</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=formal">Formal</a></li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Business</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=business">Business</a>
           </li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Dressed-up</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=dressed-up">Dressed-up</a>
           </li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Everyday</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=everyday">Everyday</a>
           </li>
           <li>
-            <a class="nav-link py-1 small text-muted" href="">Statement</a>
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=statement">Statement</a>
           </li>
         </ul>
       </div>
@@ -93,18 +93,18 @@
       <div class="collapse" id="subSeasons" data-bs-parent="#mobileSubMenuContainer">
         <div class="ps-1 py-2">
           <ul class="list-unstyled mb-3">
-            <li><a class="nav-link py-1 small text-muted" href="">Fall</a></li>
+            <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=fall">Fall</a></li>
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Winter</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=winter">Winter</a>
             </li>
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Summer</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=summer">Summer</a>
             </li>
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Spring</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=spring">Spring</a>
             </li>
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Multi Season</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=multi-season">Multi Season</a>
             </li>
           </ul>
         </div>
@@ -124,19 +124,19 @@
         <div class="ps-1 py-2">
           <ul class="list-unstyled">
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Cropped</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=cropped">Cropped</a>
             </li>
-            <li><a class="nav-link py-1 small text-muted" href="">Curve</a></li>
+            <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=curve">Curve</a></li>
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Oversized</a>
-            </li>
-            <li>
-              <a class="nav-link py-1 small text-muted" href="">Maternity</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=oversized">Oversized</a>
             </li>
             <li>
-              <a class="nav-link py-1 small text-muted" href="">Stretchy</a>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=maternity">Maternity</a>
             </li>
-            <li><a class="nav-link py-1 small text-muted" href="">Wrap</a></li>
+            <li>
+              <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=stretchy">Stretchy</a>
+            </li>
+            <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=wrap">Wrap</a></li>
           </ul>
         </div>
       </div>
@@ -153,18 +153,18 @@
       </div>
       <div class="collapse" id="subAccessories" data-bs-parent="#mobileSubMenuContainer">
         <ul class="list-unstyled ps-1">
-          <li><a class="nav-link py-1 small text-muted" href="">Bags</a></li>
-          <li><a class="nav-link py-1 small text-muted" href="">Jewelry</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=bags">Bags</a></li>
+          <li><a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=jewelry">Jewelry</a></li>
           <li>
-            <a class="nav-link py-1 small text-muted" href=""
-              >All Accessories</a
+            <a class="nav-link py-1 small text-muted" href="{% url 'products' %}?attribute_type=accessories"
+              >Glasses, scarves and others</a
             >
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <a href="/shop/new-arrivals/" class="d-block text-decoration-none">
+  <a href="{% url 'products' %}?new_arrivals=true" class="d-block text-decoration-none">
     <div
       class="featured-nav-img position-relative card"
       style="
