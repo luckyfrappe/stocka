@@ -12,6 +12,7 @@ html {
     --brand-secondary-light: #F2B749; /* Lighter soft gold */
     --brand-primary: #D93D04; /* Vibrant lime green */
     --brand-accent: #590202; /* Deep red accent */
+    --brand-accent-dark: #2D0A0A; /* Darker deep red accent */
     
     /* Rounding Schema */
     --rounded-sm: 8px;
@@ -22,6 +23,11 @@ html {
     /* Spacing */
     --section-padding: 80px 0;
     --container-margin: 3%;
+
+    /* Typography */
+    --font-heading: 'Tenor Sans', 'Playfair Display', serif; 
+    
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Global Overrides */
@@ -29,7 +35,7 @@ body {
     padding-top: 92.99px; /* Height of navbar on mobile */
     background-color: var(--white);
     color: var(--black);
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
@@ -41,15 +47,17 @@ a, p, span, div {
 }
 
 /* Headers: All Caps & Bold */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: var(--font-heading);
     text-transform: uppercase;
-    font-weight: 800; 
-    letter-spacing: -0.02em; 
+    font-weight: 400; /* Tenor Sans usually looks best at 400 weight */
+    letter-spacing: 0.05em; /* Tenor Sans loves extra breathing room */
     margin-bottom: 1.5rem;
 }
 
 h1 { 
     font-size: 3.5rem; 
+    letter-spacing: -0.01em;
 }
 h2 { 
     font-size: 2.5rem; 
@@ -89,8 +97,8 @@ h6 {
 
 .navbar-brand {
     font-size: 1.6rem;
+    letter-spacing: 0.1em;
     font-weight: 800;
-    letter-spacing: -1px;
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -113,15 +121,12 @@ button, .btn {
     transition: transform 0.2s ease;
 }
 
-button:active { transform: scale(0.96); }
-
-/* All Images - Soft Large Corners */
-img {
-    border-radius: var(--rounded-lg);
-    object-fit: cover;
+button, .btn, input, .form-control {
+    font-family: var(--font-body);
 }
 
-/* All Form/Text Fields */
+button:active { transform: scale(0.96); }
+
 input[type="text"], input[type="search"], .form-control {
     border-radius: var(--rounded-full) !important;
 }
@@ -174,13 +179,14 @@ section {
 }
 
 .x-small {
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
 }
 
 .mega-menu.show {
     display: block;
     animation: fadeIn 0.1s ease-out;
+    position: relative;
+    top: 46px; /* Height of navbar on desktop */
 }
 
 /* Underline the 'Shop' text when the menu is open */
@@ -200,7 +206,7 @@ section {
     padding-left: 16px !important;
 }
 
-footer .dropdown-item:hover {
+footer .dropdown-item:hover, .simple-button:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
 }

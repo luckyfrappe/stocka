@@ -180,9 +180,11 @@ A clear and concise returns and refunds page that outlines the policies and proc
 
 <details>
 
-<summary>FAQ's page</summary>
+<summary>FAQ's page (not implemented)</summary>
 
 A well-organized FAQ page that addresses common questions and concerns. Questions will be hidden in collapsible sections for easy navigation on both desktop and mobile devices.
+
+To save time, this page is not implemented in the project but wireframes have been created.
 
 ![Desktop Home Page](documentation/images/wireframes/desktop-faq.png)
 ![Mobile Home Page](documentation/images/wireframes/mobile-faq.png)
@@ -506,7 +508,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **Sustainability** — Circular fashion principles, fixed dynamic image  
 - **About** — Brand story and mission  
 - **Values** — Brand values and vision  
-- **FAQs** — Accordion, scroll spy  
 - **Contact** — User inquiries and support form  
 - **Notifications** — Success and error messages for user actions
 - **Legal Pages** — Terms of Service, Privacy Policy, Returns & Refunds
@@ -639,12 +640,27 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 
 ## Credits
 
+### Code Used
+
+
+
 ### Data Sources
 
 - [Vibrent Clothes Rental Dataset (Kaggle)](https://www.kaggle.com/datasets/kaborg15/vibrent-clothes-rental-dataset?select=images)  
 - Academic reference:  
   *[A Dataset for Adapting Recommender Systems to the Fashion Rental Economy](https://dl.acm.org/doi/10.1145/3640457.3688174)* (RecSys 2024)  **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 -[Adobe Colors](https://stock.adobe.com/se/images/flat-lay-with-woman-fashion-accessories-in-yellow-colors-fashion-blog-summer-style-shopping-and-trends-idea/315730695) – Colors inspiration.
+
+### Content
+
+The textual content and platform descriptions for this fictional fashion marketplace were created in collaboration with AI tools such as ChatGPT and Gemini. Page copy, product descriptions, and UX narratives were AI-assisted and inspired by real-world fashion e-commerce and rental platforms.
+
+### Media
+
+#### General Imagery
+
+- **[Woman in blue bralette holding sunglasses putting on her eyes](https://unsplash.com/photos/woman-in-blue-bralette-holding-sunglasses-putting-on-her-eyes-_KaMTEmJnxY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)** – Photo by Atikh Bana on Unsplash.
+      
 
 ### Acknowledgments
 
