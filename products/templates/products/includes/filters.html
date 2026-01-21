@@ -11,7 +11,7 @@
                 {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
                 {% if request.GET.sort %}<input type="hidden" name="sort" value="{{ request.GET.sort }}">{% endif %}
 
-                <div class="mobile-nav-groups" id="filterAccordion">
+                <div class="mobile-nav-groups" style="max-height: 76vh; overflow-y: auto;" id="filterAccordion">
                     {% for type in all_attribute_types %}
                     <div class="mb-2 border-bottom pb-2">
                         <div class="py-2 small d-flex justify-content-between align-items-center pointer fw-bold text-uppercase" 
