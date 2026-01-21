@@ -18,31 +18,46 @@
     <div class="container-fluid">
         <div class="d-flex flex-column align-items-start mb-5">
             <div>
-                <h2 class="mb-0 mt-5">Products</h2>
+                <h1 class="mb-0 mt-5 mb-1">
+                    {% if current_attributes %}
+                        {{ current_attributes.first.value }}
+
+                    {% elif search_term %}
+                        Search results for "{{ search_term }}"
+                    {% elif new_arrivals == true %}
+                        New Arrivals
+                    {% else %}
+                        Products
+                    {% endif %}
+                </h1>
+                <p class="text-muted small mt-1">
+                    {% if current_attributes %}
+                        Explore {{ current_attributes.first.value|lower }} pieces selected for flexibility and longevity.
+                    {% elif search_term %}
+                        Showing items that match your search.
+                    {% elif new_arrivals == true %}
+                        Discover the newest additions, available to rent, buy, or keep.
+                    {% else %}
+                        Browse our full selection of new, rental, and pre-owned fashion.
+                    {% endif %}
+                </p>
             </div>
             <hr class="w-100 mb-1">
         </div>
         <div class="row mt-1 mb-2">
             <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-end">
                 <div class="sort-select-wrapper">
-                    <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-black">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
                         <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                         <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                        <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                        <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
                     </select>
                 </div>
             </div>
             <div class="col-12 col-md-6 order-md-first">
-                <p class="text-muted mt-3">
-                    {% if search_term or current_categories or current_sorting != 'None_None' %}
-                        <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
-                    {% endif %}
+                <p class="text-muted">
                     {{ products|length }} Products out of {{ products.paginator.count }} {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                 </p>
             </div>
