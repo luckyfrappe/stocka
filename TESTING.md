@@ -171,6 +171,25 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 - In the mobile navigation, the collapsible submenu items were not scrollable when the content exceeded the viewport height. I added CSS styles to the navbar collapse div to set a maximum height and enable vertical scrolling.
 - The mobile navigation menu's maximum height was set too low, causing some submenu items to be inaccessible on smaller screens. I increased the max-height to 90vh to ensure all items are reachable.
 - In the mobile navigation, the submenu items were not collapsing when another submenu was opened. I added the `data-bs-parent` attribute to each submenu collapse div to ensure only one submenu is open at a time.
+- On the product listing page, the attribute filters were displaying all available attributes, leading to a cluttered interface. I modified the view to only fetch and display a targeted subset of attribute types (material, brand, color, length, details) for filtering.
+- The product listing page header had excessive top margin, causing unnecessary whitespace. I adjusted the margin to create a more balanced layout.
+- Broken pagination controls:
+
+The Problem: On a fresh page, there is no ? in the URL. Adding &page=2 creates an invalid URL. It only worked when I had filters because the filters already provided the required ?.
+
+The Fix: I changed the links to always start with a ? and then loop through active filters. This ensures the URL is valid on a clean search and a filtered one. 
+
+- Pagination controls were not preserving existing query parameters when navigating between pages. Gemini by Copilot suggested to update the pagination links to include all current GET parameters using `request.GET.urlencode`, ensuring filters remain applied during pagination.
+
+-The Problem:
+The Sidebar and Navbar weren't "talking" to each other. When navigating from a Navbar link, the Sidebar didn't realize a filter was already active, so it didn't check the box. When I clicked "Apply," the Sidebar form submitted only its own checked boxes, "forgetting" Navbar selection.
+
+The Logic Fix
+Global Visibility: Allowed the Sidebar to see all attribute types. Instead of filtering to a targeted few, it now has access to all. Original filter logic were to complement the Navbar, but this broke the connection.
+
+Pre-selection: If a filter is in the URL (from a link), the checkbox pre-selects itself.
+
+Result: When I hit "Apply," the form now includes the Navbar category because it's already checked.
 
 ---
 

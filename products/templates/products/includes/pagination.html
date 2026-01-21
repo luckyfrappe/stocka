@@ -1,0 +1,43 @@
+ <!-- Brainstorming the layout with Gemini by Google -->
+ {% if products.has_other_pages %}
+        <nav class="pagination-wrapper mb-5 mt-4">
+            <ul class="pagination justify-content-center">
+
+                {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ products.previous_page_number }}">‹</a>
+                </li>
+                {% endif %}
+
+                {% for i in products.paginator.page_range %}
+
+                    {% if i == 1 or i == products.paginator.num_pages or i >= products.number|add:'-2' and i <= products.number|add:'2' %}
+
+                        {% if products.number == i %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ i }}</span>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <!-- Links debugging with help from Gemini -->
+                                <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ i }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% elif i == products.number|add:'-3' or i == products.number|add:'3' %}
+                        <li class="page-item disabled">
+                            <span class="page-link">…</span>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ products.next_page_number }}">›</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    {% endif %}

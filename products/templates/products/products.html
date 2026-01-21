@@ -25,165 +25,125 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="d-flex flex-column align-items-start mb-5">
-            <div>
-                <h1 class="mb-0 mt-5 mb-1 {% if search_term %}display-6{% endif %}">
-                    {% if current_attributes %}
-                        {{ current_attributes.first.value }}
-                    {% elif search_term %}
-                        Search results for "{{ search_term }}"
-                    {% elif request.GET.new_arrivals %}
-                        New Arrivals
-                    {% else %}
-                        Products
-                    {% endif %}
-                </h1>
-                <p class="text-muted small mt-1">
-                    {% if current_attributes %}
-                        Explore {{ current_attributes.first.value|lower }} pieces selected for flexibility and longevity.
-                    {% elif search_term %}
-                        Showing items that match your search.
-                    {% elif new_arrivals == true %}
-                        Discover the newest additions, available to rent, buy, or keep.
-                    {% else %}
-                        Browse our full selection of new, rental, and pre-owned fashion.
-                    {% endif %}
-                </p>
-            </div>
-            <hr class="w-100 mb-1">
+<div class="container-fluid">
+    <div class="row mt-5 mb-4">
+        <div class="col-12">
+            <h1 class="mb-1 {% if search_term %}display-6{% endif %}">
+                {% if current_attributes %}
+                    {{ current_attributes.first.value }}
+                {% elif search_term %}
+                    Search results for "{{ search_term }}"
+                {% elif request.GET.new_arrivals %}
+                    New Arrivals
+                {% else %}
+                    Products
+                {% endif %}
+            </h1>
+            <p class="text-muted small">
+                {% if current_attributes %}
+                    Explore {{ current_attributes.first.value|lower }} pieces selected for flexibility and longevity.
+                {% elif search_term %}
+                    Showing items that match your search.
+                {% else %}
+                    Browse our full selection of new, rental, and pre-owned fashion.
+                {% endif %}
+            </p>
+            <hr>
         </div>
-        <div class="row mt-1 mb-2">
-            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-end">
-                <div class="sort-select-wrapper">
-                    <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-black">
-                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 order-md-first">
-                <p class="text-muted">
-                    {{ products|length }} Products out of {{ products.paginator.count }} {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
-                </p>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-end">
+            <div class="sort-select-wrapper">
+                <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-black">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                </select>
             </div>
         </div>
-        <div class="row g-4">
-        {% for product in products %}
-            <div class="col-6 col-lg-3 mb-4">
-            <a href="#" class="text-decoration-none text-dark product-card">
-                <div class="product-card">
-                    <div class="img-container mb-3">
-                        <!-- Debugged with ChatGBT -->
-                        {% with product.images.all|first as img %}
-                            {% if img %}
-                                <img class="card-img-top img-fluid"
-                                    src="{{ img.image.url }}"
-                                    alt="{{ product.name }}">
-                            {% else %}
-                                <img class="card-img-top img-fluid"
-                                    src="{{ MEDIA_URL }}noimage.png"
-                                    alt="{{ product.name }}">
+        <div class="col-12 col-md-6 order-md-1">
+            <p class="text-muted mb-0">
+                {{ products|length }} Products out of {{ products.paginator.count }} 
+                {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% include 'products/includes/filters.html' %}
+
+        <div class="col-12 col-md-9 col-lg-10">
+            <div class="row g-4 mb-5">
+                {% for product in products %}
+                    <div class="col-6 col-lg-4 col-xl-3">
+                        <div class="product-card h-100 border-0">
+                            <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+                                <div class="img-container mb-3 overflow-hidden">
+                                    {% with product.images.all|first as img %}
+                                        <img class="card-img-top img-fluid"
+                                            src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}"
+                                            alt="{{ product.name }}">
+                                    {% endwith %}
+                                </div>
+                                <div class="product-info">
+                                    <div class="row g-0 align-items-start">
+                                        <div class="col-6">
+                                            <h3 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h3>
+                                            <span class="fw-bold small">{{ product.retail_price }} SEK</span>
+                                        </div>
+                    
+                                        <div class="col-6 text-end lh-1">
+                                            <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }} SEK</span>
+                                            <span class="text-muted x-small d-block">Pre-owned {{ product.retail_price }} SEK</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% if request.user.is_superuser %}
+                            <div class="mt-2 pt-2 border-top d-flex gap-2">
+                                <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
+                                <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
+                            </div>
                             {% endif %}
-                        {% endwith %}
-                    </div>
-        
-                    <div class="product-info pt-2">
-                        <div class="row g-0 align-items-start">
-                            <div class="col-6">
-                                <h3 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h3>
-                                <span class="fw-bold small">{{ product.retail_price }} SEK</span>
-                            </div>
-        
-                            <div class="col-6 text-end lh-1">
-                                <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }} SEK</span>
-                                <span class="text-muted x-small d-block">Used {{ product.retail_price }} SEK</span>
-                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        
-            {% if request.user.is_superuser %}
-            <div class="product-admin-actions mt-2 pt-2 border-top d-flex">
-                <small>
-                    <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
-                    <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
-                </small>
-            </div>
-            {% endif %}
-            </div>
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-sm-none">
-                    <hr>
-                </div>
-            {% endif %}
-
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
-                    <hr>
-                </div>
-            {% endif %}
-
-            {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-lg-block">
-                    <hr>
-                </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-    </div>
-    {% if products.has_other_pages %}
-        <nav class="pagination-wrapper mb-5 mt-4">
-            <ul class="pagination justify-content-center">
-
-                {% if products.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="{{ request.get_full_path }}&page={{ products.previous_page_number }}">‹</a>
-                </li>
-                {% endif %}
-
-                {% for i in products.paginator.page_range %}
-
-                    {% if i == 1 or i == products.paginator.num_pages or i >= products.number|add:'-2' and i <= products.number|add:'2' %}
-
-                        {% if products.number == i %}
-                            <li class="page-item active">
-                                <span class="page-link">{{ i }}</span>
-                            </li>
-                        {% else %}
-                            <li class="page-item">
-                                <a class="page-link" href="{{ request.get_full_path }}&page={{ i }}">{{ i }}</a>
-                            </li>
-                        {% endif %}
-
-                    {% elif i == products.number|add:'-3' or i == products.number|add:'3' %}
-                        <li class="page-item disabled">
-                            <span class="page-link">…</span>
-                        </li>
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="col-12 d-sm-none">
+                            <hr>
+                        </div>
                     {% endif %}
 
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                            <hr>
+                        </div>
+                    {% endif %}
+
+                    {% if forloop.counter|divisibleby:4 %}
+                        <div class="col-12 d-none d-lg-block">
+                            <hr>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <div class="col-12 text-center py-5">
+                        <p>No products found matching your criteria.</p>
+                        <a href="{% url 'products' %}" class="btn btn-dark rounded-0">Browse All Products</a>
+                    </div>
                 {% endfor %}
-
-                {% if products.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="{{ request.get_full_path }}&page={{ products.next_page_number }}">›</a>
-                </li>
-                {% endif %}
-
-            </ul>
-        </nav>
-    {% endif %}
-
-
-    <div class="btt-button rounded-1">
-        <a class="btt-link d-flex h-100">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>	
+            </div>
+            {% include 'products/includes/pagination.html' %}
+        </div>
     </div>
+</div>
+
+<div class="btt-button shadow-sm">
+    <a class="btt-link d-flex h-100 text-decoration-none">
+        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>    
+</div>
 {% endblock %}
 
 {% block postloadjs %}

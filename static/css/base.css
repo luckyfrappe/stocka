@@ -259,6 +259,10 @@ footer .dropdown-item:hover, .simple-button:hover {
     cursor: pointer;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 /* Fade-in animation for dropdown */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
