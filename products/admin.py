@@ -43,7 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline, ProductAttributeInline]
 
     def thumbnail(self, obj):
-        primary_img = obj.images.filter(is_primary=True).first() or obj.images.first()
+        primary_img = obj.images.first()
         if primary_img and primary_img.image:
             return format_html('<img src="{}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" />', primary_img.image.url)
         return "No Image"

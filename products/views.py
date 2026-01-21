@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
-from .models import Product, ProductAttribute, ProductImage
+from .models import Product, ProductAttribute, ProductImage, AttributeType
 from .forms import ProductForm
 
 # Create your views here.
@@ -16,6 +16,9 @@ def all_products(request):
     products = Product.objects.prefetch_related(
         'attributes__attribute_value__attribute_type'
     ).all()
+
+    products_images = ProductImage.objects.all()
+
     query = None
     categories = None
     sort = None

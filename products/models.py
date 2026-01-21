@@ -44,4 +44,7 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='products/')
     sort_order = models.PositiveIntegerField(default=0)
-    is_primary = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['sort_order']
+    

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+<link rel="stylesheet" href="{% static 'products/css/pagination.css' %}">
+{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -15,16 +20,10 @@
             <div>
                 <h2 class="mb-0 mt-5">Products</h2>
             </div>
-            <p>Explore the entire lineup and choose how it fits your style - new, rented, or pre-owned.</p>
-            {% for c in productAttributes %}
-                <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
-                    <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
-                </a>
-            {% endfor %}
             <hr class="w-100 mb-1">
         </div>
         <div class="row mt-1 mb-2">
-            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-end">
                 <div class="sort-select-wrapper">
                     <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
@@ -44,116 +43,117 @@
                     {% if search_term or current_categories or current_sorting != 'None_None' %}
                         <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
                     {% endif %}
-                    {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                    {{ products|length }} Products out of {{ products.paginator.count }} {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                 </p>
             </div>
         </div>
         <div class="row g-4">
         {% for product in products %}
             <div class="col-6 col-lg-3 mb-4">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="product-card">
-                        <div class="img-container mb-3">
-                            {% if product.image %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                            </a>
+            <a href="#" class="text-decoration-none text-dark product-card">
+                <div class="product-card">
+                    <div class="img-container mb-3">
+                        <!-- Debugged with ChatGBT -->
+                        {% with product.images.all|first as img %}
+                            {% if img %}
+                                <img class="card-img-top img-fluid"
+                                    src="{{ img.image.url }}"
+                                    alt="{{ product.name }}">
                             {% else %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                            </a>
+                                <img class="card-img-top img-fluid"
+                                    src="{{ MEDIA_URL }}noimage.png"
+                                    alt="{{ product.name }}">
                             {% endif %}
-                        </div>
-            
-                        <div class="product-info pt-2">
-                            <div class="row g-0 align-items-start">
-                                <div class="col-6">
-                                    <h3 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h3>
-                                    <span class="fw-bold small">{{ product.retail_price }} SEK</span>
-                                </div>
-            
-                                <div class="col-6 text-end lh-1">
-                                    <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }} SEK</span>
-                                    <span class="text-muted x-small d-block">Used {{ product.retail_price }} SEK</span>
-                                </div>
+                        {% endwith %}
+                    </div>
+        
+                    <div class="product-info pt-2">
+                        <div class="row g-0 align-items-start">
+                            <div class="col-6">
+                                <h3 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h3>
+                                <span class="fw-bold small">{{ product.retail_price }} SEK</span>
+                            </div>
+        
+                            <div class="col-6 text-end lh-1">
+                                <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }} SEK</span>
+                                <span class="text-muted x-small d-block">Used {{ product.retail_price }} SEK</span>
                             </div>
                         </div>
                     </div>
-                </a>
-            
-                {% if request.user.is_superuser %}
-                <div class="product-admin-actions mt-2 pt-2 border-top d-flex">
-                    <small>
-                        <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
-                        <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
-                    </small>
                 </div>
-                {% endif %}
+            </a>
+        
+            {% if request.user.is_superuser %}
+            <div class="product-admin-actions mt-2 pt-2 border-top d-flex">
+                <small>
+                    <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
+                    <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
+                </small>
             </div>
-            {% if forloop.counter|divisibleby:1 %}
-                    <div class="col-12 d-sm-none mb-5">
-                        <hr>
-                    </div>
-                {% endif %}                        
-                {% if forloop.counter|divisibleby:2 %}
-                    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:3 %}
-                    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
-                {% if forloop.counter|divisibleby:4 %}
-                    <div class="col-12 d-none d-xl-block mb-5">
-                        <hr>
-                    </div>
-                {% endif %}
+            {% endif %}
+            </div>
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-sm-none">
+                    <hr>
+                </div>
+            {% endif %}
+
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                    <hr>
+                </div>
+            {% endif %}
+
+            {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-lg-block">
+                    <hr>
+                </div>
+            {% endif %}
         {% endfor %}
         </div>
     </div>
     {% if products.has_other_pages %}
-        <nav class="mb-5">
-        <ul class="pagination justify-content-center">
+        <nav class="pagination-wrapper mb-5 mt-4">
+            <ul class="pagination justify-content-center">
 
-            {% if products.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ products.previous_page_number }}">‹</a>
-            </li>
-            {% endif %}
+                {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.previous_page_number }}">‹</a>
+                </li>
+                {% endif %}
 
-            {% for i in products.paginator.page_range %}
+                {% for i in products.paginator.page_range %}
 
-                {% if i == 1 or i == products.paginator.num_pages or i >= products.number|add:'-2' and i <= products.number|add:'2' %}
+                    {% if i == 1 or i == products.paginator.num_pages or i >= products.number|add:'-2' and i <= products.number|add:'2' %}
 
-                    {% if products.number == i %}
-                        <li class="page-item active">
-                            <span class="page-link">{{ i }}</span>
-                        </li>
-                    {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                        {% if products.number == i %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ i }}</span>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% elif i == products.number|add:'-3' or i == products.number|add:'3' %}
+                        <li class="page-item disabled">
+                            <span class="page-link">…</span>
                         </li>
                     {% endif %}
 
-                {% elif i == products.number|add:'-3' or i == products.number|add:'3' %}
-                    <li class="page-item disabled">
-                        <span class="page-link">…</span>
-                    </li>
+                {% endfor %}
+
+                {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.next_page_number }}">›</a>
+                </li>
                 {% endif %}
 
-            {% endfor %}
-
-            {% if products.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ products.next_page_number }}">›</a>
-            </li>
-            {% endif %}
-
-        </ul>
+            </ul>
         </nav>
     {% endif %}
+
 
     <div class="btt-button rounded-1">
         <a class="btt-link d-flex h-100">

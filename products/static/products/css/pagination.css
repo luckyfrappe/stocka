@@ -1,0 +1,42 @@
+/* Pagination, styled with help from ChatGPT */
+.pagination {
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Page items */
+.page-item .page-link {
+    border: 1px solid #e5e5e5;
+    background-color: var(--white);
+    color: var(--black);
+    min-width: 42px;
+    height: 42px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border-radius: var(--rounded-full);
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.page-item:not(.active):not(.disabled) .page-link:hover {
+    background-color: var(--gray-light);
+}
+
+/* Active page */
+.page-item.active .page-link {
+    background-color: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+    font-weight: 600;
+}
+
+/* Prev / Next arrows */
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+    font-size: 1.2rem;
+    padding: 0 18px;
+}
