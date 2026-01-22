@@ -18,36 +18,31 @@ def all_products(request):
     ).all()
 
     query = None
-    attribute_type = None
     sort = None
     direction = None
+    active_filter_slugs = []
+    attribute_type = None
 
     if request.GET:
-        if 'new_arrivals' in request.GET:
-            new_arrival_ids = products.order_by('-time_created').values_list('id', flat=True)[:100]
-            products = products.filter(id__in=list(new_arrival_ids))
-
         # Debugged with help from Gemini (AI tool)
-        ignore_list = ['q', 'sort', 'direction', 'page', 'new_arrivals']
-
-        for f_type, attr_values in request.GET.lists():
-            if f_type == 'attribute_type':
-                products = products.filter(attributes__attribute_value__slug__in=attr_values).distinct()
-                attribute_type = AttributeValue.objects.filter(slug__in=attr_values)
-            elif f_type not in ignore_list:
-                products = products.filter(
-                    attributes__attribute_value__attribute_type__slug=f_type,
-                    attributes__attribute_value__slug__in=attr_values
-                ).distinct()
-
+        if 'new_arrivals' in request.GET:
+            new_arrival_ids = products.order_by('-time_created').values_list('id', flat=True).distinct()[:100]
+            products = products.filter(id__in=list(new_arrival_ids))
 
         if 'q' in request.GET:
             query = request.GET['q']
-            if not query:
+            if not query.strip():
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+
+        ignore_list = ['q', 'sort', 'direction', 'page', 'new_arrivals']
+        for key, values in request.GET.lists():
+            if key not in ignore_list:
+                active_filter_slugs.extend(values)
+                # Filter products by the specific attribute values
+                products = products.filter(attributes__attribute_value__slug__in=values)
 
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -67,6 +62,9 @@ def all_products(request):
                     
             products = products.order_by(sortkey)
 
+    if active_filter_slugs:
+        attribute_type = AttributeValue.objects.filter(slug__in=active_filter_slugs)
+
     all_attribute_types = AttributeType.objects.prefetch_related('values').all()
 
     current_sorting = f'{sort}_{direction}'
@@ -81,6 +79,7 @@ def all_products(request):
         'current_attributes': attribute_type,
         'current_sorting': current_sorting,
         'all_attribute_types': all_attribute_types,
+        'active_filter_slugs': active_filter_slugs,
     }
 
     return render(request, "products/products.html", context)

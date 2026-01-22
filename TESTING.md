@@ -164,7 +164,7 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 ## Bugs
 
 ### Known Bugs
-- None currently.
+
 
 ### Solved Bugs
 - Shopping Bag icon and the Price text were sitting side-by-side in a horizontal row. Because the price text takes up quite a bit of width, it was pushing the icon out behind logo. I stacked the price directly underneath the icon to solve this issue.
@@ -190,6 +190,30 @@ Global Visibility: Allowed the Sidebar to see all attribute types. Instead of fi
 Pre-selection: If a filter is in the URL (from a link), the checkbox pre-selects itself.
 
 Result: When I hit "Apply," the form now includes the Navbar category because it's already checked.
+
+- Bug summary:
+Backend filtering is working, but the frontend keeps sending old filter parameters in the URL. When I uncheck a filter, the checkbox disappears visually, but its query parameter is not removed, so Django still filters by it.
+
+Root cause:
+HTML checkboxes don’t automatically remove GET params. Filter UI (forms / links / pagination) is not rebuilding a clean URL, so “removed” filters are never actually removed from the request.
+
+Solution:
+The Logic Fix: Instead of the frontend telling the backend what is selected, the Backend now tells the Frontend.
+
+I created active_filter_slugs = [] to store the exact IDs the user clicked.
+
+In the view, it loops through the URL parameters and extends this list with every active attribute.
+
+This list is sent to the context, and the checkbox only stays "checked" if its specific slug exists in that clean list. The list keeps the checkbox alive, not the other way around.
+
+The Integrated "New Arrivals" Toggle
+I moved New Arrivals from a standalone link into the main filter form.
+
+Form Integration: By adding it as a filter-checkbox, it now behaves like an attribute.
+
+Persistent State: Using {% if 'new_arrivals' in request.GET %}checked{% endif %}, I ensure that when a user filters for "Shoes" and then clicks "New Arrivals," the shoe filter stays active because the whole form is submitted together.
+
+Hierarchical Filtering: By placing the logic at the end of the view, the "New Arrivals" filter acts as a "final cut," showing the 100 newest items from the already filtered pool of products.
 
 ---
 
