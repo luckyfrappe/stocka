@@ -17,8 +17,6 @@ def all_products(request):
         'attributes__attribute_value__attribute_type'
     ).all()
 
-    products_images = ProductImage.objects.all()
-
     query = None
     attribute_type = None
     sort = None
@@ -33,20 +31,15 @@ def all_products(request):
         ignore_list = ['q', 'sort', 'direction', 'page', 'new_arrivals']
 
         for f_type, attr_values in request.GET.lists():
-            if f_type not in ignore_list:
-                # attr_values is already a list because we used .lists()
+            if f_type == 'attribute_type':
+                products = products.filter(attributes__attribute_value__slug__in=attr_values).distinct()
+                attribute_type = AttributeValue.objects.filter(slug__in=attr_values)
+            elif f_type not in ignore_list:
                 products = products.filter(
                     attributes__attribute_value__attribute_type__slug=f_type,
                     attributes__attribute_value__slug__in=attr_values
                 ).distinct()
 
-        if 'attribute_type' in request.GET:
-            attr_values = request.GET['attribute_type'].split(',')
-            products = products.filter(attributes__attribute_value__slug__in=attr_values).distinct()
-            
-            attribute_type = AttributeValue.objects.filter(slug__in=attr_values)
-        else:
-            attribute_type = None
 
         if 'q' in request.GET:
             query = request.GET['q']

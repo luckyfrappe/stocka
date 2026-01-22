@@ -67,9 +67,9 @@
 @media (min-width: 768px) {
     .sticky-sidebar {
         position: sticky;
-        top: 100px;
-        height: calc(100vh - 100px);
-        overflow-y: auto;
+        top: 49.4px;
+        height: fit-content; 
     }
 }
+
 .pointer { cursor: pointer; }
