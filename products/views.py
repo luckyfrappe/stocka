@@ -84,7 +84,7 @@ def all_products(request):
 
     return render(request, "products/products.html", context)
 
-
+# Debugged with help from Gemini (AI tool)
 def product_detail(request, product_id):
     """ A view to show individual product details """
 
@@ -96,8 +96,8 @@ def product_detail(request, product_id):
     real_size_obj = tags.filter(attribute_value__attribute_type__name__iexact='size').first()
     real_size = real_size_obj.attribute_value.value if real_size_obj else None
     
-    # 2. Define your full ranges
-    # Note: Ensure these match your slug format or display format as needed
+    # 2. Define full ranges
+    # Note: Ensure these match slug format or display format as needed
     CLOTHING_RANGE = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL']
     SHOE_RANGE = ['36', '37', '38', '39', '40', '41']
     
@@ -114,7 +114,7 @@ def product_detail(request, product_id):
         elif 'ONESIZE' in check_val:
             simulated_sizes = ['Onesize']
         else:
-            # Fallback if it's a weird size not in our lists
+            # Fallback if it's a weird size not in the lists
             simulated_sizes = [real_size]
     else:
         # Default fallback if no size attribute exists
@@ -136,6 +136,8 @@ def product_detail(request, product_id):
     }
 
     return render(request, "products/product_detail.html", context)
+
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
