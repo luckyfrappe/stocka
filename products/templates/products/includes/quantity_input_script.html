@@ -51,5 +51,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const startInput = document.getElementById('id_start_date');
+    const rentalSelect = document.getElementById('id_rental_period');
+    const endSpan = document.getElementById('rental_end_date');
+    const totalSpan = document.getElementById('rental_total_price');
+    const pricePerWeek = {{ product.price_per_week }};
+    const today = new Date();
+
+    function updateRental() {
+        const start = new Date(startInput.value);
+        const weeks = parseInt(rentalSelect.value) || 1;
+        if (start.getTime()) {
+            const end = new Date(start);
+            end.setDate(end.getDate() + weeks * 7);
+            endSpan.textContent = end.toISOString().slice(0, 10); // YYYY-MM-DD
+            totalSpan.textContent = (weeks * pricePerWeek).toFixed(2);
+        } else {
+            endSpan.textContent = '—';
+            totalSpan.textContent = '—';
+        }
+    }
+
+    // add 4 days
+    const minDate = new Date();
+    minDate.setDate(today.getDate() + 4);
+
+    // format YYYY-MM-DD
+    const yyyy = minDate.getFullYear();
+    const mm = String(minDate.getMonth() + 1).padStart(2, '0');
+    const dd = String(minDate.getDate()).padStart(2, '0');
+
+    startInput.min = `${yyyy}-${mm}-${dd}`;
+
+    // pre-fill input with min date
+    startInput.value = startInput.min;
+
+    startInput.addEventListener('change', updateRental);
+    rentalSelect.addEventListener('change', updateRental);
+    updateRental();
+
+    // protects against manual typing
+    startInput.addEventListener('input', function() {
+        if (startInput.value < startInput.min) {
+            startInput.value = startInput.min;
+        }
+    });
+
 });
 </script>

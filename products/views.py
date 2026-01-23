@@ -90,8 +90,21 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    tags = product.attributes.select_related('attribute_value', 'attribute_value__attribute_type').all()
+    sizes = tags.filter(attribute_value__attribute_type__name__iexact='size').values_list('attribute_value__slug', flat=True)
+    
+    product_tags = {}
+    
+    for tag in tags:
+        attr_type = tag.attribute_value.attribute_type.name
+        if attr_type not in product_tags:
+            product_tags[attr_type] = []
+        product_tags[attr_type].append(tag.attribute_value)
+
     context = {
         'product': product,
+        'product_tags': product_tags,
+        'sizes': sizes,
     }
 
     return render(request, "products/product_detail.html", context)
