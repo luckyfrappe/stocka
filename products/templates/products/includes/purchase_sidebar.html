@@ -11,7 +11,7 @@
                 <p class="ps-1 small text-muted m-0 py-2">
                     {{ product.description }}
                 </p>
-                <div class="d-flex flex-wrap gap-1 mb-1">
+                <div class="d-flex flex-wrap gap-1 mb-2">
                     {% for tag_type, tags in product_tags.items %}
                         {% for tag in tags %}
                             <a href="{% url 'products' %}?attribute_type={{ tag.slug }}" 
@@ -43,14 +43,12 @@
                 <div id="buyNew" class="collapse show" data-bs-parent="#purchaseAccordion">
                     <input type="hidden" name="purchase_type" value="buy">
                     <div class="px-3 pb-3">
-                        {% if sizes %}
-                        <p class="x-small fw-bold text-uppercase mb-2">Size:</p>
-                        <select class="form-control rounded-0" name="product_size" id='id_product_size'>
-                            <option value="xs">XS</option>
-                            <option value="s">S</option>
-                            <option value="m" selected>M</option>
-                            <option value="l">L</option>
-                            <option value="xl">XL</option>
+                        {% if simulated_sizes %}
+                        <p class="x-small fw-bold text-uppercase mb-2">Select Size:</p>
+                        <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size_new'>
+                            {% for size in simulated_sizes %}
+                                <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}</option>
+                            {% endfor %}
                         </select>
                         {% endif %}
 
@@ -94,20 +92,14 @@
                         
                         <p class="small text-muted mb-3">Weekly rental with flexible size changes.</p>
                         <!-- Used to simulate fake availability of new items -->
-                        {% for size in sizes %}
-                        {% if size != "onesize"  %}
-                        <p class="x-small fw-bold text-uppercase mb-2">Size:</p>
-                        <select class="form-control rounded-0 mb-2" name="product_size" id='id_product_size'>
-                            <option value="xs">XS</option>
-                            <option value="s">S</option>
-                            <option value="m" selected>M</option>
-                            <option value="l">L</option>
-                            <option value="xl">XL</option>
+                        {% if simulated_sizes %}
+                        <p class="x-small fw-bold text-uppercase mb-2">Select Size:</p>
+                        <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size_new'>
+                            {% for size in simulated_sizes %}
+                                <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}</option>
+                            {% endfor %}
                         </select>
-                        {% else %}
-                        <input type="hidden" name="product_size" value="onesize">
                         {% endif %}
-                        {% endfor %}
 
                         <div class="col-12 mb-4">
                             <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
@@ -169,11 +161,13 @@
                         
                         <p class="small text-muted mb-3">Carefully inspected, final sale item.</p>
                         <!-- Used to simulate fake availability of pre-owned items -->
-                        {% if sizes %}
+                        {% if simulated_sizes %}
                         <p class="x-small fw-bold text-uppercase mb-2">Available Size:</p>
-                        <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size'>
-                            {% for size in sizes %}
-                            <option value="{{ size }}">{{ size }}</option>
+                        <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size_rent'>
+                            {% for size in simulated_sizes %}
+                            {% if size == real_size %}
+                            <option value="{{ size|slugify }}">{{ size }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                         {% endif %}
@@ -181,18 +175,17 @@
                         <div class="col-12 mb-4">
                             <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
                             <div class="input-group w-50">
-                                <button class="decrement-qty btn btn-outline-dark rounded-0 btn-sm" 
-                                    type="button" data-item_id="{{ product.id }}">
+                                <button class="btn btn-outline-dark rounded-0 btn-sm" disabled>
                                     <i class="fas fa-minus"></i>
                                 </button>
-                                <input class="form-control qty_input rounded-0 border-dark text-center" type="number" 
-                                    name="quantity" value="1" min="1" max="99" 
-                                    data-item_id="{{ product.id }}" id="id_qty_rent_{{ product.id }}">
-                                <button class="increment-qty btn btn-outline-dark rounded-0 btn-sm" 
-                                    type="button" data-item_id="{{ product.id }}">
+                                <input class="form-control rounded-0 border-dark text-center" type="number" 
+                                    name="quantity" value="1" min="1" max="1" readonly
+                                    id="id_qty_preowned_{{ product.id }}">
+                                <button class="btn btn-outline-dark rounded-0 btn-sm" disabled>
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
+                            <div class="text-danger x-small"><i class="fas fa-exclamation-circle me-1"></i>Only 1 in stock</div>
                         </div>
                         
                         <button type="submit" class="btn btn-dark text-uppercase w-100 py-2 small">

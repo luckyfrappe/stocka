@@ -91,10 +91,37 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
 
     tags = product.attributes.select_related('attribute_value', 'attribute_value__attribute_type').all()
-    sizes = tags.filter(attribute_value__attribute_type__name__iexact='size').values_list('attribute_value__slug', flat=True)
     
+    # 1. Get the actual real size from DB (Assuming one per product)
+    real_size_obj = tags.filter(attribute_value__attribute_type__name__iexact='size').first()
+    real_size = real_size_obj.attribute_value.value if real_size_obj else None
+    
+    # 2. Define your full ranges
+    # Note: Ensure these match your slug format or display format as needed
+    CLOTHING_RANGE = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL']
+    SHOE_RANGE = ['36', '37', '38', '39', '40', '41']
+    
+    simulated_sizes = []
+
+    # 3. Determine which range to simulate based on the real size
+    if real_size:
+        check_val = real_size.upper()
+        
+        if check_val in CLOTHING_RANGE:
+            simulated_sizes = CLOTHING_RANGE
+        elif check_val in SHOE_RANGE or check_val.isdigit():
+            simulated_sizes = SHOE_RANGE
+        elif 'ONESIZE' in check_val:
+            simulated_sizes = ['Onesize']
+        else:
+            # Fallback if it's a weird size not in our lists
+            simulated_sizes = [real_size]
+    else:
+        # Default fallback if no size attribute exists
+        simulated_sizes = ['Onesize']
+
+    # Get other tags for display
     product_tags = {}
-    
     for tag in tags:
         attr_type = tag.attribute_value.attribute_type.name
         if attr_type not in product_tags:
@@ -104,11 +131,11 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'product_tags': product_tags,
-        'sizes': sizes,
+        'simulated_sizes': simulated_sizes, # For Buy New / Rent
+        'real_size': real_size,             # For Pre-Owned
     }
 
     return render(request, "products/product_detail.html", context)
-
 @login_required
 def add_product(request):
     """ Add a product to the store """
