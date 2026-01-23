@@ -134,6 +134,8 @@ A clean, modern homepage featuring a full-width hero with headline and CTA, foll
 
 A grid-based product listing page with filtering and sorting options. The layout adapts to different screen sizes, ensuring easy navigation and product discovery on both desktop and mobile devices.
 
+Since real stock levels are not implemented, sizes in filters are showing real stock for pre-owned items only. Ideally it should show sizes available across all options (new, rent, pre-owned).
+
 ![Desktop Home Page](documentation/images/wireframes/desktop-all.jpg)
 ![Mobile Home Page](documentation/images/wireframes/mobile-all.jpg)
 
