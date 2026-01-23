@@ -30,7 +30,7 @@
         <div class="col-12">
             <h1 class="mb-1 {% if search_term %}display-6{% endif %}">
                 {% if current_attributes %}
-                    {{ current_attributes.first.value }}
+                   {{ current_attributes.first.attribute_type }}: {{ current_attributes.first.value }}
                 {% elif search_term %}
                     Search results for "{{ search_term }}"
                 {% elif request.GET.new_arrivals %}
