@@ -163,7 +163,7 @@ def add_product(request):
         messages.error(request, 'Sorry, only store owners can add products.')
         return redirect(reverse('home'))
 
-
+# AI tools were used to assist with the initial implementation. I reviewed and adapted the code to fit the project.
 @login_required
 def edit_product(request, product_id):
     """ Edit a product in the store """
@@ -192,6 +192,19 @@ def edit_product(request, product_id):
         messages.error(request, 'Sorry, only store owners can edit products.')
         return redirect(reverse('home'))
 
+@login_required
+def delete_image(request, image_id):
+    """ Delete a specific product image """
+    if request.user.is_superuser:
+        image = get_object_or_404(ProductImage, pk=image_id)
+        product_id = image.product.id
+        image.delete()
+        messages.success(request, 'Image removed from gallery.')
+        
+        return redirect(reverse('edit_product', args=[product_id]))
+    else:
+        messages.error(request, 'Sorry, only store owners can delete product images.')
+        return redirect(reverse('home'))
 
 @login_required
 def delete_product(request, product_id):

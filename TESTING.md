@@ -221,6 +221,17 @@ On the product detail page, the purchase options (Buy New, Rent, Pre-Owned) were
 The Fix:
 I wrapped all three purchase forms in a single accordion container with the ID "purchaseAccordion". Each purchase option's collapse div includes the attribute `data-bs-parent="#purchaseAccordion"`, ensuring that when one option is expanded, the others collapse automatically. This restores the intended accordion behavior across the separate forms.
 
+- Bug summary:
+On admin page for ProductAttribute, the display of attribute values was showing attribute type as number IDs instead of their actual values, making it hard to identify them.
+
+The Fix:
+I updated the `__str__` method in the AttributeValue model to return just the value string. This way, in the admin interface, attribute values are displayed clearly by their actual value rather than an ID reference.
+
+- Bug summary:
+AttributeValue model's string representation included both attribute type and value, leading to redundancy when displaying in contexts where the type is already known.
+The Fix:
+I modified the `__str__` method of the AttributeValue model to return only the value. This simplifies displays and avoids redundancy in contexts where the attribute type is already clear. Also adjsuted products tags to display both product type and value where needed.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)

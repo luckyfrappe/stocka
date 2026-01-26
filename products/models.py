@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.text import slugify
 
 class AttributeType(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -17,7 +16,7 @@ class AttributeValue(models.Model):
         unique_together = ('attribute_type', 'value')
 
     def __str__(self):
-        return f"{self.attribute_type.name}: {self.value}"
+        return f"{self.value}"
 
 class Product(models.Model):
     sku = models.CharField(max_length=255, unique=True) # Maps to 'id' in CSV
@@ -39,6 +38,9 @@ class ProductAttribute(models.Model):
 
     class Meta:
         unique_together = ('product', 'attribute_value')
+
+    def __str__(self):
+        return str(self.attribute_value.value)
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')

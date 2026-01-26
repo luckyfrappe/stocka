@@ -53,7 +53,7 @@
     {% if messages %}
       <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
           {% for message in messages %}
-          <div class="toast show border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+          <div class="toast show border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
               
               <div class="toast-capper {% if message.tags == 'success' %}bg-success{% elif message.tags == 'error' %}bg-danger{% elif message.tags == 'warning' %}bg-warning{% else %}bg-info{% endif %}"></div>
               
@@ -88,7 +88,21 @@
 
     {% block postloadjs %}
     <script type="text/javascript">
-        $('.toast').toast('show');
+        /**
+         * Bootstrap 5.3 Standard Operating Procedure:
+         * 1. Query all elements with the .toast class
+         * 2. Initialize each one as a Bootstrap Toast instance
+         * 3. Execute the .show() method
+         */
+        document.addEventListener('DOMContentLoaded', function () {
+            const toastElList = document.querySelectorAll('.toast');
+            
+            const toastList = [...toastElList].map(toastEl => {
+                // Option 1: Basic show
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            });
+        });
     </script>
     {% endblock %}
 
