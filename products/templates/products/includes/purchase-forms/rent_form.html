@@ -56,10 +56,15 @@
                         <p class="x-small fw-bold text-uppercase mb-2">Start Date:</p>
                         <input type="date" class="form-control rounded-0 mb-4" name="start_date" id="id_start_date">
                     </div>
-
-                    <button type="submit" class="btn btn-dark text-uppercase w-100 py-2 small">
-                        Add to Bag
-                    </button>
+                    {% if request.user.is_authenticated %}
+                        <button type="submit" class="btn btn-dark text-uppercase w-100 py-2 small">
+                            Add to Bag
+                        </button>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="btn btn-dark text-uppercase w-100 py-2 small">
+                            Log in to Rent
+                        </a>
+                    {% endif %}
 
                     <div class="rental-summary mt-3 text-center">
                         <span class="small mb-0 fw-bold">End Date: <span id="rental_end_date">—</span>,</span>
