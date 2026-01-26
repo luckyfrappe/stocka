@@ -24,10 +24,11 @@
             </div>
         </div>
     </div>
-
+    <div id="purchaseAccordion">
     {% include "products/includes/purchase-forms/buy_form.html" %}
     {% include "products/includes/purchase-forms/rent_form.html" %}
     {% include "products/includes/purchase-forms/pre_owned_form.html" %}
+    </div>
 
     {% if request.user.is_superuser %}
         <div class="col-12 d-flex gap-2">

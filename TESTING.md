@@ -215,6 +215,12 @@ Persistent State: Using {% if 'new_arrivals' in request.GET %}checked{% endif %}
 
 Hierarchical Filtering: By placing the logic at the end of the view, the "New Arrivals" filter acts as a "final cut," showing the 100 newest items from the already filtered pool of products.
 
+- Bug summary:
+On the product detail page, the purchase options (Buy New, Rent, Pre-Owned) were not functioning correctly. The accordion flush behavior was broken after separeting into 3 separate forms, and selecting an option did not "flush" others options.
+
+The Fix:
+I wrapped all three purchase forms in a single accordion container with the ID "purchaseAccordion". Each purchase option's collapse div includes the attribute `data-bs-parent="#purchaseAccordion"`, ensuring that when one option is expanded, the others collapse automatically. This restores the intended accordion behavior across the separate forms.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)
