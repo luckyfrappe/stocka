@@ -267,6 +267,66 @@ footer .dropdown-item:hover, .simple-button:hover {
     cursor: pointer;
 }
 
+.toast-container {
+    z-index: 10000; 
+    pointer-events: none;
+    top: 100px !important; /* Mobile: Navbar (92.99px) + padding */
+}
+
+/* The Toast Body */
+.toast {
+    pointer-events: auto;
+    background-color: var(--white);
+    border: none;
+    border-radius: var(--rounded-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+    width: 320px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* The Status Strip (Capper) */
+.toast-capper {
+    height: 4px;
+    width: 100%;
+}
+
+/* Layout */
+.toast-header {
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem 0.25rem;
+    background: transparent;
+    border: none;
+}
+
+.toast-body {
+    font-family: var(--font-body);
+    color: var(--black);
+    padding: 0.25rem 1rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Close Button Styling */
+.btn-close {
+    width: 0.6em;
+    height: 0.6em;
+    padding: 0.5rem;
+    transition: opacity 0.2s ease;
+}
+
+.btn-close:focus {
+    box-shadow: none; 
+}
+
+.bg-success { background-color: #28a745 !important; }
+.bg-danger  { background-color: var(--brand-primary) !important; } 
+.bg-warning { background-color: var(--brand-secondary) !important; } 
+.bg-info    { background-color: #17a2b8 !important; }
+
 /* Fade-in animation for dropdown */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -277,6 +337,9 @@ footer .dropdown-item:hover, .simple-button:hover {
 @media (min-width: 992px) {
     body {
         padding-top: 49.4px; /* Height of navbar on desktop */
+    }
+    .toast-container {
+        top: 60px !important; /* Desktop: Navbar (49.4px) + padding */
     }
 
 }

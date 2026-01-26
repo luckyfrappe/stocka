@@ -51,19 +51,28 @@
     </header>
 
     {% if messages %}
-    <div class="message-container">
-    {% for message in messages %}
-        {% if 'success' in message.tags %}
-        {% include "includes/toasts/toast_success.html" %}
-        {% elif 'info' in message.tags %}
-        {% include "includes/toasts/toast_info.html" %}
-        {% elif 'warning' in message.tags %}
-        {% include "includes/toasts/toast_warning.html" %}
-        {% elif 'error' in message.tags %}
-        {% include "includes/toasts/toast_error.html" %}
-        {% endif %}
-    {% endfor %}
-    </div>
+      <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+          {% for message in messages %}
+          <div class="toast show border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
+              
+              <div class="toast-capper {% if message.tags == 'success' %}bg-success{% elif message.tags == 'error' %}bg-danger{% elif message.tags == 'warning' %}bg-warning{% else %}bg-info{% endif %}"></div>
+              
+              <div class="toast-header border-0">
+                  <strong class="me-auto text-uppercase">
+                      {% if message.tags == 'success' %} Success 
+                      {% elif message.tags == 'error' %} Error 
+                      {% else %} Notification 
+                      {% endif %}
+                  </strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              
+              <div class="toast-body pt-0">
+                  {{ message }}
+              </div>
+          </div>
+          {% endfor %}
+      </div>
     {% endif %}
 
     {% block page_header %}
