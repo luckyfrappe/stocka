@@ -1,31 +1,69 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBag" aria-labelledby="offcanvasBagLabel">
-  <div class="offcanvas-header border-bottom">
-    <h5 class="offcanvas-title" id="offcanvasBagLabel">Shopping Cart ({{ product_count }})</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    {% if bag_items %}
-        {% for item in bag_items %}
-            <div class="row mb-3">
-                <div class="col-3">
-                    <img src="{{ item.product.image.url }}" class="img-fluid rounded" alt="{{ item.product.name }}">
-                </div>
-                <div class="col-9">
-                    <p class="mb-0"><strong>{{ item.product.name }}</strong></p>
-                    <p class="small mb-0 text-muted">Size: {{ item.size|upper }} | Qty: {{ item.quantity }}</p>
-                    <p class="small">€{{ item.product.price }}</p>
-                </div>
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold" id="offcanvasBagLabel">Shopping Cart ({{ product_count }})</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body d-flex flex-column">
+        {% if bag_items %}
+            <div class="flex-grow-1">
+                {% for item in bag_items %}
+                    <div class="row mb-4 align-items-start">
+                        <div class="col-4">
+                            {% with item.product.images.all|first as img %}
+                                <img class="img-fluid rounded border" 
+                                     src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}" 
+                                     alt="{{ item.product.name }}">
+                            {% endwith %}
+                        </div>
+                        <div class="col-8">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0 fw-bold">{{ item.product.name }}</p>
+                                <p class="mb-0 fw-bold">SEK {{ item.product.retail_price }}</p>
+                            </div>
+                            <p class="small mb-1 text-muted">Size: {{ item.size|upper }}</p>
+                            <p class="small mb-1 text-muted">Type: </p>
+                            <p class="small mb-0 text-muted">Qty: {{ item.quantity }}</p>
+                        </div>
+                    </div>
+                    {% if not forloop.last %}<hr class="my-3 opacity-50">{% endif %}
+                {% endfor %}
             </div>
-        {% endfor %}
-        <hr>
-        <div class="d-flex justify-content-between font-weight-bold">
-            <span>Subtotal</span>
-            <span>€{{ total|floatformat:2 }}</span>
+
+        {% else %}
+            <div class="text-center py-5">
+                <p class="text-muted">Your bag is empty.</p>
+                <a href="{% url 'products' %}" class="btn btn-outline-dark w-100 rounded-0">Keep Shopping</a>
+            </div>
+        {% endif %}
+    </div>
+    {% if free_delivery_delta > 0 %}
+        <div class="bg-warning text-center py-2 shadow-sm">
+            <small class="fw-bold">Spend {{ free_delivery_delta }} SEK more to get free next day delivery!</small>
         </div>
-        <a href="{% url 'view_bag' %}" class="btn btn-dark w-100 mt-3">Proceed to Checkout</a>
-    {% else %}
-        <p>Your bag is empty.</p>
-        <a href="{% url 'products' %}" class="btn btn-outline-dark w-100">Keep Shopping</a>
     {% endif %}
-  </div>
+    
+    {% if bag_items %}
+    <div class="mt-auto p-3 border-top bg-light">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="h6 mb-0">Total{% if free_delivery_delta > 0 %} <small>(Exc. delivery)</small>{% endif %}:</span>
+            <span class="h5 mb-0 fw-bold">SEK {{ total|floatformat:2 }}</span>
+        </div>
+
+        <a href="{% url 'view_bag' %}" class="btn btn-dark btn-sm w-100 rounded-0 py-3 mb-3 d-flex justify-content-center align-items-center">
+            <span class="text-uppercase text-white me-2">Proceed to Secure Checkout</span>
+            <i class="fas fa-lock"></i>
+        </a>
+
+        <div class="text-center text-muted opacity-75 d-flex justify-content-around px-2">
+            <i class="fa-brands fa-cc-visa fa-2x"></i>
+            <i class="fa-brands fa-cc-mastercard fa-2x"></i>
+            <i class="fa-brands fa-cc-amex fa-2x"></i>
+            <i class="fa-brands fa-apple-pay fa-2x"></i>
+            <i class="fa-brands fa-google-pay fa-2x"></i>
+            <i class="fa-brands fa-cc-paypal fa-2x"></i>
+        </div>
+    </div>
+    {% endif %}
 </div>

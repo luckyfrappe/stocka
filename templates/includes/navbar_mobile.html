@@ -31,9 +31,9 @@
             />
           </svg>
         </span>
-        {% if bag %}
+        {% if bag_items %}
         <span class="cart-total text-muted" style="font-size: 0.6rem">
-          1.250 kr
+          {{ total|floatformat:2 }} kr
         </span>
         {% endif %}
       </button>
