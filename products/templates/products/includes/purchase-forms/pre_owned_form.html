@@ -1,54 +1,53 @@
-    <form class="form" action="" method="POST">
-        {% csrf_token %}
+<form class="form" action="" method="POST">
+    {% csrf_token %}
+    <div class="accordion" id="purchaseAccordion">
+        <div class="purchase-option bg-light border mb-2">
+            <div class="option-header fw-bold text-uppercase small d-flex justify-content-between align-items-center py-3 px-3 pointer"
+                data-bs-toggle="collapse" 
+                data-bs-target="#preOwnedOption" 
+                aria-expanded="false">
+                <span>Buy Pre-owned</span>
+                <span>{{ product.retail_price }} SEK <i class="fa-solid fa-chevron-down nav-chevron ms-2"></i></span>
+            </div>
 
-        <div class="accordion" id="purchaseAccordion">
-            <div class="purchase-option bg-light border mb-2">
-                <div class="option-header fw-bold text-uppercase small d-flex justify-content-between align-items-center py-3 px-3 pointer"
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#preOwnedOption" 
-                    aria-expanded="false">
-                    <span>Buy Pre-owned</span>
-                    <span>{{ product.retail_price }} SEK <i class="fa-solid fa-chevron-down nav-chevron ms-2"></i></span>
-                </div>
-
-                <div id="preOwnedOption" class="collapse" data-bs-parent="#purchaseAccordion">
-                    <div class="px-3 pb-3">
-                        <input type="hidden" name="purchase_type" value="preowned">
-                        
-                        <p class="small text-muted mb-3">Carefully inspected, final sale item.</p>
-                        <!-- Used to simulate fake availability of pre-owned items -->
-                        {% if simulated_sizes %}
-                        <p class="x-small fw-bold text-uppercase mb-2">Available Size:</p>
-                        <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size_rent'>
-                            {% for size in simulated_sizes %}
-                            {% if size == real_size %}
-                            <option value="{{ size|slugify }}">{{ size }}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
+            <div id="preOwnedOption" class="collapse" data-bs-parent="#purchaseAccordion">
+                <input type="hidden" name="purchase_type" value="preowned">
+                <div class="px-3 pb-3">
+                    
+                    <p class="small text-muted mb-3">Carefully inspected, final sale item.</p>
+                    <!-- Used to simulate fake availability of pre-owned items -->
+                    {% if simulated_sizes %}
+                    <p class="x-small fw-bold text-uppercase mb-2">Available Sizes:</p>
+                    <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size_rent'>
+                        {% for size in simulated_sizes %}
+                        {% if size == real_size %}
+                        <option value="{{ size|slugify }}">{{ size }}</option>
                         {% endif %}
-                        
-                        <div class="col-12 mb-4">
-                            <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
-                            <div class="input-group w-50">
-                                <button class="btn btn-outline-dark rounded-0 btn-sm" disabled>
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <input class="form-control rounded-0 border-dark text-center" type="number" 
-                                    name="quantity" value="1" min="1" max="1" readonly
-                                    id="id_qty_preowned_{{ product.id }}">
-                                <button class="btn btn-outline-dark rounded-0 btn-sm" disabled>
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="text-danger x-small"><i class="fas fa-exclamation-circle me-1"></i>Only 1 in stock</div>
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+                    
+                    <div class="col-12 mb-4">
+                        <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
+                        <div class="input-group w-50">
+                            <button class="btn btn-outline-dark rounded-0 btn-sm" disabled>
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input class="form-control rounded-0 border-dark text-center" type="number" 
+                                name="quantity" value="1" min="1" max="1" readonly
+                                id="id_qty_preowned_{{ product.id }}">
+                            <button class="btn btn-outline-dark rounded-0 btn-sm" disabled>
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
-                        
-                        <button type="submit" class="btn btn-dark text-uppercase w-100 py-2 small">
-                            Add to Bag
-                        </button>
+                        <div class="text-danger x-small"><i class="fas fa-exclamation-circle me-1"></i>Only 1 in stock</div>
                     </div>
+                    
+                    <button type="submit" class="btn btn-dark text-uppercase w-100 py-2 small">
+                        Add to Bag
+                    </button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
+</form>

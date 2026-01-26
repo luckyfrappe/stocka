@@ -28,6 +28,13 @@
     {% include "products/includes/purchase-forms/buy_form.html" %}
     {% include "products/includes/purchase-forms/rent_form.html" %}
     {% include "products/includes/purchase-forms/pre_owned_form.html" %}
+
+    {% if request.user.is_superuser %}
+        <div class="col-12 d-flex gap-2">
+            <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0 w-100">Edit</a>
+            <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0 w-100">Delete</a>
+        </div>
+    {% endif %}
     <div class="col-12 d-grid gap-2">
         <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0 text-uppercase py-2 mt-2 x-small">
             <i class="fas fa-chevron-left me-2"></i>Keep Shopping
