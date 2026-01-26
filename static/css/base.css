@@ -225,6 +225,10 @@ footer .dropdown-item:hover, .simple-button:hover {
     overflow-y: auto;
 }
 
+.allauth-form-container {
+    min-height: calc(100vh - 49.4px); /* Viewport height minus navbar height on desktop */
+}
+
 .footer-class {
     background-color: var(--black) !important;
 }

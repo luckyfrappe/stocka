@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
     # other
     'crispy_forms',
+    'crispy_bootstrap5',
     #'storages',
 ]
 
@@ -72,7 +73,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'stocka_marketplace.urls'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 TEMPLATES = [
     {

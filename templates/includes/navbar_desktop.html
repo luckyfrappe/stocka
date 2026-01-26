@@ -80,12 +80,12 @@
           <span class="icon"><i class="fa-regular fa-user"></i></span>
         </button>
         
-        <ul class="dropdown-menu dropdown-menu-end shadow">
+        <ul class="dropdown-menu dropdown-menu-end shadow" style="margin-top: 11px;">
           {% if request.user.is_authenticated %}
               {% if request.user.is_superuser %}
                   <li><a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a></li>
               {% endif %}
-              <li><a href="{% url 'profile' %}" class="dropdown-item">My Profile</a></li>
+              <li><a href="" class="dropdown-item">My Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
           {% else %}
