@@ -104,8 +104,32 @@
                             </a>
                             {% if request.user.is_superuser %}
                             <div class="mt-2 pt-2 border-top d-flex gap-2">
-                                <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
-                                <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
+                                <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">
+                                    <i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-outline-danger py-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-trash-can me-2"></i>Delete
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Deletion</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body py-4">
+                                                Are you sure you want to delete <strong>{{ product.name }}</strong>? 
+                                                <p class="text-muted small mt-2">This action is permanent and will remove all associated inventory data.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="{% url 'delete_product' product.id %}" class="btn btn-primary btn-danger">Confirm Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             {% endif %}
                         </div>
