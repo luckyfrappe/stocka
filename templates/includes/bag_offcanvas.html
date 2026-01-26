@@ -1,0 +1,31 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBag" aria-labelledby="offcanvasBagLabel">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="offcanvasBagLabel">Shopping Cart ({{ product_count }})</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    {% if bag_items %}
+        {% for item in bag_items %}
+            <div class="row mb-3">
+                <div class="col-3">
+                    <img src="{{ item.product.image.url }}" class="img-fluid rounded" alt="{{ item.product.name }}">
+                </div>
+                <div class="col-9">
+                    <p class="mb-0"><strong>{{ item.product.name }}</strong></p>
+                    <p class="small mb-0 text-muted">Size: {{ item.size|upper }} | Qty: {{ item.quantity }}</p>
+                    <p class="small">€{{ item.product.price }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <hr>
+        <div class="d-flex justify-content-between font-weight-bold">
+            <span>Subtotal</span>
+            <span>€{{ total|floatformat:2 }}</span>
+        </div>
+        <a href="{% url 'view_bag' %}" class="btn btn-dark w-100 mt-3">Proceed to Checkout</a>
+    {% else %}
+        <p>Your bag is empty.</p>
+        <a href="{% url 'products' %}" class="btn btn-outline-dark w-100">Keep Shopping</a>
+    {% endif %}
+  </div>
+</div>
