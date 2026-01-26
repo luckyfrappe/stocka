@@ -1,4 +1,4 @@
-<form class="form" action="" method="POST">
+<form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
     {% csrf_token %}
     <div class="accordion">
         <div class="purchase-option bg-light border mb-2">
@@ -34,7 +34,7 @@
                             </button>
                             <input class="form-control qty_input rounded-0 border-dark text-center" type="number" 
                                 name="quantity" value="1" min="1" max="99" 
-                                data-item_id="{{ product.id }}" id="id_qty_rent_{{ product.id }}">
+                                data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                             <button class="increment-qty btn btn-outline-dark rounded-0 btn-sm" 
                                 type="button" data-item_id="{{ product.id }}">
                                 <i class="fas fa-plus"></i>
@@ -57,9 +57,7 @@
                         <input type="date" class="form-control rounded-0 mb-4" name="start_date" id="id_start_date">
                     </div>
                     {% if request.user.is_authenticated %}
-                        <button type="submit" class="btn btn-dark text-uppercase w-100 py-2 small">
-                            Add to Bag
-                        </button>
+                        <input class="btn btn-dark text-uppercase w-100 py-2 small" type="submit" value="Add to Bag">
                     {% else %}
                         <a href="{% url 'account_login' %}" class="btn btn-dark text-uppercase w-100 py-2 small">
                             Log in to Rent
@@ -70,6 +68,7 @@
                         <span class="small mb-0 fw-bold">End Date: <span id="rental_end_date">—</span>,</span>
                         <span class="small mb-0 fw-bold">Total Price: <span id="rental_total_price">—</span> SEK</span>
                     </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </div>
             </div>
         </div>
