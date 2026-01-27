@@ -232,6 +232,12 @@ AttributeValue model's string representation included both attribute type and va
 The Fix:
 I modified the `__str__` method of the AttributeValue model to return only the value. This simplifies displays and avoids redundancy in contexts where the attribute type is already clear. Also adjsuted products tags to display both product type and value where needed.
 
+- Bug summary:
+On bag page, clicking the quantity update link was not submitting the form correctly, leading to no change in quantity.
+
+The Fix:
+I added if (startInput) { ... } around the rental date logic to ensure it only runs if the startInput element exists on the page. This prevents errors on pages without rental options. I also added efault:0 to the price_per_week context variable to avoid errors when the product does not have a rental price defined.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)
