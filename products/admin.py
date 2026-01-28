@@ -23,7 +23,7 @@ class ProductAttributeInline(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('sku', 'thumbnail', 'name', 'retail_price', 'price_per_week', 'time_created')
-    list_filter = ('is_rentable', 'time_created')
+    list_filter = ('time_created',)
     search_fields = ('sku', 'name', 'description')
     ordering = ('-time_created',)
     
@@ -31,11 +31,11 @@ class ProductAdmin(admin.ModelAdmin):
         ('Basic Information', {
             'fields': ('sku', 'name', 'description')
         }),
-        ('Pricing & Status', {
-            'fields': (('retail_price', 'price_per_week'), ('is_rentable', 'has_preowned_option'))
+        ('Pricing', {
+            'fields': (('retail_price', 'price_per_week'),)
         }),
         ('Meta Data', {
-            'fields': ('time_created', 'has_sizes'),
+            'fields': ('time_created',),
             'classes': ('collapse',),
         }),
     )

@@ -164,7 +164,7 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 ## Bugs
 
 ### Known Bugs
-- Arrow up button on mobile scrolls behind footer cards instead of above them. Needs z-index adjustment.
+- No known bugs at this time.
 
 ### Solved Bugs
 - Shopping Bag icon and the Price text were sitting side-by-side in a horizontal row. Because the price text takes up quite a bit of width, it was pushing the icon out behind logo. I stacked the price directly underneath the icon to solve this issue.
@@ -255,6 +255,12 @@ In add_to_bag view, rental_period was not being captured in item_key, causing is
 
 The Fix:
 I updated the item_key to include rental_period, ensuring that items with different rental durations of the same size are treated as separate entries in the bag.
+
+- Bug summary:
+Scroll up button was not appearing above other content, making it unclickable when overlapping with other elements like footer cards.
+
+The Fix:
+I added `z-index: 9999;` to the scroll-up button CSS to ensure it appears above all other content, making it clickable at all times.
 
 ---
 

@@ -22,11 +22,8 @@ class Product(models.Model):
     sku = models.CharField(max_length=255, unique=True) # Maps to 'id' in CSV
     name = models.CharField(max_length=255)
     description = models.TextField()
-    has_sizes = models.BooleanField(default=False)
     retail_price = models.DecimalField(max_digits=10, decimal_places=2)
     price_per_week = models.DecimalField(max_digits=10, decimal_places=2)
-    is_rentable = models.BooleanField(default=True)
-    has_preowned_option = models.BooleanField(default=False)
     time_created = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
