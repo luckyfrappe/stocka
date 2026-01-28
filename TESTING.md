@@ -244,6 +244,18 @@ In the bag page template, the quantity update form was not correctly passing the
 The Fix:
 I modified the quantity form to include a hidden input field for product_size, ensuring that when the quantity is updated, the correct size is referenced in the backend logic.
 
+- Bug summary:
+In the bag context processor, the subtotal calculation for each bag item was incorrectly using the product's retail price instead of the actual price paid (which could be rental or pre-owned price). This led to inaccurate subtotal and total calculations in the shopping bag.
+
+The Fix:
+I updated the subtotal calculation to use item.price_each (the actual price paid) multiplied by item.quantity, ensuring accurate subtotal and total amounts in the bag context.
+
+- Bug summary:
+In add_to_bag view, rental_period was not being captured in item_key, causing issues when adding multiple rental items of different durations.
+
+The Fix:
+I updated the item_key to include rental_period, ensuring that items with different rental durations of the same size are treated as separate entries in the bag.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)

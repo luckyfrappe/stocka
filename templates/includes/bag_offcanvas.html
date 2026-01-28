@@ -1,3 +1,5 @@
+{% load bag_tools %}
+
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBag" aria-labelledby="offcanvasBagLabel">
     <div class="offcanvas-header border-bottom">
         <h5 class="offcanvas-title fw-bold" id="offcanvasBagLabel">Shopping Cart ({{ product_count }})</h5>
@@ -19,32 +21,31 @@
                         <div class="col-8">
                             <div class="d-flex justify-content-between">
                                 <p class="mb-0 fw-bold">{{ item.product.name }}</p>
-                                <p class="mb-0 fw-bold">SEK {{ item.product.retail_price }}</p>
+                                <p class="mb-0 fw-bold">SEK {{ item.price_each | calc_subtotal:item.quantity }}</p>
                             </div>
                             <p class="small mb-1 text-muted">Size: {{ item.size|upper }}</p>
                             <p class="small mb-1 text-muted">Type: {{ item.purchase_type|upper }}</p>
+                            <p class="small mb-1 text-muted">Weeks: {{ item.rental_period }}</p>
                             <p class="small mb-0 text-muted">Qty: {{ item.quantity }}</p>
                         </div>
                     </div>
                     {% if not forloop.last %}<hr class="my-3 opacity-50">{% endif %}
                 {% endfor %}
             </div>
-
         {% else %}
-            <div class="text-center py-5">
-                <p class="text-muted">Your bag is empty.</p>
-                <a href="{% url 'products' %}" class="btn btn-outline-dark w-100 rounded-0">Keep Shopping</a>
+            <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+                <p class="text-muted text-center">Nothing here yet.</p>
             </div>
         {% endif %}
     </div>
     {% if free_delivery_delta > 0 %}
         <div class="bg-warning text-center py-2 shadow-sm">
-            <small class="fw-bold">Spend {{ free_delivery_delta }} SEK more to get free next day delivery!</small>
+            <small class="fw-bold">Spend {{ free_delivery_delta }} SEK {% if bag_items %} more {% endif %} to get free delivery!</small>
         </div>
     {% endif %}
     
-    {% if bag_items %}
     <div class="mt-auto p-3 border-top bg-light">
+    {% if bag_items %}
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <span class="h6 mb-0">Total{% if free_delivery_delta > 0 %} <small>(Exc. delivery)</small>{% endif %}:</span>
@@ -55,7 +56,11 @@
             <span class="text-uppercase text-white me-2">Proceed to Secure Checkout</span>
             <i class="fas fa-lock"></i>
         </a>
-
+    {% else %}
+        <a href="{% url 'products' %}" class="btn btn-dark btn-sm w-100 rounded-0 py-3 mb-3 d-flex justify-content-center align-items-center">
+            <span class="text-uppercase text-white me-2">Keep Shopping</span>
+        </a>
+    {% endif %}
         <div class="text-center text-muted opacity-75 d-flex justify-content-around px-2">
             <i class="fa-brands fa-cc-visa fa-2x"></i>
             <i class="fa-brands fa-cc-mastercard fa-2x"></i>
@@ -65,5 +70,4 @@
             <i class="fa-brands fa-cc-paypal fa-2x"></i>
         </div>
     </div>
-    {% endif %}
 </div>

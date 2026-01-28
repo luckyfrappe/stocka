@@ -22,7 +22,7 @@ def add_to_bag(request, item_id):
     if item_id not in bag:
         bag[item_id] = {'items_by_size': {}}
     
-    item_key = f"{size}_{purchase_type}"
+    item_key = f"{size}_{purchase_type}_{rental_period}"
 
     if item_key in bag[item_id]['items_by_size']:
         bag[item_id]['items_by_size'][item_key]['quantity'] += quantity

@@ -16,13 +16,13 @@ def bag_contents(request):
             for item_key, info in item_data['items_by_size'].items():
                 quantity = info['quantity']
                 p_type = info['type']
-                weeks = info.get('rental_period', 1)
+                weeks = int(info.get('rental_period', 1))
 
                 # Determine Price based on Business Logic
                 if p_type == 'rent':
                     price = product.price_per_week * weeks
                 elif p_type == 'preowned':
-                    price = round(float(product.retail_price) * 0.60, 2) # 40% off for Pre-owned
+                    price = (product.retail_price * Decimal('0.60')).quantize(Decimal('0.00')) # 40% off for Pre-owned
                 else:
                     price = product.retail_price
 
