@@ -31,7 +31,7 @@ def bag_contents(request):
                 if p_type == 'rent':
                     price = product.price_per_week * weeks
                 elif p_type == 'preowned':
-                    price = (product.retail_price * Decimal('0.60')).quantize(Decimal('0.00')) # 40% off for Pre-owned
+                    price = (product.retail_price * Decimal(settings.PREOWNED_DISCOUNT_RATE)).quantize(Decimal('0.00')) # 40% off for Pre-owned
                 else:
                     price = product.retail_price
 
@@ -46,7 +46,7 @@ def bag_contents(request):
                     'purchase_type': info.get('type', 'new'),
                     'rental_period': info.get('rental_period', 1),
                     'start_date': start_date_raw,
-                    'end_date': end_date.isoformat(),
+                    'end_date': end_date.isoformat() if end_date else None,
                     'price_each': price,
                 })
 
