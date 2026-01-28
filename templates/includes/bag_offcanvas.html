@@ -23,12 +23,12 @@
                                 <p class="mb-0 fw-bold">{{ item.product.name }}</p>
                                 <p class="mb-0 fw-bold">SEK {{ item.price_each | calc_subtotal:item.quantity }}</p>
                             </div>
-                            <p class="small mb-1 text-muted">Size: {{ item.size|upper }}</p>
-                            <p class="small mb-1 text-muted">Type: {{ item.purchase_type|upper }}</p>
+                            <p class="small mb-0 text-muted">Size: {{ item.size|upper }}</p>
+                            <p class="small mb-0 text-muted">Type: {{ item.purchase_type|upper }}</p>
                             {% if item.purchase_type == 'rent' %}
-                            <p class="small mb-1 text-muted">Weeks: {{ item.rental_period }}</p>
-                            <p class="small mb-1 text-muted">Start Date: {{ item.start_date }}</p>
-                            <p class="small mb-1 text-muted">End Date: {{ item.end_date }}</p>
+                            <p class="small mb-0 text-muted">Rental period: {{ item.rental_period }} week{% if item.rental_period > 1 %}s{% endif %}</p>
+                            <p class="small mb-0 text-muted">Start Date: {{ item.start_date }}</p>
+                            <p class="small mb-0 text-muted">End Date: {{ item.end_date }}</p>
                             {% endif %}
                             <p class="small mb-0 text-muted">Qty: {{ item.quantity }}</p>
                         </div>
