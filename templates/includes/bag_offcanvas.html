@@ -12,11 +12,13 @@
                 {% for item in bag_items %}
                     <div class="row mb-4 align-items-start">
                         <div class="col-4">
+                            <a href="{% url 'product_detail' item.product.id %}">
                             {% with item.product.images.all|first as img %}
                                 <img class="img-fluid rounded border" 
                                      src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}" 
                                      alt="{{ item.product.name }}">
                             {% endwith %}
+                            </a>
                         </div>
                         <div class="col-8">
                             <div class="d-flex justify-content-between">

@@ -20,7 +20,7 @@
 <div class="container-fluid mt-2 mt-lg-3 mb-5">
     <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2 class="logo-font mb-4">Edit Product</h2>
+        <h2 class="mb-4">Edit Product</h2>
         <hr>
         <div class="row">
             <aside class="col-12 col-md-3 sticky-sidebar mb-4">

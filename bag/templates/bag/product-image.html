@@ -1,5 +1,7 @@
 {% with item.product.images.all|first as img %}
+<a href="{% url 'product_detail' item.product.id %}">
     <img class="img-fluid rounded border" 
             src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}" 
             alt="{{ item.product.name }}">
+</a>
 {% endwith %}
