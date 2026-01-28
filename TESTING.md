@@ -164,7 +164,7 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 ## Bugs
 
 ### Known Bugs
-- No known bugs at this time.
+- Arrow up button on mobile scrolls behind footer cards instead of above them. Needs z-index adjustment.
 
 ### Solved Bugs
 - Shopping Bag icon and the Price text were sitting side-by-side in a horizontal row. Because the price text takes up quite a bit of width, it was pushing the icon out behind logo. I stacked the price directly underneath the icon to solve this issue.

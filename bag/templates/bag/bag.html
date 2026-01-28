@@ -11,14 +11,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container mb-2">
-        <div class="row">
-            <div class="col">
-                <h2 class="logo-font mb-4 mt-5">Shopping Bag</h2>
-                <hr>
-            </div>
-        </div>
+    <div class="container shopping-bag-container mb-5">
+        <h2 class="logo-font mb-4 mt-5">Shopping Bag</h2>
+        <hr>
 
         <div class="row">
             <div class="col">
@@ -44,8 +39,8 @@
                                 {% include "bag/product-info.html" %}
                             </div>
                             <div class="col-12 col-sm-6 order-sm-last">
-                                <p class="my-0">Price Each: {{ item.product.retail_price }} SEK</p>
-                                <p><strong>Subtotal: </strong>{{ item.product.retail_price | calc_subtotal:item.quantity }} SEK</p>
+                                <p class="my-0">Price Each: {{ item.price_each }} SEK</p>
+                                <p><strong>Subtotal: </strong>{{ item.price_each | calc_subtotal:item.quantity }} SEK</p>
                             </div>
                             <div class="col-12 col-sm-6">
                                 {% include "bag/quantity-form.html" %}
@@ -80,13 +75,13 @@
                                         {% include "bag/product-info.html" %}
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">{{ item.product.retail_price }} SEK</p>
+                                        <p class="my-0">{{ item.price_each }} SEK</p>
                                     </td>
                                     <td class="py-3 w-25">
                                         {% include "bag/quantity-form.html" %}
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">{{ item.product.retail_price | calc_subtotal:item.quantity }} SEK</p>
+                                        <p class="my-0">{{ item.price_each | calc_subtotal:item.quantity }} SEK</p>
                                     </td>
                                 </tr>
                             {% endfor %}

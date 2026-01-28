@@ -230,7 +230,7 @@ footer .dropdown-item:hover, .simple-button:hover {
     overflow-y: auto;
 }
 
-.allauth-form-container {
+.allauth-form-container, .shopping-bag-container {
     min-height: calc(100vh - 49.4px); /* Viewport height minus navbar height on desktop */
 }
 
@@ -331,6 +331,7 @@ footer .dropdown-item:hover, .simple-button:hover {
 .bg-danger  { background-color: var(--brand-primary) !important; } 
 .bg-warning { background-color: var(--brand-secondary) !important; } 
 .bg-info    { background-color: #17a2b8 !important; }
+
 
 /* Fade-in animation for dropdown */
 @keyframes fadeIn {

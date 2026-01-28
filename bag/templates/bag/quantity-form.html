@@ -1,23 +1,25 @@
 <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
     {% csrf_token %}
-        <div class="input-group">
-                <button class="decrement-qty btn btn-outline-dark rounded-0 btn-sm" 
+        <div class="input-group gap-1 d-flex justify-content-center align-items-center">
+                <button class="decrement-qty btn btn-outline-dark btn-sm p-2" 
                     data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
                     </span>
                 </button>
-                <input class="form-control qty_input rounded-0 border-dark text-center" type="number"
+                <input class="form-control qty_input border-dark text-center p-2" type="number"
                     name="quantity" value="{{ item.quantity }}" min="1" max="99"
                     data-item_id="{{ item.item_id }}"
                     id="id_qty_{{ item.item_id }}">
                 <input type="hidden" name="item_key" value="{{ item.item_key }}">
-                <button class="increment-qty btn btn-outline-dark rounded-0 btn-sm"
+                <button class="increment-qty btn btn-outline-dark btn-sm p-2"
                     data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                     <span>
                         <i class="fas fa-plus fa-sm"></i>
                     </span>
                 </button>
+                <a class="update-link btn btn-outline-dark btn-sm p-2"><small>Update</small></a>
+                <a class="remove-item btn btn-outline-danger btn-sm p-2" id="remove_{{ item.item_id }}" data-item_key="{{ item.item_key }}"><small>Remove</small></a>
             {% if item.size %}
                 <input type="hidden" name="product_size" value="{{ item.size }}">
             {% endif %}
@@ -29,5 +31,3 @@
             {% endif %}
         </div>
 </form>
-<a class="update-link btn btn-outline-dark btn-sm mt-2 p-2"><small>Update</small></a>
-<a class="remove-item btn btn-outline-danger btn-sm mt-2 p-2" id="remove_{{ item.item_id }}" data-item_key="{{ item.item_key }}"><small>Remove</small></a>
