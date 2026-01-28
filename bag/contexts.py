@@ -17,6 +17,7 @@ def bag_contents(request):
                 quantity = info['quantity']
                 p_type = info['type']
                 weeks = int(info.get('rental_period', 1))
+                start_date = info.get('start_date', None)
 
                 # Determine Price based on Business Logic
                 if p_type == 'rent':
@@ -36,6 +37,7 @@ def bag_contents(request):
                     'size': info.get('size', 'OS'),
                     'purchase_type': info.get('type', 'new'),
                     'rental_period': info.get('rental_period', 1),
+                    'start_date': start_date,
                     'price_each': price,
                 })
 

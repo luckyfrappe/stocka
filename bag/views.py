@@ -15,6 +15,7 @@ def add_to_bag(request, item_id):
     redirect_url = request.POST.get('redirect_url')
     purchase_type = request.POST.get('purchase_type', 'new')
     rental_period = int(request.POST.get('rental_period', 1))
+    start_date = request.POST.get('start_date', None)
     size = request.POST.get('product_size', 'OS') # Default to One Size
     
     bag = request.session.get('bag', {})
@@ -22,7 +23,7 @@ def add_to_bag(request, item_id):
     if item_id not in bag:
         bag[item_id] = {'items_by_size': {}}
     
-    item_key = f"{size}_{purchase_type}_{rental_period}"
+    item_key = f"{size}_{purchase_type}_{rental_period}_{start_date}"
 
     if item_key in bag[item_id]['items_by_size']:
         bag[item_id]['items_by_size'][item_key]['quantity'] += quantity
@@ -32,7 +33,8 @@ def add_to_bag(request, item_id):
             'quantity': quantity,
             'type': purchase_type,
             'rental_period': rental_period,
-            'size': size
+            'size': size,
+            'start_date': start_date
         }
         messages.success(request, f'Added {quantity} x {product.name} ({size.upper()}) ({purchase_type.upper()}) to your bag')
 

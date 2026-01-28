@@ -25,7 +25,10 @@
                             </div>
                             <p class="small mb-1 text-muted">Size: {{ item.size|upper }}</p>
                             <p class="small mb-1 text-muted">Type: {{ item.purchase_type|upper }}</p>
+                            {% if item.purchase_type == 'rent' %}
                             <p class="small mb-1 text-muted">Weeks: {{ item.rental_period }}</p>
+                            <p class="small mb-1 text-muted">Start Date: {{ item.start_date }}</p>
+                            {% endif %}
                             <p class="small mb-0 text-muted">Qty: {{ item.quantity }}</p>
                         </div>
                     </div>
