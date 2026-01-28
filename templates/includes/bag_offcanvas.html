@@ -22,7 +22,7 @@
                                 <p class="mb-0 fw-bold">SEK {{ item.product.retail_price }}</p>
                             </div>
                             <p class="small mb-1 text-muted">Size: {{ item.size|upper }}</p>
-                            <p class="small mb-1 text-muted">Type: </p>
+                            <p class="small mb-1 text-muted">Type: {{ item.purchase_type|upper }}</p>
                             <p class="small mb-0 text-muted">Qty: {{ item.quantity }}</p>
                         </div>
                     </div>

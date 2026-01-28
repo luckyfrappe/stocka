@@ -238,6 +238,12 @@ On bag page, clicking the quantity update link was not submitting the form corre
 The Fix:
 I added if (startInput) { ... } around the rental date logic to ensure it only runs if the startInput element exists on the page. This prevents errors on pages without rental options. I also added efault:0 to the price_per_week context variable to avoid errors when the product does not have a rental price defined.
 
+- Bug summary:
+In the bag page template, the quantity update form was not correctly passing the product size to the backend when updating item quantities. Resulted in deleting other sizes of the same product when updating quantity.
+
+The Fix:
+I modified the quantity form to include a hidden input field for product_size, ensuring that when the quantity is updated, the correct size is referenced in the backend logic.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)

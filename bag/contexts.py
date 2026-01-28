@@ -2,41 +2,41 @@ from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
-
+# This context processor was simplified and modified with help from Gemini AI tool to fit project needs.
 def bag_contents(request):
-
     bag_items = []
     total = 0
     product_count = 0
     bag = request.session.get('bag', {})
 
     for item_id, item_data in bag.items():
-        try:
-            product = get_object_or_404(Product, pk=item_id)
-        except:
-            # skip invalid items in session
-            continue
+        product = get_object_or_404(Product, pk=item_id)
+        
+        if isinstance(item_data, dict) and 'items_by_size' in item_data:
+            for item_key, info in item_data['items_by_size'].items():
+                quantity = info['quantity']
+                p_type = info['type']
+                weeks = info.get('rental_period', 1)
 
-        if isinstance(item_data, int):
-            product = get_object_or_404(Product, pk=item_id)
-            total += item_data * product.retail_price
-            product_count += item_data
-            bag_items.append({
-                'item_id': item_id,
-                'quantity': item_data,
-                'product': product,
-            })
-            
-        else:
-            product = get_object_or_404(Product, pk=item_id)
-            for size, quantity in item_data['items_by_size'].items():
-                total += quantity * product.retail_price
+                # Determine Price based on Business Logic
+                if p_type == 'rent':
+                    price = product.price_per_week * weeks
+                elif p_type == 'preowned':
+                    price = round(float(product.retail_price) * 0.60, 2) # 40% off for Pre-owned
+                else:
+                    price = product.retail_price
+
+                total += quantity * price
                 product_count += quantity
                 bag_items.append({
                     'item_id': item_id,
-                    'quantity': quantity,
+                    'item_key': item_key,
+                    'quantity': info['quantity'],
                     'product': product,
-                    'size': size,
+                    'size': info.get('size', 'OS'),
+                    'purchase_type': info.get('type', 'new'),
+                    'rental_period': info.get('rental_period', 1),
+                    'price_each': price,
                 })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
