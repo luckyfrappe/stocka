@@ -31,9 +31,10 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black profile-form-input'
+            self.fields[field].widget.attrs['class'] = 'form-control'
             
             if field != 'marketing_opt_in':
                 self.fields[field].label = False
             else:
+                self.fields[field].widget.attrs['class'] = 'form-check-input'
                 self.fields[field].label = 'Subscribe to our newsletter'
