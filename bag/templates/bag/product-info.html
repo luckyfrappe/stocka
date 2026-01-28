@@ -1,3 +1,8 @@
 <p class="my-0"><strong>{{ item.product.name }}</strong></p>
 <p class="my-0 small text-muted">SKU: {{ item.product.sku|lower }}</p>
 <p class="my-0"><strong>Size: </strong>{% if item.size %}{{ item.size|upper }}{% else %}Onesize{% endif %}</p>
+<p class="my-0"><strong>Type: </strong>{{ item.purchase_type|upper }}</p>
+{% if item.purchase_type == 'rent' %}
+    <p class="my-0"><strong>Weeks: </strong>{{ item.rental_period }}</p>
+    <p class="my-0"><strong>Start Date: </strong>{{ item.start_date }}</p>
+{% endif %}
