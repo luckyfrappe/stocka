@@ -230,7 +230,7 @@ footer .dropdown-item:hover, .simple-button:hover {
     overflow-y: auto;
 }
 
-.allauth-form-container, .shopping-bag-container, .profile-bag-container, .checkout-container {
+.allauth-form-container, .shopping-bag-container, .profile-bag-container, .checkout-container, .success-container {
     min-height: calc(100vh - 49.4px); /* Viewport height minus navbar height on desktop */
 }
 

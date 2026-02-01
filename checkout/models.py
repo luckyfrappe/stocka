@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from decimal import Decimal
-
+from datetime import timedelta
 from django_countries.fields import CountryField
 
 from products.models import Product
@@ -82,6 +82,22 @@ class OrderLineItem(models.Model):
     )
     rental_period = models.IntegerField(null=True, blank=True)
     start_date = models.DateField(null=True, blank=True)
+
+    @property
+    def price_each(self):
+        """ Calculates price per unit/period for display purposes """
+        if self.quantity > 0:
+            return (self.lineitem_total / self.quantity).quantize(Decimal('0.00'))
+        return Decimal('0.00')
+
+    @property
+    def end_date(self):
+        """
+        Calculates the end date based on start date and rental period.
+        """
+        if self.start_date and self.rental_period:
+            return self.start_date + timedelta(weeks=self.rental_period)
+        return None
 
     def save(self, *args, **kwargs):
         """
