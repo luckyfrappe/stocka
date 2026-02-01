@@ -59,22 +59,25 @@ def checkout(request):
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            product=product,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                    else:
-                        for size, quantity in item_data['items_by_size'].items():
+                    if isinstance(item_data, dict) and 'items_by_size' in item_data:
+                        for item_key, info in item_data['items_by_size'].items():
+                            quantity = info['quantity']
+                            purchase_type = info.get('type', 'new')
+                            rental_period = info.get('rental_period', 1)
+                            size = info.get('size', None)
+                            start_date_raw = info.get('start_date')
+                            
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
                                 quantity=quantity,
                                 product_size=size,
+                                purchase_type=purchase_type,
+                                rental_period=rental_period,
+                                start_date=start_date_raw,
                             )
                             order_line_item.save()
+
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your bag wasn't found in our database. "
