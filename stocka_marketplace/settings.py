@@ -33,8 +33,12 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    'nonulcerous-subaquatic-krystyna.ngrok-free.dev',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://nonulcerous-subaquatic-krystyna.ngrok-free.dev',
+]
 
 # Application definition
 
@@ -217,7 +221,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
 PREOWNED_DISCOUNT_RATE = 0.60
-STRIPE_CURRENCY = 'usd'
+STRIPE_CURRENCY = 'SEK'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')

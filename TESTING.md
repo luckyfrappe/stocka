@@ -262,6 +262,18 @@ Scroll up button was not appearing above other content, making it unclickable wh
 The Fix:
 I added `z-index: 9999;` to the scroll-up button CSS to ensure it appears above all other content, making it clickable at all times.
 
+- Bug summary:
+In my original code borrowed from Boutique Ado study project, I tried to cram the entire shopping bag—product IDs, quantities, sizes, and rental dates—into Stripe's metadata field. I hit a hard limit: Stripe only allows 500 characters for metadata values. As soon as a customer tried to purchase more than 3 or 4 items, the data exceeded that limit. Stripe rejected the request, the JavaScript crashed, and the payment process couldn't even start.
+
+The Fix:
+Instead of trying to send the entire order details to Stripe and back again, I changed the logic. Now, my website stores the bag safely in its own database the moment the order is created in Django. I used the Stripe PID (payment_intent_id) as the unique "Claim Ticket." Stripe now only needs to hold that tiny PID string, which stays the same size no matter how many items are in the bag. When the webhook fires, the webhook_handler uses that PID to look up the bag in the database, marks the order as paid, and processes it normally.
+
+- Bug summary:
+In the webhook_handler, I had a process to save user profile information after a successful payment. However, if a UserProfile did not exist for the provided username (such as during a guest checkout or a sync error), it raised a UserProfile.DoesNotExist exception. This caused the entire webhook to fail and stop running before it could finish the order.
+
+The Fix:
+I added a try-except block around the UserProfile retrieval. Now, if the profile does not exist, the code simply sets the profile to None and continues without raising an exception. This prevents the webhook from failing due to missing profiles and ensures the payment confirmation logic always completes.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)

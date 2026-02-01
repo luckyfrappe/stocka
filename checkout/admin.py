@@ -21,11 +21,11 @@ class OrderAdmin(admin.ModelAdmin):
               'street_address1', 'street_address2',
               'county', 'delivery_cost', 'order_total',
               'grand_total', 'original_bag',
-              'stripe_pid',)
+              'stripe_pid', 'payment_confirmed',)
 
     list_display = ('order_number', 'date', 'full_name',
                     'order_total', 'delivery_cost',
-                    'grand_total',)
+                    'grand_total', 'payment_confirmed',)
 
     ordering = ('-date',)
 
