@@ -47,7 +47,7 @@ For more information about Stripe test payments, see the official documentation:
   - [Typography](#typography)
   - [Imagery](#imagery)
   - [Wireframes](#wireframes)
-  - [Database Schema](#database-schema)
+  - [Database Schema & Data Engineering](#database-schema--data-engineering)
 - [Features](#features)
   - [Core Features](#core-features)
   - [Page-Specific Features](#page-specific-features)
@@ -553,10 +553,9 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 
 - **[Git & GitHub](https://github.com/)** – Version control and hosting.
 - **[Google DevTools](https://developer.chrome.com/docs/devtools/)** – Development & debugging.
-<!-- - **[FigJam](https://www.figma.com/figjam/)** - Flowcharts -->
-<!-- - **[Font Awesome](https://fontawesome.com/)** – Icons via CDN. -->
+- **[FigJam](https://www.figma.com/figjam/)** - Flowcharts
+- **[Font Awesome](https://fontawesome.com/)** – Icons via CDN. 
 <!-- - **[Favicon.io](https://favicon.io/)** – Favicon generation. -->
-<!-- - **[TinyPNG](https://tinypng.com/)** – Image optimization. -->
 - **[Polypane](https://polypane.app/)** – Responsive device previews.
 <!-- - **[Autoprefixer](https://autoprefixer.github.io/)** – Vendor prefixes for CSS. -->
 <!-- - **[HTML Validator](https://validator.w3.org/)** – Markup Validation Service. -->
@@ -568,7 +567,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[Adobe Color](https://color.adobe.com/)** – Color scheme generation and inspiration.
 - **[Prettier](https://prettier.io/)** – Code formatter that ensures consistent style across your JavaScript, CSS, JSON, and other files.
 - **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
-<!-- - **[Canva](https://www.canva.com/create/logos/)** was used for creating the collage assets and favicon design. -->
 - **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
 - **[Django](https://www.djangoproject.com/)** – High-level Python web framework powering the backend of the application.  
 <!-- - **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production. -->
@@ -578,7 +576,15 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[PostgreSQL](https://www.postgresql.org/)** – Open-source relational database system used for storing structured application data.  
 - **[django-allauth](https://django-allauth.readthedocs.io/en/latest/)** – Integrated Django app for authentication, registration, and account management with support for social logins and email verification.
 <!-- - **[Google Workspace (Gmail SMTP)](https://mail.google.com/)** – Configured to send transactional emails through Gmail’s secure SMTP service, used for account verification, password resets, and contact forms. -->
-<!-- - **[FilePond](https://pqina.nl/filepond/)** – Used for modern, user-friendly file uploads with drag-and-drop support, live image previews, and file validation. Configured to behave like a regular Django file input using `storeAsFile: true`, so uploaded files are submitted together with the form. -->
+- **[Stripe](https://stripe.com/)** – Payment processing platform used to handle secure transactions during checkout (test mode only).
+- **[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)** – Django app for rendering forms in a DRY way with support for Bootstrap styling.
+- **[Pillow](https://python-pillow.org/)** – Python Imaging Library (PIL) fork used for image processing tasks within Django.
+- **[Django Storages](https://django-storages.readthedocs.io/en/latest/)** – Collection of custom storage backends for Django, used here to interface with cloud storage solutions.
+- **[Heroku](https://www.heroku.com/)** – Cloud platform used for deploying and hosting the web application.
+- **[VS Code](https://code.visualstudio.com/)** – Source-code editor used for writing and editing code.
+- **[Figma](https://www.figma.com/)** – UI/UX design and prototyping tool used for creating wireframes and mockups.
+- **[Kaggle](https://www.kaggle.com/)** – Platform for data science and machine learning, used here to source the Vibrent Clothes Rental Dataset.
+- **[ngrok](https://ngrok.com/)** – Tool to expose local servers to the internet for testing webhooks and external integrations during development.
 
 
 ## Deployment
