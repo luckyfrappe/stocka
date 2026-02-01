@@ -18,7 +18,7 @@
                     <!-- Used to simulate fake availability of new items -->
                     {% if simulated_sizes %}
                     <p class="x-small fw-bold text-uppercase mb-2">Select Size:</p>
-                    <select class="form-control rounded-0 mb-2 text-uppercase" name="product_size" id='id_product_size_new'>
+                    <select class="form-control mb-2 text-uppercase" name="product_size" id='id_product_size_new'>
                         {% for size in simulated_sizes %}
                             <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}</option>
                         {% endfor %}
@@ -28,14 +28,14 @@
                     <div class="col-12 mb-4">
                         <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
                         <div class="input-group w-50">
-                            <button class="decrement-qty btn btn-outline-dark rounded-0 btn-sm" 
+                            <button class="decrement-qty btn btn-outline-dark btn-sm" 
                                 type="button" data-item_id="{{ product.id }}">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <input class="form-control qty_input rounded-0 border-dark text-center" type="number" 
+                            <input class="form-control qty_input border-dark text-center" type="number" 
                                 name="quantity" value="1" min="1" max="99" 
                                 data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                            <button class="increment-qty btn btn-outline-dark rounded-0 btn-sm" 
+                            <button class="increment-qty btn btn-outline-dark btn-sm" 
                                 type="button" data-item_id="{{ product.id }}">
                                 <i class="fas fa-plus"></i>
                             </button>
@@ -44,7 +44,7 @@
 
                     <div class="rental-period">
                         <p class="x-small fw-bold text-uppercase mb-2">Rental Period:</p>
-                        <select class="form-control rounded-0 mb-4" name="rental_period" id='id_rental_period'>
+                        <select class="form-control mb-4" name="rental_period" id='id_rental_period'>
                             <option value="1" selected>1 Week</option>
                             <option value="2">2 Weeks</option>
                             <option value="3">3 Weeks</option>
@@ -54,7 +54,7 @@
 
                     <div class="start-datum">
                         <p class="x-small fw-bold text-uppercase mb-2">Start Date:</p>
-                        <input type="date" class="form-control rounded-0 mb-4" name="start_date" id="id_start_date">
+                        <input type="date" class="form-control mb-4" name="start_date" id="id_start_date">
                     </div>
                     {% if request.user.is_authenticated %}
                         <input class="btn btn-dark text-uppercase w-100 py-2 small" type="submit" value="Add to Bag">

@@ -58,12 +58,12 @@
             <span class="h5 mb-0 fw-bold">SEK {{ total|floatformat:2 }}</span>
         </div>
 
-        <a href="{% url 'view_bag' %}" class="btn btn-dark btn-sm w-100 rounded-0 py-3 mb-3 d-flex justify-content-center align-items-center">
+        <a href="{% url 'view_bag' %}" class="btn btn-dark btn-sm w-100 py-3 mb-3 d-flex justify-content-center align-items-center">
             <span class="text-uppercase text-white me-2">Proceed to Secure Checkout</span>
             <i class="fas fa-lock"></i>
         </a>
     {% else %}
-        <a href="{% url 'products' %}" class="btn btn-dark btn-sm w-100 rounded-0 py-3 mb-3 d-flex justify-content-center align-items-center">
+        <a href="{% url 'products' %}" class="btn btn-dark btn-sm w-100 py-3 mb-3 d-flex justify-content-center align-items-center">
             <span class="text-uppercase text-white me-2">Keep Shopping</span>
         </a>
     {% endif %}
