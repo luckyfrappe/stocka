@@ -8,12 +8,9 @@ from .models import Subscriptions
 
 @receiver(post_save, sender=OrderLineItem)
 def create_or_update_subscription(sender, instance, created, **kwargs):
-    print("🔥🔥🔥 Signal received for OrderLineItem:", instance.id, "🔥🔥🔥")
     """
     Handles Subscription creation, extension, and buyout triggers.
     """
-
-    print("🔥🔥🔥🔥🔥🔥🔥🔥🔥 created =", created)
     if not created:
         return
 
@@ -21,7 +18,6 @@ def create_or_update_subscription(sender, instance, created, **kwargs):
         return 
     
     customer = instance.order.userprofile.user 
-    print("🔥 Customer:", customer.username)
     weeks = int(instance.rental_period or 0)
     start_date = instance.start_date
     if isinstance(start_date, str):
@@ -49,11 +45,11 @@ def create_or_update_subscription(sender, instance, created, **kwargs):
     elif instance.purchase_type in [PurchaseType.EXTEND, PurchaseType.BUYOUT]:
         
         try:
-            active_sub = Subscriptions.objects.get(
+            active_sub = Subscriptions.objects.filter(
                 user=customer,
                 product=instance.product,
-                status='active' # Only find the active one
-            )
+                status='active'
+            ).latest('start_date')
             
             if instance.purchase_type == PurchaseType.EXTEND:
                 # Add weeks to duration
@@ -61,6 +57,7 @@ def create_or_update_subscription(sender, instance, created, **kwargs):
                 # Add weeks to end_date
                 if active_sub.end_date:
                     active_sub.end_date += timedelta(weeks=weeks)
+                active_sub.status = 'active'  # Ensure status remains active
                 active_sub.save()
                 
             elif instance.purchase_type == PurchaseType.BUYOUT:

@@ -28,10 +28,17 @@ def bag_contents(request):
                 end_date = start_date + timedelta(weeks=weeks) if start_date else None
 
                 # Determine Price based on Business Logic
-                if p_type == 'rent':
+                if p_type == 'rent' or p_type == 'extend':
                     price = product.price_per_week * weeks
                 elif p_type == 'preowned':
                     price = (product.retail_price * Decimal(settings.PREOWNED_DISCOUNT_RATE)).quantize(Decimal('0.00')) # 40% off for Pre-owned
+                elif p_type == 'buyout':
+                    period = info.get('rental_period', 0)
+                    rental_equity = product.price_per_week * period
+                    
+                    # 3. Calculate the buyout price: Retail minus what they've already paid
+                    # Ensuring it doesn't go below zero
+                    price = max(Decimal('0.00'), product.retail_price - rental_equity)
                 else:
                     price = product.retail_price
 

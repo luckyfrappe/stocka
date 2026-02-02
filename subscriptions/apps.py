@@ -5,5 +5,4 @@ class SubscriptionsConfig(AppConfig):
     name = 'subscriptions'
 
     def ready(self):
-        print("🔥 subscriptions ready")
         import subscriptions.signals
