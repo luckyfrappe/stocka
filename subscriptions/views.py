@@ -24,7 +24,7 @@ def mark_as_returned(request, product_id):
     """
     Marks a subscription as returned.
     """
-    subscription = Subscriptions.objects.get(user=request.user, product__id=product_id)
-    subscription.status = 'returned'
-    subscription.save()
-    return redirect('subscriptions_list')
+    subscriptions = Subscriptions.objects.get(user=request.user, product__id=product_id)
+    subscriptions.status = 'returned'
+    subscriptions.save()
+    return redirect('subscriptions')
