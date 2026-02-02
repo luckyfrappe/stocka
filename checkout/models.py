@@ -117,11 +117,16 @@ class OrderLineItem(models.Model):
 
         # 3. Logic for Buyout
         elif self.purchase_type == PurchaseType.BUYOUT:
-            period = self.rental_period or 1
-            buyout_discount = Decimal(str(settings.BUYOUT_DISCOUNT_RATE))
-            rental_cost = self.product.price_per_week * period
-            discounted_price = (self.product.retail_price * buyout_discount).quantize(Decimal('0.00'))
-            base_price = rental_cost + discounted_price
+            # 1. Determine the rental equity already paid/committed
+            period = self.rental_period or 0
+            rental_equity = self.product.price_per_week * period
+            
+            # 2. Get the Retail Price (The "Market Value")
+            retail_price = self.product.retail_price
+            
+            # 3. Calculate the buyout price: Retail minus what they've already paid
+            # Ensuring it doesn't go below zero
+            base_price = max(Decimal('0.00'), retail_price - rental_equity)
         
         # 4. Logic for New
         else:
