@@ -36,3 +36,8 @@ def index(request):
         'everyday_items': everyday_items,
     }
     return render(request, 'home/index.html', context)
+
+# def info_pages(request, page_name):
+#     """ A single view to handle all brand/legal pages """
+#     template = f'home/{page_name}.html'
+#     return render(request, template)
