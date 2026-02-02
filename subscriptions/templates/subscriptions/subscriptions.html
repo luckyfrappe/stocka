@@ -15,7 +15,7 @@
 
 {% block content %}
     <div class="container subscriptions-container mb-5">
-        <h2 class="mt-5 mb-4">My Subscriptions</h2>
+        <h2 class="mt-5 mb-4">Subscriptions</h2>
         <hr>
 
         <div class="row">
@@ -53,29 +53,15 @@
                                 <p class="my-0"><strong>{{ sub.product.name }}</strong></p>
                                 <p class="my-0 small text-muted">Size: {{ sub.order_line_item.product_size|upper }}</p>
                                 <p class="my-0 small">
-                                    Status: 
-                                    {% if sub.status == 'active' %}
-                                        <span class="badge badge-success">Active</span>
-                                    {% elif sub.status == 'overdue' %}
-                                        <span class="badge badge-danger">Overdue</span>
-                                    {% elif sub.status == 'bought_out' %}
-                                        <span class="badge badge-info">Owned</span>
-                                    {% else %}
-                                        <span class="badge badge-secondary">{{ sub.status|title }}</span>
-                                    {% endif %}
+                                    Status: {{ sub.get_status_display }}
                                 </p>
                                 <p class="small text-muted">Order Ref: #{{ sub.order_line_item.order.order_number|truncatechars:10 }}</p>
                             </div>
 
                             <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                <p class="my-0 small"><strong>Start:</strong> {{ sub.start_date }}</p>
+                                <p class="my-0 small"><strong>Start{% if sub.status == "returned" or sub.status == "bought_out" %}ed{% endif %}:</strong> {{ sub.start_date }}</p>
                                 <p class="my-0 small">
-                                    <strong>End:</strong> 
-                                    {% if sub.end_date %}
-                                        {{ sub.end_date }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
+                                    <strong>End{% if sub.status == "returned" or sub.status == "bought_out" %}ed{% endif %}:</strong> {{ sub.end_date }}
                                 </p>
                                 <p class="small text-muted my-0">
                                     ({{ sub.duration_weeks }} Week{% if sub.duration_weeks > 1 %}s{% endif %})
@@ -84,13 +70,21 @@
 
                             <div class="col-12 col-md-3 text-md-right">
                                 {% if sub.status == 'active' or sub.status == 'overdue' %}
+                                    <form action="{% url 'mark_as_returned' sub.product.id %}" method="POST" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-success p-2 mb-1">
+                                            Mark as Returned
+                                        </button>
+                                    </form>
+                                {% endif %}
+                                {% if sub.status == 'active' or sub.status == 'overdue' %}
                                     <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline">
                                         {% csrf_token %}
                                         <input type="hidden" name="quantity" value="1">
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         <input type="hidden" name="product_size" value="{{ sub.order_line_item.product_size }}">
                                         <input type="hidden" name="purchase_type" value="extend">
-                                        <button type="submit" class="btn btn-sm btn-outline-black mb-1">
+                                        <button type="submit" class="btn btn-sm btn-outline-dark p-2 mb-1">
                                             Extend
                                         </button>
                                     </form>
@@ -101,7 +95,7 @@
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         <input type="hidden" name="product_size" value="{{ sub.order_line_item.product_size }}">
                                         <input type="hidden" name="purchase_type" value="buyout">
-                                        <button type="submit" class="btn btn-sm btn-black mb-1">
+                                        <button type="submit" class="btn btn-sm btn-dark p-2 mb-1">
                                             Buy Out
                                         </button>
                                     </form>
@@ -124,5 +118,19 @@
                 {% endif %}
             </div>
         </div>
+        <div class="btt-button shadow-sm">
+        <a class="btt-link d-flex h-100 text-decoration-none">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>    
     </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
+    })
+</script>
 {% endblock %}
