@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.subscriptions_list, name='subscriptions'),
-    path('mark_as_returned/<int:product_id>/', views.mark_as_returned, name='mark_as_returned'),
+    path('mark_as_returned/<int:subscription_id>/', views.mark_as_returned, name='mark_as_returned'),
 ]

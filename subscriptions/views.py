@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 from .models import Subscriptions
 
 @login_required
@@ -20,11 +21,11 @@ def subscriptions_list(request):
     
     return render(request, 'subscriptions/subscriptions.html', context)
 
-def mark_as_returned(request, product_id):
+def mark_as_returned(request, subscription_id):
     """
     Marks a subscription as returned.
     """
-    subscriptions = Subscriptions.objects.get(user=request.user, product__id=product_id)
+    subscriptions = get_object_or_404(Subscriptions, id=subscription_id, user=request.user)
     subscriptions.status = 'returned'
     subscriptions.save()
     return redirect('subscriptions')
