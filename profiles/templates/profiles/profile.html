@@ -24,7 +24,7 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button class="btn btn-outline-dark text-uppercase">Update Information</button>
-                    <a href="" class="btn btn-dark text-uppercase">Subscriptions</a>
+                    <a href="{% url 'subscriptions' %}" class="btn btn-dark text-uppercase">Subscriptions</a>
                 </form>
             </div>
             <div class="col-12 col-lg-6">

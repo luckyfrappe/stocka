@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container subscriptions-container mb-5">
+        <h2 class="mt-5 mb-4">My Subscriptions</h2>
+        <hr>
+
+        <div class="row">
+            <div class="col-12">
+                {% if subscriptions %}
+                    <div class="row mb-2 d-none d-md-flex">
+                        <div class="col-md-2">
+                            <p class="mb-1 mt-0 small text-muted">Product</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="mb-1 mt-0 small text-muted">Details</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="mb-1 mt-0 small text-muted">Dates</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <p class="mb-1 mt-0 small text-muted">Actions</p>
+                        </div>
+                    </div>
+
+                    {% for sub in subscriptions %}
+                        <div class="row mb-4 border-bottom pb-4 align-items-center">
+                            
+                            <div class="col-12 col-md-2 mb-3 mb-md-0">
+                                <a href="{% url 'product_detail' sub.product.id %}">
+                                    {% with sub.product.images.all|first as img %}
+                                        <img class="img-fluid rounded border" 
+                                             src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}" 
+                                             alt="{{ sub.product.name }}">
+                                    {% endwith %}
+                                </a>
+                            </div>
+
+                            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                                <p class="my-0"><strong>{{ sub.product.name }}</strong></p>
+                                <p class="my-0 small text-muted">Size: {{ sub.order_line_item.product_size|upper }}</p>
+                                <p class="my-0 small">
+                                    Status: 
+                                    {% if sub.status == 'active' %}
+                                        <span class="badge badge-success">Active</span>
+                                    {% elif sub.status == 'overdue' %}
+                                        <span class="badge badge-danger">Overdue</span>
+                                    {% elif sub.status == 'bought_out' %}
+                                        <span class="badge badge-info">Owned</span>
+                                    {% else %}
+                                        <span class="badge badge-secondary">{{ sub.status|title }}</span>
+                                    {% endif %}
+                                </p>
+                                <p class="small text-muted">Order Ref: #{{ sub.order_line_item.order.order_number|truncatechars:10 }}</p>
+                            </div>
+
+                            <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                <p class="my-0 small"><strong>Start:</strong> {{ sub.start_date }}</p>
+                                <p class="my-0 small">
+                                    <strong>End:</strong> 
+                                    {% if sub.end_date %}
+                                        {{ sub.end_date }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </p>
+                                <p class="small text-muted my-0">
+                                    ({{ sub.duration_weeks }} Week{% if sub.duration_weeks > 1 %}s{% endif %})
+                                </p>
+                            </div>
+
+                            <div class="col-12 col-md-3 text-md-right">
+                                {% if sub.status == 'active' or sub.status == 'overdue' %}
+                                    <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                        <input type="hidden" name="product_size" value="{{ sub.order_line_item.product_size }}">
+                                        <input type="hidden" name="purchase_type" value="extend">
+                                        <button type="submit" class="btn btn-sm btn-outline-black mb-1">
+                                            Extend
+                                        </button>
+                                    </form>
+
+                                    <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="quantity" value="1">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                        <input type="hidden" name="product_size" value="{{ sub.order_line_item.product_size }}">
+                                        <input type="hidden" name="purchase_type" value="buyout">
+                                        <button type="submit" class="btn btn-sm btn-black mb-1">
+                                            Buy Out
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <a href="{% url 'product_detail' sub.product.id %}" class="btn btn-sm btn-outline-secondary">
+                                        Rent Again
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                {% else %}
+                    <div class="col-12 text-center mt-5">
+                        <p class="lead">You have no active subscriptions.</p>
+                        <a href="{% url 'products' %}" class="btn btn-dark btn-lg">
+                            <span class="text-uppercase text-white"><span class="icon"><i class="fas fa-shopping-cart text-white"></i></span> Keep Shopping</span>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
