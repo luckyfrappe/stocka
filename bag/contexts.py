@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
+from subscriptions.models import Subscriptions
 # This context processor was simplified and modified with help from Gemini AI tool to fit project needs.
 def bag_contents(request):
     bag_items = []
@@ -33,12 +34,18 @@ def bag_contents(request):
                 elif p_type == 'preowned':
                     price = (product.retail_price * Decimal(settings.PREOWNED_DISCOUNT_RATE)).quantize(Decimal('0.00')) # 40% off for Pre-owned
                 elif p_type == 'buyout':
-                    period = info.get('rental_period', 0)
-                    rental_equity = product.price_per_week * period
-                    
-                    # 3. Calculate the buyout price: Retail minus what they've already paid
-                    # Ensuring it doesn't go below zero
-                    price = max(Decimal('0.00'), product.retail_price - rental_equity)
+                    # Fetch existing subscription to calculate buyout price
+                    active_sub = Subscriptions.objects.filter(
+                        user=request.user,
+                        product=product,
+                        status='active'
+                    ).first()
+                    if active_sub:
+                        sunk_cost = product.price_per_week * active_sub.duration_weeks
+                        buyout_price = product.retail_price - sunk_cost
+                        price = max(buyout_price, Decimal('0.00'))
+                    else:
+                        price = product.retail_price
                 else:
                     price = product.retail_price
 
