@@ -274,6 +274,12 @@ In the webhook_handler, I had a process to save user profile information after a
 The Fix:
 I added a try-except block around the UserProfile retrieval. Now, if the profile does not exist, the code simply sets the profile to None and continues without raising an exception. This prevents the webhook from failing due to missing profiles and ensures the payment confirmation logic always completes.
 
+- Bug summary:
+Buyout price calculation was not accounting for rental equity correctly, leading to incorrect buyout prices being set.
+
+The Fix:
+I adjusted the buyout price calculation to first determine the total rental equity based on weeks paid and price per week. Then, I subtracted this rental equity from the retail price to get the correct buyout base price.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)

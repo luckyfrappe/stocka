@@ -9,6 +9,7 @@ from django_countries.fields import CountryField
 
 from products.models import Product
 from profiles.models import UserProfile
+from subscriptions.models import Subscriptions
 
 
 class Order(models.Model):
@@ -117,18 +118,20 @@ class OrderLineItem(models.Model):
 
         # 3. Logic for Buyout
         elif self.purchase_type == PurchaseType.BUYOUT:
-            # 1. Determine the rental equity already paid/committed
-            period = self.rental_period or 0
-            rental_equity = self.product.price_per_week * period
-            
-            # 2. Get the Retail Price (The "Market Value")
-            retail_price = self.product.retail_price
-            
-            # 3. Calculate the buyout price: Retail minus what they've already paid
-            # Ensuring it doesn't go below zero
-            base_price = max(Decimal('0.00'), retail_price - rental_equity)
-        
-        # 4. Logic for New
+            # Look for the current active subscription for this product and user
+            active_sub = Subscriptions.objects.filter(
+                user=self.order.userprofile.user,
+                product=self.product,
+                status='active'
+            ).first()
+
+            if active_sub:
+                sunk_cost = self.product.price_per_week * active_sub.duration_weeks
+                buyout_price = self.product.retail_price - sunk_cost
+                base_price = max(buyout_price, Decimal('0.00'))
+            else:
+                base_price = self.product.retail_price
+            # 4. Logic for New Purchases
         else:
             base_price = self.product.retail_price
 
