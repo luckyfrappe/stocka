@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.conf import settings
 
 class SubscriptionStatus(models.TextChoices):
@@ -25,7 +26,7 @@ class Subscriptions(models.Model):
     )
     
     # Subscription Lifecycle
-    start_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(null=True, blank=True)
     duration_weeks = models.PositiveIntegerField()
     
