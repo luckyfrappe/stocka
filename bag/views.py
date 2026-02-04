@@ -34,7 +34,7 @@ def add_to_bag(request, item_id):
         redirect_url = reverse('checkout')
     elif has_express_in_bag:
         # If user has an express item and try to add a normal product:
-        messages.info(request, "Please complete your current transaction or remove the item shopping.")
+        messages.info(request, "Please complete your current transaction or remove the item before adding new items.")
         return redirect(reverse('view_bag'))
     else:
         # Standard behavior for normal products
