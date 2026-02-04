@@ -68,39 +68,58 @@
                                 </p>
                             </div>
 
-                            <div class="col-12 col-md-3 text-md-right">
+                            <div class="col-12 col-md-3 text-md-right d-flex flex-column align-items-end">
                                 {% if sub.status == 'active' or sub.status == 'overdue' %}
-                                    <form action="{% url 'mark_as_returned' sub.id %}" method="POST" class="d-inline">
+                                    <form action="{% url 'mark_as_returned' sub.id %}" method="POST" class="d-inline w-100">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-sm btn-outline-success p-2 mb-1">
+                                        <button type="submit" class="btn btn-sm btn-outline-dark p-2 mb-1 w-100">
                                             Mark as Returned
                                         </button>
                                     </form>
                                 {% endif %}
                                 {% if sub.status == 'active' or sub.status == 'overdue' %}
-                                    <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline">
+                                    <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline w-100">
                                         {% csrf_token %}
                                         <input type="hidden" name="quantity" value="1">
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         <input type="hidden" name="product_size" value="{{ sub.order_line_item.product_size }}">
                                         <input type="hidden" name="purchase_type" value="extend">
-                                        <button type="submit" class="btn btn-sm btn-outline-dark p-2 mb-1">
-                                            Extend
+                                        <button type="button" class="btn btn-sm btn-outline-dark p-2 mb-1 w-100" data-bs-toggle="modal" data-bs-target="#sub.{{ sub.id }}">
+                                            Extend from {{ sub.price_per_week }} SEK/week
                                         </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="sub.{{ sub.id }}" tabindex="-1" aria-labelledby="sub.{{ sub.id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header border-0">
+                                                        <h1 class="modal-title fs-5" id="sub.{{ sub.id }}">Extend {{ sub.product.name }}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <input type="number" name="rental_period" value="1" min="1" class="form-control" placeholder="Number of weeks to extend">
+                                                        <input type="number" name="price_per_week" value="{{ sub.price_per_week }}" hidden>
+                                                    </div>
+                                                    <div class="modal-footer border-0">
+                                                        <button type="submit" class="btn btn-sm btn-dark p-2 extend-btn w-100">Extend for SEK</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
 
-                                    <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline">
+                                    <form action="{% url 'add_to_bag' sub.product.id %}" method="POST" class="d-inline w-100">
                                         {% csrf_token %}
                                         <input type="hidden" name="quantity" value="1">
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         <input type="hidden" name="product_size" value="{{ sub.order_line_item.product_size }}">
                                         <input type="hidden" name="purchase_type" value="buyout">
-                                        <button type="submit" class="btn btn-sm btn-dark p-2 mb-1">
-                                            Buy Out
+                                        <button type="submit" class="btn btn-sm btn-dark p-2 mb-1 w-100">
+                                            Buy Out for {{ sub.buyout_price }} SEK
                                         </button>
                                     </form>
                                 {% else %}
-                                    <a href="{% url 'product_detail' sub.product.id %}" class="btn btn-sm btn-outline-secondary">
+                                    <a href="{% url 'product_detail' sub.product.id %}" class="btn btn-sm btn-outline-secondary w-100 p-2 mb-1">
                                         Rent Again
                                     </a>
                                 {% endif %}
@@ -132,5 +151,42 @@
     $('.btt-link').click(function(e) {
         window.scrollTo(0,0)
     })
+</script>
+<script>
+    // Update Extend button text with calculated price
+    $(document).ready(function() {
+        $('.modal').each(function() {
+            var modal = $(this);
+            var extendBtn = modal.find('.extend-btn');
+            var rentalPeriodInput = modal.find('input[name="rental_period"]');
+            var pricePerWeekInput = modal.find('input[name="price_per_week"]');
+
+            function updateExtendButton() {
+                // Treat empty input as 0 for calculation, but don't force-change the value
+                var weeks = parseInt(rentalPeriodInput.val()) || 0;
+                var pricePerWeek = parseFloat(pricePerWeekInput.val()) || 0;
+                var totalPrice = (weeks * pricePerWeek).toFixed(2);
+                
+                extendBtn.text('Extend for ' + totalPrice + ' SEK');
+                
+                // Disable button if input is empty or 0
+                extendBtn.prop('disabled', weeks < 1);
+            }
+
+            // 1. Update price as they type (allows to delete/edit)
+            rentalPeriodInput.on('input', updateExtendButton);
+
+            // 2. Enforce minimum "1" only when user leaves the input
+            rentalPeriodInput.on('blur', function() {
+                var val = parseInt($(this).val());
+                if (isNaN(val) || val < 1) {
+                    $(this).val(1);
+                    updateExtendButton(); // Refresh price after reset
+                }
+            });
+
+            updateExtendButton(); // Initial call
+        });
+    });
 </script>
 {% endblock %}

@@ -14,6 +14,14 @@ def subscriptions_list(request):
         'product', 
         'order_line_item__order' 
     ).order_by('-start_date')
+    buyout_price = None
+    for sub in user_subscriptions:
+        price_per_week = sub.product.price_per_week
+        sub.price_per_week = price_per_week
+        if sub.status == 'active':
+            sunk_cost = sub.product.price_per_week * sub.duration_weeks
+            buyout_price = sub.product.retail_price - sunk_cost
+            sub.buyout_price = max(buyout_price, 0)
     
     context = {
         'subscriptions': user_subscriptions,
