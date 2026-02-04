@@ -64,7 +64,7 @@ def bag_contents(request):
                     'price_each': price,
                 })
 
-    if total < settings.FREE_DELIVERY_THRESHOLD:
+    if total < settings.FREE_DELIVERY_THRESHOLD and all(item.get('purchase_type') not in ['buyout', 'extend'] for item in bag_items):
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
