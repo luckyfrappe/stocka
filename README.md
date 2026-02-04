@@ -528,6 +528,9 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - Advanced search with autocomplete  
 - User notifications for rental due dates and promotions  
 - Mobile app version for iOS and Android
+- Overhauled FAQ page with accordion sections
+- Overdue logic that updates server every day for rentals that have not been marked as returned after end date
+- Better express item handling as separate flow instead of blocking all other items in bag
 
 ### Accessibility Considerations
 
