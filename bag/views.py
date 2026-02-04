@@ -19,6 +19,26 @@ def add_to_bag(request, item_id):
     size = request.POST.get('product_size', 'OS') # Default to One Size
     
     bag = request.session.get('bag', {})
+
+    # 1. Identify if the bag currently has an express Item (Buyout/Extend)
+    has_express_in_bag = any(
+        info.get('type') in ['buyout', 'extend']
+        for item in bag.values()
+        for info in item.get('items_by_size', {}).values()
+    )
+
+    # 2. Safety Logic
+    if purchase_type in ['buyout', 'extend']:
+        # Wipe the bag if adding a new express item.
+        bag = {} 
+        redirect_url = reverse('checkout')
+    elif has_express_in_bag:
+        # If user has an express item and try to add a normal product:
+        messages.info(request, "Please complete your current transaction or remove the item shopping.")
+        return redirect(reverse('view_bag'))
+    else:
+        # Standard behavior for normal products
+        redirect_url = request.POST.get('redirect_url')
     
     if item_id not in bag:
         bag[item_id] = {'items_by_size': {}}

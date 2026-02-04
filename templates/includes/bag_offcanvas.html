@@ -32,6 +32,9 @@
                             <p class="small mb-0 text-muted">Start Date: {{ item.start_date }}</p>
                             <p class="small mb-0 text-muted">End Date: {{ item.end_date }}</p>
                             {% endif %}
+                            {% if item.purchase_type == 'extend' %}
+                            <p class="small mb-0 text-muted">Extension period: {{ item.rental_period }} week{% if item.rental_period > 1 %}s{% endif %}</p>
+                            {% endif %}
                             <p class="small mb-0 text-muted">Qty: {{ item.quantity }}</p>
                         </div>
                     </div>
