@@ -286,6 +286,12 @@ When a user select several filter options the products page title just said the 
 The Fix:
 I added a check if there are multiple active filters. If so, the title now displays "Filtered Results" instead of just the first filter. If only one filter is active, it continues to show the specific attribute type and value for clarity.
 
+-Bug summary:
+On info pages, the scrollspy functionality was not working correctly. When clicking on sidebar links, the page would jump to the correct section but the active link was not updating properly.
+
+The Fix:
+Scrollspy is changed to a static sidebar and scrollspy functionality can be added back in later if desired. 
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)
