@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -51,4 +52,22 @@ def mark_as_returned(request, subscription_id):
     subscriptions = get_object_or_404(Subscriptions, id=subscription_id, user=request.user)
     subscriptions.status = 'returned'
     subscriptions.save()
+    return redirect('subscriptions')
+
+def mark_as_bought_out(request, subscription_id):
+    """
+    Marks a subscription as bought out if buy out is price is 0. Checks the buyout price on backend to prevent any manipulation from the frontend. If buyout price is above 0, redirects to subscriptions page without making any changes.
+    """
+    subscriptions = get_object_or_404(Subscriptions, id=subscription_id, user=request.user)
+    price_per_week = subscriptions.product.price_per_week
+    sunk_cost = price_per_week * subscriptions.duration_weeks
+    buyout_price = subscriptions.product.retail_price - sunk_cost
+    
+    if buyout_price <= 0:
+        subscriptions.status = 'bought_out'
+        subscriptions.save()
+        messages.success(request, f'You have successfully bought out {subscriptions.product.name}. It is now yours to keep!')
+    else:
+        messages.error(request, f'We encountered an issue with your request to buy out {subscriptions.product.name}. Please contact support for assistance.')
+    
     return redirect('subscriptions')
