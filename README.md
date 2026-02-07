@@ -531,6 +531,8 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - Overhauled FAQ page with accordion sections
 - Overdue logic that updates server every day for rentals that have not been marked as returned after end date
 - Better express item handling as separate flow instead of blocking all other items in bag
+- Divide subscriptions page into active and past subscriptions for better UX
+- Add sorting options to subscriptions page (newest, oldest, product name, overdue, etc.)
 
 ### Accessibility Considerations
 
