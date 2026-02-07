@@ -29,8 +29,16 @@
     <div class="row mt-5 mb-4">
         <div class="col-12">
             <h1 class="mb-1 {% if search_term %}display-6{% endif %}">
-                {% if current_attributes %}
-                   {{ current_attributes.first.attribute_type }}: {{ current_attributes.first.value }}
+                {% if 'wishlist_items' in request.GET %}
+                    Favorites
+                {% elif search_term and current_attributes %}
+                    Search results for "{{ search_term }}"
+                {% elif current_attributes %}
+                    {% if current_attributes|length > 1 %}
+                        Filtered Results
+                    {% else %}
+                        {{ current_attributes.first.attribute_type }}: {{ current_attributes.first.value }}
+                    {% endif %}
                 {% elif search_term %}
                     Search results for "{{ search_term }}"
                 {% elif request.GET.new_arrivals %}
@@ -40,7 +48,13 @@
                 {% endif %}
             </h1>
             <p class="text-muted small">
-                {% if current_attributes %}
+                {% if 'wishlist_items' in request.GET %}
+                    Your saved favorites across all categories.
+                {% elif search_term and current_attributes %}
+                    Refining your search for "{{ search_term }}" with selected filters.
+                {% elif request.GET.new_arrivals %}
+                    Our latest additions, handpicked for you.
+                {% elif current_attributes %}
                     Explore {{ current_attributes.first.value|lower }} pieces selected for flexibility and longevity.
                 {% elif search_term %}
                     Showing items that match your search.
@@ -66,8 +80,7 @@
         </div>
         <div class="col-12 col-md-6 order-md-1">
             <p class="text-muted mb-0">
-                {{ products|length }} Products out of {{ products.paginator.count }} 
-                {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                {{ products|length }} Products out of {{ products.paginator.count }}
             </p>
         </div>
     </div>

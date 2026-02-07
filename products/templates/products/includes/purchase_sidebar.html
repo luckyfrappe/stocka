@@ -1,5 +1,25 @@
 <div class="product-info-container px-lg-3 sticky-sidebar">
-    <h1 class="h2 mb-2">{{ product.name }}</h1>
+    <div class="d-flex align-items-center mb-2">
+        <h1 class="h2 mb-0 me-3">{{ product.name }}</h1>
+        
+        <div class="wishlist-icon">
+            {% if user.is_authenticated %}
+                {% if product in wishlist.products.all %}
+                    <a href="{% url 'remove_from_wishlist' product.id %}" class="text-danger" title="Remove from Wishlist">
+                        <i class="fa-solid fa-heart fa-lg"></i>
+                    </a>
+                {% else %}
+                    <a href="{% url 'add_to_wishlist' product.id %}" class="text-muted" title="Add to Wishlist">
+                        <span class="icon"><i class="fa-regular fa-heart fa-lg"></i></span>
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'account_login' %}" class="text-muted" title="Login to save items">
+                    <span class="icon"><i class="fa-regular fa-heart fa-lg"></i></span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
 
     <div class="mobile-nav-groups mb-4" id="descAccordion">
         <div class="border-top border-bottom py-1">

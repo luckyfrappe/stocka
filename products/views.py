@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
 from .models import AttributeValue, Product, ProductAttribute, ProductImage, AttributeType
+from wishlist.models import Wishlist
 from .forms import ProductForm
 
 # Create your views here.
@@ -24,6 +25,11 @@ def all_products(request):
     attribute_type = None
 
     if request.GET:
+        if 'wishlist_items' in request.GET:
+            wishlist_ids = request.GET.get('wishlist_items').split(',')
+            # Filter products to only show those in the wishlist
+            products = products.filter(id__in=wishlist_ids)
+        
         # Debugged with help from Gemini (AI tool)
         if 'new_arrivals' in request.GET:
             new_arrival_ids = products.order_by('-time_created').values_list('id', flat=True).distinct()[:100]
@@ -37,7 +43,7 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
-        ignore_list = ['q', 'sort', 'direction', 'page', 'new_arrivals']
+        ignore_list = ['q', 'sort', 'direction', 'page', 'new_arrivals', 'wishlist_items']
         for key, values in request.GET.lists():
             if key not in ignore_list:
                 active_filter_slugs.extend(values)
@@ -103,6 +109,11 @@ def product_detail(request, product_id):
     
     simulated_sizes = []
 
+    wishlist = None
+    if request.user.is_authenticated:
+        # Get the user's wishlist if it exists
+        wishlist = Wishlist.objects.filter(user=request.user).first()
+
     # 3. Determine which range to simulate based on the real size
     if real_size:
         check_val = real_size.upper()
@@ -130,6 +141,7 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
+        'wishlist': wishlist,
         'product_tags': product_tags,
         'simulated_sizes': simulated_sizes, # For Buy New / Rent
         'real_size': real_size,             # For Pre-Owned

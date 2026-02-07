@@ -280,6 +280,12 @@ Buyout price calculation was not accounting for rental equity correctly, leading
 The Fix:
 I adjusted the buyout price calculation to first determine the total rental equity based on weeks paid and price per week. Then, I subtracted this rental equity from the retail price to get the correct buyout base price.
 
+- Bug summary:
+When a user select several filter options the products page title just said the first filter type and value (e.g. "Material: Leather") instead of reflecting the combination of filters applied. This made it unclear to users what filters were active, especially when multiple attributes were selected.
+
+The Fix:
+I added a check if there are multiple active filters. If so, the title now displays "Filtered Results" instead of just the first filter. If only one filter is active, it continues to show the specific attribute type and value for clarity.
+
 ---
 
 [Back to README.md](README.md) • [Back to Top](#stocka---testing-documentation)
