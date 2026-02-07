@@ -121,10 +121,10 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid my-5 d-flex justify-content-end gap-2">
-            <a class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold"
+        <div class="container d-flex flex-column flex-md-row gap-2">
+            <a class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold w-100 w-md-auto"
                 href="{% url 'product_detail' product.id %}"><i class="fa-solid fa-xmark me-2"></i>Cancel</a>
-            <button type="button" class="btn btn-outline-danger px-4 py-2 text-uppercase small fw-bold"
+            <button type="button" class="btn btn-outline-danger px-4 py-2 text-uppercase small fw-bold w-100 w-md-auto"
                 data-bs-toggle="modal" data-bs-target="#deleteModal">
                 <i class="fa-solid fa-trash-can me-2"></i>Delete Product
             </button>
@@ -151,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold" type="submit">
+            <button class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold w-100 w-md-auto" type="submit">
                 <i class="fa-solid fa-pen-to-square me-2"></i>Save Changes
             </button>
         </div>
