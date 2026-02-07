@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import os
+from django.conf import settings
+from django.shortcuts import render, Http404
 from products.models import AttributeValue, Product
 
 
@@ -37,7 +39,14 @@ def index(request):
     }
     return render(request, 'home/index.html', context)
 
-# def info_pages(request, page_name):
-#     """ A single view to handle all brand/legal pages """
-#     template = f'home/{page_name}.html'
-#     return render(request, template)
+# A single view to handle all brand/legal pages with a safety check to prevent directory traversal attacks. Scallable solution provided by Gemini AI tool
+def info_pages(request, page_name):
+    """ A single view to handle all brand/legal pages with a safety check """
+    template_path = f'home/{page_name}.html'
+    
+    full_path = os.path.join(settings.BASE_DIR, 'templates', template_path)
+    
+    try:
+        return render(request, template_path)
+    except:
+        raise Http404("This info page does not exist.")

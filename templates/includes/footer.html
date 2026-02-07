@@ -44,24 +44,25 @@
             <div class="col-6 col-md-2 mb-3">
                 <h3 class="small mb-3">Company</h3>
                 <ul class="list-unstyled d-grid gap-2">
-                    <li><a class="dropdown-item p-0 small" href="#">About</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">Values</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">Sustainability</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'about' %}">About</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'values' %}">Values</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'sustainability' %}">Sustainability</a></li>
                 </ul>
             </div>
 
             <div class="col-6 col-md-2 mb-3">
                 <h3 class="small mb-3">Legal</h3>
                 <ul class="list-unstyled d-grid gap-2">
-                    <li><a class="dropdown-item p-0 small" href="#">Terms of Service</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">Privacy Policy</a></li>
-                    <li><a class="dropdown-item p-0 small" href="#">Return Policy</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'terms-of-service' %}">Terms of Service</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'privacy-policy' %}">Privacy Policy</a></li>
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'return-policy' %}">Return Policy</a></li>
                 </ul>
             </div>
 
             <div class="col-6 col-md-2 mb-3">
                 <h3 class="small mb-3">Others</h3>
                 <ul class="list-unstyled d-grid gap-2">
+                    <li><a class="dropdown-item p-0 small" href="{% url 'info_pages' 'concept' %}">Concept</a></li>
                     <li><a class="dropdown-item p-0 small" href="{% url 'contact' %}">Contact</a></li>
                     <li><a class="dropdown-item p-0 small" href="{% url 'home' %}#faqs">FAQ's</a></li>
                 </ul>
@@ -70,11 +71,11 @@
             <div class="col-md-4 mb-3 d-flex flex-column align-items-md-end">
                 <h3 class="small mb-3">Follow us</h3>
                 <ul class="list-unstyled d-flex gap-3 mb-0">
-                    <li><a class="link-body-emphasis" href="#" target="_blank" rel="noopener noreferrer"><i
+                    <li><a class="link-body-emphasis" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><i
                                 class="fa-brands fa-instagram fa-lg"></i></a></li>
-                    <li><a class="link-body-emphasis" href="#" target="_blank" rel="noopener noreferrer"><i
+                    <li><a class="link-body-emphasis" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i
                                 class="fa-brands fa-facebook fa-lg"></i></a></li>
-                    <li><a class="link-body-emphasis" href="#" target="_blank" rel="noopener noreferrer"><i
+                    <li><a class="link-body-emphasis" href="https://x.com/" target="_blank" rel="noopener noreferrer"><i
                                 class="fa-brands fa-x-twitter fa-lg"></i></a></li>
                 </ul>
             </div>

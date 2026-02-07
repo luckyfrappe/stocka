@@ -1,0 +1,50 @@
+/* Sidebar Sticky Container */
+.concept-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 92.99px; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.concept-sidebar .list-item {
+    border: none;
+    background-color: transparent;
+    color: #6c757d; 
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.6rem 0;
+    transition: all 0.3s ease-in-out;
+    border-left: 2px solid transparent;
+    margin-bottom: 0.5rem;
+}
+
+.concept-sidebar .list-item:hover {
+    color: #000;
+    padding-left: 10px;
+}
+
+.italic {
+    font-style: italic;
+    color: var(--gray-dark);
+}
+
+.info-page h2 {
+    letter-spacing: -0.02em;
+    margin-top: 2rem;
+}
+
+html {
+    scroll-padding-top: 92.99px; 
+}
+
+@media (min-width: 992px) {
+    html {
+        scroll-padding-top: 49.4px; 
+    }
+    .concept-sidebar {
+        top: 49.4px; 
+    }
+}

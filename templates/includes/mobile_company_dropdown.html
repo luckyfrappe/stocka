@@ -2,13 +2,13 @@
   <div class="mobile-nav-groups">
     <ul class="list-unstyled row g-0 ps-1">
       <li>
-        <a class="nav-link py-1 small text-muted" href="">About</a>
+        <a class="nav-link py-1 small text-muted" href="{% url 'info_pages' 'about' %}">About</a>
       </li>
       <li>
-        <a class="nav-link py-1 small text-muted" href="">Values</a>
+        <a class="nav-link py-1 small text-muted" href="{% url 'info_pages' 'values' %}">Values</a>
       </li>
       <li>
-        <a class="nav-link py-1 small text-muted" href="">Sustainability</a>
+        <a class="nav-link py-1 small text-muted" href="{% url 'info_pages' 'sustainability' %}">Sustainability</a>
       </li>
       <li>
         <a class="nav-link py-1 small text-muted" href="{% url 'contact' %}">Contact</a>
