@@ -1,10 +1,16 @@
 .text {
-  min-height: 80vh;
-  padding-top: 30vh;
-  padding-bottom: 30vh;
+  min-height: 100vh;
+  padding-top: 20vh;
   transition: opacity 200ms ease;
 }
 
 .fashion-banner {
   background-color: var(--brand-secondary-light);
+}
+
+@media screen and (min-width: 992px) {
+  .text {
+    min-height: 80vh;
+    padding-top: 25vh;
+  }
 }
