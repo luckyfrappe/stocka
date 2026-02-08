@@ -3,9 +3,10 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'home/css/side-navbar.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
-{% block extra_title %}| Concept {% endblock %}
+{% block extra_title %}| Our Values {% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -16,89 +17,54 @@
 {% endblock %}
 
 {% block content %}
-<div class="container pb-5 pt-lg-5 info-page">
-    <div class ="row">
-        <div class="col-12 col-lg-4 mb-lg-0">
-            <nav class="concept-sidebar px-lg-3">
-                <a class="list-item" href="#concept">Our Concept</a>
-                <a class="list-item" href="#stocka-loop">Stocka Loop — Rent</a>
-                <a class="list-item" href="#stocka-keep">Stocka Keep — Buyout</a>
-                <a class="list-item" href="#stocka-reuse">Stocka Reuse — Pre-owned</a>
-                <a class="list-item" href="#program-names">Program Names</a>
-            </nav>
+<div class="container-fluid">
+    <section>
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <h1 class="mb-4 h1">Our Purpose</h1>
+                <p class="fs-4 lh-sm">To redefine the way you engage with clothing. We’re here to elevate every choice through design and experience that performs — simply, flexibly, and with purpose.</p>
+            </div>
         </div>
-        <div class="col-12 col-lg-8 ">
-            <div class="mb-5">
-                <h1 id="concept">Our Concept</h1>
-                <p class="lead">One wardrobe. Three ways to wear it.</p>
-                <p class="text-muted">Stocka lets you decide how long fashion stays with you — for a moment, for a season, or for good.</p>
-            </div>
+    </section>
 
-            <hr class="mb-5">
-
-            <div class="mb-5">
-                <h2 id="stocka-loop">Stocka Loop — Rent</h2>
-                <p class="text-muted italic">Wear it for now. Return it when you’re done.</p>
-                
-                <p class="mt-4 fw-bold small text-uppercase">How it works</p>
-                <ul>
-                    <li>Select Rent on an eligible item</li>
-                    <li>Choose your rental period</li>
-                    <li>Pick a pickup date at checkout</li>
-                    <li>Your rental starts when you collect the item</li>
-                </ul>
-                <p class="small">Need more time? You can extend your rental anytime from your account.</p>
-
-                <p class="mt-4 fw-bold small text-uppercase">Good to know:</p>
-                <ul>
-                    <li>Rentals begin after pickup, not at checkout</li>
-                    <li>Items must be picked up within the specified pickup window</li>
-                    <li>If an item isn’t collected in time, the rental is automatically cancelled</li>
-                    <li>Each item is rented individually, so availability stays clear and fair</li>
-                </ul>
-            </div>
-
-            <div class="mb-5">
-                <h2 id="stocka-keep">Stocka Keep — Buyout</h2>
-                <p class="text-muted italic">Love it? Make it yours.</p>
-                <p>If you rented an item and decide to keep it, you can buy it out at any time.</p>
-                <p class="mt-4 fw-bold small text-uppercase">How it works:</p>
-                <ul>
-                    <li>Your previous rental payments are credited toward the final price</li>
-                    <li>You pay only the remaining value to own the item fully</li>
-                    <li>No extra steps — just a simple checkout</li>
-                </ul>
-                <p class="fw-bold">Nothing feels wasted. Your rental simply evolves into ownership.</p>
-            </div>
-
-            <div class="mb-5">
-                <h2 id="stocka-reuse">Stocka Reuse — Pre-owned</h2>
-                <p class="text-muted italic">Second life. Same standards.</p>
-                <p>Pre-owned items are carefully selected pieces offered at a reduced price.</p>
-                <p class="mt-4 fw-bold small text-uppercase">How it works:</p>
-                <ol>
-                    <li>Choose Pre-owned on eligible items</li>
-                    <li>Purchase at a discounted price</li>
-                    <li>The item is yours to keep</li>
-                </ol>
-                <p class="mt-4 fw-bold small text-uppercase">Good to know:</p>
-                <ul>
-                    <li>Pre-owned items are final sale</li>
-                    <li>Each piece is curated for quality, fit, and continued wear</li>
-                    <li>No returns or exchanges</li>
-                </ul>
-                <p>This keeps pricing fair and supports a more circular way to shop.
-                    Thoughtful by design</p>
-            </div>
-            <p>Stocka is built around flexibility and longevity — not fast fashion.Choose what fits your life now, and change your mind later.</p>
-
-            <hr class="my-5">
-
-            <div class="p-4 bg-light border" id="program-names">
-                <p class="fw-bold small text-uppercase mb-2">About our program names</p>
-                <p class="small mb-0">Stocka Loop (Rent), Stocka Reuse (Pre-owned), and Stocka Keep (Rental buyout). They help explain your options — the shopping experience stays seamless.</p>
-            </div>
+    <div class="px-0">
+        <div class="bg-light d-block" style="height: 50vh; background: url('/media/486fec0194174b239f885b72aa006253.jpg') top/cover no-repeat;">
         </div>
     </div>
+
+    <section class="overflow-hidden"> 
+        <div class="row g-4 g-md-5 mx-0"> 
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <h2 class="h6 fw-bold border-bottom pb-2 mb-3">01. Our Goal</h2>
+                <p class="small text-muted">To build a marketplace that goes beyond style — options that adapt, endure, and make sense. Whether you buy, rent, or reuse, every interaction is designed to feel thoughtful, effortless, and meaningful.</p>
+            </div>
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <h2 class="h6 fw-bold border-bottom pb-2 mb-3">02. Our Values</h2>
+                <p class="small text-muted">We stand for flexibility, longevity, and responsibility — for people, fashion, and the planet. That means offering smarter choices, reducing waste, and designing with care. We focus on what truly matters: timeless style, sustainable practices, and empowered decisions.</p>
+            </div>
+            <div class="col-12 col-md-4">
+                <h2 class="h6 fw-bold border-bottom pb-2 mb-3">03. Our Hope</h2>
+                <p class="small text-muted">That every item you engage with inspires confidence, not clutter. We hope our platform helps you explore fashion freely, live with intention, and connect with what matters most to you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-center border-top">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <h3 class="h2 italic">"Every item feels curated, whether I’m renting or buying. You can tell it’s designed for people who care about style and sustainability." </h3>
+                <p class="small mt-3">— Alexandra M., Stockholm</p>
+            </div>
+        </div>
+    </section>
 </div>
+    <!-- Marquee design assisted by Gemini (AI by Google) -->
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            {% for brand in brands %}
+            <span>{{ brand.value }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}

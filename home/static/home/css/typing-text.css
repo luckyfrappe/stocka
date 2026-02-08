@@ -1,6 +1,6 @@
 .text {
-  min-height: 100vh;
-  padding-top: 35vh;
+  min-height: 80vh;
+  padding-top: 30vh;
   padding-bottom: 30vh;
   transition: opacity 200ms ease;
 }

@@ -45,6 +45,13 @@ def info_pages(request, page_name):
     template_path = f'home/{page_name}.html'
     
     full_path = os.path.join(settings.BASE_DIR, 'templates', template_path)
+
+    if page_name == 'values':
+        brands = AttributeValue.objects.filter(
+            attribute_type__name__iexact='Brand'
+        ).order_by('?')[:20]
+        context = {'brands': brands}
+        return render(request, template_path, context)
     
     try:
         return render(request, template_path)
