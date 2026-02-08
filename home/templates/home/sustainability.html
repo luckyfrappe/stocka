@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'home/css/side-navbar.css' %}">
 {% endblock %}
 
-{% block extra_title %}| Concept {% endblock %}
+{% block extra_title %}| Sustainability {% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -16,89 +16,52 @@
 {% endblock %}
 
 {% block content %}
-<div class="container pb-5 pt-lg-5 info-page">
-    <div class ="row">
-        <div class="col-12 col-lg-4 mb-lg-0">
-            <nav class="concept-sidebar px-lg-3">
-                <a class="list-item" href="#concept">Our Concept</a>
-                <a class="list-item" href="#stocka-loop">Stocka Loop — Rent</a>
-                <a class="list-item" href="#stocka-keep">Stocka Keep — Buyout</a>
-                <a class="list-item" href="#stocka-reuse">Stocka Reuse — Pre-owned</a>
-                <a class="list-item" href="#program-names">Program Names</a>
-            </nav>
-        </div>
-        <div class="col-12 col-lg-8 ">
-            <div class="mb-5">
-                <h1 id="concept">Our Concept</h1>
-                <p class="lead">One wardrobe. Three ways to wear it.</p>
-                <p class="text-muted">Stocka lets you decide how long fashion stays with you — for a moment, for a season, or for good.</p>
+<div class="container py-5 info-page take-full-screen">
+    <div class="row align-items-start">
+        
+        <div class="col-12 col-lg-7 pe-lg-5">
+            <h1 class="mb-4 text-uppercase display-5">Sustainability at Stocka</h1>
+            
+            <p class="lead mb-5">
+                We believe fashion should be flexible, beautiful, and responsible. At Stocka, every choice is guided by sustainability.
+            </p>
+
+            <div class="mb-4 ps-4 border-start border-3 border-dark">
+                <h2 class="text-uppercase small ls-1">Eco-Friendly Materials</h2>
+                <p class="text-muted">Our items are selected with care — using natural, recycled, or responsibly sourced fabrics wherever possible.</p>
             </div>
 
-            <hr class="mb-5">
-
-            <div class="mb-5">
-                <h2 id="stocka-loop">Stocka Loop — Rent</h2>
-                <p class="text-muted italic">Wear it for now. Return it when you’re done.</p>
-                
-                <p class="mt-4 fw-bold small text-uppercase">How it works</p>
-                <ul>
-                    <li>Select Rent on an eligible item</li>
-                    <li>Choose your rental period</li>
-                    <li>Pick a pickup date at checkout</li>
-                    <li>Your rental starts when you collect the item</li>
-                </ul>
-                <p class="small">Need more time? You can extend your rental anytime from your account.</p>
-
-                <p class="mt-4 fw-bold small text-uppercase">Good to know:</p>
-                <ul>
-                    <li>Rentals begin after pickup, not at checkout</li>
-                    <li>Items must be picked up within the specified pickup window</li>
-                    <li>If an item isn’t collected in time, the rental is automatically cancelled</li>
-                    <li>Each item is rented individually, so availability stays clear and fair</li>
-                </ul>
+            <div class="mb-4 ps-4 border-start border-3 border-dark">
+                <h2 class="text-uppercase small ls-1">Circular Fashion</h2>
+                <p class="text-muted">Buy, rent, or reuse. Stocka encourages a circular fashion model, extending the life of every garment and reducing waste.</p>
             </div>
 
-            <div class="mb-5">
-                <h2 id="stocka-keep">Stocka Keep — Buyout</h2>
-                <p class="text-muted italic">Love it? Make it yours.</p>
-                <p>If you rented an item and decide to keep it, you can buy it out at any time.</p>
-                <p class="mt-4 fw-bold small text-uppercase">How it works:</p>
-                <ul>
-                    <li>Your previous rental payments are credited toward the final price</li>
-                    <li>You pay only the remaining value to own the item fully</li>
-                    <li>No extra steps — just a simple checkout</li>
-                </ul>
-                <p class="fw-bold">Nothing feels wasted. Your rental simply evolves into ownership.</p>
+            <div class="mb-4 ps-4 border-start border-3 border-dark">
+                <h2 class="text-uppercase small ls-1">Thoughtful Production</h2>
+                <p class="text-muted">We partner with brands who value quality, ethics, and low environmental impact.</p>
             </div>
 
-            <div class="mb-5">
-                <h2 id="stocka-reuse">Stocka Reuse — Pre-owned</h2>
-                <p class="text-muted italic">Second life. Same standards.</p>
-                <p>Pre-owned items are carefully selected pieces offered at a reduced price.</p>
-                <p class="mt-4 fw-bold small text-uppercase">How it works:</p>
-                <ol>
-                    <li>Choose Pre-owned on eligible items</li>
-                    <li>Purchase at a discounted price</li>
-                    <li>The item is yours to keep</li>
-                </ol>
-                <p class="mt-4 fw-bold small text-uppercase">Good to know:</p>
-                <ul>
-                    <li>Pre-owned items are final sale</li>
-                    <li>Each piece is curated for quality, fit, and continued wear</li>
-                    <li>No returns or exchanges</li>
-                </ul>
-                <p>This keeps pricing fair and supports a more circular way to shop.
-                    Thoughtful by design</p>
+            <div class="mb-4 ps-4 border-start border-3 border-dark">
+                <h2 class="text-uppercase small ls-1">Transparency & Education</h2>
+                <p class="text-muted">We provide clear information about each item’s origin, material, and lifecycle so you can make informed choices.</p>
             </div>
-            <p>Stocka is built around flexibility and longevity — not fast fashion.Choose what fits your life now, and change your mind later.</p>
+
+            <div class="mb-4 ps-4 border-start border-3 border-dark">
+                <h2 class="text-uppercase small ls-1">Reduced Waste</h2>
+                <p class="text-muted">By promoting rental and resale options, we minimize overproduction and help fashion move towards a more sustainable future.</p>
+            </div>
 
             <hr class="my-5">
 
-            <div class="p-4 bg-light border" id="program-names">
-                <p class="fw-bold small text-uppercase mb-2">About our program names</p>
-                <p class="small mb-0">Stocka Loop (Rent), Stocka Reuse (Pre-owned), and Stocka Keep (Rental buyout). They help explain your options — the shopping experience stays seamless.</p>
-            </div>
+            <p class="h4 fw-light fst-italic text-center text-muted">
+                "Every purchase, rental, or reuse contributes to a cleaner, smarter fashion ecosystem."
+            </p>
         </div>
+
+        <div class="col-12 col-lg-5 mb-lg-0 sticky-top" style="top: 100px; z-index: 1;">
+            <img src="/media/ffcffc9ad1a54a4eb4aaab5251916b6a.jpg" alt="Sustainability" class="img-fluid rounded shadow-sm w-100">
+        </div>
+
     </div>
 </div>
 {% endblock %}
