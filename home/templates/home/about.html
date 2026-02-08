@@ -3,6 +3,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'home/css/side-navbar.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/typing-text.css' %}">
 {% endblock %}
 
 {% block extra_title %}| Concept {% endblock %}
@@ -16,89 +17,144 @@
 {% endblock %}
 
 {% block content %}
-<div class="container pb-5 pt-lg-5 info-page">
-    <div class ="row">
-        <div class="col-12 col-lg-4 mb-lg-0">
-            <nav class="concept-sidebar px-lg-3">
-                <a class="list-item" href="#concept">Our Concept</a>
-                <a class="list-item" href="#stocka-loop">Stocka Loop — Rent</a>
-                <a class="list-item" href="#stocka-keep">Stocka Keep — Buyout</a>
-                <a class="list-item" href="#stocka-reuse">Stocka Reuse — Pre-owned</a>
-                <a class="list-item" href="#program-names">Program Names</a>
-            </nav>
+<section class="text-center">
+    <h1 class="h2 fw-bold">
+        We believe fashion doesn’t have to be either disposable or permanent.<br>
+        It can be flexible, thoughtful, and designed to move with your life.
+    </h1>
+</section>
+
+<div>
+    <div>
+        <img src="/media/f0529cfe6d594105a3d8f9969c694452.jpg" alt="Stocka Concept" 
+             class="w-100 h-100"></div>
+</div>
+
+<section class="bg-black text-white py-5">
+    <div class="container py-5">
+        <p class="text-white text h1 fw-bold text-uppercase">
+            Stocka isn’t just a shop. It’s a place for smarter fashion.<br><br>We curate styles that are made to last — not just in quality, but in relevance.
+            Every item on Stocka is chosen with longevity in mind, so it can move between owners, moments, and purposes without losing its value.<br><br>Minimal. Considered. Circular by design.
+        </p>
+    </div>
+</section>
+
+<section class="py-5 fashion-banner">
+    <div class="container py-5">
+        <div class="mb-5">
+            <h2 class="display-5 fw-bold mb-3">Fashion, on your terms</h2>
+            <p class="lead">Stocka is a modern fashion marketplace built around choice.</p>
         </div>
-        <div class="col-12 col-lg-8 ">
-            <div class="mb-5">
-                <h1 id="concept">Our Concept</h1>
-                <p class="lead">One wardrobe. Three ways to wear it.</p>
-                <p class="text-muted">Stocka lets you decide how long fashion stays with you — for a moment, for a season, or for good.</p>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <div class="bg-white p-4 h-100 shadow-sm border-0 rounded-0">
+                    <h4 class="fw-bold text-uppercase h6 mb-3">Buy New</h4>
+                    <p class="small text-muted mb-0">
+                        For pieces you want to keep from day one.<br>
+                        Full ownership, full flexibility — fresh from the collection.
+                    </p>
+                </div>
             </div>
 
-            <hr class="mb-5">
-
-            <div class="mb-5">
-                <h2 id="stocka-loop">Stocka Loop — Rent</h2>
-                <p class="text-muted italic">Wear it for now. Return it when you’re done.</p>
-                
-                <p class="mt-4 fw-bold small text-uppercase">How it works</p>
-                <ul>
-                    <li>Select Rent on an eligible item</li>
-                    <li>Choose your rental period</li>
-                    <li>Pick a pickup date at checkout</li>
-                    <li>Your rental starts when you collect the item</li>
-                </ul>
-                <p class="small">Need more time? You can extend your rental anytime from your account.</p>
-
-                <p class="mt-4 fw-bold small text-uppercase">Good to know:</p>
-                <ul>
-                    <li>Rentals begin after pickup, not at checkout</li>
-                    <li>Items must be picked up within the specified pickup window</li>
-                    <li>If an item isn’t collected in time, the rental is automatically cancelled</li>
-                    <li>Each item is rented individually, so availability stays clear and fair</li>
-                </ul>
+            <div class="col-12 col-md-4">
+                <div class="bg-white p-4 h-100 shadow-sm border-0 rounded-0">
+                    <h4 class="fw-bold text-uppercase h6 mb-1">Rent</h4>
+                    <span class="d-block x-small text-muted text-uppercase mb-3">Stocka Loop</span>
+                    <p class="small text-muted mb-0">
+                        For moments, seasons, and style experiments.<br>
+                        Wear it weekly, extend if you need more time, or return when you're done.
+                    </p>
+                </div>
             </div>
 
-            <div class="mb-5">
-                <h2 id="stocka-keep">Stocka Keep — Buyout</h2>
-                <p class="text-muted italic">Love it? Make it yours.</p>
-                <p>If you rented an item and decide to keep it, you can buy it out at any time.</p>
-                <p class="mt-4 fw-bold small text-uppercase">How it works:</p>
-                <ul>
-                    <li>Your previous rental payments are credited toward the final price</li>
-                    <li>You pay only the remaining value to own the item fully</li>
-                    <li>No extra steps — just a simple checkout</li>
-                </ul>
-                <p class="fw-bold">Nothing feels wasted. Your rental simply evolves into ownership.</p>
-            </div>
-
-            <div class="mb-5">
-                <h2 id="stocka-reuse">Stocka Reuse — Pre-owned</h2>
-                <p class="text-muted italic">Second life. Same standards.</p>
-                <p>Pre-owned items are carefully selected pieces offered at a reduced price.</p>
-                <p class="mt-4 fw-bold small text-uppercase">How it works:</p>
-                <ol>
-                    <li>Choose Pre-owned on eligible items</li>
-                    <li>Purchase at a discounted price</li>
-                    <li>The item is yours to keep</li>
-                </ol>
-                <p class="mt-4 fw-bold small text-uppercase">Good to know:</p>
-                <ul>
-                    <li>Pre-owned items are final sale</li>
-                    <li>Each piece is curated for quality, fit, and continued wear</li>
-                    <li>No returns or exchanges</li>
-                </ul>
-                <p>This keeps pricing fair and supports a more circular way to shop.
-                    Thoughtful by design</p>
-            </div>
-            <p>Stocka is built around flexibility and longevity — not fast fashion.Choose what fits your life now, and change your mind later.</p>
-
-            <hr class="my-5">
-
-            <div class="p-4 bg-light border" id="program-names">
-                <p class="fw-bold small text-uppercase mb-2">About our program names</p>
-                <p class="small mb-0">Stocka Loop (Rent), Stocka Reuse (Pre-owned), and Stocka Keep (Rental buyout). They help explain your options — the shopping experience stays seamless.</p>
+            <div class="col-12 col-md-4">
+                <div class="bg-white p-4 h-100 shadow-sm border-0 rounded-0">
+                    <h4 class="fw-bold text-uppercase h6 mb-1">Pre-owned</h4>
+                    <span class="d-block x-small text-muted text-uppercase mb-3">Stocka Reuse</span>
+                    <p class="small text-muted mb-0">
+                        For considered finds with a story.<br>
+                        Carefully selected pieces offered at a lower price — less impact, same style.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<section class="container py-5 my-5">
+    <div class="row align-items-center g-5">
+        <div class="col-12 col-md-5">
+            <img src="/media/5beac37653324b36a66e4fce281a84f0.jpg" alt="Woman in a yellow dress in sunglasses leaning against a red car" class="w-100 h-100">
+        </div>
+
+        <div class="col-12 col-md-7 ps-md-5">
+            <h2 class="h2 text-uppercase mb-4">Fall in love? Keep it.</h2>
+            <p class="mb-4">
+                If a rented piece becomes part of your everyday, Stocka lets you buy it out.
+            </p>
+            <p class="mb-4">
+                Your rental payments are credited toward ownership, so nothing feels wasted — just evolved.
+            </p>
+            <p>
+                We call this <strong>Stocka Keep</strong>.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    var el = document.querySelector(".text");
+    var originalText = el.innerHTML;
+
+    console.log("el: " + el);
+    console.log("originalText: " + originalText);
+
+    el.innerHTML = originalText.substring(0, 12) + "..."; 
+
+    var lastScrollY = 0;
+    var ticking = false;
+
+    var type = function(scroll) {
+        el.innerHTML = originalText.substring(0, 12 + scroll);
+    }
+
+    var update = function() {
+        // Get the position of the element
+        var elementOffset = el.getBoundingClientRect().top + window.scrollY;
+        
+        var startPoint = elementOffset - 800; 
+
+        var relativeScroll = Math.max(0, lastScrollY - startPoint);
+
+        var targetChars = 12 + Math.floor(relativeScroll / 2);
+        if (targetChars <= originalText.length) {
+            type(relativeScroll / 2);
+        } else {
+            el.innerHTML = originalText;
+        }
+        
+        ticking = false;
+    };
+
+    var requestTick = function() {
+        if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+        }
+    };
+
+    var onScroll = function() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    };
+
+    window.addEventListener('scroll', onScroll, false);
+
+    // when the user scrolls down, show x more letters per x pixels
+    // when the user scrolls up, show x less letters per x pixels
+    </script>
 {% endblock %}

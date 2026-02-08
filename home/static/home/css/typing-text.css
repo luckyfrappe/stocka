@@ -1,0 +1,9 @@
+.text {
+  min-height: 100vh;
+  padding-top: 35vh;
+  transition: opacity 200ms ease;
+}
+
+.fashion-banner {
+  background-color: var(--brand-secondary-light);
+}

@@ -655,6 +655,7 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 
 ### Code Used
 
+- **[Typewriter on Scroll](https://codepen.io/calebmisclevitz/pen/MGZVbd)** – Code snippet for typing text effect on about page.
 
 
 ### Data Sources
