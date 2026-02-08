@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block content %}
+
 <section class="text-center">
     <h1 class="h2 fw-bold">
         We believe fashion doesn’t have to be either disposable or permanent.<br>
@@ -24,10 +25,11 @@
     </h1>
 </section>
 
-<div>
-    <div>
-        <img src="/media/f0529cfe6d594105a3d8f9969c694452.jpg" alt="Stocka Concept" 
-             class="w-100 h-100"></div>
+<div class="w-100 overflow-hidden">
+    <img src="/media/f0529cfe6d594105a3d8f9969c694452.jpg" 
+        alt="Stocka Concept" 
+        class="w-100 d-block" 
+        style="height: 80vh; object-fit: cover; object-position: top; vertical-align: middle;">
 </div>
 
 <section class="bg-black text-white py-5">
@@ -81,24 +83,32 @@
         </div>
     </div>
 </section>
+<section class="container-fluid py-5 my-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center g-0 g-md-5">
+            <div class="col-12 col-md-5 mb-4 mb-md-0">
+                <div class="w-100 overflow-hidden" style="line-height: 0;">
+                    <img src="/media/5beac37653324b36a66e4fce281a84f0.jpg" 
+                         alt="Woman in a yellow dress leaning against a red car" 
+                         class="img-fluid d-block w-100" 
+                         style="object-fit: cover; object-position: center;">
+                </div>
+            </div>
 
-<section class="container py-5 my-5">
-    <div class="row align-items-center g-5">
-        <div class="col-12 col-md-5">
-            <img src="/media/5beac37653324b36a66e4fce281a84f0.jpg" alt="Woman in a yellow dress in sunglasses leaning against a red car" class="w-100 h-100">
-        </div>
-
-        <div class="col-12 col-md-7 ps-md-5">
-            <h2 class="h2 text-uppercase mb-4">Fall in love? Keep it.</h2>
-            <p class="mb-4">
-                If a rented piece becomes part of your everyday, Stocka lets you buy it out.
-            </p>
-            <p class="mb-4">
-                Your rental payments are credited toward ownership, so nothing feels wasted — just evolved.
-            </p>
-            <p>
-                We call this <strong>Stocka Keep</strong>.
-            </p>
+            <div class="col-12 col-md-7 ps-md-5">
+                <h2 class="h2 text-uppercase mb-4 fw-bold">Fall in love? Keep it.</h2>
+                <div class="pe-lg-5">
+                    <p class="fs-5 mb-4">
+                        If a rented piece becomes part of your everyday, Stocka lets you buy it out.
+                    </p>
+                    <p class="fs-5 mb-4">
+                        Your rental payments are credited toward ownership, so nothing feels wasted — just evolved.
+                    </p>
+                    <p class="h5 text-uppercase fw-bold">
+                        We call this <span class="border-bottom border-2 border-dark">Stocka Keep</span>.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -126,7 +136,7 @@
         // Get the position of the element
         var elementOffset = el.getBoundingClientRect().top + window.scrollY;
         
-        var startPoint = elementOffset - 800; 
+        var startPoint = elementOffset - 400; 
 
         var relativeScroll = Math.max(0, lastScrollY - startPoint);
 
