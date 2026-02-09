@@ -287,21 +287,56 @@ Purchase flows, navigation, and responsive design were tested across all platfor
 - No known bugs at this time.
 
 ### Solved Bugs
-- Shopping Bag icon and the Price text were sitting side-by-side in a horizontal row. Because the price text takes up quite a bit of width, it was pushing the icon out behind logo. I stacked the price directly underneath the icon to solve this issue.
-- In the mobile navigation, the collapsible submenu items were not scrollable when the content exceeded the viewport height. I added CSS styles to the navbar collapse div to set a maximum height and enable vertical scrolling.
-- The mobile navigation menu's maximum height was set too low, causing some submenu items to be inaccessible on smaller screens. I increased the max-height to 90vh to ensure all items are reachable.
-- In the mobile navigation, the submenu items were not collapsing when another submenu was opened. I added the `data-bs-parent` attribute to each submenu collapse div to ensure only one submenu is open at a time.
-- On the product listing page, the attribute filters were displaying all available attributes, leading to a cluttered interface. I modified the view to only fetch and display a targeted subset of attribute types (material, brand, color, length, details) for filtering.
-- The product listing page header had excessive top margin, causing unnecessary whitespace. I adjusted the margin to create a more balanced layout.
-- Broken pagination controls:
+- Bug summary:
+Shopping Bag icon and the Price text were sitting side-by-side in a horizontal row. Because the price text takes up quite a bit of width, it was pushing the icon out behind logo. 
+
+The Fix:
+I stacked the price directly underneath the icon to solve this issue.
+
+- Bug summary:
+In the mobile navigation, the collapsible submenu items were not scrollable when the content exceeded the viewport height. 
+
+The Fix:
+I added CSS styles to the navbar collapse div to set a maximum height and enable vertical scrolling.
+
+- Bug summary:
+The mobile navigation menu's maximum height was set too low, causing some submenu items to be inaccessible on smaller screens. 
+
+The Fix:
+I increased the max-height to 90vh to ensure all items are reachable.
+
+- Bug summary:
+In the mobile navigation, the submenu items were not collapsing when another submenu was opened. 
+
+The Fix:
+I added the `data-bs-parent` attribute to each submenu collapse div to ensure only one submenu is open at a time.
+
+- Bug summary:
+On the product listing page, the attribute filters were displaying all available attributes, leading to a cluttered interface. 
+The Fix:
+I modified the view to only fetch and display a targeted subset of attribute types (material, brand, color, length, details) for filtering.
+
+- Bug summary:
+The product listing page header had excessive top margin, causing unnecessary whitespace. 
+
+The Fix:
+I adjusted the margin to create a more balanced layout.
+
+- Bug summary:
+Broken pagination controls:
 
 The Problem: On a fresh page, there is no ? in the URL. Adding &page=2 creates an invalid URL. It only worked when I had filters because the filters already provided the required ?.
 
-The Fix: I changed the links to always start with a ? and then loop through active filters. This ensures the URL is valid on a clean search and a filtered one. 
+The Fix:
+I changed the links to always start with a ? and then loop through active filters. This ensures the URL is valid on a clean search and a filtered one. 
 
-- Pagination controls were not preserving existing query parameters when navigating between pages. Gemini by Copilot suggested to update the pagination links to include all current GET parameters using `request.GET.urlencode`, ensuring filters remain applied during pagination.
+- Bug summary:
+Pagination controls were not preserving existing query parameters when navigating between pages. 
 
--The Problem:
+The Fix:
+Gemini by Copilot suggested to update the pagination links to include all current GET parameters using `request.GET.urlencode`, ensuring filters remain applied during pagination.
+
+- Bug summary:
 The Sidebar and Navbar weren't "talking" to each other. When navigating from a Navbar link, the Sidebar didn't realize a filter was already active, so it didn't check the box. When I clicked "Apply," the Sidebar form submitted only its own checked boxes, "forgetting" Navbar selection.
 
 The Logic Fix
@@ -406,7 +441,7 @@ When a user select several filter options the products page title just said the 
 The Fix:
 I added a check if there are multiple active filters. If so, the title now displays "Filtered Results" instead of just the first filter. If only one filter is active, it continues to show the specific attribute type and value for clarity.
 
--Bug summary:
+- Bug summary:
 On info pages, the scrollspy functionality was not working correctly. When clicking on sidebar links, the page would jump to the correct section but the active link was not updating properly.
 
 The Fix:
