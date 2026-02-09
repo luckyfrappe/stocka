@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 /* 1. Dynamic Hero Height */
 .hero-height {
     height: calc(100vh - 92.99px);
@@ -9,6 +16,8 @@
     height: 50%;
     bottom: 0;
     left: 0;
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.638)), to(rgba(0, 0, 0, 0)));
+    background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.638), rgba(0, 0, 0, 0));
     background: linear-gradient(to top, rgba(0, 0, 0, 0.638), rgba(0, 0, 0, 0));
 }
 
@@ -24,8 +33,12 @@
     overflow: hidden;
     white-space: nowrap;
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 /* Creating the deep fade-to-black edges */
@@ -43,12 +56,16 @@
 /* Left side: Pure Black to Transparent */
 .marquee-wrapper::before {
     left: 0;
+    background: -webkit-gradient(linear, left top, right top, from(#000000), to(rgba(0,0,0,0)));
+    background: -o-linear-gradient(left, #000000 0%, rgba(0,0,0,0) 100%);
     background: linear-gradient(to right, #000000 0%, rgba(0,0,0,0) 100%);
 }
 
 /* Right side: Transparent to Pure Black */
 .marquee-wrapper::after {
     right: 0;
+    background: -webkit-gradient(linear, right top, left top, from(#000000), to(rgba(0,0,0,0)));
+    background: -o-linear-gradient(right, #000000 0%, rgba(0,0,0,0) 100%);
     background: linear-gradient(to left, #000000 0%, rgba(0,0,0,0) 100%);
 }
 
@@ -64,7 +81,8 @@
 .marquee-content {
     display: inline-block;
     padding-left: 0;
-    animation: marquee-ltr 30s linear infinite;
+    -webkit-animation: marquee-ltr 30s linear infinite;
+            animation: marquee-ltr 30s linear infinite;
 }
 
 .stocka-loop-card {
@@ -77,13 +95,21 @@
 }
 
 /* Keyframes for Left to Right scroll*/
+@-webkit-keyframes marquee-ltr {
+    from { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    to { -webkit-transform: translateX(0%); transform: translateX(0%); }
+}
 @keyframes marquee-ltr {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0%); }
+    from { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    to { -webkit-transform: translateX(0%); transform: translateX(0%); }
 }
 
 .hover-visible {
-    transform: translateY(10px);
+    -webkit-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+            transform: translateY(10px);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 

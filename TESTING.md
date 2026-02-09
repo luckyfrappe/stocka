@@ -84,8 +84,14 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 | Cart & Checkout | ![alt text](documentation/testing/automated-testing/lighthouse/checkout.png "Checkout") | -->
 
 **HTML & CSS Validation:**  
-<!-- - Validate HTML using **W3C validator**.  
-- Validate CSS using **W3C CSS validator**.  -->
+
+
+CSS Validation
+
+I used the [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) to check all static CSS files. 
+
+Notes on Validation:
+All custom stylesheets passed with no syntax errors. 
 
 **JavaScript Validation:**  
 I used [JSHint](https://jshint.com/) to validate all static JavaScript files and inline scripts. After my Python cleanup, I completed a final pass on all JavaScript to ensure the front-end logic was just as polished.
