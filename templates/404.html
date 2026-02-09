@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}| Page Not Found{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center mb-5 mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="display-4 mt-5">404</h2>
+            <p class="lead">Oops! The page you're looking for doesn't exist.</p>
+            <hr class="w-25 mx-auto">
+            <p class="text-muted mb-4">It seems you’ve followed a broken link or entered a URL that doesn't exist on our site.</p>
+            <a href="{% url 'home' %}" class="btn btn-dark text-uppercase">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
