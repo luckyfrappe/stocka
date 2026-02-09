@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    get_object_or_404,
+    HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -63,14 +69,16 @@ def checkout(request):
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, dict) and 'items_by_size' in item_data:
-                        for item_key, info in item_data['items_by_size'].items():
+                    if (isinstance(item_data, dict) and
+                            'items_by_size' in item_data):
+                        for item_key, info in (
+                                item_data['items_by_size'].items()):
                             quantity = info['quantity']
                             purchase_type = info.get('type', 'new')
                             rental_period = info.get('rental_period', 1)
                             size = info.get('size', None)
                             start_date_raw = info.get('start_date')
-                            
+
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
@@ -84,21 +92,27 @@ def checkout(request):
 
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag wasn't "
+                        "found in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number])
+            )
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request,
+                "There's nothing in your bag at the moment"
+            )
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)

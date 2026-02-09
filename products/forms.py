@@ -1,9 +1,15 @@
 from django import forms
-from .models import Product, AttributeType, AttributeValue, ProductAttribute, ProductImage
+from .models import (
+    Product,
+    AttributeType,
+    AttributeValue,
+    ProductAttribute,
+    ProductImage
+)
 
 
-# AI tools were used to assist with the initial implementation. I reviewed and adapted the code to fit the project.
-
+# AI tools were used to assist with the initial implementation.
+# I reviewed and adapted the code to fit the project.
 class ProductForm(forms.ModelForm):
     new_image = forms.ImageField(label='Add New Image', required=False)
 
@@ -19,7 +25,9 @@ class ProductForm(forms.ModelForm):
             field_name = f"attr_{attr_type.slug}"
 
             self.fields[field_name] = forms.ModelMultipleChoiceField(
-                queryset=AttributeValue.objects.filter(attribute_type=attr_type),
+                queryset=AttributeValue.objects.filter(
+                    attribute_type=attr_type
+                ),
                 required=False,
                 label=attr_type.name,
                 widget=forms.CheckboxSelectMultiple

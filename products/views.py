@@ -4,7 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
-from .models import AttributeValue, Product, ProductAttribute, ProductImage, AttributeType
+from .models import (
+    AttributeValue,
+    Product,
+    ProductImage,
+    AttributeType
+)
 from wishlist.models import Wishlist
 from .forms import ProductForm
 
@@ -29,26 +34,47 @@ def all_products(request):
             wishlist_ids = request.GET.get('wishlist_items').split(',')
             # Filter products to only show those in the wishlist
             products = products.filter(id__in=wishlist_ids)
-        
+
         # Debugged with help from Gemini (AI tool)
         if 'new_arrivals' in request.GET:
-            new_arrival_ids = products.order_by('-time_created').values_list('id', flat=True).distinct()[:100]
+            new_arrival_ids = (
+                products.order_by('-time_created')
+                .values_list('id', flat=True)
+                .distinct()[:100]
+            )
             products = products.filter(id__in=list(new_arrival_ids))
 
         if 'q' in request.GET:
             query = request.GET['q']
             if not query.strip():
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request,
+                    "You didn't enter any search criteria!"
+                )
                 return redirect(reverse('products'))
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = (
+                Q(name__icontains=query) | Q(description__icontains=query)
+            )
             products = products.filter(queries)
 
-        ignore_list = ['q', 'sort', 'direction', 'page', 'new_arrivals', 'wishlist_items']
+        ignore_list = [
+            'q',
+            'sort',
+            'direction',
+            'page',
+            'new_arrivals',
+            'wishlist_items'
+        ]
+
         for key, values in request.GET.lists():
             if key not in ignore_list:
                 active_filter_slugs.extend(values)
                 # Filter products by the specific attribute values
-                products = products.filter(attributes__attribute_value__slug__in=values)
+                products = (
+                    products.filter(
+                        attributes__attribute_value__slug__in=values
+                    )
+                )
 
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -65,22 +91,26 @@ def all_products(request):
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-                    
+
             products = products.order_by(sortkey)
 
     if active_filter_slugs:
-        attribute_type = AttributeValue.objects.filter(slug__in=active_filter_slugs)
+        attribute_type = (
+            AttributeValue.objects.filter(slug__in=active_filter_slugs)
+        )
 
-    all_attribute_types = AttributeType.objects.prefetch_related('values').all()
+    all_attribute_types = (
+        AttributeType.objects.prefetch_related('values').all()
+    )
 
     current_sorting = f'{sort}_{direction}'
 
-    paginator = Paginator(products, 20) 
+    paginator = Paginator(products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
-        'products': page_obj, 
+        'products': page_obj,
         'search_term': query,
         'current_attributes': attribute_type,
         'current_sorting': current_sorting,
@@ -90,23 +120,51 @@ def all_products(request):
 
     return render(request, "products/products.html", context)
 
+
 # Debugged with help from Gemini (AI tool)
 def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
 
-    tags = product.attributes.select_related('attribute_value', 'attribute_value__attribute_type').all()
-    
+    tags = (
+        product.attributes.select_related(
+            'attribute_value',
+            'attribute_value__attribute_type'
+        ).all()
+    )
+
     # 1. Get the actual real size from DB (Assuming one per product)
-    real_size_obj = tags.filter(attribute_value__attribute_type__name__iexact='size').first()
+    real_size_obj = (
+        tags.filter(
+            attribute_value__attribute_type__name__iexact='size'
+        ).first()
+    )
     real_size = real_size_obj.attribute_value.value if real_size_obj else None
-    
+
     # 2. Define full ranges
     # Note: Ensure these match slug format or display format as needed
-    CLOTHING_RANGE = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', '5XL']
-    SHOE_RANGE = ['36', '37', '38', '39', '40', '41']
-    
+    CLOTHING_RANGE = [
+        'XXS',
+        'XS',
+        'S',
+        'M',
+        'L',
+        'XL',
+        'XXL',
+        '3XL',
+        '4XL',
+        '5XL'
+    ]
+    SHOE_RANGE = [
+        '36',
+        '37',
+        '38',
+        '39',
+        '40',
+        '41'
+    ]
+
     simulated_sizes = []
 
     wishlist = None
@@ -117,7 +175,7 @@ def product_detail(request, product_id):
     # 3. Determine which range to simulate based on the real size
     if real_size:
         check_val = real_size.upper()
-        
+
         if check_val in CLOTHING_RANGE:
             simulated_sizes = CLOTHING_RANGE
         elif check_val in SHOE_RANGE or check_val.isdigit():
@@ -143,8 +201,8 @@ def product_detail(request, product_id):
         'product': product,
         'wishlist': wishlist,
         'product_tags': product_tags,
-        'simulated_sizes': simulated_sizes, # For Buy New / Rent
-        'real_size': real_size,             # For Pre-Owned
+        'simulated_sizes': simulated_sizes,  # For Buy New / Rent
+        'real_size': real_size,  # For Pre-Owned
     }
 
     return render(request, "products/product_detail.html", context)
@@ -161,10 +219,13 @@ def add_product(request):
                 messages.success(request, 'Successfully added product!')
                 return redirect(reverse('product_detail', args=[product.id]))
             else:
-                messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+                messages.error(
+                    request,
+                    'Failed to add product. Please ensure the form is valid.'
+                )
         else:
             form = ProductForm()
-            
+
         template = 'products/add_product.html'
         context = {
             'form': form,
@@ -175,7 +236,9 @@ def add_product(request):
         messages.error(request, 'Sorry, only store owners can add products.')
         return redirect(reverse('home'))
 
-# AI tools were used to assist with the initial implementation. I reviewed and adapted the code to fit the project.
+
+# AI tools were used to assist with the initial implementation.
+# I reviewed and adapted the code to fit the project.
 @login_required
 def edit_product(request, product_id):
     """ Edit a product in the store """
@@ -187,7 +250,11 @@ def edit_product(request, product_id):
                 form.save()
                 messages.success(request, 'Successfully updated product!')
             else:
-                messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+                messages.error(
+                    request,
+                    'Failed to update product. '
+                    'Please ensure the form is valid.'
+                )
         else:
             form = ProductForm(instance=product)
             messages.info(request, f'You are editing {product.name}')
@@ -203,6 +270,7 @@ def edit_product(request, product_id):
         messages.error(request, 'Sorry, only store owners can edit products.')
         return redirect(reverse('home'))
 
+
 @login_required
 def delete_image(request, image_id):
     """ Delete a specific product image """
@@ -211,11 +279,15 @@ def delete_image(request, image_id):
         product_id = image.product.id
         image.delete()
         messages.success(request, 'Image removed from gallery.')
-        
+
         return redirect(reverse('edit_product', args=[product_id]))
     else:
-        messages.error(request, 'Sorry, only store owners can delete product images.')
+        messages.error(
+            request,
+            'Sorry, only store owners can delete product images.'
+        )
         return redirect(reverse('home'))
+
 
 @login_required
 def delete_product(request, product_id):
@@ -226,5 +298,8 @@ def delete_product(request, product_id):
         messages.success(request, 'Product deleted!')
         return redirect(reverse('products'))
     else:
-        messages.error(request, 'Sorry, only store owners can delete products.')
+        messages.error(
+            request,
+            'Sorry, only store owners can delete products.'
+        )
         return redirect(reverse('home'))

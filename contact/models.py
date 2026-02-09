@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -10,4 +10,8 @@ class ContactMessage(models.Model):
     is_resolved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name} - {self.subject} - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')} - {'Resolved' if self.is_resolved else 'Unresolved'}"
+        return (
+            f"{self.name} - {self.subject} - "
+            f"{self.created_at.strftime('%Y-%m-%d %H:%M:%S')} - "
+            f"{'Resolved' if self.is_resolved else 'Unresolved'}"
+        )

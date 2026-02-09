@@ -92,7 +92,7 @@
                                         </button>
 
                                         <!-- Modal -->
-                                        {% if sub.price_per_week > sub.buyout_price %}
+                                        {% if sub.price_per_week < sub.buyout_price %}
                                             <div class="modal fade" id="sub.{{ sub.id }}" tabindex="-1" aria-labelledby="sub.{{ sub.id }}" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">

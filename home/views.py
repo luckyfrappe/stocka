@@ -1,5 +1,3 @@
-import os
-from django.conf import settings
 from django.shortcuts import render, Http404
 from products.models import AttributeValue, Product
 
@@ -22,7 +20,9 @@ def index(request):
         attribute_type__name__iexact='Brand'
     ).order_by('?')[:20]
 
-    products = Product.objects.prefetch_related('images', 'attributes__attribute_value')
+    products = Product.objects.prefetch_related(
+        'images', 'attributes__attribute_value'
+    )
 
     spring_items = products.filter(
         attributes__attribute_value__slug='spring'
@@ -39,12 +39,12 @@ def index(request):
     }
     return render(request, 'home/index.html', context)
 
-# A single view to handle all brand/legal pages with a safety check to prevent directory traversal attacks. Scallable solution provided by Gemini AI tool
+
+# A single view to handle all brand/legal pages
+# Scallable solution providedby Gemini AI tool
 def info_pages(request, page_name):
     """ A single view to handle all brand/legal pages with a safety check """
     template_path = f'home/{page_name}.html'
-    
-    full_path = os.path.join(settings.BASE_DIR, 'templates', template_path)
 
     if page_name == 'values':
         brands = AttributeValue.objects.filter(
@@ -52,8 +52,8 @@ def info_pages(request, page_name):
         ).order_by('?')[:20]
         context = {'brands': brands}
         return render(request, template_path, context)
-    
+
     try:
         return render(request, template_path)
-    except:
+    except Exception:
         raise Http404("This info page does not exist.")

@@ -1,8 +1,15 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Product, AttributeType, AttributeValue, ProductAttribute, ProductImage
+from .models import (
+    Product,
+    AttributeType,
+    AttributeValue,
+    ProductAttribute,
+    ProductImage
+)
 
 # Admin view was written by me and improved by Gemini AI by Google
+
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -11,8 +18,12 @@ class ProductImageInline(admin.TabularInline):
 
     def thumbnail(self, instance):
         if instance.image:
-            return format_html('<img src="{}" style="width: 50px; height: auto;" />', instance.image.url)
+            return format_html(
+                '<img src="{}" style="width: 50px; height: auto;" />',
+                instance.image.url
+            )
         return ""
+
 
 class ProductAttributeInline(admin.TabularInline):
     model = ProductAttribute
@@ -22,11 +33,18 @@ class ProductAttributeInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('sku', 'thumbnail', 'name', 'retail_price', 'price_per_week', 'time_created')
+    list_display = (
+        'sku',
+        'thumbnail',
+        'name',
+        'retail_price',
+        'price_per_week',
+        'time_created'
+    )
     list_filter = ('time_created',)
     search_fields = ('sku', 'name', 'description')
     ordering = ('-time_created',)
-    
+
     fieldsets = (
         ('Basic Information', {
             'fields': ('sku', 'name', 'description')
@@ -45,14 +63,20 @@ class ProductAdmin(admin.ModelAdmin):
     def thumbnail(self, obj):
         primary_img = obj.images.first()
         if primary_img and primary_img.image:
-            return format_html('<img src="{}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px;" />', primary_img.image.url)
+            return format_html(
+                '<img src="{}" style="width: 40px; height: 40px; '
+                'object-fit: cover; border-radius: 4px;" />',
+                primary_img.image.url
+            )
         return "No Image"
     thumbnail.short_description = 'Img'
+
 
 @admin.register(AttributeType)
 class AttributeTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
+
 
 @admin.register(AttributeValue)
 class AttributeValueAdmin(admin.ModelAdmin):

@@ -15,23 +15,31 @@ if not os.path.exists(PRODUCT_CSV):
 else:
     with open(PRODUCT_CSV, mode='r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f, delimiter=';')
-        reader.fieldnames = [n.strip().replace('\ufeff', '') for n in reader.fieldnames if n]
-        
+        reader.fieldnames = [
+            n.strip().replace('\ufeff', '') for n in reader.fieldnames if n
+        ]
+
         print(f"Headers found: {reader.fieldnames}")
-        print("Patching database records (this is much faster than the first import)...")
-        
+        print(
+            "Patching database records "
+            "(this is much faster than the first import)..."
+        )
+
         count = 0
         for row in reader:
             sku = row.get('id')
-            raw_date = row.get('timeCreated') 
-            
+            raw_date = row.get('timeCreated')
+
             if sku and raw_date:
                 dt = parse_datetime(raw_date.strip())
                 if dt:
                     Product.objects.filter(sku=sku).update(time_created=dt)
                     count += 1
-            
+
             if count % 2000 == 0 and count > 0:
                 print(f"Progress: {count} timestamps updated")
-    print(f"---")
-    print(f"FINISHED! Updated {count} products with their original creation dates.")
+    print("---")
+    print(
+        f"FINISHED! Updated {count} products "
+        f"with their original creation dates."
+    )
