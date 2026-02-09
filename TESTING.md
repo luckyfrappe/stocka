@@ -272,6 +272,13 @@ I implemented semantic HTML and ARIA roles to ensure a seamless experience for s
 | **Password Reset** | Submit "Forgot Password" request | A secure reset link is sent to the registered email address. | ✅ |
 | **Validation** | Enter an incorrect password | System displays a clear error message: "Username and password do not match." | ✅ |
 
+**Browser & Mobile Device Testing**
+Testing Scope:
+* **Browsers:** Chrome, Safari, Firefox, and Edge.
+* **Devices:** iPhone, iPad and Desktop.
+
+Purchase flows, navigation, and responsive design were tested across all platforms to ensure a consistent user experience.
+
 ---
 
 ## Bugs

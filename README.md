@@ -560,27 +560,25 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[Google DevTools](https://developer.chrome.com/docs/devtools/)** – Development & debugging.
 - **[FigJam](https://www.figma.com/figjam/)** - Flowcharts
 - **[Font Awesome](https://fontawesome.com/)** – Icons via CDN. 
-<!-- - **[Favicon.io](https://favicon.io/)** – Favicon generation. -->
+- **[Favicon.io](https://favicon.io/)** – Favicon generation.
 - **[Polypane](https://polypane.app/)** – Responsive device previews.
-<!-- - **[Autoprefixer](https://autoprefixer.github.io/)** – Vendor prefixes for CSS. -->
-<!-- - **[HTML Validator](https://validator.w3.org/)** – Markup Validation Service. -->
-<!-- - **[CSS Validator](https://jigsaw.w3.org/css-validator/)** – CSS Validation Service. -->
-<!-- - **[WAVE](https://wave.webaim.org/)** – Web Accessibility Evaluation Tools. -->
-<!-- - **[JSHint](https://jshint.com/)** – JavaScript validation. -->
-<!-- - **[ESLint](https://eslint.org/)** – JavaScript linter for finding and fixing code issues, enforcing consistent style, and preventing bugs. -->
+- **[Autoprefixer](https://autoprefixer.github.io/)** – Vendor prefixes for CSS.
+- **[HTML Validator](https://validator.w3.org/)** – Markup Validation Service.
+- **[CSS Validator](https://jigsaw.w3.org/css-validator/)** – CSS Validation Service.
+- **[JSHint](https://jshint.com/)** – JavaScript validation.
 - **[Bootstrap 5](https://getbootstrap.com/)** – CSS framework for responsive, mobile-first front-end development.
 - **[Adobe Color](https://color.adobe.com/)** – Color scheme generation and inspiration.
 - **[Prettier](https://prettier.io/)** – Code formatter that ensures consistent style across your JavaScript, CSS, JSON, and other files.
 - **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
 - **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
 - **[Django](https://www.djangoproject.com/)** – High-level Python web framework powering the backend of the application.  
-<!-- - **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production. -->
-<!-- - **dj-database-url** – Simplifies database configuration in Django by allowing the database URL to be parsed and set as Django settings.   -->
-<!-- - **psycopg2** – Adapter for Python, enabling Django to communicate with a PostgreSQL database. -->
-<!-- - **[WhiteNoise](http://whitenoise.evans.io/en/stable/)** – Simplifies static file serving in Django for production environments.   -->
+- **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production.
+- **dj-database-url** – Simplifies database configuration in Django by allowing the database URL to be parsed and set as Django settings.
+- **psycopg2** – Adapter for Python, enabling Django to communicate with a PostgreSQL database.
+- **[WhiteNoise](http://whitenoise.evans.io/en/stable/)** – Simplifies static file serving in Django for production environments.
 - **[PostgreSQL](https://www.postgresql.org/)** – Open-source relational database system used for storing structured application data.  
 - **[django-allauth](https://django-allauth.readthedocs.io/en/latest/)** – Integrated Django app for authentication, registration, and account management with support for social logins and email verification.
-<!-- - **[Google Workspace (Gmail SMTP)](https://mail.google.com/)** – Configured to send transactional emails through Gmail’s secure SMTP service, used for account verification, password resets, and contact forms. -->
+- **[Google Workspace (Gmail SMTP)](https://mail.google.com/)** – Configured to send transactional emails through Gmail’s secure SMTP service, used for account verification, password resets, and contact forms.
 - **[Stripe](https://stripe.com/)** – Payment processing platform used to handle secure transactions during checkout (test mode only).
 - **[Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/)** – Django app for rendering forms in a DRY way with support for Bootstrap styling.
 - **[Pillow](https://python-pillow.org/)** – Python Imaging Library (PIL) fork used for image processing tasks within Django.
