@@ -1,107 +1,92 @@
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+    /* jshint esversion: 6 */
+    /* global $ */
+    document.addEventListener('DOMContentLoaded', () => {
 
-    function handleEnableDisable(input) {
-        const currentValue = parseInt(input.value, 10) || 0;
-        const minusButton = input.closest('.input-group').querySelector('.decrement-qty');
-        const plusButton = input.closest('.input-group').querySelector('.increment-qty');
+        function handleEnableDisable(input) {
+            const currentValue = parseInt(input.value, 10) || 0;
+            const inputGroup = input.closest('.input-group');
+            const minusButton = inputGroup.querySelector('.decrement-qty');
+            const plusButton = inputGroup.querySelector('.increment-qty');
 
-        minusButton.disabled = currentValue <= 1;
-        plusButton.disabled = currentValue >= 99;
+            minusButton.disabled = currentValue <= 1;
+            plusButton.disabled = currentValue >= 99;
 
-        if (minusButton.disabled) {
-            input.value = 1;
-        } else if (plusButton.disabled) {
-            input.value = 99;
-        }
-    }
-
-    // Initial check on page load
-    document.querySelectorAll('.qty_input').forEach(input => {
-        handleEnableDisable(input);
-    });
-
-    document.querySelectorAll('.qty_input').forEach(input => {
-        input.addEventListener('change', event => {
-            handleEnableDisable(event.target);
-        });
-    });
-
-    // Increment buttons
-    document.querySelectorAll('.increment-qty').forEach(button => {
-        button.addEventListener('click', e => {
-            e.preventDefault();
-
-            const input = button.closest('.input-group').querySelector('.qty_input');
-            input.value = (parseInt(input.value, 10) || 0) + 1;
-
-            handleEnableDisable(input);
-        });
-    });
-
-    // Decrement buttons
-    document.querySelectorAll('.decrement-qty').forEach(button => {
-        button.addEventListener('click', e => {
-            e.preventDefault();
-
-            const input = button.closest('.input-group').querySelector('.qty_input');
-            input.value = (parseInt(input.value, 10) || 0) - 1;
-
-            handleEnableDisable(input);
-        });
-    });
-
-    // Rental date logic
-    const startInput = document.getElementById('id_start_date');
-    
-    if (startInput) {
-        const rentalSelect = document.getElementById('id_rental_period');
-        const endSpan = document.getElementById('rental_end_date');
-        const totalSpan = document.getElementById('rental_total_price');
-        const pricePerWeek = {{ product.price_per_week|default:0 }};
-        const today = new Date();
-        
-        function updateRental() {
-            const start = new Date(startInput.value);
-            const weeks = parseInt(rentalSelect.value) || 1;
-            if (start.getTime()) {
-                const end = new Date(start);
-                end.setDate(end.getDate() + weeks * 7);
-                endSpan.textContent = end.toISOString().slice(0, 10); // YYYY-MM-DD
-                totalSpan.textContent = (weeks * pricePerWeek).toFixed(2);
-            } else {
-                endSpan.textContent = '—';
-                totalSpan.textContent = '—';
+            if (minusButton.disabled && currentValue < 1) {
+                input.value = 1;
+            } else if (plusButton.disabled && currentValue > 99) {
+                input.value = 99;
             }
         }
 
-        // add 4 days
-        const minDate = new Date();
-        minDate.setDate(today.getDate() + 4);
+        // Initial check and listeners for Qty inputs
+        document.querySelectorAll('.qty_input').forEach(input => {
+            handleEnableDisable(input);
+            input.addEventListener('change', event => {
+                handleEnableDisable(event.target);
+            });
+        });
 
-        // format YYYY-MM-DD
-        const yyyy = minDate.getFullYear();
-        const mm = String(minDate.getMonth() + 1).padStart(2, '0');
-        const dd = String(minDate.getDate()).padStart(2, '0');
+        // Increment/Decrement buttons
+        document.querySelectorAll('.increment-qty, .decrement-qty').forEach(button => {
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                const isIncrement = button.classList.contains('increment-qty');
+                const input = button.closest('.input-group').querySelector('.qty_input');
+                const currentVal = parseInt(input.value, 10) || 0;
+                
+                input.value = isIncrement ? currentVal + 1 : currentVal - 1;
+                handleEnableDisable(input);
+            });
+        });
 
-        startInput.min = `${yyyy}-${mm}-${dd}`;
+        // Rental date logic
+        const startInput = document.getElementById('id_start_date');
 
-        // pre-fill input with min date
-        // Only set value if it's empty
-        if (!startInput.value) {
-            startInput.value = startInput.min;
-        }
+        if (startInput) {
+            const rentalSelect = document.getElementById('id_rental_period');
+            const endSpan = document.getElementById('rental_end_date');
+            const totalSpan = document.getElementById('rental_total_price');
 
-        startInput.addEventListener('change', updateRental);
-        rentalSelect.addEventListener('change', updateRental);
-        updateRental();
+            const pricePerWeek = parseFloat("{{ product.price_per_week|default:0 }}");
+            
+            const today = new Date();
+            
+            const updateRental = () => {
+                const start = new Date(startInput.value);
+                const weeks = parseInt(rentalSelect.value, 10) || 1;
+                if (start.getTime()) {
+                    const end = new Date(start);
+                    end.setDate(end.getDate() + weeks * 7);
+                    endSpan.textContent = end.toISOString().slice(0, 10);
+                    totalSpan.textContent = (weeks * pricePerWeek).toFixed(2);
+                } else {
+                    endSpan.textContent = '—';
+                    totalSpan.textContent = '—';
+                }
+            };
 
-        // protects against manual typing
-        startInput.addEventListener('input', function() {
-            if (startInput.value < startInput.min) {
+            const minDate = new Date();
+            minDate.setDate(today.getDate() + 4);
+            const yyyy = minDate.getFullYear();
+            const mm = String(minDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(minDate.getDate()).padStart(2, '0');
+
+            startInput.min = `${yyyy}-${mm}-${dd}`;
+
+            if (!startInput.value) {
                 startInput.value = startInput.min;
             }
-        });
-    }
-});
+
+            startInput.addEventListener('change', updateRental);
+            rentalSelect.addEventListener('change', updateRental);
+            updateRental();
+
+            startInput.addEventListener('input', function() {
+                if (startInput.value < startInput.min) {
+                    startInput.value = startInput.min;
+                }
+            });
+        }
+    });
 </script>

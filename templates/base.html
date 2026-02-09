@@ -90,6 +90,8 @@
 
     {% block postloadjs %}
     <script type="text/javascript">
+        /* jshint esversion: 6 */
+        /* global $, bootstrap */
         /**
          * Bootstrap 5.3 Standard Operating Procedure:
          * 1. Query all elements with the .toast class
@@ -97,14 +99,13 @@
          * 3. Execute the .show() method
          */
         document.addEventListener('DOMContentLoaded', function () {
-            const toastElList = document.querySelectorAll('.toast');
-            
-            const toastList = [...toastElList].map(toastEl => {
-                // Option 1: Basic show
-                const toast = new bootstrap.Toast(toastEl);
-                toast.show();
-            });
+        const toastElList = document.querySelectorAll('.toast');
+        
+        toastElList.forEach(toastEl => {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
         });
+    });
     </script>
     {% endblock %}
 

@@ -118,14 +118,17 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
+    /* jshint esversion: 6 */
+    /* global $ */
     $('.btt-link').click(function(e) {
-        window.scrollTo(0,0)
-    })
+        window.scrollTo(0,0);
+    });
 </script>
 {% include 'products/includes/quantity_input_script.html' %}
 
 <script type="text/javascript">
-    // Update quantity on click
+    /* jshint esversion: 6 */
+    /* global $ */
     $('.update-link').click(function(e) {
         // Look up to the nearest table cell or column, then find the form inside it
         var form = $(this).closest('td, .col-12').find('.update-form');
@@ -148,6 +151,6 @@
         $.post(url, data).done(function() {
             location.reload();
         });
-    })
+    });
 </script>
 {% endblock %}

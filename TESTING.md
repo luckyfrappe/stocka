@@ -85,11 +85,13 @@ Automated tools are used to ensure code quality, performance, and accessibility.
 
 **HTML & CSS Validation:**  
 <!-- - Validate HTML using **W3C validator**.  
-- Validate CSS using **W3C CSS validator**.  
-- Tailwind classes may trigger warnings (acceptable).   -->
+- Validate CSS using **W3C CSS validator**.  -->
 
 **JavaScript Validation:**  
-<!-- - Use **JSHint / ESLint** to ensure clean JS code and correct logic.   -->
+I used [JSHint](https://jshint.com/) to validate all static JavaScript files and inline scripts. After my Python cleanup, I completed a final pass on all JavaScript to ensure the front-end logic was just as polished.
+
+Notes on Validation:
+All scripts passed with zero errors. I fixed all versioning warnings and properly defined global variables like `Stripe`, `jQuery`, and `Bootstrap` so the linter recognized them. Django Compatibility: In cases where Django tags were used inside scripts, I adjusted the formatting to make sure the code was valid for both the server and the linter.
 
 **Python / Django Validation:**  
 I used the [CI Python Linter](https://pep8ci.herokuapp.com/) and the flake8 extension to ensure my code follows PEP8 compliance. At the end of the project, I did a "grand cleanup" to fix all linting issues. 

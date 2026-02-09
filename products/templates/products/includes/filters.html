@@ -62,6 +62,8 @@
 
 {% block postloadjs %}
 <script>
+    /* jshint esversion: 6 */
+    /* global $ */
     $(document).ready(function() {
         // Lyssnar på alla checkboxes med klassen filter-checkbox
         $('.filter-checkbox').on('change', function() {

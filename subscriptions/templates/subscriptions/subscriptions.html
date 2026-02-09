@@ -199,11 +199,15 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
+    /* jshint esversion: 6 */
+    /* global $ */
     $('.btt-link').click(function(e) {
-        window.scrollTo(0,0)
-    })
+        window.scrollTo(0,0);
+    });
 </script>
 <script>
+    /* jshint esversion: 6 */
+    /* global $ */
     // Update Extend button text with calculated price
     $(document).ready(function() {
         $('.modal').each(function() {
