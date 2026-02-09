@@ -9,19 +9,17 @@
 {% block extra_title %}| Home{% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-
 <section class="position-relative p-0 w-100 overflow-hidden hero-height">
     <img src="media/90A7B4A6-0447-4DEE-9A9A-D3CD06585449_1_201_a.jpeg" alt="Hero image" class="w-100 h-100"
         style="object-fit: cover; object-position: center;">
-    </div>
 
     <div class="position-absolute bottom-0 start-0 w-100 p-3 p-md-5 mb-md-4">
         <div class="container-fluid px-0">
@@ -59,54 +57,79 @@
 
     <div class="row g-4">
         {% for product in spring_items %}
-            <div class="col-6 col-lg-3 mb-4">
-                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-card">
-                    <div class="product-card">
-                        <div class="img-container mb-3">
-                            <!-- Debugged with ChatGBT -->
-                            {% with product.images.all|first as img %}
-                                {% if img %}
-                                    <img class="card-img-top img-fluid"
-                                        src="{{ img.image.url }}"
-                                        alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="card-img-top img-fluid"
-                                        src="{{ MEDIA_URL }}noimage.png"
-                                        alt="{{ product.name }}">
-                                {% endif %}
-                            {% endwith %}
-                        </div>
-            
-                        <div class="product-info pt-2">
-                            <div class="row g-0 align-items-start">
-                                <div class="col-6">
-                                    <h3 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h3>
-                                    <span class="fw-bold small">{{ product.retail_price }} SEK</span>
-                                </div>
-            
-                                <div class="col-6 text-end lh-1">
-                                    <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }} SEK</span>
-                                    <span class="text-muted x-small d-block">Pre-owned {{ product.retail_price }} SEK</span>
-                                </div>
+        <div class="col-6 col-lg-3 mb-4">
+            <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-card">
+                <div class="product-card">
+                    <div class="img-container mb-3">
+                        <!-- Debugged with ChatGBT -->
+                        {% with product.images.all|first as img %}
+                        {% if img %}
+                        <img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="product-info pt-2">
+                        <div class="row g-0 align-items-start">
+                            <div class="col-6">
+                                <h2 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h2>
+                                <span class="fw-bold small">{{ product.retail_price }} SEK</span>
+                            </div>
+
+                            <div class="col-6 text-end lh-1">
+                                <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }}
+                                    SEK</span>
+                                <span class="text-muted x-small d-block">Pre-owned {{ product.retail_price }} SEK</span>
                             </div>
                         </div>
                     </div>
-                </a>
-            
-                {% if request.user.is_superuser %}
-                <div class="product-admin-actions mt-2 pt-2 border-top d-flex">
-                    <small>
-                        <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
-                        <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
-                    </small>
                 </div>
-                {% endif %}
+            </a>
+
+            {% if request.user.is_superuser %}
+            <div class="mt-2 pt-2 border-top d-flex gap-2">
+                <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">
+                    <i class="fa-solid fa-pen-to-square me-2"></i>Edit</a>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-sm btn-outline-danger py-0" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal-{{ product.id }}">
+                    <i class="fa-solid fa-trash-can me-2"></i>Delete
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal-{{ product.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="deleteModalLabel-{{ product.id }}">Confirm Deletion
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body py-4">
+                                Are you sure you want to delete <strong>{{ product.name }}</strong>?
+                                <p class="text-muted small mt-2">This action is permanent and will remove all associated
+                                    inventory data.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="{% url 'delete_product' product.id %}"
+                                    class="btn btn-primary btn-danger">Confirm Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% endif %}
+        </div>
         {% endfor %}
     </div>
 </section>
 
-<section class="py-5 bg-light stocka-loop-card" style="background-image: url(media/0a3f1f2d47dd4364ae5a36e110850906.jpg);">
+<section class="py-5 bg-light stocka-loop-card"
+    style="background-image: url(media/0a3f1f2d47dd4364ae5a36e110850906.jpg);">
     <div class="text-center justify-content-center d-flex flex-column align-items-center h-100 px-3 px-md-0">
         <small class="text-uppercase fw-bold mb-3 d-block text-white">Stocka Loop</small>
         <h2 class="mb-4 text-white">Temporary Style,<br>Flexible and Sustainable</h2>
@@ -124,49 +147,47 @@
 
     <div class="row g-4">
         {% for product in everyday_items %}
-            <div class="col-6 col-lg-3 mb-4">
-                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-card">
-                    <div class="product-card">
-                        <div class="img-container mb-3">
-                            <!-- Debugged with ChatGBT -->
-                            {% with product.images.all|first as img %}
-                                {% if img %}
-                                    <img class="card-img-top img-fluid"
-                                        src="{{ img.image.url }}"
-                                        alt="{{ product.name }}">
-                                {% else %}
-                                    <img class="card-img-top img-fluid"
-                                        src="{{ MEDIA_URL }}noimage.png"
-                                        alt="{{ product.name }}">
-                                {% endif %}
-                            {% endwith %}
-                        </div>
-            
-                        <div class="product-info pt-2">
-                            <div class="row g-0 align-items-start">
-                                <div class="col-6">
-                                    <h3 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h3>
-                                    <span class="fw-bold small">{{ product.retail_price }} SEK</span>
-                                </div>
-            
-                                <div class="col-6 text-end lh-1">
-                                    <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }} SEK</span>
-                                    <span class="text-muted x-small d-block">Pre-owned {{ product.retail_price }} SEK</span>
-                                </div>
+        <div class="col-6 col-lg-3 mb-4">
+            <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-card">
+                <div class="product-card">
+                    <div class="img-container mb-3">
+                        <!-- Debugged with ChatGBT -->
+                        {% with product.images.all|first as img %}
+                        {% if img %}
+                        <img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+
+                    <div class="product-info pt-2">
+                        <div class="row g-0 align-items-start">
+                            <div class="col-6">
+                                <h2 class="fw-bold mb-0 text-uppercase small">{{ product.name }}</h2>
+                                <span class="fw-bold small">{{ product.retail_price }} SEK</span>
+                            </div>
+
+                            <div class="col-6 text-end lh-1">
+                                <span class="text-muted x-small d-block mb-1">Rent from {{ product.price_per_week }}
+                                    SEK</span>
+                                <span class="text-muted x-small d-block">Pre-owned {{ product.retail_price }} SEK</span>
                             </div>
                         </div>
                     </div>
-                </a>
-            
-                {% if request.user.is_superuser %}
-                <div class="product-admin-actions mt-2 pt-2 border-top d-flex">
-                    <small>
-                        <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
-                        <a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-outline-danger py-0">Delete</a>
-                    </small>
                 </div>
-                {% endif %}
+            </a>
+
+            {% if request.user.is_superuser %}
+            <div class="product-admin-actions mt-2 pt-2 border-top d-flex">
+                <small>
+                    <a href="{% url 'edit_product' product.id %}" class="btn btn-sm btn-outline-secondary py-0">Edit</a>
+                    <a href="{% url 'delete_product' product.id %}"
+                        class="btn btn-sm btn-outline-danger py-0">Delete</a>
+                </small>
             </div>
+            {% endif %}
+        </div>
         {% endfor %}
     </div>
 </section>
@@ -184,13 +205,13 @@
             </div>
         </div>
         <div class="col-md-6 order-1 order-md-2" style="max-height: 700px;">
-            <img src="media/0a05c6e0932549c0821910444ff46704.jpg"
-                class="w-100 h-100 object-fit-cover" alt="Reuse">
+            <img src="media/0a05c6e0932549c0821910444ff46704.jpg" class="w-100 h-100 object-fit-cover" alt="Reuse">
         </div>
     </div>
 </section>
 
 <section class="py-5 text-center bg-light">
+    <h2 class="d-none">Our reviews</h2>
     <div id="feedbackCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
 
         <div class="carousel-inner">
@@ -228,5 +249,4 @@
 </section>
 
 {% include "home/includes/faq.html" %}
-
 {% endblock %}

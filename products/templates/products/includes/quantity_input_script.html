@@ -34,7 +34,7 @@
                 const isIncrement = button.classList.contains('increment-qty');
                 const input = button.closest('.input-group').querySelector('.qty_input');
                 const currentVal = parseInt(input.value, 10) || 0;
-                
+
                 input.value = isIncrement ? currentVal + 1 : currentVal - 1;
                 handleEnableDisable(input);
             });
@@ -49,9 +49,9 @@
             const totalSpan = document.getElementById('rental_total_price');
 
             const pricePerWeek = parseFloat("{{ product.price_per_week|default:0 }}");
-            
+
             const today = new Date();
-            
+
             const updateRental = () => {
                 const start = new Date(startInput.value);
                 const weeks = parseInt(rentalSelect.value, 10) || 1;
@@ -82,7 +82,7 @@
             rentalSelect.addEventListener('change', updateRental);
             updateRental();
 
-            startInput.addEventListener('input', function() {
+            startInput.addEventListener('input', function () {
                 if (startInput.value < startInput.min) {
                     startInput.value = startInput.min;
                 }

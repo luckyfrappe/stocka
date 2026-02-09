@@ -3,9 +3,7 @@
     <div class="accordion">
         <div class="purchase-option bg-light border mb-2">
             <div class="option-header fw-bold text-uppercase small d-flex justify-content-between align-items-center py-3 px-3 pointer"
-                data-bs-toggle="collapse"
-                data-bs-target="#buyNew"
-                aria-expanded="true">
+                data-bs-toggle="collapse" data-bs-target="#buyNew" role="button" aria-expanded="true">
                 <span>Buy New</span>
                 <span>{{ product.retail_price }} SEK <i class="fa-solid fa-chevron-down nav-chevron ms-2"></i></span>
             </div>
@@ -17,7 +15,8 @@
                     <p class="x-small fw-bold text-uppercase mb-2">Select Size:</p>
                     <select class="form-control mb-2 text-uppercase" name="product_size" id='id_product_size_new'>
                         {% for size in simulated_sizes %}
-                            <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}</option>
+                        <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}
+                        </option>
                         {% endfor %}
                     </select>
                     {% endif %}
@@ -25,15 +24,12 @@
                     <div class="col-12 mb-4">
                         <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
                         <div class="input-group w-50">
-                            <button class="decrement-qty btn btn-outline-dark btn-sm" 
-                                data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                            <button class="decrement-qty btn btn-outline-dark btn-sm" data-item_id="{{ product.id }}">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <input class="form-control qty_input border-dark text-center" type="number" 
-                                name="quantity" value="1" min="1" max="99" 
-                                data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                            <button class="increment-qty btn btn-outline-dark btn-sm" 
-                                data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                            <input class="form-control qty_input border-dark text-center" type="number" name="quantity"
+                                value="1" min="1" max="99" data-item_id="{{ product.id }}">
+                            <button class="increment-qty btn btn-outline-dark btn-sm" data-item_id="{{ product.id }}">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>

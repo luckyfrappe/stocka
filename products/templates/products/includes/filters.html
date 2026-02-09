@@ -1,11 +1,11 @@
 <aside class="col-12 col-md-3 col-lg-2 sticky-sidebar mb-4">
     <div id="allFilterAccordion" class="filters">
-        <div class="py-2 d-md-none border-bottom mb-2 small d-flex justify-content-between align-items-center" 
+        <a class="py-2 d-md-none border-bottom mb-2 small d-flex justify-content-between align-items-center"
             data-bs-toggle="collapse" href="#filterContent" role="button">
             <span><i class="fa-solid fa-filter me-2"></i>Filters</span>
             <i class="fa-solid fa-chevron-down nav-chevron"></i>
-        </div>
-        
+        </a>
+
         <div class="collapse d-md-block" id="filterContent">
             <form id="filter-form" method="GET" action="{% url 'products' %}">
                 {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
@@ -14,39 +14,40 @@
                 <div class="mobile-nav-groups" id="filterAccordion">
                     <div class="mb-2 border-bottom pb-2 pt-2">
                         <div class="form-check ps-0">
-                            <input class="form-check-input ms-0 me-2 filter-checkbox" type="checkbox" 
+                            <input class="form-check-input ms-0 me-2 filter-checkbox" type="checkbox"
                                 name="new_arrivals" value="true" id="check-new_arrivals"
                                 style="transform: scale(0.9); float: none;" 
                                 {% if 'new_arrivals' in request.GET %}checked{% endif %}>
-                            <label class="form-check-label text-muted fw-bold text-uppercase" for="check-new_arrivals" style="font-size: 0.75rem; cursor: pointer;">
+                            <label class="form-check-label text-muted fw-bold text-uppercase" for="check-new_arrivals"
+                                style="font-size: 0.75rem; cursor: pointer;">
                                 New Arrivals
                             </label>
                         </div>
                     </div>
                     {% for type in all_attribute_types %}
                     <div class="mb-1 border-bottom pb-1">
-                        <div class="py-1 small d-flex justify-content-between align-items-center pointer fw-bold text-uppercase" 
+                        <a class="py-1 small d-flex justify-content-between align-items-center pointer fw-bold text-uppercase"
                             data-bs-toggle="collapse" href="#filter-{{ type.slug }}">
-                            {{ type.name }} <i class="fa-solid fa-chevron-down nav-chevron" style="font-size: 0.7rem;"></i>
-                        </div>
-                        
-                        <div class="collapse {% if type.slug in request.GET %}show{% endif %}" 
+                            {{ type.name }} <i class="fa-solid fa-chevron-down nav-chevron"
+                                style="font-size: 0.7rem;"></i>
+                        </a>
+
+                        <div class="collapse {% if type.slug in request.GET %}show{% endif %}"
                             id="filter-{{ type.slug }}" 
                             {% if type.slug == 'brand' %}style="max-height: 180px; overflow-y: auto;"{% endif %}>
-                            <div class="ps-1 small py-1"> 
-                                <div style="column-count: 2; column-gap: 0.5rem;"> 
+                            <div class="ps-1 small py-1">
+                                <div style="column-count: 2; column-gap: 0.5rem;">
                                     {% for attr in type.values.all %}
-                                        <div class="form-check mb-0 d-inline-block w-100">
-                                            <input class="form-check-input filter-checkbox" type="checkbox" 
-                                                name="{{ type.slug }}" 
-                                                value="{{ attr.slug }}" 
-                                                id="check-{{ attr.slug }}"
-                                                style="transform: scale(0.9);" 
-                                                {% if attr.slug in active_filter_slugs %}checked{% endif %}>
-                                            <label class="form-check-label text-muted" for="check-{{ attr.slug }}" style="font-size: 0.8rem; vertical-align: text-top;">
-                                                {{ attr.value }}
-                                            </label>
-                                        </div>
+                                    <div class="form-check mb-0 d-inline-block w-100">
+                                        <input class="form-check-input filter-checkbox" type="checkbox"
+                                            name="{{ type.slug }}" value="{{ attr.slug }}" id="check-{{ attr.slug }}"
+                                            style="transform: scale(0.9);" 
+                                            {% if attr.slug in active_filter_slugs %}checked{% endif %}>
+                                        <label class="form-check-label text-muted" for="check-{{ attr.slug }}"
+                                            style="font-size: 0.8rem; vertical-align: text-top;">
+                                            {{ attr.value }}
+                                        </label>
+                                    </div>
                                     {% endfor %}
                                 </div>
                             </div>
@@ -64,9 +65,9 @@
 <script>
     /* jshint esversion: 6 */
     /* global $ */
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Lyssnar på alla checkboxes med klassen filter-checkbox
-        $('.filter-checkbox').on('change', function() {
+        $('.filter-checkbox').on('change', function () {
             $('#filter-form').submit();
         });
     });

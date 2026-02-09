@@ -3,136 +3,140 @@
 {% load bag_tools %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block extra_title %}| Shopping Bag {% endblock %}
 
 {% block content %}
-    <div class="container shopping-bag-container mb-5">
-        <h2 class="mb-4 mt-5">Shopping Bag</h2>
-        <hr>
+<div class="container shopping-bag-container mb-5">
+    <h2 class="mb-4 mt-5">Shopping Bag</h2>
+    <hr>
 
-        <div class="row">
-            <div class="col">
-                {% if bag_items %}
-                <div class="d-block d-md-none">
-                    <div class="row">
-                        <div class="col">
-                            {% include "bag/bag-total.html" %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            {% include "bag/checkout-buttons.html" %}
-                            <p class="text-muted mb-5">A summary of your bag contents is below</p>
-                        </div>
-                    </div>
-                    {% for item in bag_items %}
-                        <div class="row">
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "bag/product-image.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 mb-2">
-                                {% include "bag/product-info.html" %}
-                            </div>
-                            <div class="col-12 col-sm-6 order-sm-last">
-                                <p class="my-0">Price Each: {{ item.price_each }} SEK</p>
-                                <p><strong>Subtotal: </strong>{{ item.price_each | calc_subtotal:item.quantity }} SEK</p>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                {% include "bag/quantity-form.html" %}
-                            </div>
-                        </div>
-                        <div class="row"><div class="col"><hr></div></div>
-                    {% endfor %}
-                    <div class="btt-button shadow-sm border border-black">
-                        <a class="btt-link d-flex h-100">
-                            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-                        </a>	
+    <div class="row">
+        <div class="col">
+            {% if bag_items %}
+            <div class="d-block d-md-none">
+                <div class="row">
+                    <div class="col">
+                        {% include "bag/bag-total.html" %}
                     </div>
                 </div>
-                <div class="table-responsive rounded d-none d-md-block">
-                        <table class="table table-sm table-borderless">
-                            <thead class="text-black">
-                                <tr>
-                                    <th scope="col">Product Info</th>
-                                    <th scope="col"></th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Qty</th>
-                                    <th scope="col">Subtotal</th>
-                                </tr>
-                            </thead>
-
-                            {% for item in bag_items %}
-                                <tr>
-                                    <td class="p-3 w-25">
-                                        {% include "bag/product-image.html" %}
-                                    </td>
-                                    <td class="py-3">
-                                        {% include "bag/product-info.html" %}
-                                    </td>
-                                    <td class="py-3">
-                                        <p class="my-0">{{ item.price_each }} SEK</p>
-                                    </td>
-                                    <td class="py-3 w-25">
-                                        {% include "bag/quantity-form.html" %}
-                                    </td>
-                                    <td class="py-3">
-                                        <p class="my-0">{{ item.price_each | calc_subtotal:item.quantity }} SEK</p>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            <tr>
-                                <td colspan="5" class="pt-5 text-right">
-                                    {% include "bag/bag-total.html" %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="text-right">
-                                    {% include "bag/checkout-buttons.html" %}
-                                </td>
-                            </tr>
-                        </table>
+                <div class="row">
+                    <div class="col">
+                        {% include "bag/checkout-buttons.html" %}
+                        <p class="text-muted mb-5">A summary of your bag contents is below</p>
                     </div>
-                {% else %}
-                    <p class="lead mb-5">Your bag is empty.</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-dark text-uppercase py-2 mt-2 x-small">
-                        <i class="fas fa-chevron-left me-2"></i>Keep Shopping
+                </div>
+                {% for item in bag_items %}
+                <div class="row">
+                    <div class="col-12 col-sm-6 mb-2">
+                        {% include "bag/product-image.html" %}
+                    </div>
+                    <div class="col-12 col-sm-6 mb-2">
+                        {% include "bag/product-info.html" %}
+                    </div>
+                    <div class="col-12 col-sm-6 order-sm-last">
+                        <p class="my-0">Price Each: {{ item.price_each }} SEK</p>
+                        <p><strong>Subtotal: </strong>{{ item.price_each | calc_subtotal:item.quantity }} SEK</p>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        {% include "bag/quantity-form.html" %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="btt-button shadow-sm border border-black">
+                    <a class="btt-link d-flex h-100">
+                        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
                     </a>
-                {% endif %}
+                </div>
             </div>
+            <div class="table-responsive rounded d-none d-md-block">
+                <table class="table table-sm table-borderless">
+                    <thead class="text-black">
+                        <tr>
+                            <th scope="col">Product Info</th>
+                            <th scope="col"></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+
+                    {% for item in bag_items %}
+                    <tr>
+                        <td class="p-3 w-25">
+                            {% include "bag/product-image.html" %}
+                        </td>
+                        <td class="py-3">
+                            {% include "bag/product-info.html" %}
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0">{{ item.price_each }} SEK</p>
+                        </td>
+                        <td class="py-3 w-25">
+                            {% include "bag/quantity-form.html" %}
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0">{{ item.price_each | calc_subtotal:item.quantity }} SEK</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="5" class="pt-5 text-right">
+                            {% include "bag/bag-total.html" %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            {% include "bag/checkout-buttons.html" %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% else %}
+            <p class="lead mb-5">Your bag is empty.</p>
+            <a href="{% url 'products' %}" class="btn btn-outline-dark text-uppercase py-2 mt-2 x-small">
+                <i class="fas fa-chevron-left me-2"></i>Keep Shopping
+            </a>
+            {% endif %}
         </div>
     </div>
-    <div class="btt-button shadow-sm">
-        <a class="btt-link d-flex h-100 text-decoration-none">
-            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-        </a>    
-    </div>
+</div>
+<div class="btt-button shadow-sm">
+    <a class="btt-link d-flex h-100 text-decoration-none">
+        <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     /* jshint esversion: 6 */
     /* global $ */
-    $('.btt-link').click(function(e) {
-        window.scrollTo(0,0);
+    $('.btt-link').click(function (e) {
+        window.scrollTo(0, 0);
     });
 </script>
 {% include 'products/includes/quantity_input_script.html' %}
 
-<script type="text/javascript">
+<script>
     /* jshint esversion: 6 */
     /* global $ */
-    $('.update-link').click(function(e) {
+    $('.update-link').click(function (e) {
         // Look up to the nearest table cell or column, then find the form inside it
         var form = $(this).closest('td, .col-12').find('.update-form');
-        
+
         if (form.length > 0) {
             form.submit();
         } else {
@@ -141,14 +145,19 @@
     });
 
     // Remove item and reload on click
-    $('.remove-item').click(function(e) {
+    $('.remove-item').click(function (e) {
         var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
-        var itemKey = $(this).data('item_key'); // Grabbing the unique key
-        var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'item_key': itemKey};
 
-        $.post(url, data).done(function() {
+        var itemKey = $(this).data('item_key');
+        var itemId = $(this).data('item_id');
+
+        var url = `/bag/remove/${itemId}/`;
+        var data = {
+            'csrfmiddlewaretoken': csrfToken,
+            'item_key': itemKey
+        };
+
+        $.post(url, data).done(function () {
             location.reload();
         });
     });

@@ -5,35 +5,35 @@
 {% block extra_title %}| Contact {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="container my-5 take-full-screen">
-        <div class="row mt-lg-5 pt-lg-5">
-            <div class="col-12 col-lg-5">
-                <h1 class="text-uppercase font-weight-bold display-4">We’re Ready <br> To Help You</h1>
-                <p class="mt-4 text-black lead">
-                    Got questions or need assistance? Our team is here to help. 
-                    Send us a message and we’ll respond within 24–48 hours.
-                </p>
-                <div class="mt-5 d-none d-lg-block">
-                    <p class="mb-1"><strong>Email:</strong> support@stocka.com</p>
-                    <p class="mb-1"><strong>Business Hours:</strong> Mon - Fri: 9am - 5pm CET</p>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-6 offset-lg-1">
-                <form method="post" action="{% url 'contact' %}" class="mt-4 mt-lg-0" id="contact-form">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="btn btn-dark mt-3">Send Message</button>
-                </form>
+<div class="container my-5 take-full-screen">
+    <div class="row mt-lg-5 pt-lg-5">
+        <div class="col-12 col-lg-5">
+            <h1 class="text-uppercase font-weight-bold display-4">We’re Ready <br> To Help You</h1>
+            <p class="mt-4 text-black lead">
+                Got questions or need assistance? Our team is here to help.
+                Send us a message and we’ll respond within 24–48 hours.
+            </p>
+            <div class="mt-5 d-none d-lg-block">
+                <p class="mb-1"><strong>Email:</strong> support@stocka.com</p>
+                <p class="mb-1"><strong>Business Hours:</strong> Mon - Fri: 9am - 5pm CET</p>
             </div>
         </div>
+
+        <div class="col-12 col-lg-6 offset-lg-1">
+            <form method="post" action="{% url 'contact' %}" class="mt-4 mt-lg-0" id="contact-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-dark mt-3">Send Message</button>
+            </form>
+        </div>
     </div>
+</div>
 {% endblock %}

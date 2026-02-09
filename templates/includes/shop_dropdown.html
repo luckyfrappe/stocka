@@ -1,20 +1,14 @@
 <!-- Grid and style help from Gemini (AI by Google) -->
 
-<div
-  class="dropdown-menu mega-menu border-0 border-bottom shadow-sm w-100 py-4"
->
+<div class="dropdown-menu mega-menu border-0 border-bottom shadow-sm w-100 py-4">
   <div class="container-fluid px-lg-5">
     <div class="row">
       <div class="col-lg-4 border-end">
         <div class="row">
           <div class="col-12 genders mb-4">
             <div class="d-flex gap-3">
-              <a href="{% url 'products' %}?attribute_type=men" class="btn btn-outline-dark btn-sm px-4"
-                >Men</a
-              >
-              <a href="{% url 'products' %}?attribute_type=women" class="btn btn-outline-dark btn-sm px-4"
-                >Women</a
-              >
+              <a href="{% url 'products' %}?attribute_type=men" class="btn btn-outline-dark btn-sm px-4">Men</a>
+              <a href="{% url 'products' %}?attribute_type=women" class="btn btn-outline-dark btn-sm px-4">Women</a>
               <a href="{% url 'products' %}" class="btn btn-dark btn-sm px-4">All</a>
             </div>
           </div>
@@ -23,17 +17,22 @@
             <ul class="list-unstyled row row-cols-2 g-2">
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=shorts">Shorts</a></li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=shoes">Shoes</a></li>
-              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=cardigans">Cardigans</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=cardigans">Cardigans</a>
+              </li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=vests">Vests</a></li>
-              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=sweaters">Sweaters</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=sweaters">Sweaters</a>
+              </li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=skirts">Skirts</a></li>
-              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jumpsuits">Jumpsuits</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jumpsuits">Jumpsuits</a>
+              </li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jackets">Jackets</a></li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=coats">Coats</a></li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=shirts">Shirts</a></li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=blazers">Blazers</a></li>
-              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=trousers">Trousers</a></li>
-              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=knitwear">Knitwear</a></li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=trousers">Trousers</a>
+              </li>
+              <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=knitwear">Knitwear</a>
+              </li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=blouses">Blouses</a></li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=tops">Tops</a></li>
               <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=dresses">Dresses</a></li>
@@ -48,7 +47,8 @@
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=active">Active</a></li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=formal">Formal</a></li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=business">Business</a></li>
-          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=dressed-up">Dressed-up</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=dressed-up">Dressed-up</a>
+          </li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=everyday">Everyday</a></li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=statement">Statement</a></li>
         </ul>
@@ -61,7 +61,8 @@
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=winter">Winter</a></li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=summer">Summer</a></li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=spring">Spring</a></li>
-          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=multi-season">Multi Season</a></li>
+          <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=multi-season">Multi
+              Season</a></li>
         </ul>
         <h3 class="small mb-3">Fit</h3>
         <ul class="list-unstyled d-grid gap-2">
@@ -80,24 +81,20 @@
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=bags">Bags</a></li>
           <li><a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=jewelry">Jewelry</a></li>
           <li>
-            <a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=accessories">Glasses, scarves and others</a>
+            <a class="dropdown-item p-0 small" href="{% url 'products' %}?attribute_type=accessories">Glasses, scarves
+              and others</a>
           </li>
         </ul>
         <a href="{% url 'products' %}?new_arrivals=true" class="d-block text-decoration-none">
-          <div
-            class="featured-nav-img position-relative card"
-            style="
+          <div class="featured-nav-img position-relative card" style="
               height: 420px;
               background: url('http://127.0.0.1:8000/media/155c822300ec4e32b1fa97760284f86f.jpg') 
                           50% calc(50% + 100px) / cover no-repeat;
               transition: opacity 0.3s ease;
-            "
-          >
-          <div
-            class="position-absolute bottom-0 start-0 p-3 w-100 bg-dark bg-opacity-25 new-arrivals-overlay"
-          >
-            <span class="text-white fw-bold small">New Arrivals</span>
-          </div>
+            ">
+            <div class="position-absolute bottom-0 start-0 p-3 w-100 bg-dark bg-opacity-25 new-arrivals-overlay">
+              <span class="text-white fw-bold small">New Arrivals</span>
+            </div>
           </div>
         </a>
       </div>

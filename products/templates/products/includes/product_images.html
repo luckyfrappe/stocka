@@ -1,17 +1,13 @@
 <div class="row product-images-scroll g-2 mb-4 mb-lg-0">
     {% with images=product.images.all %}
-        {% if images %}
-            {% for img in images %}
-                <div class="img-item col-10 col-md-6 col-lg-6">
-                    <img src="{{ img.image.url }}"
-                         class="img-fluid rounded-lg"
-                         alt="{{ product.name }}">
-                </div>
-            {% endfor %}
-        {% else %}
-            <img src="{{ MEDIA_URL }}noimage.png"
-                 class="img-fluid rounded-lg w-50"
-                 alt="No image">
-        {% endif %}
+    {% if images %}
+    {% for img in images %}
+    <div class="img-item col-10 col-md-6 col-lg-6">
+        <img src="{{ img.image.url }}" class="img-fluid rounded-lg" alt="{{ product.name }}">
+    </div>
+    {% endfor %}
+    {% else %}
+    <img src="{{ MEDIA_URL }}noimage.png" class="img-fluid rounded-lg w-50" alt="No image">
+    {% endif %}
     {% endwith %}
 </div>

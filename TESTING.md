@@ -74,17 +74,22 @@ Cart and checkout process were tested for purchases and rentals. Payment and con
 Automated tools are used to ensure code quality, performance, and accessibility.
 
 **Google Lighthouse:**
-<!-- | Page | Screenshot |
-|------|------------|
-| Landing Page (Guest) | ![alt text](documentation/testing/automated-testing/lighthouse/landing-guest.png "Landing Page Guest") |
-| Landing Page (Logged In) | ![alt text](documentation/testing/automated-testing/lighthouse/landing-loggedin.png "Landing Page Logged In") |
-| Product List | ![alt text](documentation/testing/automated-testing/lighthouse/products-list.png "Product List") |
-| Product Detail | ![alt text](documentation/testing/automated-testing/lighthouse/product-detail.png "Product Detail") |
-| Favorites | ![alt text](documentation/testing/automated-testing/lighthouse/favorites.png "Favorites") |
-| Cart & Checkout | ![alt text](documentation/testing/automated-testing/lighthouse/checkout.png "Checkout") | -->
+I have utilized Lighthouse Metrics to evaluate the site’s current technical standing. While the initial results show strong foundations in visibility and standards, there is clear room for growth regarding speed and inclusive design.
+
+* **SEO & Best Practices:** I’ve achieved a score almost of **100** across most pages. My focus here was ensuring the site is fully discoverable and follows modern web standards.
+* **Accessibility:** The site consistently passes basic accessibility checks. However, my scores are not yet uniform across the board, and I am working toward a more consistent user experience for all visitors.
+* **Performance:** This is the primary area for improvement. While lighter pages perform well, I noticed significant score drops on heavy product pages. 
+
+**Future Objectives:**
+Performance and accessibility did not reach my target thresholds on every page. I will endeavor to optimize asset loading on the product-heavy sections and refine my accessibility implementation to ensure a seamless experience site-wide.
 
 **HTML & CSS Validation:**  
+HTML Validation
 
+I used the [W3C Markup Validation Service](https://validator.w3.org/) to check all HTML files for syntax errors and compliance with web standards.
+
+Notes on Validation:
+All templates passed with no syntax errors. I fixed all unclosed tags, missing alt attributes, and deprecated elements to ensure clean markup.
 
 CSS Validation
 

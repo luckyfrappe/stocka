@@ -9,11 +9,11 @@
 {% block extra_title %}| {{ product.name }} {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
         <div class="col-12 col-lg-8">
             {% include 'products/includes/product_images.html' %}
         </div>
-        
+
         <div class="col-12 col-lg-4">
             {% include 'products/includes/purchase_sidebar.html' %}
         </div>
@@ -30,34 +30,38 @@
 </div>
 
 {% if request.user.is_superuser %}
-    <div class="container-fluid mb-5 d-flex justify-content-end gap-2">
-        <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold">
-                <i class="fa-solid fa-pen-to-square me-2"></i>Edit Product
-            </a>
-            <button type="button" class="btn btn-outline-danger px-4 py-2 text-uppercase small fw-bold" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                <i class="fa-solid fa-trash-can me-2"></i>Delete Product
-            </button>
+<div class="container-fluid mb-5 d-flex justify-content-end gap-2">
+    <a href="{% url 'edit_product' product.id %}" class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold">
+        <i class="fa-solid fa-pen-to-square me-2"></i>Edit Product
+    </a>
+    <button type="button" class="btn btn-outline-danger px-4 py-2 text-uppercase small fw-bold" data-bs-toggle="modal"
+        data-bs-target="#deleteModal">
+        <i class="fa-solid fa-trash-can me-2"></i>Delete Product
+    </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="deleteModalLabel">Confirm Deletion</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body py-4">
-                        Are you sure you want to delete <strong>{{ product.name }}</strong>? 
-                        <p class="text-muted small mt-2">This action is permanent and will remove all associated inventory data.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="{% url 'delete_product' product.id %}" class="btn btn-primary btn-danger">Confirm Delete</a>
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Confirm Deletion</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    Are you sure you want to delete <strong>{{ product.name }}</strong>?
+                    <p class="text-muted small mt-2">This action is permanent and will remove all associated inventory
+                        data.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{% url 'delete_product' product.id %}" class="btn btn-primary btn-danger">Confirm
+                        Delete</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endif %}
 {% endblock %}
 

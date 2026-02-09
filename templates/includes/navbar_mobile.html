@@ -1,12 +1,8 @@
 <div class="container-fluid d-block d-lg-none">
   <div class="row w-100 align-items-center g-0">
     <div class="col-4 d-flex align-items-center">
-      <button
-        class="navbar-toggler border-0 px-0 shadow-none"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navMenu"
-      >
+      <button class="navbar-toggler border-0 px-0 shadow-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a href="{% url 'view_wishlist' %}" class="ms-3">
@@ -19,16 +15,12 @@
     </div>
 
     <div class="col-4 d-flex justify-content-end align-items-center">
-      <button class="nav-link d-flex flex-column align-items-center ps-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBag" aria-controls="offcanvasBag">
+      <button class="nav-link d-flex flex-column align-items-center ps-2" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasBag" aria-controls="offcanvasBag">
         <span class="icon">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="#1f1f1f"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#1f1f1f">
             <path
-              d="M200-80q-33 0-56.5-23.5T120-160v-480q0-33 23.5-56.5T200-720h80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720h80q33 0 56.5 23.5T840-640v480q0 33-23.5 56.5T760-80H200Zm0-80h560v-480H200v480Zm280-240q83 0 141.5-58.5T680-600h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85h-80q0 83 58.5 141.5T480-400ZM360-720h240q0-50-35-85t-85-35q-50 0-85 35t-35 85ZM200-160v-480 480Z"
-            />
+              d="M200-80q-33 0-56.5-23.5T120-160v-480q0-33 23.5-56.5T200-720h80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720h80q33 0 56.5 23.5T840-640v480q0 33-23.5 56.5T760-80H200Zm0-80h560v-480H200v480Zm280-240q83 0 141.5-58.5T680-600h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85h-80q0 83 58.5 141.5T480-400ZM360-720h240q0-50-35-85t-85-35q-50 0-85 35t-35 85ZM200-160v-480 480Z" />
           </svg>
         </span>
         {% if bag_items %}
@@ -38,22 +30,25 @@
         {% endif %}
       </button>
       <div class="btn-group ps-2">
-        <button type="button" class="nav-link border-0 bg-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="nav-link border-0 bg-transparent dropdown-toggle" data-bs-toggle="dropdown"
+          aria-expanded="false">
           <span class="icon"><i class="fa-regular fa-user"></i></span>
         </button>
-        
+
         <ul class="dropdown-menu dropdown-menu-end shadow">
           {% if request.user.is_authenticated %}
-              {% if request.user.is_superuser %}
-                  <li><a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a></li>
-              {% endif %}
-              <li><a href="{% url 'profile' %}" class="dropdown-item">My Profile</a></li>
-              <li><a href="{% url 'subscriptions' %}" class="dropdown-item">Subscriptions</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
+          {% if request.user.is_superuser %}
+          <li><a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a></li>
+          {% endif %}
+          <li><a href="{% url 'profile' %}" class="dropdown-item">My Profile</a></li>
+          <li><a href="{% url 'subscriptions' %}" class="dropdown-item">Subscriptions</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
           {% else %}
-              <li><a href="{% url 'account_signup' %}" class="dropdown-item">Sign Up</a></li>
-              <li><a href="{% url 'account_login' %}" class="dropdown-item">Sign In</a></li>
+          <li><a href="{% url 'account_signup' %}" class="dropdown-item">Sign Up</a></li>
+          <li><a href="{% url 'account_login' %}" class="dropdown-item">Sign In</a></li>
           {% endif %}
         </ul>
       </div>
@@ -61,15 +56,10 @@
   </div>
   <div class="collapse navbar-collapse w-100" id="navMenu">
     <ul class="navbar-nav pt-3 pb-2">
-      
+
       <li class="nav-item border-bottom">
-        <a
-          class="nav-link d-flex justify-content-between align-items-center py-3"
-          data-bs-toggle="collapse"
-          href="#mobileShopMenu"
-          role="button"
-          aria-expanded="false"
-        >
+        <a class="nav-link d-flex justify-content-between align-items-center py-3" data-bs-toggle="collapse"
+          href="#mobileShopMenu" role="button" aria-expanded="false">
           Shop
           <i class="fa-solid fa-chevron-down nav-chevron"></i>
         </a>
@@ -81,13 +71,8 @@
       <li class="nav-item"><a class="nav-link" href="{% url 'info_pages' 'concept' %}">Concept</a></li>
 
       <li class="nav-item border-bottom">
-        <a
-          class="nav-link d-flex justify-content-between align-items-center py-3"
-          data-bs-toggle="collapse"
-          href="#mobileCompanyMenu"
-          role="button"
-          aria-expanded="false"
-        >
+        <a class="nav-link d-flex justify-content-between align-items-center py-3" data-bs-toggle="collapse"
+          href="#mobileCompanyMenu" role="button" aria-expanded="false">
           Company
           <i class="fa-solid fa-chevron-down nav-chevron"></i>
         </a>
@@ -95,22 +80,15 @@
           {% include "includes/mobile_company_dropdown.html" %}
         </div>
       </li>
-      
+
     </ul>
   </div>
   <div class="w-100 pb-2">
     <div class="col-12">
       <form method="GET" action="{% url 'products' %}" class="position-relative">
-        <i
-          class="fa-solid fa-magnifying-glass position-absolute"
-          style="left: 15px; top: 50%; transform: translateY(-50%); color: #888"
-        ></i>
-        <input
-          class="form-control ps-5 search-input"
-          type="search"
-          placeholder="Search"
-          name="q"
-        />
+        <i class="fa-solid fa-magnifying-glass position-absolute"
+          style="left: 15px; top: 50%; transform: translateY(-50%); color: #888"></i>
+        <input class="form-control ps-5 search-input" type="search" placeholder="Search" name="q">
       </form>
     </div>
   </div>

@@ -9,11 +9,11 @@
 {% block extra_title %}| About Stocka {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -26,17 +26,18 @@
 </section>
 
 <div class="w-100 overflow-hidden">
-    <img src="/media/72740461bebd4c4daf0a726a442a36e6.jpg" 
-        alt="Stocka Concept" 
-        class="w-100 d-block" 
+    <img src="/media/72740461bebd4c4daf0a726a442a36e6.jpg" alt="Stocka Concept" class="w-100 d-block"
         style="height: 80vh; object-fit: cover; object-position: center 25%; vertical-align: middle;">
 </div>
 
 <section class="bg-black text-white py-5">
     <div class="container py-5">
+        <h2 class="display-5 fw-bold mb-4 d-none">A new kind of fashion company</h2>
         <p class="text-white text h1 fw-bold text-uppercase">
-            Stocka isn’t just a shop. It’s a place for smarter fashion.<br><br>We curate styles that are made to last — not just in quality, but in relevance.
-            Every item on Stocka is chosen with longevity in mind, so it can move between owners, moments, and purposes without losing its value.<br><br>Minimal. Considered. Circular by design.
+            Stocka isn’t just a shop. It’s a place for smarter fashion.<br><br>We curate styles that are made to last —
+            not just in quality, but in relevance.
+            Every item on Stocka is chosen with longevity in mind, so it can move between owners, moments, and purposes
+            without losing its value.<br><br>Minimal. Considered. Circular by design.
         </p>
     </div>
 </section>
@@ -51,7 +52,7 @@
         <div class="row g-4">
             <div class="col-12 col-md-4">
                 <div class="bg-white p-4 h-100 shadow-sm border-0 rounded-0">
-                    <h4 class="fw-bold text-uppercase h6 mb-3">Buy New</h4>
+                    <h3 class="fw-bold text-uppercase h6 mb-3">Buy New</h3>
                     <p class="small text-muted mb-0">
                         For pieces you want to keep from day one.<br>
                         Full ownership, full flexibility — fresh from the collection.
@@ -61,7 +62,7 @@
 
             <div class="col-12 col-md-4">
                 <div class="bg-white p-4 h-100 shadow-sm border-0 rounded-0">
-                    <h4 class="fw-bold text-uppercase h6 mb-1">Rent</h4>
+                    <h3 class="fw-bold text-uppercase h6 mb-1">Rent</h3>
                     <span class="d-block x-small text-muted text-uppercase mb-3">Stocka Loop</span>
                     <p class="small text-muted mb-0">
                         For moments, seasons, and style experiments.<br>
@@ -72,7 +73,7 @@
 
             <div class="col-12 col-md-4">
                 <div class="bg-white p-4 h-100 shadow-sm border-0 rounded-0">
-                    <h4 class="fw-bold text-uppercase h6 mb-1">Pre-owned</h4>
+                    <h3 class="fw-bold text-uppercase h6 mb-1">Pre-owned</h3>
                     <span class="d-block x-small text-muted text-uppercase mb-3">Stocka Reuse</span>
                     <p class="small text-muted mb-0">
                         For considered finds with a story.<br>
@@ -83,33 +84,32 @@
         </div>
     </div>
 </section>
-    <div class="container py-5">
-        <div class="row align-items-center g-0 g-md-5">
-            <div class="col-12 col-md-5 mb-4 mb-md-0">
-                <div class="w-100 overflow-hidden" style="line-height: 0;">
-                    <img src="/media/5beac37653324b36a66e4fce281a84f0.jpg" 
-                         alt="Woman in a yellow dress leaning against a red car" 
-                         class="img-fluid d-block w-100" 
-                         style="object-fit: cover; object-position: center;">
-                </div>
+<div class="container py-5">
+    <div class="row align-items-center g-0 g-md-5">
+        <div class="col-12 col-md-5 mb-4 mb-md-0">
+            <div class="w-100 overflow-hidden" style="line-height: 0;">
+                <img src="/media/5beac37653324b36a66e4fce281a84f0.jpg"
+                    alt="Woman in a yellow dress leaning against a red car" class="img-fluid d-block w-100"
+                    style="object-fit: cover; object-position: center;">
             </div>
+        </div>
 
-            <div class="col-12 col-md-7 ps-md-5">
-                <h2 class="h2 text-uppercase mb-4 fw-bold">Fall in love? Keep it.</h2>
-                <div class="pe-lg-5">
-                    <p class="fs-5 mb-4">
-                        If a rented piece becomes part of your everyday, Stocka lets you buy it out.
-                    </p>
-                    <p class="fs-5 mb-4">
-                        Your rental payments are credited toward ownership, so nothing feels wasted — just evolved.
-                    </p>
-                    <p class="h5 text-uppercase fw-bold">
-                        We call this <span class="border-bottom border-2 border-dark">Stocka Keep.</span>
-                    </p>
-                </div>
+        <div class="col-12 col-md-7 ps-md-5">
+            <h2 class="h2 text-uppercase mb-4 fw-bold">Fall in love? Keep it.</h2>
+            <div class="pe-lg-5">
+                <p class="fs-5 mb-4">
+                    If a rented piece becomes part of your everyday, Stocka lets you buy it out.
+                </p>
+                <p class="fs-5 mb-4">
+                    Your rental payments are credited toward ownership, so nothing feels wasted — just evolved.
+                </p>
+                <p class="h5 text-uppercase fw-bold">
+                    We call this <span class="border-bottom border-2 border-dark">Stocka Keep.</span>
+                </p>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
@@ -121,20 +121,20 @@
     console.log("el: " + el);
     console.log("originalText: " + originalText);
 
-    el.innerHTML = originalText.substring(0, 12) + "..."; 
+    el.innerHTML = originalText.substring(0, 12) + "...";
 
     var lastScrollY = 0;
     var ticking = false;
 
-    var type = function(scroll) {
+    var type = function (scroll) {
         el.innerHTML = originalText.substring(0, 12 + scroll);
     };
 
-    var update = function() {
+    var update = function () {
         // Get the position of the element
         var elementOffset = el.getBoundingClientRect().top + window.scrollY;
-        
-        var startPoint = elementOffset - 650; 
+
+        var startPoint = elementOffset - 650;
 
         var relativeScroll = Math.max(0, lastScrollY - startPoint);
 
@@ -144,18 +144,18 @@
         } else {
             el.innerHTML = originalText;
         }
-        
+
         ticking = false;
     };
 
-    var requestTick = function() {
+    var requestTick = function () {
         if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
+            window.requestAnimationFrame(update);
+            ticking = true;
         }
     };
 
-    var onScroll = function() {
+    var onScroll = function () {
         lastScrollY = window.scrollY;
         requestTick();
     };

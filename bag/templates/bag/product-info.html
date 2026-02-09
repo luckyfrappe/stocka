@@ -3,7 +3,8 @@
 <p class="my-0"><strong>Size: </strong>{% if item.size %}{{ item.size|upper }}{% else %}Onesize{% endif %}</p>
 <p class="my-0"><strong>Type: </strong>{{ item.purchase_type|upper }}</p>
 {% if item.purchase_type == 'rent' %}
-    <p class="my-0"><strong>Rental period: </strong>{{ item.rental_period }} week{% if item.rental_period > 1 %}s{% endif %}</p>
-    <p class="my-0"><strong>Start Date: </strong>{{ item.start_date }}</p>
-    <p class="my-0"><strong>End Date: </strong>{{ item.end_date }}</p>
+<p class="my-0"><strong>Rental period: </strong>{{ item.rental_period }} week{% if item.rental_period > 1 %}s{% endif %}
+</p>
+<p class="my-0"><strong>Start Date: </strong>{{ item.start_date }}</p>
+<p class="my-0"><strong>End Date: </strong>{{ item.end_date }}</p>
 {% endif %}

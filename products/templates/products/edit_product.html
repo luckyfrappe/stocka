@@ -55,11 +55,8 @@
                                 <div id="filter-{{ field.name }}" class="collapse" data-bs-parent="#filterAccordion">
                                     <div class="ps-1 small py-1">
 
-                                        <div
-                                            {% if field.name == "attr_brand" %}
-                                                style="max-height: 180px; overflow-y: auto;"
-                                            {% endif %}
-                                        >
+                                        <div {% if field.name == "attr_brand" %}
+                                            style="max-height: 180px; overflow-y: auto;" {% endif %}>
 
                                             <div style="column-count: 2; column-gap: 0.5rem;">
                                                 {{ field }}
@@ -85,22 +82,23 @@
                 <h3>Gallery</h3>
                 <div class="row product-images-scroll g-2 mb-4 mb-lg-0">
                     {% if product.images.all %}
-                        {% for image in product.images.all %}
-                        <div class="col-4 text-center">
-                            <img src="{{ image.image.url }}" class="rounded-lg img-fluid mb-2" alt="{{ product.name }}">
-                            <a href="{% url 'delete_image' image.id %}" class="btn btn-sm btn-outline-danger">
-                                Delete
-                            </a>
-                        </div>
-                        {% endfor %}
+                    {% for image in product.images.all %}
+                    <div class="col-4 text-center">
+                        <img src="{{ image.image.url }}" class="rounded-lg img-fluid mb-2" alt="{{ product.name }}">
+                        <a href="{% url 'delete_image' image.id %}" class="btn btn-sm btn-outline-danger">
+                            Delete
+                        </a>
+                    </div>
+                    {% endfor %}
                     {% else %}
-                        <div class="border rounded-lg p-5 text-center bg-light text-muted">
-                            <i class="fa-solid fa-images fa-3x mb-3"></i>
-                            <p class="mb-1">No images selected yet.</p>
-                            <div class="mt-3 p-2 border-top">
-                                <p class="small text-secondary">You can add additional photos under "Add New Image Below".</p>
-                            </div>
+                    <div class="border rounded-lg p-5 text-center bg-light text-muted">
+                        <i class="fa-solid fa-images fa-3x mb-3"></i>
+                        <p class="mb-1">No images selected yet.</p>
+                        <div class="mt-3 p-2 border-top">
+                            <p class="small text-secondary">You can add additional photos under "Add New Image Below".
+                            </p>
                         </div>
+                    </div>
                     {% endif %}
                 </div>
 
@@ -130,7 +128,7 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

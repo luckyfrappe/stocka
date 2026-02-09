@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from decimal import Decimal
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core.paginator import Paginator
@@ -109,6 +111,12 @@ def all_products(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    discount = Decimal(str(settings.PREOWNED_DISCOUNT_RATE))
+    for product in page_obj:
+        product.preowned_price = (product.retail_price * discount).quantize(
+            Decimal('0.00')
+        )
+
     context = {
         'products': page_obj,
         'search_term': query,
@@ -189,6 +197,11 @@ def product_detail(request, product_id):
         # Default fallback if no size attribute exists
         simulated_sizes = ['Onesize']
 
+    discount = Decimal(str(settings.PREOWNED_DISCOUNT_RATE))
+    preowned_price = (product.retail_price * discount).quantize(
+        Decimal('0.00')
+    )
+
     # Get other tags for display
     product_tags = {}
     for tag in tags:
@@ -203,6 +216,7 @@ def product_detail(request, product_id):
         'product_tags': product_tags,
         'simulated_sizes': simulated_sizes,  # For Buy New / Rent
         'real_size': real_size,  # For Pre-Owned
+        'preowned_price': preowned_price,
     }
 
     return render(request, "products/product_detail.html", context)
