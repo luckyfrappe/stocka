@@ -1,9 +1,19 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import ContactMessageForm
-from django.contrib import messages
 
 
 def contact(request):
+    """
+    Renders the contact page and processes customer inquiry submissions.
+
+    form: `ContactMessageForm`
+
+    **context**:
+    - `form`: instance of `ContactMessageForm` for user input
+
+    template: `contact/contact.html`
+    """
     if request.method == 'POST':
         form = ContactMessageForm(request.POST)
         if form.is_valid():

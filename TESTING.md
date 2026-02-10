@@ -109,6 +109,7 @@ I implemented semantic HTML and ARIA roles to ensure a seamless experience for s
 | **Product Click** | Click a product image | I am taken directly to that product's detail page | ✅ |
 | **Admin Controls** | Click Edit or Delete | Buttons allow quick product updates or removal directly from home | ✅ |
 | **Delete Safety** | Click Delete button | A popup asks "Are you sure?" to prevent accidental deletion | ✅ |
+| **Delete Safety** | Click Delete button on items with active subscriptions | An error message appears preventing deletion to protect active subscriptions | ✅ |
 | **Company Info** | Click Concept or Values | Navigate to pages explaining the brand story and sustainability | ✅ |
 | **Brand Marquee** | Observe the scrolling brand list | The partner brand names (Joseph, Hope, etc.) scroll smoothly without layout breaks. | ✅ |
 

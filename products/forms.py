@@ -1,8 +1,8 @@
 from django import forms
 from .models import (
-    Product,
     AttributeType,
     AttributeValue,
+    Product,
     ProductAttribute,
     ProductImage
 )
@@ -11,6 +11,15 @@ from .models import (
 # AI tools were used to assist with the initial implementation.
 # I reviewed and adapted the code to fit the project.
 class ProductForm(forms.ModelForm):
+    """
+    A dynamic form for managing products and their associated metadata.
+
+    model: `Product`, `ProductAttribute`, `ProductImage`, `AttributeType`, `AttributeValue`
+
+    **context**:
+    - `new_image`: optional field for appending to the product gallery
+    - `attr_{slug}`: dynamically generated choice fields for each attribute category
+    """
     new_image = forms.ImageField(label='Add New Image', required=False)
 
     class Meta:
@@ -18,6 +27,9 @@ class ProductForm(forms.ModelForm):
         exclude = ('time_created',)
 
     def __init__(self, *args, **kwargs):
+        """
+        Dynamically constructs attribute fields based on available AttributeTypes.
+        """
         super().__init__(*args, **kwargs)
 
         # Dynamically create fields per AttributeType
@@ -42,6 +54,9 @@ class ProductForm(forms.ModelForm):
                 )
 
     def save(self, commit=True):
+        """
+        Saves the product instance along with its dynamic attributes and new image.
+        """
         product = super().save(commit=False)
 
         if commit:

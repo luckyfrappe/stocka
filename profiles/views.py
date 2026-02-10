@@ -1,15 +1,26 @@
-from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
-from .forms import UserProfileForm
-
+from django.shortcuts import get_object_or_404, render
 from checkout.models import Order
+from .forms import UserProfileForm
+from .models import UserProfile
 
 
 @login_required
 def profile(request):
-    """ Display the user's profile. """
+    """
+    Displays the user's profile and handles updates to delivery information.
+
+    model: `UserProfile`, `Order`
+    form: `UserProfileForm`
+
+    **context**:
+    - `form`: instance of `UserProfileForm` populated with user data
+    - `orders`: QuerySet of confirmed orders related to the user profile
+    - `on_profile_page`: boolean used to toggle specific UI elements
+
+    template: `profiles/profile.html`
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -37,6 +48,17 @@ def profile(request):
 
 
 def order_history(request, order_number):
+    """
+    Displays a summary of a past order confirmation.
+
+    model: `Order`
+
+    **context**:
+    - `order`: single instance of model `Order`
+    - `from_profile`: boolean indicating the view was accessed via the profile
+
+    template: `checkout/checkout_success.html`
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (

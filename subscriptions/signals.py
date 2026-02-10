@@ -1,16 +1,19 @@
+from datetime import timedelta
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from datetime import timedelta
 from django.utils.dateparse import parse_date
 
-from checkout.models import OrderLineItem, PurchaseType
 from .models import Subscriptions
+from checkout.models import OrderLineItem, PurchaseType
 
 
 @receiver(post_save, sender=OrderLineItem)
 def create_or_update_subscription(sender, instance, created, **kwargs):
     """
-    Handles Subscription creation, extension, and buyout triggers.
+    Handles the lifecycle of a subscription based on order line item triggers.
+
+    model: `OrderLineItem`, `Subscriptions`, `User`
+    Processes new rentals, duration extensions, and product buyouts.
     """
     if not created:
         return

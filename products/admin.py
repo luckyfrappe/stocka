@@ -1,22 +1,29 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import (
-    Product,
     AttributeType,
     AttributeValue,
+    Product,
     ProductAttribute,
     ProductImage
 )
 
+
 # Admin view was written by me and improved by Gemini AI by Google
-
-
 class ProductImageInline(admin.TabularInline):
+    """
+    Inline gallery management for product images.
+
+    model: `ProductImage`
+    """
     model = ProductImage
     extra = 1
     readonly_fields = ('thumbnail',)
 
     def thumbnail(self, instance):
+        """
+        Displays a small image preview within the inline admin rows.
+        """
         if instance.image:
             return format_html(
                 '<img src="{}" style="width: 50px; height: auto;" />',
@@ -25,7 +32,13 @@ class ProductImageInline(admin.TabularInline):
         return ""
 
 
+# ProductAttributeInline was written by Gemini AI by Google
 class ProductAttributeInline(admin.TabularInline):
+    """
+    Inline management for product specifications using the EAV model.
+
+    model: `ProductAttribute`
+    """
     model = ProductAttribute
     extra = 1
     autocomplete_fields = ['attribute_value']
@@ -33,6 +46,15 @@ class ProductAttributeInline(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    """
+    Primary interface for managing the product catalog and inventory.
+
+    model: `Product`
+
+    **fields**:
+    - `list_display`: summary of product identity, pricing, and visuals
+    - `fieldsets`: grouped layout for commercial and metadata organization
+    """
     list_display = (
         'sku',
         'thumbnail',
@@ -61,6 +83,9 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline, ProductAttributeInline]
 
     def thumbnail(self, obj):
+        """
+        Returns a formatted HTML thumbnail for the product list view.
+        """
         primary_img = obj.images.first()
         if primary_img and primary_img.image:
             return format_html(
@@ -74,12 +99,22 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(AttributeType)
 class AttributeTypeAdmin(admin.ModelAdmin):
+    """
+    Interface for defining global specification categories.
+
+    model: `AttributeType`
+    """
     list_display = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(AttributeValue)
 class AttributeValueAdmin(admin.ModelAdmin):
+    """
+    Interface for managing individual values within attribute types.
+
+    model: `AttributeValue`
+    """
     list_display = ('attribute_type', 'value', 'slug')
     list_filter = ('attribute_type',)
     search_fields = ('value',)

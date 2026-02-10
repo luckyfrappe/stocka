@@ -1,13 +1,22 @@
-from django.shortcuts import redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, reverse
 from .models import Wishlist
 from products.models import Product
 
 
 @login_required
 def view_wishlist(request):
-    """ A view to redirect to all_products filtered by wishlist items """
+    """
+    Redirects the user to the products gallery filtered by their saved items.
+
+    model: `Wishlist`
+
+    **context**:
+    - `wishlist_ids`: list of product IDs associated with the user's wishlist
+
+    template: redirects to `products.html` with query parameters
+    """
     wishlist = Wishlist.objects.filter(user=request.user).first()
     redirect_url = request.META.get('HTTP_REFERER', reverse('products'))
 
@@ -26,7 +35,11 @@ def view_wishlist(request):
 
 @login_required
 def add_to_wishlist(request, product_id):
-    """ Add a product to the user's wishlist """
+    """
+    Adds a specific product to the user's wishlist.
+
+    model: `Wishlist`, `Product`
+    """
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
     product = get_object_or_404(Product, id=product_id)
     redirect_url = request.META.get('HTTP_REFERER', reverse('products'))
@@ -45,7 +58,11 @@ def add_to_wishlist(request, product_id):
 
 @login_required
 def remove_from_wishlist(request, product_id):
-    """ Remove a product from the user's wishlist """
+    """
+    Removes a specific product from the user's wishlist.
+
+    model: `Wishlist`, `Product`
+    """
     wishlist = Wishlist.objects.filter(user=request.user).first()
     redirect_url = request.META.get('HTTP_REFERER', reverse('products'))
 

@@ -1,9 +1,12 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
 
 
 class SubscriptionStatus(models.TextChoices):
+    """
+    Defines the possible states of a subscription lifecycle.
+    """
     ACTIVE = 'active', 'Active'
     RETURNED = 'returned', 'Returned'
     BOUGHT_OUT = 'bought_out', 'Bought Out'
@@ -12,6 +15,12 @@ class SubscriptionStatus(models.TextChoices):
 
 
 class Subscriptions(models.Model):
+    """
+    Tracks product rentals and lifecycle status for individual users.
+
+    model: `User`, `Product`, `OrderLineItem`
+    Links a user to a specific product through their checkout line item.
+    """
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
@@ -42,4 +51,7 @@ class Subscriptions(models.Model):
         verbose_name_plural = "Subscriptions"
 
     def __str__(self):
+        """
+        Returns a string representation of the subscription ID and user.
+        """
         return f"Sub {self.id}: {self.user.username} - {self.product.name}"

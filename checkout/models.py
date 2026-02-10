@@ -1,10 +1,10 @@
 import uuid
+from decimal import Decimal
 
+from datetime import timedelta
+from django.conf import settings
 from django.db import models
 from django.db.models import Sum
-from django.conf import settings
-from decimal import Decimal
-from datetime import timedelta
 from django_countries.fields import CountryField
 
 from products.models import Product
@@ -13,6 +13,11 @@ from subscriptions.models import Subscriptions
 
 
 class Order(models.Model):
+    """
+    Stores all primary information for a customer transaction and shipping.
+
+    model: `UserProfile`
+    """
     order_number = models.CharField(max_length=32, null=False, editable=False)
     userprofile = models.ForeignKey(
         UserProfile, on_delete=models.SET_NULL,
@@ -45,14 +50,13 @@ class Order(models.Model):
 
     def _generate_order_number(self):
         """
-        Generate a random, unique order number using UUID
+        Generates a random, unique order number using UUID.
         """
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
         """
-        Update grand total each time a line item is added,
-        accounting for delivery costs.
+        Updates the grand total and delivery costs whenever a line item is modified.
         """
         self.order_total = self.lineitems.aggregate(
             Sum('lineitem_total')
@@ -87,6 +91,9 @@ class Order(models.Model):
 
 
 class PurchaseType(models.TextChoices):
+    """
+    Enumeration of valid transaction types for line items.
+    """
     NEW = 'new', 'New'
     RENT = 'rent', 'Rent'
     PREOWNED = 'preowned', 'Preowned'
@@ -95,6 +102,11 @@ class PurchaseType(models.TextChoices):
 
 
 class OrderLineItem(models.Model):
+    """
+    Represents an individual product variant within an Order.
+
+    model: `Order`, `Product`, `Subscriptions`
+    """
     order = models.ForeignKey(
         Order,
         null=False,

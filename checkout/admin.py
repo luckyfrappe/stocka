@@ -3,11 +3,28 @@ from .models import Order, OrderLineItem
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
+    """
+    Provides an inline interface for OrderLineItems within the Order admin page.
+
+    model: `OrderLineItem`
+    Sets `lineitem_total` to read-only to prevent manual override of calculated prices.
+    """
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """
+    Customizes the admin interface for the Order model.
+
+    Displays customer information, order totals, and payment status.
+    Includes `OrderLineItemAdminInline` to manage individual products within an order.
+
+    model: `Order`
+    **Fields**:
+    - `readonly_fields`: Protects financial and system-generated data (totals, dates, PIDs).
+    - `list_display`: Provides a summary view of orders for quick business reporting.
+    """
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'date',

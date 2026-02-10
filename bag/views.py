@@ -1,23 +1,39 @@
-from django.shortcuts import (
-    render,
-    redirect,
-    reverse,
-    HttpResponse,
-    get_object_or_404
-)
 from django.contrib import messages
+from django.shortcuts import (
+    get_object_or_404,
+    HttpResponse,
+    redirect,
+    render,
+    reverse
+)
 from products.models import Product
 
 
 def view_bag(request):
-    """ A view that renders the bag contents page """
+    """
+    Renders the shopping bag summary page.
 
+    **context**:
+    - Inherits global context from `bag_contents` processor.
+
+    template: `bag/bag.html`
+    """
     return render(request, 'bag/bag.html')
 
 
 # The views below were assisted by Gemini AI tool
 # and modified by the author to fit project needs.
 def add_to_bag(request, item_id):
+    """
+    Adds a product variant to the session bag or updates its quantity.
+
+    model: `Product`
+    
+    **context**:
+    - `bag`: updates the session-based dictionary with item metadata (size, type, period)
+
+    template: redirects to `checkout` for express items or the previous URL
+    """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
@@ -85,6 +101,16 @@ def add_to_bag(request, item_id):
 
 
 def adjust_bag(request, item_id):
+    """
+    Updates the quantity of a specific item variant or removes it if quantity is zero.
+
+    model: `Product`
+
+    **context**:
+    - `bag`: modifies the `item_key` entry within the session dictionary
+
+    template: redirects to `view_bag`
+    """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     item_key = request.POST.get('item_key')  # Received from hidden input
@@ -116,6 +142,16 @@ def adjust_bag(request, item_id):
 
 
 def remove_from_bag(request, item_id):
+    """
+    Removes a specific product variant from the session bag via an AJAX request.
+
+    model: `Product`
+
+    **context**:
+    - `bag`: deletes the variant key from the session dictionary
+
+    template: returns a standard `HttpResponse` status
+    """
     product = get_object_or_404(Product, pk=item_id)
     try:
         item_key = request.POST.get('item_key')

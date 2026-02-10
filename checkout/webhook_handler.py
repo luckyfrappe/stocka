@@ -1,22 +1,32 @@
-from django.http import HttpResponse
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
+import time
 from django.conf import settings
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 
 from .models import Order
 from profiles.models import UserProfile
 
-import time
 
 
 class StripeWH_Handler:
-    """Handle Stripe webhooks"""
+    """
+    Handles Stripe webhook events to ensure database integrity and communication.
+
+    Listens for asynchronous notifications from Stripe to verify transactions
+    independently of the client-side checkout view.
+    """
 
     def __init__(self, request):
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """Send the user a confirmation email"""
+        """
+        Sends a transactional confirmation email to the customer.
+
+        **context**:
+        - `order`: instance of model `Order` used for template data
+        """
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -34,7 +44,7 @@ class StripeWH_Handler:
 
     def handle_event(self, event):
         """
-        Handle a generic/unknown/unexpected webhook event
+        Handles generic or unexpected Stripe webhook events.
         """
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
@@ -42,7 +52,9 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         """
-        Handle the payment_intent.succeeded webhook from Stripe
+        Verifies the order and updates user profile data upon successful payment.
+
+        model: `Order`, `UserProfile`
         """
         # Get the payment intent data from the event
         intent = event.data.object
@@ -123,7 +135,7 @@ class StripeWH_Handler:
 
     def handle_payment_intent_payment_failed(self, event):
         """
-        Handle the payment_intent.payment_failed webhook from Stripe
+        Handles failed payment intent notifications from Stripe.
         """
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',

@@ -1,27 +1,36 @@
-from django.shortcuts import (
-    render,
-    redirect,
-    reverse,
-    get_object_or_404,
-    HttpResponse
-)
-from django.views.decorators.http import require_POST
-from django.contrib import messages
+import json
+
 from django.conf import settings
+from django.contrib import messages
+from django.shortcuts import (
+    get_object_or_404,
+    HttpResponse,
+    redirect,
+    render,
+    reverse
+)
+
+from django.views.decorators.http import require_POST
+import stripe
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+from bag.contexts import bag_contents
 from products.models import Product
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
-from bag.contexts import bag_contents
 
-import stripe
-import json
 
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Caches checkout metadata in the Stripe PaymentIntent for data persistence.
+
+    **context**:
+    - `client_secret`: unique transaction identifier from Stripe
+    - `save_info`: boolean indicating user preference for data retention
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -37,6 +46,19 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    Processes the payment transaction and creates order and line item records.
+
+    model: `Order`, `OrderLineItem`, `Product`, `UserProfile`
+    form: `OrderForm`
+
+    **context**:
+    - `order_form`: instance of `OrderForm` for customer data entry
+    - `stripe_public_key`: credential for Stripe.js integration
+    - `client_secret`: key used to confirm the payment on the client side
+
+    template: `checkout/checkout.html`
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -159,7 +181,15 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handle successful checkouts
+    Renders the order confirmation page and finalizes profile data.
+
+    model: `Order`, `UserProfile`
+    form: `UserProfileForm`
+
+    **context**:
+    - `order`: specific instance of model `Order` for display
+
+    template: `checkout/checkout_success.html`
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)

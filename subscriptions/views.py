@@ -1,16 +1,22 @@
 from django.contrib import messages
-from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
-from django.db.models import Case, When, Value, IntegerField
+from django.db.models import Case, IntegerField, Value, When
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Subscriptions
 
 
 @login_required
 def subscriptions_list(request):
     """
-    Displays the user's subscription history with performance optimization.
+    Displays a paginated list of the user's current and past subscriptions.
+
+    model: `Subscriptions`
+
+    **context**:
+    - `subscriptions`: `Page` object containing `Subscriptions` instances with calculated buyout prices
+
+    template: `subscriptions/subscriptions.html`
     """
     user_subscriptions = Subscriptions.objects.filter(
         user=request.user
@@ -46,10 +52,12 @@ def subscriptions_list(request):
 
     return render(request, 'subscriptions/subscriptions.html', context)
 
-
+@login_required
 def mark_as_returned(request, subscription_id):
     """
-    Marks a subscription as returned.
+    Updates the status of a specific subscription to returned.
+
+    model: `Subscriptions`
     """
     subscriptions = get_object_or_404(
         Subscriptions,
@@ -63,10 +71,9 @@ def mark_as_returned(request, subscription_id):
 
 def mark_as_bought_out(request, subscription_id):
     """
-    Marks a subscription as bought out if buy out is price is 0.
-    Checks the buyout price on backend to prevent any manipulation
-    from the frontend. If buyout price is above 0,
-    redirects to subscriptions page without making any changes.
+    Updates a subscription status to bought out after validating the buyout price.
+
+    model: `Subscriptions`
     """
     subscriptions = get_object_or_404(
         Subscriptions,

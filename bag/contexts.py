@@ -9,6 +9,22 @@ from subscriptions.models import Subscriptions
 # This context processor was simplified and
 # modified with help from Gemini AI tool to fit project needs.
 def bag_contents(request):
+    """
+    Calculates shopping bag totals, delivery charges, and item metadata globally.
+
+    model: `Product`, `Subscriptions`
+    
+    **context**:
+    - `bag_items`: list of dictionaries containing product data and rental metadata
+    - `total`: cumulative cost of items before delivery
+    - `product_count`: total quantity of items in the bag
+    - `delivery`: calculated shipping cost
+    - `free_delivery_delta`: remaining spend required for free shipping
+    - `free_delivery_threshold`: minimum spend for free shipping
+    - `grand_total`: final total including delivery
+
+    template: available globally via `settings.TEMPLATES`
+    """
     bag_items = []
     total = 0
     product_count = 0

@@ -1,17 +1,24 @@
-from django.http import HttpResponse
 from django.conf import settings
-from django.views.decorators.http import require_POST
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+import stripe
 
 from checkout.webhook_handler import StripeWH_Handler
-
-import stripe
 
 
 @require_POST
 @csrf_exempt
 def webhook(request):
-    """Listen for webhooks from Stripe"""
+    """
+    Gateway for receiving and validating server-to-server notifications from Stripe.
+
+    **context**:
+    - `wh_secret`: unique signing secret used to verify event authenticity
+    - `event_map`: dictionary routing Stripe events to specific handler methods
+
+    template: N/A
+    """
     print("Webhook received")
     # Setup
     wh_secret = settings.STRIPE_WH_SECRET

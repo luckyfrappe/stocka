@@ -2,6 +2,11 @@ from django.db import models
 
 
 class AttributeType(models.Model):
+    """
+    Defines categories for product specifications.
+
+    Used to group specific values such as 'Brand', 'Color', or 'Material'.
+    """
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
 
@@ -10,6 +15,11 @@ class AttributeType(models.Model):
 
 
 class AttributeValue(models.Model):
+    """
+    Stores specific values for a given AttributeType.
+
+    model: `AttributeType`
+    """
     attribute_type = models.ForeignKey(
         AttributeType,
         on_delete=models.CASCADE,
@@ -26,6 +36,11 @@ class AttributeValue(models.Model):
 
 
 class Product(models.Model):
+    """
+    The central entity representing a stockable item in the inventory.
+
+    model: `ProductAttribute`, `ProductImage`
+    """
     sku = models.CharField(max_length=255, unique=True)  # Maps to 'id' in CSV
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -38,6 +53,11 @@ class Product(models.Model):
 
 
 class ProductAttribute(models.Model):
+    """
+    The link table connecting Products to their specific AttributeValues.
+
+    model: `Product`, `AttributeValue`
+    """
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
@@ -56,6 +76,11 @@ class ProductAttribute(models.Model):
 
 
 class ProductImage(models.Model):
+    """
+    Manages the visual gallery for each Product.
+
+    model: `Product`
+    """
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,

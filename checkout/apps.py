@@ -6,4 +6,7 @@ class CheckoutConfig(AppConfig):
     name = 'checkout'
 
     def ready(self):
+        """
+        Connects signal receivers when the app is ready.
+        """
         import checkout.signals  # noqa

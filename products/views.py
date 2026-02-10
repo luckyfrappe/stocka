@@ -1,26 +1,35 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib import messages
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from decimal import Decimal
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404, redirect, render, reverse
+from .forms import ProductForm
 from .models import (
+    AttributeType,
     AttributeValue,
     Product,
-    ProductImage,
-    AttributeType
+    ProductImage
 )
 from wishlist.models import Wishlist
-from .forms import ProductForm
-
-# Create your views here.
 
 
 def all_products(request):
-    """ A view to show all products, including sorting and search queries """
+    """
+    Primary catalog view for browsing, searching, and filtering products.
 
+    model: `Product`, `AttributeType`, `AttributeValue`
+
+    **context**:
+    - `products`: paginated list of product instances
+    - `search_term`: the raw search query string
+    - `current_attributes`: active attribute filters applied to the view
+    - `all_attribute_types`: global categories for the filtering sidebar
+
+    template: `products/products.html`
+    """
     products = Product.objects.prefetch_related(
         'attributes__attribute_value__attribute_type'
     ).all()
@@ -131,7 +140,19 @@ def all_products(request):
 
 # Debugged with help from Gemini (AI tool)
 def product_detail(request, product_id):
-    """ A view to show individual product details """
+    """
+    Renders the comprehensive detail page for a specific product.
+
+    model: `Product`, `Wishlist`
+
+    **context**:
+    - `product`: single instance of model `Product`
+    - `wishlist`: the user's wishlist record
+    - `product_tags`: grouped attributes for meta-data display
+    - `simulated_sizes`: calculated size range for rental/new selection
+
+    template: `products/product_detail.html`
+    """
 
     product = get_object_or_404(Product, pk=product_id)
 
@@ -224,7 +245,16 @@ def product_detail(request, product_id):
 
 @login_required
 def add_product(request):
-    """ Add a product to the store """
+    """
+    Facilitates the addition of new inventory items via staff dashboard.
+
+    form: `ProductForm`
+
+    **context**:
+    - `form`: instance of ProductForm for manual entry
+
+    template: `products/add_product.html`
+    """
     if request.user.is_superuser:
         if request.method == 'POST':
             form = ProductForm(request.POST, request.FILES)
@@ -255,7 +285,18 @@ def add_product(request):
 # I reviewed and adapted the code to fit the project.
 @login_required
 def edit_product(request, product_id):
-    """ Edit a product in the store """
+    """
+    Enables modification of existing product data and attributes.
+
+    model: `Product`
+    form: `ProductForm`
+
+    **context**:
+    - `product`: the product instance being edited
+    - `form`: prepopulated instance of ProductForm
+
+    template: `products/edit_product.html`
+    """
     if request.user.is_superuser:
         product = get_object_or_404(Product, pk=product_id)
         if request.method == 'POST':
@@ -287,7 +328,11 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_image(request, image_id):
-    """ Delete a specific product image """
+    """
+    Removes a specific image from a product's gallery.
+
+    model: `ProductImage`
+    """
     if request.user.is_superuser:
         image = get_object_or_404(ProductImage, pk=image_id)
         product_id = image.product.id
@@ -305,7 +350,11 @@ def delete_image(request, image_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ Delete a product from the store """
+    """
+    Removes a product from the database with safety checks for active contracts.
+
+    model: `Product`
+    """
     redirect_url = request.META.get('HTTP_REFERER', reverse('products'))
     # Check if someone has the product in their subscription
     if Product.objects.filter(id=product_id, subscriptions__isnull=False).exists():

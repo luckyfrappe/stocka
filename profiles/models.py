@@ -1,15 +1,16 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
 from django_countries.fields import CountryField
 
 
 class UserProfile(models.Model):
     """
-    A user profile model for maintaining default
-    delivery information and order history
+    Maintains default delivery information and order history for a user.
+
+    model: `User` (OneToOneField)
+    Fields include full name, phone number, full address, and marketing preferences.
     """
     user = models.OneToOneField(
         User,
@@ -66,7 +67,10 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_userprofile(sender, instance, created, **kwargs):
     """
-    Create or update the user profile
+    Automatically creates or updates a UserProfile whenever a User instance is saved.
+
+    model: `User`, `UserProfile`
+    Ensures a profile exists for every registered user via signals.
     """
     if created:
         UserProfile.objects.create(user=instance)

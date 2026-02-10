@@ -6,4 +6,7 @@ class SubscriptionsConfig(AppConfig):
     name = 'subscriptions'
 
     def ready(self):
+        """
+        Connects signal receivers when the app is ready.
+        """
         import subscriptions.signals  # noqa: F401

@@ -1,18 +1,17 @@
-from django.shortcuts import render, Http404
+from django.shortcuts import Http404, render
 from products.models import AttributeValue, Product
 
 
 def index(request):
     """
-    Displays the homepage.
+    Renders the primary homepage with curated product collections and brand partners.
 
-    model: `AttributeValue` - brands
-    model: `Product` - products
+    model: `AttributeValue`, `Product`
 
-    **context**
-    - `brands`: brands to show on homepage
-    - `spring_items`: spring collection products to show on homepage
-    - `everyday_items`: everyday essentials products to show on homepage
+    **context**:
+    - `brands`: randomized selection of brand attributes
+    - `spring_items`: products tagged with the 'spring' attribute
+    - `everyday_items`: products tagged with the 'everyday' attribute
 
     template: `home/index.html`
     """
@@ -43,7 +42,16 @@ def index(request):
 # A single view to handle all brand/legal pages
 # Scallable solution providedby Gemini AI tool
 def info_pages(request, page_name):
-    """ A single view to handle all brand/legal pages with a safety check """
+    """
+    A dynamic router for brand, legal, and static information pages.
+
+    model: `AttributeValue`
+
+    **context**:
+    - `brands`: list of brand attributes for specific marketing pages
+
+    template: `home/{page_name}.html`
+    """
     template_path = f'home/{page_name}.html'
 
     if page_name == 'values':

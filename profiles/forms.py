@@ -3,14 +3,19 @@ from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    Form for users to update their profile information and delivery preferences.
+
+    model: `UserProfile`
+    Used in the profile view to manage default shipping details.
+    """
     class Meta:
         model = UserProfile
         exclude = ('user',)
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        Initializes the form with custom placeholders, CSS classes, and field styling.
         """
         super().__init__(*args, **kwargs)
         placeholders = {
