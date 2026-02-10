@@ -306,11 +306,19 @@ def delete_image(request, image_id):
 @login_required
 def delete_product(request, product_id):
     """ Delete a product from the store """
+    redirect_url = request.META.get('HTTP_REFERER', reverse('products'))
+    # Check if someone has the product in their subscription
+    if Product.objects.filter(id=product_id, subscriptions__isnull=False).exists():
+        messages.error(
+            request,
+            'Cannot delete product. It is currently in active subscriptions.'
+        )
+        return redirect(redirect_url)
     if request.user.is_superuser:
         product = get_object_or_404(Product, pk=product_id)
         product.delete()
         messages.success(request, 'Product deleted!')
-        return redirect(reverse('products'))
+        return redirect(redirect_url)
     else:
         messages.error(
             request,

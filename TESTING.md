@@ -272,6 +272,31 @@ I implemented semantic HTML and ARIA roles to ensure a seamless experience for s
 | **Password Reset** | Submit "Forgot Password" request | A secure reset link is sent to the registered email address. | ✅ |
 | **Validation** | Enter an incorrect password | System displays a clear error message: "Username and password do not match." | ✅ |
 
+**Product Listing Creation Test**
+
+| Section | Test Action | Expected Result | Pass/Fail |
+| :--- | :--- | :--- | :--- |
+| **Product Description** | Type a name and detailed description for the item | Text appears clearly in the boxes. | ✅ |
+| **Pricing Entry** | Enter a price (e.g., 500) | The system accepts the number. | ✅ |
+| **Invalid Price Check** | Try to enter letters (like "abc") into the price box | The system prevents this. | ✅ |
+| **Image Upload** | Click to upload a single product photo from your computer | The file is attached, and the file name is visible next to the button. | ✅ |
+| **Material Tags** | Click the "Select Attributes" or "Material" dropdown | The list opens to show options like Cotton, Wool, and Silk. | ✅ |
+| **Tag Selection** | Check the boxes for "Cotton" and "Viscose" | Both boxes remain checked (allowing multiple materials to be selected). | ✅ |
+| **Save Product** | Click the "Add Product" button | The page loads, and the new product is saved to the inventory. User redirected to the new product page. | ✅ |
+
+**Product Editing Test**
+
+| Section | Test Action | Expected Result | Pass/Fail |
+| :--- | :--- | :--- | :--- |
+| **Verify Product** | Open the edit page for "Ginger Spice Leopard Knit" | A notification confirms you are editing this specific product. | ✅ |
+| **Update Description** | Change the existing description text | You can delete the old text and type in new details successfully. | ✅ |
+| **Update Price** | Change the price to a new amount | The box accepts the new number. | ✅ |
+| **Change Image** | Upload a new photo | The new file is attached. | ✅ |
+| **Delete Image** | Remove a selected photo by clicking the delete button underneath the image preview | The image is removed from the product listing. | ✅ |
+| **Material Tags** | Open "Change Attributes" and uncheck "Synthetic" | The checkmark is removed from "Synthetic". | ✅ |
+| **New Tag Selection** | Select a new material (e.g., "Cotton") | The checkmark appears next to "Cotton" while "Synthetic" remains unchecked. | ✅ |
+| **Save Changes** | Click the "Save Changes" button | The page saves changes and the product is updated in the shop. | ✅ |
+
 **Browser & Mobile Device Testing**
 Testing Scope:
 * **Browsers:** Chrome, Safari, Firefox, and Edge.

@@ -163,7 +163,7 @@ A clean, informative about page that highlights the brand's mission.
 
 <details>
 
-<summary>How it works page</summary>
+<summary>Concept page</summary>
 
 A step-by-step guide explaining the process of buying, renting, and purchasing pre-owned items. 
 ![Desktop Home Page](documentation/images/wireframes/desktop-how.png)
@@ -397,7 +397,7 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
     - Shop
       - Browse All
       - Categories
-    - How It Works
+    - Concept
     - Company
       - About
       - Values
@@ -433,11 +433,11 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
   - Profile management
   - View order & rental history
 - Footer links duplicated for easy access:
-  - Home, Shop, About, How It Works, Contact, FAQs, Returns & Refunds, Privacy, Terms of Service
+  - Home, Shop, About, Concept, Contact, FAQs, Returns & Refunds, Privacy, Terms of Service
 - Notifications for user actions (success, error messages)
 - Custom 404 and 500 error pages with return-to-home buttons
-- How It Works page explaining buying, renting, and buyout processes
-- Accordion sections & scroll spy for FAQs / How It Works pages
+- Concept page explaining buying, renting, and buyout processes
+- Side bar for Info / Concept pages
 - Dynamic sustainability image stays fixed on page
 - Filters for browse/shop page remain sticky
 
@@ -455,6 +455,9 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 | Add items to bag | ⚠️ Only new and pre-owned items | ✅ Can add items |
 | Favorites / wishlist | ⚠️ Prompted to log in | ✅ Can add, view & manage |
 | Rent items | ⚠️ Prompted to log in | ✅ Can rent |
+| Add products | ⚠️ Not visible for guests or registered users | ⚠️ Visible to admins only |
+| Edit products | ⚠️ Not visible for guests or registered users | ⚠️ Visible to admins only |
+| Delete products | ⚠️ Not visible for guests or registered users | ⚠️ Visible to admins only |
 | Buy new items | ✅ Can purchase | ✅ Can purchase |
 | Buy pre-owned items | ✅ Can purchase | ✅ Can purchase |
 | Extend active rentals | ❌ Not allowed | ✅ Can extend |
@@ -463,15 +466,14 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 | Checkout (Stripe test mode) | ✅ Can checkout | ✅ Can checkout |
 | Thank you / order confirmation page | ✅ Viewable after checkout | ✅ Viewable after checkout |
 | User account pages (auth) | ❌ Not accessible | ✅ Login, logout, password reset |
+| User registration (auth) | ✅ Fully accessible | ❌ Not accessible |
 | My profile | ❌ Not accessible | ✅ View & manage profile |
 | View order & rental history | ❌ Not accessible | ✅ Can view history |
 | Manage subscriptions | ❌ Not accessible | ✅ Available to subscribed users |
-| Leave a comment | ⚠️ Prompted to log in | ✅ CRUD functionality |
-| How It Works page | ✅ Fully accessible | ✅ Fully accessible |
+| Concept page | ✅ Fully accessible | ✅ Fully accessible |
 | Sustainability page | ✅ Fully accessible | ✅ Fully accessible |
 | Values page | ✅ Fully accessible | ✅ Fully accessible |
 | Returns & Refunds page | ✅ Fully accessible | ✅ Fully accessible |
-| FAQs page | ✅ Fully accessible | ✅ Fully accessible |
 | Contact page | ✅ Fully accessible | ✅ Fully accessible |
 | Privacy Policy page | ✅ Fully accessible | ✅ Fully accessible |
 | Terms of Service page | ✅ Fully accessible | ✅ Fully accessible |
@@ -506,7 +508,7 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **Bag drawer** — Quick view of selected items
 - **Profile** — User details, order history, rental overview  
 - **Subscriptions** — Active and past subscription management  
-- **How It Works** — Explanation of buying, renting, buyout flows, scroll spy  
+- **Concept** — Explanation of buying, renting, buyout flows 
 - **Sustainability** — Circular fashion principles, fixed dynamic image  
 - **About** — Brand story and mission  
 - **Values** — Brand values and vision  
