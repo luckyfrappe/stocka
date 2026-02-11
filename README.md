@@ -384,6 +384,14 @@ Restored accurate creation dates for all 15,649 products, enabling correct “Ne
 
 </details>
 
+<details>
+
+<summary>Data Architecture & Integrity</summary>
+
+The product database is structured as a flat-file inventory system, mirroring the source outfits.csv data. In this model, every physical item is treated as a unique entity with its own SKU, even if they share the same product name. This approach was intended to maintain 1:1 traceability of rental assets. However, in current state it is used as product catalog only and in the catalog view, I utilized PostgreSQL’s .distinct('name') method to group identical items, preventing visual clutter. This does not reflect actual stock levels or availability for specific sizes for new and rentals. Future iterations will involve refactoring into a Parent-Child (Product-Variant) model to better handle stock and size availability.
+
+</details>
+
 ## Features
 
 This website uses CRUD for some features (Create, Read, Update, Delete) to manage products and favorites.
@@ -535,6 +543,11 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - Better express item handling as separate flow instead of blocking all other items in bag
 - Divide subscriptions page into active and past subscriptions for better UX
 - Add sorting options to subscriptions page (newest, oldest, product name, overdue, etc.)
+- A known limitation of the current prototype is the disconnect between the simulated size selection and actual stock availability for specific SKUs. A future refactoring of the database into a Parent-Child relationship (Product-Variant model). 
+
+This would involve:
+Product Model: Housing global attributes (description, base imagery).
+Variant Model: Housing specific SKU data (exact size, availability, and physical condition for rentals/pre-owned items).
 
 ### Accessibility Considerations
 
