@@ -51,7 +51,7 @@
     </div>
 
     <div class="col-12 d-grid gap-2">
-        <a href="{{ request.META.HTTP_REFERER|default:request.build_absolute_uri }}" class="btn btn-outline-dark text-uppercase py-2 mt-2 x-small">
+        <a href="{% url 'products' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="btn btn-outline-dark text-uppercase py-2 mt-2 x-small">
             <i class="fas fa-chevron-left me-2"></i>Keep Shopping
         </a>
     </div>

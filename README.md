@@ -746,6 +746,45 @@ If you are using an S3 bucket for static and media file storage, ensure that you
 
 Ensure that your S3 bucket permissions are configured to allow public read access for static and media files.
 
+**Uploading Static and Media Files**
+If using S3, your static files will be automatically uploaded to the bucket when you run `collectstatic` during deployment or after deploying project on heroku. Ensure that your Django settings are configured to use S3 for static storage.
+
+Media folder can be obtained here https://www.kaggle.com/datasets/kaborg15/vibrent-clothes-rental-dataset?select=images
+
+I found it usefull to upload the media folder to the S3 bucket using the AWS CLI tool for large file uploads. You can do this with the following command:
+
+If MAC os or Linux, you can install AWS CLI using Homebrew:
+
+```bash
+brew install awscli
+```
+
+Verify installation:
+
+```bash
+aws --version
+```
+
+Configure AWS credentials
+
+```bash
+aws configure
+```
+
+You’ll be asked for:
+AWS Access Key ID
+AWS Secret Access Key
+Default region (e.g. eu-north-1)
+Output format → json
+
+Upload media folder to S3 bucket:
+
+```bash
+aws s3 sync media/ s3://boutique-stocka/media/ --acl public-read
+```
+
+
+
 ## Local Development
 
 
