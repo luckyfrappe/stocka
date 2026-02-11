@@ -633,7 +633,7 @@ Steps
 
 **Django Database Configuration**
 
-In your envonmet file, add you database URL as follows:
+In your environment file, add your database URL as follows:
 
 ```bash
 os.environ['DATABASE_URL'] = 'your-database-url-here'
@@ -702,6 +702,38 @@ ALLOWED_HOSTS = [
 ]
 ```
 
+**S3 Bucket Configuration (Optional)**
+If you are using an S3 bucket for static and media file storage, ensure that your AWS credentials and bucket information are set as environment variables in Heroku:
+
+| Key                | Value                         |
+|--------------------|-------------------------------|
+| `USE_AWS`           | Set to any value to enable AWS S3 storage |
+| `AWS_ACCESS_KEY_ID` | Your AWS Access Key ID        |
+| `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Access Key    |
+| `AWS_STORAGE_BUCKET_NAME` | Your S3 Bucket Name          |
+| `AWS_S3_REGION_NAME` | Your S3 Bucket Region (e.g., us-east-1) |
+
+Ensure that your S3 bucket permissions are configured to allow public read access for static and media files.
+
+**If not using S3 or Other storage solutions**, make sure to add key `DISABLE_COLLECTSTATIC` with value `1` to your Heroku Config Vars to prevent Heroku from running `collectstatic` during deployment.
+
+**Stripe Configuration**
+
+Set up Stripe API keys as environment variables in Heroku:
+| Key                 | Value                         |
+|---------------------|-------------------------------|
+| `STRIPE_PUBLIC_KEY`  | Your Stripe Public Key        |
+| `STRIPE_SECRET_KEY`  | Your Stripe Secret Key        |
+| `STRIPE_WH_SECRET`   | Your Stripe Webhook Secret    |
+
+**Webhook Setup**
+To handle Stripe events (e.g., payment confirmations), set up a webhook endpoint in your Heroku app:
+
+1. In the Heroku Dashboard, navigate to your app and select the **Settings** tab.
+2. Click on **Reveal Config Vars** and ensure `STRIPE_WH_SECRET` is set. 
+3. In your Stripe Dashboard, go to **Developers > Webhooks**.
+4. Click **Add endpoint** and enter your Heroku app URL followed by `/checkout/wh/` (e.g., `https://your-heroku-app-name.herokuapp.com/checkout/wh/`).
+
 **Deploying the app**
 
 Assuming you have already initialized a Git repository in your project directory, committed your code and connected GitHub to your Heroku app, you can deploy the project using the following steps:
@@ -720,21 +752,8 @@ Watch the build log as it runs. You can view the build output in the application
 
 Click the Open app button at the top of the page to open your app. You can also access your app at the URL `https://your-heroku-app-name.herokuapp.com/`.
 
-**S3 Bucket Configuration (Optional)**
-If you are using an S3 bucket for static and media file storage, ensure that your AWS credentials and bucket information are set as environment variables in Heroku:
-
-| Key                | Value                         |
-|--------------------|-------------------------------|
-| `USE_AWS`           | Set to any value to enable AWS S3 storage |
-| `AWS_ACCESS_KEY_ID` | Your AWS Access Key ID        |
-| `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Access Key    |
-| `AWS_STORAGE_BUCKET_NAME` | Your S3 Bucket Name          |
-| `AWS_S3_REGION_NAME` | Your S3 Bucket Region (e.g., us-east-1) |
-
-Ensure that your S3 bucket permissions are configured to allow public read access for static and media files.
-
 **Uploading Static and Media Files**
-If using S3, your static files will be automatically uploaded to the bucket when you run `collectstatic` during deployment or after deploying project on heroku. Ensure that your Django settings are configured to use S3 for static storage.
+If using S3, your static files will be automatically uploaded to the bucket after deploying project on heroku.
 
 Media folder can be obtained here https://www.kaggle.com/datasets/kaborg15/vibrent-clothes-rental-dataset?select=images
 
@@ -770,9 +789,9 @@ Upload media folder to S3 bucket:
 aws s3 sync media/ s3://boutique-stocka/media/ --acl public-read
 ```
 
-
-
 ## Local Development
+
+
 
 
 
