@@ -715,6 +715,26 @@ ALLOWED_HOSTS = [
 ]
 ```
 
+**Deploying the app**
+
+Assuming you have already initialized a Git repository in your project directory, committed your code and connected GitHub to your Heroku app, you can deploy the project using the following steps:
+
+On your Heroku app dashboard, select the Deploy tab.
+
+Here, we will connect our Heroku app to our GitHub repository and deploy our project. Scroll to the Deployment method and select GitHub
+
+Search for your repository name, then click Connect
+
+Click the Enable Automatic Deploys button. This will ensure that any time you push new code to your GitHub repository, Heroku will deploy the updated application.
+
+Click Deploy Branch to deploy your project.
+
+Watch the build log as it runs. You can view the build output in the application's Activity tab in the dashboard. This build may take several minutes to complete. If all goes well, the log should look like this when completed.
+
+Click the Open app button at the top of the page to open your app. You can also access your app at the URL `https://your-heroku-app-name.herokuapp.com/`.
+
+
+
 ## Local Development
 
 

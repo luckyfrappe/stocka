@@ -1,1 +1,1 @@
-web: gunicorn stocka.wsgi:application
+web: gunicorn stocka_marketplace.wsgi:application
