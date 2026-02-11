@@ -116,9 +116,6 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
-    if not sort:
-        products = products.order_by('name').distinct('name')
-
     paginator = Paginator(products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
