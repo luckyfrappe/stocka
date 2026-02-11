@@ -33,7 +33,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'nonulcerous-subaquatic-krystyna.ngrok-free.dev',
+    'boutique-stocka-748274888aff.herokuapp.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [

@@ -637,11 +637,12 @@ Steps
 1. Open your Heroku application  
 2. Navigate to the **Settings** tab  
 3. Locate **Config Vars** and click **Reveal Config Vars**  
-4. Add the following variable:
+4. Add the following variables:
 
 | Key            | Value               |
 |----------------|---------------------|
 | `DATABASE_URL` | Your PostgreSQL URL |
+| `SECRET_KEY` | Your Django Secret Key |
 
 **Django Database Configuration**
 
@@ -701,6 +702,18 @@ python manage.py createsuperuser
 
 Follow the on-screen prompts to set your username and password.  
 The email field can be left blank.
+
+**Add allowed hosts**
+
+In your Django settings, add the Heroku app URL to the `ALLOWED_HOSTS` list:
+
+```python
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'your-heroku-app-name.herokuapp.com',
+]
+```
 
 ## Local Development
 
