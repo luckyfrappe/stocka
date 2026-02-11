@@ -2,7 +2,7 @@
 
 <!-- ![alt text](documentation/testing/manual-testing/landing.png "Overview image of Stocka landing page") -->
 
-<!-- 🔗 [**Live site**](https://_to_be_defined_) -->
+🔗 [**Live site**](https://boutique-stocka-748274888aff.herokuapp.com/)
 
 Testing for Stocka is an integral part of the development process to ensure functionality, responsiveness, and usability across all devices.
 

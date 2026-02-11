@@ -1,7 +1,7 @@
 # Stocka — A Modern Fashion Marketplace
 
-Stocka is a modern fashion marketplace exploring alternative ways to engage with fashion.  
-The platform combines **buying new**, **renting**, **buying pre-owned**, and **rental buyouts** into a single, thoughtful shopping experience focused on flexibility, longevity, and reduced waste.
+Stocka is a modern fashion marketplace exploring alternative ways to engage with fashion.
+The platform combines buying new, renting, buying pre-owned, and rental buyouts into a single, thoughtful shopping experience focused on flexibility, longevity, and reduced waste.
 
 Rather than treating fashion as strictly disposable or permanent, Stocka allows customers to choose how they want to engage with each item — whether that means owning it outright, using it temporarily, or keeping it after a rental period.
 
@@ -9,7 +9,7 @@ This project is built as an educational study project, demonstrating how a tradi
 
 <!-- ![alt text](> _To be defined._ "Mockup image of Stocka marketplace on different devices") -->
 
-<!-- 🔗 [**Live site**](https:> _To be defined._) -->
+🔗 [**Live site**](https://boutique-stocka-748274888aff.herokuapp.com/)
 
 Test Checkout (Stripe Sandbox)
 
@@ -106,14 +106,19 @@ All user stories are listed in the [**GitHub Project board**](https://github.com
 
 ### Color Scheme
 
+The color palette for Stocka is inspired by the natural tones of sustainable fashion and the modern, minimalist aesthetic of contemporary design. Brand colors are used strategically to create a cohesive and inviting atmosphere while allowing the products to take center stage. 
 
-
+![Color Palette](documentation/images/design/color-theme.jpeg)
 
 ### Typography
 
+The main font used across the site is **[Tenor Sans](https://fonts.google.com/specimen/Tenor+Sans)**, a versatile typeface that balances modernity with approachability. It is used for headings, navigation, and key UI elements to create a cohesive and stylish look.
+
+The body text is set in **[Inter](https://fonts.google.com/specimen/Inter)**, a clean and highly legible font that ensures readability across all devices and screen sizes. This combination of fonts helps to establish a clear visual hierarchy while maintaining a friendly and accessible tone.
 
 ### Imagery
 
+The design of Stocka focuses on a clean, modern aesthetic that allows the products to shine. The color palette is neutral and minimal, with soft accents to create a welcoming atmosphere. Typography is chosen for readability and style, complementing the overall brand identity.
 
 ### Wireframes
 
@@ -341,15 +346,155 @@ A favorites / wishlist page where users can view and manage their favorite items
 
 </details>
 
-Wireframes will focus on:
-- Product browsing
-- Product detail views
-- Rental / purchase option selection
-- User account flows
-
 ### Database Schema & Data Engineering
 
 ![Database Schema](documentation/images/database/erd-1.png)
+
+1. Product Management & Inventory
+The core tables managing the catalog, including the normalized attribute system for handling complex product variations.
+
+**Model: `Product`**
+The central entity representing a stock item available for rent or sale.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK**, Unique ID |
+| `sku` | CharField | Stock Keeping Unit (Unique Identifier) |
+| `name` | CharField | Product Name |
+| `description` | TextField | Full product details |
+| `retail_price` | DecimalField | Original RRP |
+| `price_per_week` | DecimalField | Rental cost per week |
+| `time_created` | DateTimeField | Timestamp of creation (Patched via script) |
+
+**Model: `ProductImage`**
+Allows multiple images per product with ordering capabilities.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `product` | ForeignKey | Related **Product** |
+| `image` | ImageField | Upload path / URL |
+| `sort_order` | PositiveIntegerField | Determines display order in gallery |
+
+**Model: `AttributeType`**
+Defines the category of a product characteristic (e.g., "Color", "Material", "Size").
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `name` | CharField | Category Name |
+| `slug` | SlugField | URL-friendly identifier |
+
+**Model: `AttributeValue`**
+Specific values within a category (e.g., "Red", "Silk").
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `attribute_type` | ForeignKey | Related **AttributeType** |
+| `value` | CharField | Display value |
+| `slug` | SlugField | URL-friendly identifier |
+
+**Model: `ProductAttribute`**
+Junction table linking Products to their Attributes (Many-to-Many relationship).
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `product` | ForeignKey | Related **Product** |
+| `attribute_value` | ForeignKey | Related **AttributeValue** |
+
+---
+
+2. Commerce & Transactions
+Tables handling the checkout process, order history, and recurring billing logic.
+
+**Model: `Order`**
+Represents a single checkout transaction containing customer details and payment status.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `order_number` | CharField | Unique, generated order reference |
+| `userprofile` | ForeignKey | Linked **UserProfile** (Optional for guest checkout) |
+| `full_name` | CharField | Billing Name |
+| `email` | CharField | Billing Email |
+| `phone_number` | CharField | Contact Number |
+| `country` | CountryField | Standardized Country Code |
+| `town_or_city` | CharField | City |
+| `street_address1` | CharField | Address Line 1 |
+| `street_address2` | CharField | Address Line 2 |
+| `county` | CharField | County/State |
+| `postcode` | CharField | Postal Code |
+| `date` | DateTimeField | Transaction Timestamp |
+| `order_total` | DecimalField | Total amount before taxes and discounts |
+| `original_bag` | DecimalField | Original bag value |
+| `delivery_cost` | DecimalField | Delivery cost |
+| `grand_total` | DecimalField | Final amount charged |
+| `stripe_pid` | CharField | Stripe Payment Intent ID |
+| `payment_confirmed` | BooleanField | True if webhook/callback verified |
+
+**Model: `OrderLineItem`**
+Individual items within an order, capturing the specific state (price/size) at time of purchase.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `order` | ForeignKey | Parent **Order** |
+| `product` | ForeignKey | Related **Product** |
+| `product_size` | CharField | Selected Size |
+| `quantity` | IntegerField | Count purchased |
+| `lineitem_total` | DecimalField | Calculated subtotal |
+| `purchase_type` | CharField | Choices: BUY, RENT, PREOWNED, etc. |
+| `rental_period` | PositiveIntegerField | Duration (if rental) |
+| `start_date` | DateField | Rental start (if applicable) |
+
+**Model: `Subscriptions`**
+Manages active rentals and recurring engagement.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `user` | ForeignKey | Related User |
+| `product` | ForeignKey | Related Product |
+| `order_line_item` | ForeignKey | Source transaction item |
+| `start_date` | DateField | Subscription Start |
+| `end_date` | DateField | Subscription End |
+| `status` | CharField | Choices: active, returned, bought_out, overdue |
+| `duration_weeks` | PositiveIntegerField | Total active weeks |
+
+---
+
+3. User Management & Engagement
+Tables storing user preferences, profiles, and direct communications.
+
+**Model: `UserProfile`**
+Extended profile for storing default delivery information and order history.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `user` | OneToOneField | Links to standard Django User model |
+| `default_full_name` | CharField | Saved default name |
+| `default_phone_number` | CharField | Saved default phone |
+| `default_street_address1`| CharField | Saved default address |
+| `default_street_address2`| CharField | Saved default address line 2 |
+| `default_town_or_city` | CharField | Saved default city |
+| `default_county` | CharField | Saved default county |
+| `default_postcode` | CharField | Saved default postcode |
+| `default_country` | CountryField | Saved default country |
+| `marketing_opt_in` | BooleanField | User consent for emails |
+
+**Model: `Wishlist`**
+Allows users to save products for later.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `user` | ForeignKey | Owner of the wishlist |
+| `product` | ForeignKey | Saved Product |
+
+**Model: `ContactMessage`**
+Stores inquiries from the "Contact Us" form.
+| Field | Type | Notes / Constraints |
+| :--- | :--- | :--- |
+| `id` | AutoField | **PK** |
+| `name` | CharField | Sender Name |
+| `email` | CharField | Sender Email |
+| `subject` | CharField | Message Subject |
+| `message` | TextField | Message Body |
+| `created_at` | DateTimeField | Timestamp of message |
+| `is_resolved` | BooleanField | Admin status flag |
 
 The Stocka database is built to support a flexible, scalable marketplace. While the system is centered around a core `Product` model, the most critical part of the work was transforming and structuring over 18,000 rows of semi-structured data from the Vibrent Kaggle Dataset into a clean, relational format.
 
@@ -422,7 +567,7 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
   - Rental-specific flows (user-facing):
     - Rental period selection at checkout
     - Rental Page Actions:
-      - **Extend Rental**: Opens modal asking how many weeks to extend; quick-select buttons for 1, 2, or 3 weeks; checkout new order; updates rental end date & total price
+      - **Extend Rental**: Opens modal asking how many weeks to extend; quick-select buttons for 1, 2, 3 or 4 weeks; checkout new order; updates rental end date & total price
       - **Mark as Returned**: Opens confirmation modal ("I confirm I have posted the item"); after confirmation, rental is removed from active rentals
       - **Keep Item (Buyout)**: Displays buyout price; allows user to convert rental into purchase
       - **Risk-Free Rental**: Return item within allowed window if size does not suit, no penalty
@@ -551,10 +696,13 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 
 ### Languages Used
 
-- **HTML**
-- **CSS**
-- **JavaScript**
-- **Python**
+**HTML5** – Standard markup language for creating web pages.
+**CSS3** – Style sheet language used for describing the presentation of the web application.
+**JavaScript** – Programming language used for client-side interactivity and handling Stripe elements.
+**Python** – The core programming language used for back-end development with Django.
+**SQL** – Used for managing and querying the PostgreSQL relational database.
+**Django Template Language (DTL)** – A specialized syntax used within HTML files to bridge the back-end Python data with the front-end display.
+**Markdown** – Used for project documentation files.
 
 ### Frameworks, Libraries & Programs Used
 
@@ -570,6 +718,8 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[JSHint](https://jshint.com/)** – JavaScript validation.
 - **[Bootstrap 5](https://getbootstrap.com/)** – CSS framework for responsive, mobile-first front-end development.
 - **[Adobe Color](https://color.adobe.com/)** – Color scheme generation and inspiration.
+- **[Flake8 / Pylint](https://flake8.pycqa.org/)** – Python linting tools used to enforce PEP 8 style guides and code quality.
+- **[Prettier](https://prettier.io/)** – Code formatter ensuring consistent syntax style across the project.
 - **[Prettier](https://prettier.io/)** – Code formatter that ensures consistent style across your JavaScript, CSS, JSON, and other files.
 - **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
 - **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
@@ -577,7 +727,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production.
 - **dj-database-url** – Simplifies database configuration in Django by allowing the database URL to be parsed and set as Django settings.
 - **psycopg2** – Adapter for Python, enabling Django to communicate with a PostgreSQL database.
-- **[WhiteNoise](http://whitenoise.evans.io/en/stable/)** – Simplifies static file serving in Django for production environments.
 - **[PostgreSQL](https://www.postgresql.org/)** – Open-source relational database system used for storing structured application data.  
 - **[django-allauth](https://django-allauth.readthedocs.io/en/latest/)** – Integrated Django app for authentication, registration, and account management with support for social logins and email verification.
 - **[Google Workspace (Gmail SMTP)](https://mail.google.com/)** – Configured to send transactional emails through Gmail’s secure SMTP service, used for account verification, password resets, and contact forms.
@@ -589,8 +738,16 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - **[VS Code](https://code.visualstudio.com/)** – Source-code editor used for writing and editing code.
 - **[Figma](https://www.figma.com/)** – UI/UX design and prototyping tool used for creating wireframes and mockups.
 - **[Kaggle](https://www.kaggle.com/)** – Platform for data science and machine learning, used here to source the Vibrent Clothes Rental Dataset.
-- **[ngrok](https://ngrok.com/)** – Tool to expose local servers to the internet for testing webhooks and external integrations during development.
-
+- **[ngrok](https://ngrok.com/)** – Tool to expose local servers to the internet for testing webhooks and external integrations during 
+development.
+- **[AWS S3](https://aws.amazon.com/s3/)** – Cloud object storage used for hosting static and media files in production.
+- **[AWS IAM](https://aws.amazon.com/iam/)** – Used to manage access keys and permissions for S3 integration.
+- **[AWS CLI](https://aws.amazon.com/cli/)** – Command-line tool used to upload and sync large media files to S3.
+- **[django-storages](https://django-storages.readthedocs.io/)** – Provides custom Django storage backends, used to integrate AWS S3 for static and media file storage.
+- **[boto3](https://boto3.amazonaws.com/)** – AWS SDK for Python, required by `django-storages` to communicate with S3 services.
+- **[dj-database-url](https://pypi.org/project/dj-database-url/)** – Parses database URLs from environment variables and configures Django database settings automatically.
+- **[django-countries](https://pypi.org/project/django-countries/)** – Provided standardized country dropdowns for shipping and billing addresses.
+- **[CI Python Linter](https://pep8ci.herokuapp.com/)** – Continuous integration tool used to enforce PEP 8 style guidelines on Python code.
 
 ## Deployment
 
@@ -734,6 +891,18 @@ To handle Stripe events (e.g., payment confirmations), set up a webhook endpoint
 3. In your Stripe Dashboard, go to **Developers > Webhooks**.
 4. Click **Add endpoint** and enter your Heroku app URL followed by `/checkout/wh/` (e.g., `https://your-heroku-app-name.herokuapp.com/checkout/wh/`).
 
+**Email Configuration (Gmail SMTP)**
+To enable email functionality (e.g., account verification, password resets), configure Gmail SMTP settings in Heroku:
+
+| Key                 | Value                         |
+|---------------------|-------------------------------|
+| `EMAIL_HOST_USER`   | `smtp.gmail.com`              |
+| `EMAIL_HOST_PASS`   | Your Gmail App Password       |
+
+ATTN: For Gmail SMTP, you may need to set up an App Password if you have 2-Step Verification enabled on your Google account. Follow Google's instructions to create an App Password and use it as the value for `EMAIL_HOST_PASS`. 
+
+Stripe webhooks and email functionality will not work properly until these configurations are in place.
+
 **Deploying the app**
 
 Assuming you have already initialized a Git repository in your project directory, committed your code and connected GitHub to your Heroku app, you can deploy the project using the following steps:
@@ -791,22 +960,105 @@ aws s3 sync media/ s3://boutique-stocka/media/ --acl public-read
 
 ## Local Development
 
+To run the project locally, follow the steps below.
 
+**Create a virtual environment**
 
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
+Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+Environment variables
+
+Create a `.env` file in the root of your project and add the following variables:
+
+```bash
+import os
+
+os.environ['DEVELOPMENT'] = 'True'
+os.environ['DATABASE_URL'] = 'your-database-url-here'
+os.environ['EMAIL_HOST_USER'] = 'your-email@gmail.com'
+os.environ['EMAIL_HOST_PASS'] = 'your-email-app-password'
+os.environ['STRIPE_WH_SECRET'] = 'your-stripe-webhook-secret'
+os.environ['STRIPE_PUBLIC_KEY'] = 'your-stripe-public-key'
+os.environ['STRIPE_SECRET_KEY'] = 'your-stripe-secret-key'
+os.environ['SECRET_KEY'] = 'your-django-secret-key'
+
+# If using S3 for static and media file storage, add the following variables:
+os.environ['USE_AWS'] = 'True'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'Your AWS Secret Access Key'
+os.environ['AWS_ACCESS_KEY_ID'] = 'Your AWS Access Key ID'
+os.environ['AWS_STORAGE_BUCKET_NAME'] = 'Your S3 Bucket Name'
+os.environ['AWS_S3_REGION_NAME'] = 'Your S3 Region Name (e.g., us-east-1)'
+```
+
+The setup above includes all necessary environment variables for local development with connected production database, email settings, Stripe API keys and AWS S3 services if applicable. Make sure to replace the placeholder values with your actual credentials and configuration details.
+
+Run migrations
+
+```bash
+python manage.py migrate
+```
+
+Create a superuser
+
+```bash
+python manage.py createsuperuser
+```
+
+Start the development server
+
+```bash
+python manage.py runserver
+```
+
+The application will be available at:
+http://127.0.0.1:8000/
 
 ## Cloning and Forking
 
 ### Cloning
 
+To clone the repository, run:
 
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+```
+
+Navigate into the project directory:
+
+```bash
+cd your-repo-name
+```
 
 ### Forking
 
-
+1. Navigate to the GitHub repository
+2. Click the Fork button in the top-right corner
+3. Clone your forked repository locally using the steps above
 
 ### Local vs Deployed Version
 
+**Local Version**
+
+Used for development and testing
+- Runs with DEBUG=True
+- Uses local environment variables
+- May use SQLite or a local PostgreSQL database if configured
+- Static files served locally
+- Media files might be stored locally or on S3 depending on configuration
+
+**Deployed Version (Heroku)** (is deployed to Heroku and accessible to the public)
+
+- Runs with DEBUG=False
+- Uses Heroku Config Vars
+- Static and media files are served via AWS S3 (if enabled)
 
 ## Agile Development Process
 
@@ -851,6 +1103,8 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 ### Code Used
 
 - **[Typewriter on Scroll](https://codepen.io/calebmisclevitz/pen/MGZVbd)** – Code snippet for typing text effect on about page.
+- [Framer Marketplace - Nivest Template](https://www.framer.com/marketplace/templates/nivest/) – Inspiration for overall design and layout.
+- [GitHub Repository – Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) - Most of the models for order, checkout, backend logic, and the overall site structure were inspired and partially copied from **Boutique Ado** by Code Institute. This project acted as a skeleton for my site, and I adapted and adjusted aspects of it to create the project as it is now. 
 
 
 ### Data Sources
@@ -869,16 +1123,18 @@ The textual content and platform descriptions for this fictional fashion marketp
 #### General Imagery
 
 - **[Woman in blue bralette holding sunglasses putting on her eyes](https://unsplash.com/photos/woman-in-blue-bralette-holding-sunglasses-putting-on-her-eyes-_KaMTEmJnxY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)** – Photo by Atikh Bana on Unsplash.
+
+- **The main images were taken from the Vibrent Clothes Rental Dataset for the website styling.**
       
 
 ### Acknowledgments
 
+I’m grateful to the creators of the Vibrent Clothes Rental Dataset for making this project possible.
 
-Website style and feel were inspired by:
+Thanks to the Django community and the open-source libraries used in this project.
 
-- [Framer Marketplace - Nivest Template](https://www.framer.com/marketplace/templates/nivest/)
-- Most of the models for order, checkout, backend logic, and the overall site structure were inspired by **Boutique Ado** by Code Institute. This project acted as a skeleton for my site, and I adapted and adjusted aspects of it to create the project as it is now. [GitHub Repository – Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1)
+Special thanks to Code Institute for the Boutique Ado walkthrough and ongoing support, which formed the foundation of this work.
 
-This project is developed as part of a full-stack web development course and serves as a learning and experimentation platform.
+Finally, thanks to my closest friend and my cat James for emotional support and occasional “debugging” assistance 🐾
 
 [Back to Top](#stocka-—-a-modern-fashion-marketplace)
