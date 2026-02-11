@@ -733,7 +733,18 @@ Watch the build log as it runs. You can view the build output in the application
 
 Click the Open app button at the top of the page to open your app. You can also access your app at the URL `https://your-heroku-app-name.herokuapp.com/`.
 
+**S3 Bucket Configuration (Optional)**
+If you are using an S3 bucket for static and media file storage, ensure that your AWS credentials and bucket information are set as environment variables in Heroku:
 
+| Key                | Value                         |
+|--------------------|-------------------------------|
+| `USE_AWS`           | Set to any value to enable AWS S3 storage |
+| `AWS_ACCESS_KEY_ID` | Your AWS Access Key ID        |
+| `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Access Key    |
+| `AWS_STORAGE_BUCKET_NAME` | Your S3 Bucket Name          |
+| `AWS_S3_REGION_NAME` | Your S3 Bucket Region (e.g., us-east-1) |
+
+Ensure that your S3 bucket permissions are configured to allow public read access for static and media files.
 
 ## Local Development
 
