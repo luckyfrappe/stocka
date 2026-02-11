@@ -1,0 +1,51 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+.purchase-option {
+    background-color: var(--gray-light);
+    border-radius: var(--rounded-md);
+    margin-bottom: 1rem;
+}
+
+.option-header {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.product-images-scroll img {
+    width: 100%;
+    height: auto; 
+    display: block;
+    border-radius: var(--rounded-lg);
+}
+
+@media (max-width: 767px) {
+    .product-images-scroll {
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .product-images-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .product-images-scroll .img-item {
+        -webkit-box-flex: 0;
+            -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+    }
+}

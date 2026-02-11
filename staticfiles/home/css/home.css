@@ -1,0 +1,120 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/* 1. Dynamic Hero Height */
+.hero-height {
+    height: calc(100vh - 92.99px);
+}
+
+#hero-image-overlay {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.638)), to(rgba(0, 0, 0, 0)));
+    background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.638), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.638), rgba(0, 0, 0, 0));
+}
+
+#hero-title {
+    min-width: 500px;
+    letter-spacing: -2px;
+}
+
+/* 2. Marquee Animation and styling (Scrolling Logos), created by Gemini */
+.marquee-wrapper {
+    background-color: var(--brand-accent-dark); 
+    padding: 25px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* Creating the deep fade-to-black edges */
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 25%; 
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Left side: Pure Black to Transparent */
+.marquee-wrapper::before {
+    left: 0;
+    background: -webkit-gradient(linear, left top, right top, from(#000000), to(rgba(0,0,0,0)));
+    background: -o-linear-gradient(left, #000000 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to right, #000000 0%, rgba(0,0,0,0) 100%);
+}
+
+/* Right side: Transparent to Pure Black */
+.marquee-wrapper::after {
+    right: 0;
+    background: -webkit-gradient(linear, right top, left top, from(#000000), to(rgba(0,0,0,0)));
+    background: -o-linear-gradient(right, #000000 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to left, #000000 0%, rgba(0,0,0,0) 100%);
+}
+
+.marquee-content span {
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-right: 80px;
+    font-size: 1.1rem;
+}
+
+.marquee-content {
+    display: inline-block;
+    padding-left: 0;
+    -webkit-animation: marquee-ltr 30s linear infinite;
+            animation: marquee-ltr 30s linear infinite;
+}
+
+.stocka-loop-card {
+    height: 600px;  
+    background-size: cover; /* Ensures the image fills the card nicely */
+}
+
+.stocka-reuse-card {
+    background-color: var(--brand-secondary);
+}
+
+/* Keyframes for Left to Right scroll*/
+@-webkit-keyframes marquee-ltr {
+    from { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    to { -webkit-transform: translateX(0%); transform: translateX(0%); }
+}
+@keyframes marquee-ltr {
+    from { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    to { -webkit-transform: translateX(0%); transform: translateX(0%); }
+}
+
+.hover-visible {
+    -webkit-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+            transform: translateY(10px);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 992px) {
+    .hero-height {
+        height: calc(100vh - 49.4px);
+    }
+}

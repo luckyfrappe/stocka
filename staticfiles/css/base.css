@@ -1,0 +1,398 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/* Design System */
+html {
+  scroll-behavior: smooth;
+}
+:root {
+    /* Brand Colors */
+    --black: #0D0D0D;
+    --white: #ffffff;
+    --gray-light: #F2F2F2; /* Modern off-white/gray for backgrounds */
+    --gray-dark: #161A1A; 
+    --brand-secondary: #F2B90F; /* Soft gold */
+    --brand-secondary-light: #F2B749; /* Lighter soft gold */
+    --brand-primary: #D93D04; /* Vibrant lime green */
+    --brand-accent: #590202; /* Deep red accent */
+    --brand-accent-dark: #2D0A0A; /* Darker deep red accent */
+    
+    /* Rounding Schema */
+    --rounded-sm: 8px;
+    --rounded-md: 16px;
+    --rounded-lg: 0.5rem; /* For images and large cards */
+    --rounded-full: 9999px; /* For buttons and search bars (Pill style) */
+    
+    /* Spacing */
+    --section-padding: 80px 0;
+    --container-margin: 3%;
+
+    /* Typography */
+    --font-heading: 'Tenor Sans', 'Playfair Display', serif; 
+    
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Global Overrides */
+body {
+    padding-top: 92.99px; /* Height of navbar on mobile */
+    background-color: var(--white);
+    color: var(--black);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* All Text Black & High Contrast */
+a, p, span, div {
+    color: var(--black);
+    text-decoration: none;
+}
+
+/* Headers: All Caps & Bold */
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 400; /* Tenor Sans usually looks best at 400 weight */
+    letter-spacing: 0.05em; /* Tenor Sans loves extra breathing room */
+    margin-bottom: 1.5rem;
+}
+
+h1 { 
+    font-size: 3.5rem; 
+    letter-spacing: -0.01em;
+}
+h2 { 
+    font-size: 2.5rem; 
+}
+h3 { 
+    font-size: 1.75rem; 
+}
+h4 { 
+    font-size: 1.5rem; 
+}
+h5 { 
+    font-size: 1.25rem; 
+}
+h6 { 
+    font-size: 1rem; 
+}
+
+/* from Bulma */
+.icon {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Navbar Link Sizing */
+.navbar-nav .nav-link {
+    font-size: 0.95rem;
+}
+
+/* Navbar Icons (Larger & Consistent) */
+.navbar .nav-link i {
+    font-size: 1.25rem;
+    color: var(--black);
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+    position: relative;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* Registered mark */
+.navbar-brand sup {
+    font-size: 0.45em;
+}
+
+.bag-total {
+    min-width: 62px;
+}
+
+/* All Buttons - Pill Shape */
+button, .btn {
+    border-radius: var(--rounded-full) !important;
+    padding: 12px 24px;
+    font-weight: 600;
+    -webkit-transition: -webkit-transform 0.2s ease;
+    transition: -webkit-transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+button, .btn, input, .form-control {
+    font-family: var(--font-body);
+}
+
+button:active { -webkit-transform: scale(0.96); -ms-transform: scale(0.96); transform: scale(0.96); }
+
+input[type="text"], input[type="search"], .form-control {
+    border-radius: var(--rounded-full) !important;
+}
+
+textarea.form-control {
+    border-radius: var(--rounded-sm) !important;
+}
+
+
+.search-input {
+    border: 1px solid #e0e0e0;
+    background-color: #f5f5f7; 
+    min-width: 150px;
+    font-size: 0.9rem;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    background-color: #ffffff;
+    min-width: 25vw;
+}
+
+/* Consistent Section Spacing */
+section {
+    padding: var(--section-padding);
+}
+
+.container-fluid {
+    padding-left: var(--container-margin) !important;
+    padding-right: var(--container-margin) !important;
+}
+
+.card {
+    border: none;
+    border-radius: var(--rounded-lg);
+    -webkit-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    opacity: 0.85;
+}
+
+/* Shop menu enhancements made with help from Gemini (AI by Google) */
+
+/* Navbar Dropdown Chevron Behavior */
+.nav-chevron {
+    font-size: 0.7rem;
+    -webkit-transition: -webkit-transform 0.2s ease-in-out;
+    transition: -webkit-transform 0.2s ease-in-out;
+    -o-transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+    color: #6c757d; /* text-muted */
+}
+
+[aria-expanded="true"] .nav-chevron {
+    -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+    color: #000; /* Darker color when active */
+}
+
+.x-small {
+    font-size: 0.75rem;
+}
+
+.mega-menu.show {
+    display: block;
+    -webkit-animation: fadeIn 0.1s ease-out;
+            animation: fadeIn 0.1s ease-out;
+    position: relative;
+    top: 46px; /* Height of navbar on desktop */
+}
+
+/* Underline the 'Shop' text when the menu is open */
+.nav-item.dropdown .nav-link.show {
+    color: #000 !important;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+.dropdown-item {
+    padding: 6px 12px !important; 
+    border-radius: var(--rounded-sm);
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.mega-menu .dropdown-item:hover {
+    padding-left: 16px !important;
+}
+
+footer .dropdown-item:hover, .simple-button:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.mega-menu h3, footer h3 {
+    /* Matching the padding of the links */
+    padding-left: 12px;
+}
+
+.new-arrivals-overlay {
+    border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+}
+
+.navbar-collapse {
+    max-height: calc(100vh - 92.99px); /* Viewport height minus navbar height */
+    overflow-y: auto;
+}
+
+.allauth-form-container, .shopping-bag-container, .profile-bag-container, .checkout-container, .success-container, .subscriptions-container, .take-full-screen {
+    min-height: calc(100vh - 49.4px); /* Viewport height minus navbar height on desktop */
+}
+
+.footer-class {
+    background-color: var(--black) !important;
+}
+
+.footer-class footer a, .footer-class footer p, .footer span, .footer-class footer div {
+    color: var(--white) !important;
+}
+
+.footer-class .card {
+    background-color: var(--gray-dark);
+}
+
+.footer-class .card i { 
+    color: var(--brand-primary); 
+    font-size: 1.5rem; 
+} 
+
+.footer-class .card p { 
+    width: 220px; 
+}
+
+.btt-button {
+    background-color: var(--brand-secondary-light);
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    z-index: 9999;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.toast-container {
+    z-index: 10000; 
+    pointer-events: none;
+    top: 100px !important; /* Mobile: Navbar (92.99px) + padding */
+}
+
+/* The Toast Body */
+.toast {
+    pointer-events: auto;
+    background-color: var(--white);
+    border: none;
+    border-radius: var(--rounded-lg);
+    -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+    width: 320px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/* The Status Strip (Capper) */
+.toast-capper {
+    height: 4px;
+    width: 100%;
+}
+
+/* Layout */
+.toast-header {
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem 0.25rem;
+    background: transparent;
+    border: none;
+}
+
+.toast-body {
+    font-family: var(--font-body);
+    color: var(--black);
+    padding: 0.25rem 1rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Close Button Styling */
+.btn-close {
+    width: 0.6em;
+    height: 0.6em;
+    padding: 0.5rem;
+    -webkit-transition: opacity 0.2s ease;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+}
+
+.btn-close:focus {
+    -webkit-box-shadow: none;
+            box-shadow: none; 
+}
+
+.bg-success { background-color: #28a745 !important; }
+.bg-danger  { background-color: var(--brand-primary) !important; } 
+.bg-warning { background-color: var(--brand-secondary) !important; } 
+.bg-info    { background-color: #17a2b8 !important; }
+
+
+/* Fade-in animation for dropdown */
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+    to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
+    to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+/* For large (lg) and up (992px+) */
+@media (min-width: 992px) {
+    body {
+        padding-top: 49.4px; /* Height of navbar on desktop */
+    }
+    .toast-container {
+        top: 60px !important; /* Desktop: Navbar (49.4px) + padding */
+    }
+
+}
