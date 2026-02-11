@@ -4,7 +4,8 @@ from products.models import AttributeValue, Product
 
 def index(request):
     """
-    Renders the primary homepage with curated product collections and brand partners.
+    Renders the primary homepage with curated product collections and
+    brand partners.
 
     model: `AttributeValue`, `Product`
 

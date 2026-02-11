@@ -28,9 +28,10 @@ def add_to_bag(request, item_id):
     Adds a product variant to the session bag or updates its quantity.
 
     model: `Product`
-    
+
     **context**:
-    - `bag`: updates the session-based dictionary with item metadata (size, type, period)
+    - `bag`: updates the session-based dictionary with item metadata
+    (size, type, period)
 
     template: redirects to `checkout` for express items or the previous URL
     """
@@ -102,7 +103,8 @@ def add_to_bag(request, item_id):
 
 def adjust_bag(request, item_id):
     """
-    Updates the quantity of a specific item variant or removes it if quantity is zero.
+    Updates the quantity of a specific item variant or removes it if quantity
+    is zero.
 
     model: `Product`
 
@@ -143,7 +145,8 @@ def adjust_bag(request, item_id):
 
 def remove_from_bag(request, item_id):
     """
-    Removes a specific product variant from the session bag via an AJAX request.
+    Removes a specific product variant from the session bag via
+    an AJAX request.
 
     model: `Product`
 

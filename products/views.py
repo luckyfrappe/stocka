@@ -351,13 +351,18 @@ def delete_image(request, image_id):
 @login_required
 def delete_product(request, product_id):
     """
-    Removes a product from the database with safety checks for active contracts.
+    Removes a product from the database with safety checks for active
+    contracts.
 
     model: `Product`
     """
     redirect_url = request.META.get('HTTP_REFERER', reverse('products'))
+    if redirect_url.endswith(reverse('product_detail', args=[product_id])):
+        redirect_url = reverse('products')
     # Check if someone has the product in their subscription
-    if Product.objects.filter(id=product_id, subscriptions__isnull=False).exists():
+    if Product.objects.filter(
+        id=product_id, subscriptions__isnull=False
+    ).exists():
         messages.error(
             request,
             'Cannot delete product. It is currently in active subscriptions.'

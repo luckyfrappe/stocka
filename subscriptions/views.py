@@ -14,7 +14,8 @@ def subscriptions_list(request):
     model: `Subscriptions`
 
     **context**:
-    - `subscriptions`: `Page` object containing `Subscriptions` instances with calculated buyout prices
+    - `subscriptions`: `Page` object containing `Subscriptions` instances with
+    calculated buyout prices
 
     template: `subscriptions/subscriptions.html`
     """
@@ -52,6 +53,7 @@ def subscriptions_list(request):
 
     return render(request, 'subscriptions/subscriptions.html', context)
 
+
 @login_required
 def mark_as_returned(request, subscription_id):
     """
@@ -71,7 +73,8 @@ def mark_as_returned(request, subscription_id):
 
 def mark_as_bought_out(request, subscription_id):
     """
-    Updates a subscription status to bought out after validating the buyout price.
+    Updates a subscription status to bought out after validating
+    the buyout price.
 
     model: `Subscriptions`
     """

@@ -12,7 +12,7 @@ def import_data():
     current_dir = os.getcwd()
     print(f"Current Working Directory: {current_dir}")
 
-    product_path = os.path.join(current_dir, 'dataset', 'outfits.csv')
+    product_path = os.path.join(current_dir,'dataset', 'outfits.csv')
     image_path = os.path.join(current_dir, 'dataset', 'picture_triplets.csv')
 
     print(f"Checking for Product CSV at: {product_path}")
@@ -113,8 +113,7 @@ def import_data():
                             product=product,
                             image=img['file'],
                             defaults={
-                                'sort_order': img['order'],
-                                'is_primary': (img['order'] == 0)
+                                'sort_order': img['order']
                             }
                         )
 

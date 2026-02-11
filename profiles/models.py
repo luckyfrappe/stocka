@@ -10,7 +10,8 @@ class UserProfile(models.Model):
     Maintains default delivery information and order history for a user.
 
     model: `User` (OneToOneField)
-    Fields include full name, phone number, full address, and marketing preferences.
+    Fields include full name, phone number, full address, and marketing
+    preferences.
     """
     user = models.OneToOneField(
         User,
@@ -67,7 +68,8 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_or_update_userprofile(sender, instance, created, **kwargs):
     """
-    Automatically creates or updates a UserProfile whenever a User instance is saved.
+    Automatically creates or updates a UserProfile whenever a
+    User instance is saved.
 
     model: `User`, `UserProfile`
     Ensures a profile exists for every registered user via signals.

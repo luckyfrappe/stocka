@@ -6,7 +6,8 @@ from .models import Subscriptions
 @admin.register(Subscriptions)
 class SubscriptionsAdmin(admin.ModelAdmin):
     """
-    Customizes the admin interface for managing active and past customer subscriptions.
+    Customizes the admin interface for managing active and
+    past customer subscriptions.
 
     model: `Subscriptions`
     """

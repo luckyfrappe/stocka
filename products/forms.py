@@ -14,11 +14,13 @@ class ProductForm(forms.ModelForm):
     """
     A dynamic form for managing products and their associated metadata.
 
-    model: `Product`, `ProductAttribute`, `ProductImage`, `AttributeType`, `AttributeValue`
+    model: `Product`, `ProductAttribute`, `ProductImage`, `AttributeType`,
+    `AttributeValue`
 
     **context**:
     - `new_image`: optional field for appending to the product gallery
-    - `attr_{slug}`: dynamically generated choice fields for each attribute category
+    - `attr_{slug}`: dynamically generated choice fields for each attribute
+    category
     """
     new_image = forms.ImageField(label='Add New Image', required=False)
 
@@ -28,7 +30,8 @@ class ProductForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Dynamically constructs attribute fields based on available AttributeTypes.
+        Dynamically constructs attribute fields based on available
+        AttributeTypes.
         """
         super().__init__(*args, **kwargs)
 
@@ -55,7 +58,8 @@ class ProductForm(forms.ModelForm):
 
     def save(self, commit=True):
         """
-        Saves the product instance along with its dynamic attributes and new image.
+        Saves the product instance along with its dynamic attributes and
+        new image.
         """
         product = super().save(commit=False)
 

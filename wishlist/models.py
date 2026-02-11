@@ -3,7 +3,8 @@ from django.db import models
 
 class Wishlist(models.Model):
     """
-    Represents a collection of products saved by a user for future consideration.
+    Represents a collection of products saved by a user for future
+    consideration.
 
     model: `User` (OneToOneField), `Product` (ManyToManyField)
     """

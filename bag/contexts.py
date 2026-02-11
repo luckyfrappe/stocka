@@ -10,12 +10,14 @@ from subscriptions.models import Subscriptions
 # modified with help from Gemini AI tool to fit project needs.
 def bag_contents(request):
     """
-    Calculates shopping bag totals, delivery charges, and item metadata globally.
+    Calculates shopping bag totals, delivery charges,
+    and item metadata globally.
 
     model: `Product`, `Subscriptions`
-    
+
     **context**:
-    - `bag_items`: list of dictionaries containing product data and rental metadata
+    - `bag_items`: list of dictionaries containing product data
+    and rental metadata
     - `total`: cumulative cost of items before delivery
     - `product_count`: total quantity of items in the bag
     - `delivery`: calculated shipping cost

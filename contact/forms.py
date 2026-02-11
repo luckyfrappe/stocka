@@ -7,7 +7,8 @@ class ContactMessageForm(forms.ModelForm):
     Form for capturing customer inquiries and support requests.
 
     model: `ContactMessage`
-    Used in the contact view to facilitate communication between users and the business.
+    Used in the contact view to facilitate communication between users
+    and the business.
     """
     class Meta:
         model = ContactMessage

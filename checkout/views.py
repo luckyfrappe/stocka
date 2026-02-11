@@ -21,7 +21,6 @@ from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
 
 
-
 @require_POST
 def cache_checkout_data(request):
     """

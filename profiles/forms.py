@@ -4,7 +4,8 @@ from .models import UserProfile
 
 class UserProfileForm(forms.ModelForm):
     """
-    Form for users to update their profile information and delivery preferences.
+    Form for users to update their profile information and delivery
+    preferences.
 
     model: `UserProfile`
     Used in the profile view to manage default shipping details.
@@ -15,7 +16,8 @@ class UserProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Initializes the form with custom placeholders, CSS classes, and field styling.
+        Initializes the form with custom placeholders, CSS classes,
+        and field styling.
         """
         super().__init__(*args, **kwargs)
         placeholders = {

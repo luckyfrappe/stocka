@@ -18,7 +18,8 @@ class OrderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Initializes the form with custom placeholders, CSS classes, and field styling.
+        Initializes the form with custom placeholders, CSS classes,
+        and field styling.
         """
         super().__init__(*args, **kwargs)
         placeholders = {

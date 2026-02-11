@@ -594,7 +594,100 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 
 ## Deployment
 
+**Deployment Guide (Heroku + Django)**
 
+This project is deployed using **Heroku**. Follow the steps below to host and configure the application.
+
+**Create and Configure a Heroku App**
+
+Create a Heroku account  
+If you do not already have a Heroku account, create one first.
+
+- Log in to the Heroku Dashboard:  
+  https://dashboard.heroku.com/
+
+Create a new app  
+1. Click **New** in the top-right corner  
+2. Select **Create new app**
+
+App configuration  
+- **App Name**: Enter a unique name for your project  
+- **Region**: Choose either **United States** or **Europe**
+
+Click **Create app** to finalize.
+
+**Environment Variables (Config Vars)**
+
+To allow the application to communicate with the database, environment variables must be configured in Heroku.
+
+Steps  
+1. Open your Heroku application  
+2. Navigate to the **Settings** tab  
+3. Locate **Config Vars** and click **Reveal Config Vars**  
+4. Add the following variable:
+
+| Key            | Value               |
+|----------------|---------------------|
+| `DATABASE_URL` | Your PostgreSQL URL |
+
+**Django Database Configuration**
+
+In your envonmet file, add you database URL as follows:
+
+```bash
+os.environ['DATABASE_URL'] = 'your-database-url-here'
+```
+
+**Verify Database Connection**
+
+Run the following command:
+
+```bash
+python3 manage.py showmigrations
+```
+
+If the connection is successful, a list of migrations will appear **without any checkmarks**, indicating a fresh database.
+
+---
+
+**Apply Database Migrations**
+
+Migrate all database models to the new database:
+
+```bash
+python3 manage.py migrate
+```
+
+**Primary Data Import**
+
+Populate the database with the core product catalog and metadata, including SKUs, descriptions, pricing, and attribute mapping.
+
+```bash
+python manage.py shell < dataset/import_data.py
+```
+
+Note  
+Due to the large dataset size, this process may take significant time (up to several hours) depending on your database connection.  
+Ensure your system does not enter sleep mode during execution or connection interruptions.
+
+**Time-Based Data Patching**
+
+After the primary import is complete, apply product creation updates to restore accurate timestamps for sorting and filtering purposes.:
+
+```bash
+python manage.py shell < dataset/patch_time.py
+```
+
+**Administrative Access**
+
+Create a superuser to access the Django Admin panel:
+
+```bash
+python manage.py createsuperuser
+```
+
+Follow the on-screen prompts to set your username and password.  
+The email field can be left blank.
 
 ## Local Development
 

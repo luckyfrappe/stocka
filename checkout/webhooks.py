@@ -11,7 +11,8 @@ from checkout.webhook_handler import StripeWH_Handler
 @csrf_exempt
 def webhook(request):
     """
-    Gateway for receiving and validating server-to-server notifications from Stripe.
+    Gateway for receiving and validating server-to-server
+    notifications from Stripe.
 
     **context**:
     - `wh_secret`: unique signing secret used to verify event authenticity

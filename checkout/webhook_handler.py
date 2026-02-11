@@ -8,13 +8,13 @@ from .models import Order
 from profiles.models import UserProfile
 
 
-
 class StripeWH_Handler:
     """
-    Handles Stripe webhook events to ensure database integrity and communication.
+    Handles Stripe webhook events to ensure database integrity and
+    communication.
 
-    Listens for asynchronous notifications from Stripe to verify transactions
-    independently of the client-side checkout view.
+    Listens for asynchronous notifications from Stripe to verify
+    transactions independently of the client-side checkout view.
     """
 
     def __init__(self, request):
@@ -52,7 +52,8 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         """
-        Verifies the order and updates user profile data upon successful payment.
+        Verifies the order and updates user profile data upon successful
+        payment.
 
         model: `Order`, `UserProfile`
         """

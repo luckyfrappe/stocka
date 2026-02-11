@@ -16,7 +16,8 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         """
-        Returns a string representation of the message with status and timestamp.
+        Returns a string representation of the message with status and
+        timestamp.
         """
         return (
             f"{self.name} - {self.subject} - "
