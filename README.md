@@ -7,7 +7,7 @@ Rather than treating fashion as strictly disposable or permanent, Stocka allows 
 
 This project is built as an educational study project, demonstrating how a traditional e-commerce flow can be extended to support rental economies, circular fashion models, and sustainable design principles.
 
-<!-- ![alt text](> _To be defined._ "Mockup image of Stocka marketplace on different devices") -->
+![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
 
 🔗 [**Live site**](https://boutique-stocka-748274888aff.herokuapp.com/)
 
@@ -48,7 +48,7 @@ For more information about Stripe test payments, see the official documentation:
   - [Imagery](#imagery)
   - [Wireframes](#wireframes)
   - [Database Schema & Data Engineering](#database-schema--data-engineering)
-- [Features](#features)
+- [The User Journey](#the-user-journey)
   - [Core Features](#core-features)
   - [Page-Specific Features](#page-specific-features)
   - [Future Implementations](#future-implementations)
@@ -529,63 +529,157 @@ Restored accurate creation dates for all 15,649 products, enabling correct “Ne
 
 </details>
 
-## Features
+## The User Journey
+
+I designed the application to guide users through a circular fashion lifecycle: from discovery to checkout, and finally, to managing their rentals. The user journey is structured to be intuitive and flexible, allowing users to easily explore their options and make informed decisions about how they want to engage with each product.
 
 This website uses CRUD for some features (Create, Read, Update, Delete) to manage products and favorites.
 
-### Core Features
+### Phase 1: Discovery & Navigation
+*The entry point where users understand the brand value and find products.*
 
-- Responsive navigation bar with:
-  - Logo linking to home
-  - Search bar
-  - Links to key pages 
-    - Shop
-      - Browse All
-      - Categories
-    - Concept
-    - Company
-      - About
-      - Values
-      - Sustainability
-      - FAQs
-      - Contact
-  - User account access (login, profile)
-  - Bag icon with item count
-  - Hamburger menu on mobile
-  - Sticky behavior on scroll
-  - Favorites / wishlist access
-- View detailed product pages with:
-  - Multiple images
-  - Description and pricing options
-- Select engagement options per product:
-  - Buy New
-  - Rent (when available)
-  - Buy Pre-Owned (when available)
-- Favorites / wishlist view
-- Shopping bag with add, remove, and quantity adjustment
-- Subscription management (active)
-  - Rental-specific flows (user-facing):
-    - Rental period selection at checkout
-    - Rental Page Actions:
-      - **Extend Rental**: Opens modal asking how many weeks to extend; quick-select buttons for 1, 2, 3 or 4 weeks; checkout new order; updates rental end date & total price
-      - **Mark as Returned**: Opens confirmation modal ("I confirm I have posted the item"); after confirmation, rental is removed from active rentals
-      - **Keep Item (Buyout)**: Displays buyout price; allows user to convert rental into purchase
-      - **Risk-Free Rental**: Return item within allowed window if size does not suit, no penalty
-- Secure checkout using Stripe (test mode only)
-- Order confirmation and thank-you pages
-- User account management:
-  - Login, logout, password reset
-  - Profile management
-  - View order & rental history
-- Footer links duplicated for easy access:
-  - Home, Shop, About, Concept, Contact, FAQs, Returns & Refunds, Privacy, Terms of Service
-- Notifications for user actions (success, error messages)
-- Custom 404 and 500 error pages with return-to-home buttons
-- Concept page explaining buying, renting, and buyout processes
-- Side bar for Info / Concept pages
-- Dynamic sustainability image stays fixed on page
-- Filters for browse/shop page remain sticky
+![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
 
+**Key Interactions:**
+* **Responsive Navigation:** Users can navigate via a sticky navbar that adapts to mobile (hamburger menu) or desktop.
+
+Hero image includes a clear headline and CTA to guide users to the shop.
+
+1. The **Shop** dropdown provides quick access to product categories and featured collections. Categories are mirrored from the attribute system for consistency.
+New arrivals turns query param to filter by creation date. I was inspired by modern e-commerce sites that prioritize ease of navigation and product discovery. At the top level, 3 main tags Men, Women, All Products are shown for quick access. Although website is made only for female products, men section is mostly for gifts to him.
+On mobile device accordions are used for better UX. To save space on screen, only one accordion can be open at a time and the rest are flushed closed.
+![alt text](documentation/images/user-journey/desktop-shop-dropdown.png "Mockup image of Stocka shop dropdown on desktop")
+![alt text](documentation/images/user-journey/mobile-shop-dropdown.png "Mockup image of Stocka shop dropdown on desktop")
+
+2. Concept link in navbar leads to a dedicated page explaining the buying, renting, and pre-owned flows.
+
+3. Company dropdown includes About, Values, Sustainability and Contact pages to build brand trust. On desktop verison there are background images to make it more visually appealing.
+![alt text](documentation/images/user-journey/companies-dropdown.png "Mockup image of Stocka company dropdown on desktop")
+![alt text](documentation/images/user-journey/mobile-companies-dropdown.png "Mockup image of Stocka company dropdown on mobile")
+
+**User Profile Access:** Users can access their profile the navbar. The profile page allows users to manage their personal information, view order history manage rentals.
+
+If guest user, it displays Sign Up and Sign In options. If logged in:
+Product Management link is only visible to admin users and leads to a page where they can add a product.
+My Profile,
+Subscriptions,
+Logout
+
+**Favorites / Wishlist:** A heart icon on product cards and detail pages allows users to view and manage their favorite items. This feature is designed to encourage users to save products they are interested in for later consideration. 
+
+If user is not logged in, clicking the heart icon will prompt them to log in or create an account to access the wishlist feature. Once logged in, users can click the heart icon to add items to their favorites list, which can be accessed from their profile page.
+
+If wishlist is empty, a friendly message encourages users to explore products and add favorites. User redirects back to the original page.
+
+* **Search:** A global search bar allows for quick lookup of products by name or description.
+Search bar expands on click to provide a larger input area and better UX on desktop. On mobile it stretches to full width for easier typing and attached to the bottom of hamburger menu for better accessibility.
+
+![alt text](documentation/images/user-journey/desktop-search.png "Mockup image of Stocka search bar on desktop")
+![alt text](documentation/images/user-journey/desktop-search-expand.png "Mockup image of Stocka search bar on mobile")
+
+![alt text](documentation/images/user-journey/mobile-search-bar.png "Mockup image of Stocka search bar on mobile")
+![alt text](documentation/images/user-journey/mobile-search-bar-expanded.png "Mockup image of Stocka search bar on mobile")
+
+* **Brand Marquee:** A rotating banner on the homepage and Values page shows brands from the actual dataset to build authenticity and connection to real products.
+
+![alt text](documentation/images/user-journey/marquee.png "Mockup image of Stocka brand marquee on different devices")
+
+<details>
+
+<summary>Home page content</summary>
+
+Main content of the home page is to provoke interest and guide users to the shop. Berlow the hero section, there are 6 sections that highlight the core value propositions of the platform. 
+
+1. **Spring collection** — A seasonal collection to entice users to prepare for spring. This sections displays products filtered by the "Spring" tag in the dataset. This is a dynamic section that can be updated with different tags for future seasons or promotions depending on the marketing strategy.
+2. **Stocka Loop banner** - A visual representation of the circular fashion lifecycle.
+3. **Everydyay essentials** — A collection of staple items that are versatile and timeless. This section is filtered by the "Everyday" tag in the dataset, showcasing products that are perfect for daily wear and can be styled in various ways.
+4. **Stocka Reuse banner** - A dynamic banner that highlights the environmental impact of reusing fashion items. On the right side of the banner is a image of smiling woman giving the good vibes of a happy customer. 
+5. **Reviews carousel** - A rotating carousel of customer reviews to build trust and social proof. This section is designed to show real feedback from users, enhancing credibility and encouraging new customers to engage with the platform.
+6. **FAQ section** - A preview of frequently asked questions to address common concerns and guide users to the full FAQ page for more information. (Full FAQ page is not implemented but wireframes have been created for future development.)
+FAQ section uses accordions to keep the layout clean and organized, allowing users to easily find answers to their questions without overwhelming them with information.
+
+**Footer:** The footer includes links to legal pages (Terms of Service, Privacy Policy, Returns & Refunds), contact, concept, FAQ, brand pages (About, Values, Sustainability) and social media icons. The footer is designed to be consistent across all pages, providing easy access to important information and additional resources. It also features 3 main shop links (Men, Women, All Products) for quick navigation.
+
+Social links opens in a new tab to avoid losing the user’s place on the site.
+
+The footer has 4 cards with advantages of shopping with Stocka, eco-friendly packaging; quick shipping, reliable brands and 30 day returns. This section is designed to reinforce the brand's value propositions and build trust with potential customers by highlighting key benefits of shopping with Stocka. Cards are stocking into 2 columns on tablet view and 1 column on mobile devices. 
+
+At the very bottom of the footer, there is a small copyright notice and accepted credit card icons to build trust and provide reassurance about payment security.
+
+![alt text](documentation/images/user-journey/desktop-home-full-page.png "Mockup image of Stocka home page on desktop")
+![alt text](documentation/images/user-journey/mobile-home-full-page.png "Mockup image of Stocka home page on mobile")
+
+</details>
+
+* **Back to top button:** A floating button appears on long pages, allowing users to quickly return to the top of the page. This feature enhances navigation and improves user experience.
+
+### Phase 2: Evaluation & Engagement
+*How users interact with products and decide between Buying vs. Renting.*
+
+![alt text](documentation/images/user-journey/product-detail.png "Mockup image of Stocka product detail page on different devices")
+
+**Key Interactions:**
+* **Dynamic Page Headers:** Depending on the applied filters, the Shop page header updates to reflect the current view (e.g., Products, New Arrivals, Category: Blouses, etc.). If several filters are applied, the header will show Filtered Results to avoid overwhelming the user with too much information. If search query is applied, it will show Search Results for "query" to provide clear feedback on the search action. If search query is applied with filters, it will display a message below "Refining your search for "bo" with selected filters." This dynamic header system is designed to provide users with clear context about their current browsing state, enhancing navigation and helping them understand how their actions are affecting the product display.
+* **Filtering & Sorting:** On the Shop page, users can filter by attributes (color, material, size) and sort by name and price. User can also explore only New Arrivals by toggling the "New Arrivals" filter which sorts products by creation date and displays the latest 100 items. Filters are build dynamically based on the attributes in the dataset, allowing for flexibility and scalability as new products and attributes are added. On mobile devices, filters are accessible via a dedicated button that opens a full-screen filter menu for better usability. The clear buttons allow users to easily reset their filters and start a new search, enhancing the overall user experience and encouraging exploration.
+* **Product Cards:** Each product card displays the name, price, and available options (Buy New, Rent, Buy Pre-Owned). Hovering over a card on desktop zooms in on the image for smoother browsing. Pre-owned price is calculated as a discount off the retail price.
+* **Edit and Delete Buttons:** For admin users, Edit and Delete buttons are visible on product cards, allowing for quick management of inventory directly from the shop page. These buttons are hidden from regular users to prevent unauthorized access to product management features. If user clicks edit button, they are redirected to the product management page where they can update the product information. If user clicks delete button, a confirmation modal appears to prevent accidental deletion of products. This feature is designed to streamline the admin workflow while maintaining security and integrity of the product catalog.
+* **Pagination:** The shop page is paginated to show 20 products per page, with navigation controls to move between pages. This ensures that the page loads quickly and remains user-friendly, even with a large inventory. Pagination controls are designed to be intuitive and accessible on both desktop and mobile devices, allowing users to easily navigate through the product catalog without feeling overwhelmed.
+* **Products count:** The total number of products is displayed at the top of the shop page, providing users with a sense of the breadth of the inventory and encouraging exploration. This count updates dynamically based on applied filters and search queries, giving users real-time feedback on how their actions are affecting the product selection.
+
+<details>
+
+<summary>Products page content</summary>
+
+![alt text](documentation/images/user-journey/products-page.png "Mockup image of Stocka products page on desktop")
+![alt text](documentation/images/user-journey/mobile-products-page.png "Mockup image of Stocka products page on mobile")
+
+* **Flexible Consumption:** On the Product Detail Page, users are presented with a choice:
+    * **Buy New:** Standard purchase.
+    * **Rent:** (Requires Login) Select a rental period.
+    * **Pre-Owned:** Purchase used items at a discount.
+* **Visuals:** High-quality image galleries and detailed sizing guides.
+* **Wishlist:** Users can favorite items for later consideration (saved to their profile).
+
+---
+
+### Phase 3: The Transaction
+*The secure checkout flow and account creation.*
+
+![Bag and Checkout Flow](path/to/your/image.png)
+
+**Key Interactions:**
+* **Bag Drawer:** A non-intrusive side drawer allows users to check their total without leaving the shopping page.
+* **Authentication:** Checkout requires account creation (handled via Django-Allauth) to track rental durations.
+* **Payment:** Integrated **Stripe (Test Mode)** handles secure payments, differentiating between one-time purchases and recurring rental deposits.
+
+---
+
+### Phase 4: Retention (The Rental Lifecycle)
+*The post-purchase experience where the complex logic lives.*
+
+![User Dashboard and Active Rentals](path/to/your/image.png)
+
+**Key Interactions:**
+* **Dashboard:** The user profile aggregates Order History and Active Rentals.
+* **Rental Management:** This is the core logical engine where users can:
+    1.  **Extend:** Add 1-4 weeks to a rental (updates price automatically).
+    2.  **Buyout:** "Fall in love" with an item? Users can pay the difference to keep it.
+    3.  **Return:** A "Mark as Returned" flow removes the item from active duty.
+* **Risk-Free:** Logic exists to handle immediate returns if the fit isn't right.
+
+---
+
+### Phase 5: Admin & Operations
+*The backend tools used to manage the business.*
+
+![Admin Dashboard](path/to/your/image.png)
+
+**Key Interactions:**
+* **Product Management:** Full CRUD capability for inventory.
+* **Order Oversight:** Admins can view active rentals and flag users or items.
+
+
+* **Safety:** Confirmation modals prevent accidental deletion of inventory or user data.
 
 ### User Feature Access
 
@@ -628,40 +722,6 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 
 ### Admin Feature Access
 
-| Feature | Notes |
-|---------|-------|
-| Add / edit / delete products | ✅ Django Admin and website CRUD functionality |
-| Manage product images and pricing options | ✅ Django Admin |
-| View and manage orders | ✅ Django Admin |
-| View and manage rentals | ✅ Django Admin |
-| View user profiles and activity | ✅ Django Admin |
-| Manage subscriptions | ✅ Django Admin |
-| Manage static site content | ✅ Django Admin |
-| Delete confirmation modal | ✅ Website functionality – shows prompt before deletion |
-
-
-### Page-Specific Features
-
-- **Home** — Hero section, featured categories
-- **Shop** — Product listing with filtering and sorting  
-- **Product Detail** — Image gallery, pricing options, engagement selection  
-- **Favorites** — Saved items and quick access  
-- **Bag / Checkout** — Quantity adjustment, checkout flow
-- **Thank You** — Order confirmation details
-- **Authentication** — Login, registration, password reset (django-allauth)
-- **Product Management** — Add, edit, delete products (website)
-- **Bag drawer** — Quick view of selected items
-- **Profile** — User details, order history, rental overview  
-- **Subscriptions** — Active and past subscription management  
-- **Concept** — Explanation of buying, renting, buyout flows 
-- **Sustainability** — Circular fashion principles, fixed dynamic image  
-- **About** — Brand story and mission  
-- **Values** — Brand values and vision  
-- **Contact** — User inquiries and support form  
-- **Notifications** — Success and error messages for user actions
-- **Legal Pages** — Terms of Service, Privacy Policy, Returns & Refunds
-- **Custom 404 / 500** — Friendly error pages, return-to-home buttons  
-
 
 ### Future Implementations
 
@@ -680,6 +740,7 @@ This website uses CRUD for some features (Create, Read, Update, Delete) to manag
 - Better express item handling as separate flow instead of blocking all other items in bag
 - Divide subscriptions page into active and past subscriptions for better UX
 - Add sorting options to subscriptions page (newest, oldest, product name, overdue, etc.)
+- Adjust buttons layout and sizes for consistency across pages and better UX
 
 ### Accessibility Considerations
 

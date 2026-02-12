@@ -1,6 +1,6 @@
 # Stocka - Testing Documentation
 
-<!-- ![alt text](documentation/testing/manual-testing/landing.png "Overview image of Stocka landing page") -->
+![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
 
 🔗 [**Live site**](https://boutique-stocka-748274888aff.herokuapp.com/)
 
