@@ -633,6 +633,8 @@ At the very bottom of the footer, there is a small copyright notice and accepted
 ![alt text](documentation/images/user-journey/products-page.png "Mockup image of Stocka products page on desktop")
 ![alt text](documentation/images/user-journey/mobile-products-page.png "Mockup image of Stocka products page on mobile")
 
+</details>
+
 * **Flexible Consumption:** On the Product Detail Page, users are presented with a choice:
     * **Buy New:** Standard purchase.
     * **Rent:** (Requires Login) Select a rental period.
