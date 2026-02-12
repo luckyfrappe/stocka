@@ -1,6 +1,6 @@
-<p class="h3">Bag Total: {{ total|floatformat:2 }} SEK</p>
-<p class="h3">Delivery: {{ delivery|floatformat:2 }} SEK</p>
-<h3 class="mt-4"><strong>Grand Total: {{ grand_total|floatformat:2 }} SEK</strong></h3>
+<p class="fs-6">Bag Total: {{ total|floatformat:2 }} SEK</p>
+<p class="fs-6">Delivery: {{ delivery|floatformat:2 }} SEK</p>
+<h3 class="fs-5 mt-4"><strong>Grand Total: {{ grand_total|floatformat:2 }} SEK</strong></h3>
 {% if free_delivery_delta > 0 %}
 <p class="mb-1 text-danger">
     You could get free delivery by spending just <strong>{{ free_delivery_delta }} SEK</strong> more!

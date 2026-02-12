@@ -281,7 +281,7 @@ footer .dropdown-item:hover, .simple-button:hover {
 }
 
 .footer-class .card i { 
-    color: var(--brand-primary); 
+    color: var(--brand-secondary-light); 
     font-size: 1.5rem; 
 } 
 
