@@ -1174,7 +1174,7 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 - [Vibrent Clothes Rental Dataset (Kaggle)](https://www.kaggle.com/datasets/kaborg15/vibrent-clothes-rental-dataset?select=images)  
 - Academic reference:  
   *[A Dataset for Adapting Recommender Systems to the Fashion Rental Economy](https://dl.acm.org/doi/10.1145/3640457.3688174)* (RecSys 2024)  **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
--[Adobe Colors](https://stock.adobe.com/se/images/flat-lay-with-woman-fashion-accessories-in-yellow-colors-fashion-blog-summer-style-shopping-and-trends-idea/315730695) – Colors inspiration.
+- [Adobe Colors](https://stock.adobe.com/se/images/flat-lay-with-woman-fashion-accessories-in-yellow-colors-fashion-blog-summer-style-shopping-and-trends-idea/315730695) – Colors inspiration.
 
 ### Content
 
