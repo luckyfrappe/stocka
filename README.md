@@ -788,7 +788,6 @@ At the very bottom of the footer, there is a small copyright notice and accepted
 - **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
 - **[Django](https://www.djangoproject.com/)** – High-level Python web framework powering the backend of the application.  
 - **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production.
-- **dj-database-url** – Simplifies database configuration in Django by allowing the database URL to be parsed and set as Django settings.
 - **psycopg2** – Adapter for Python, enabling Django to communicate with a PostgreSQL database.
 - **[PostgreSQL](https://www.postgresql.org/)** – Open-source relational database system used for storing structured application data.  
 - **[django-allauth](https://django-allauth.readthedocs.io/en/latest/)** – Integrated Django app for authentication, registration, and account management with support for social logins and email verification.
