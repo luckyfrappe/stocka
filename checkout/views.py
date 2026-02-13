@@ -97,7 +97,7 @@ def checkout(request):
                             quantity = info['quantity']
                             purchase_type = info.get('type', 'new')
                             rental_period = info.get('rental_period', 1)
-                            size = info.get('size', None)
+                            size = info.get('size', 'OS')
                             start_date_raw = info.get('start_date')
 
                             order_line_item = OrderLineItem(

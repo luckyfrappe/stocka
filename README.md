@@ -591,13 +591,24 @@ Search bar expands on click to provide a larger input area and better UX on desk
 Main content of the home page is to provoke interest and guide users to the shop. Berlow the hero section, there are 6 sections that highlight the core value propositions of the platform. 
 
 1. **Spring collection** — A seasonal collection to entice users to prepare for spring. This sections displays products filtered by the "Spring" tag in the dataset. This is a dynamic section that can be updated with different tags for future seasons or promotions depending on the marketing strategy.
+![alt text](documentation/images/user-journey/image.png "Mockup image of Stocka spring collection on different devices")
+![alt text](documentation/images/user-journey/image-1.png)
 2. **Stocka Loop banner** - A visual representation of the circular fashion lifecycle.
+![alt text](documentation/images/user-journey/image-2.png)
+![alt text](documentation/images/user-journey/image-3.png)
 3. **Everydyay essentials** — A collection of staple items that are versatile and timeless. This section is filtered by the "Everyday" tag in the dataset, showcasing products that are perfect for daily wear and can be styled in various ways.
+![alt text](documentation/images/user-journey/image-4.png)
+![alt text](documentation/images/user-journey/image-5.png)
 4. **Stocka Reuse banner** - A dynamic banner that highlights the environmental impact of reusing fashion items. On the right side of the banner is a image of smiling woman giving the good vibes of a happy customer. 
+![alt text](documentation/images/user-journey/image-6.png)
+![alt text](documentation/images/user-journey/image-7.png)
 5. **Reviews carousel** - A rotating carousel of customer reviews to build trust and social proof. This section is designed to show real feedback from users, enhancing credibility and encouraging new customers to engage with the platform.
+![alt text](documentation/images/user-journey/image-8.png)
+![alt text](documentation/images/user-journey/image-9.png)
 6. **FAQ section** - A preview of frequently asked questions to address common concerns and guide users to the full FAQ page for more information. (Full FAQ page is not implemented but wireframes have been created for future development.)
 FAQ section uses accordions to keep the layout clean and organized, allowing users to easily find answers to their questions without overwhelming them with information.
-
+![alt text](documentation/images/user-journey/image-10.png)
+![alt text](documentation/images/user-journey/image-11.png)
 **Footer:** The footer includes links to legal pages (Terms of Service, Privacy Policy, Returns & Refunds), contact, concept, FAQ, brand pages (About, Values, Sustainability) and social media icons. The footer is designed to be consistent across all pages, providing easy access to important information and additional resources. It also features 3 main shop links (Men, Women, All Products) for quick navigation.
 
 Social links opens in a new tab to avoid losing the user’s place on the site.
@@ -606,55 +617,133 @@ The footer has 4 cards with advantages of shopping with Stocka, eco-friendly pac
 
 At the very bottom of the footer, there is a small copyright notice and accepted credit card icons to build trust and provide reassurance about payment security.
 
-![alt text](documentation/images/user-journey/desktop-home-full-page.png "Mockup image of Stocka home page on desktop")
-![alt text](documentation/images/user-journey/mobile-home-full-page.png "Mockup image of Stocka home page on mobile")
-
+![alt text](documentation/images/user-journey/image-12.png)
+![alt text](documentation/images/user-journey/image-13.png)
+![alt text](documentation/images/user-journey/image-14.png)
 </details>
-
-* **Back to top button:** A floating button appears on long pages, allowing users to quickly return to the top of the page. This feature enhances navigation and improves user experience.
 
 ### Phase 2: Evaluation & Engagement
 *How users interact with products and decide between Buying vs. Renting.*
 
-![alt text](documentation/images/user-journey/product-detail.png "Mockup image of Stocka product detail page on different devices")
+<details>
+<summary>Products page content</summary>
+![alt text](documentation/images/user-journey/image-38.png)
+![alt text](documentation/images/user-journey/image-39.png)
 
 **Key Interactions:**
 * **Dynamic Page Headers:** Depending on the applied filters, the Shop page header updates to reflect the current view (e.g., Products, New Arrivals, Category: Blouses, etc.). If several filters are applied, the header will show Filtered Results to avoid overwhelming the user with too much information. If search query is applied, it will show Search Results for "query" to provide clear feedback on the search action. If search query is applied with filters, it will display a message below "Refining your search for "bo" with selected filters." This dynamic header system is designed to provide users with clear context about their current browsing state, enhancing navigation and helping them understand how their actions are affecting the product display.
-* **Filtering & Sorting:** On the Shop page, users can filter by attributes (color, material, size) and sort by name and price. User can also explore only New Arrivals by toggling the "New Arrivals" filter which sorts products by creation date and displays the latest 100 items. Filters are build dynamically based on the attributes in the dataset, allowing for flexibility and scalability as new products and attributes are added. On mobile devices, filters are accessible via a dedicated button that opens a full-screen filter menu for better usability. The clear buttons allow users to easily reset their filters and start a new search, enhancing the overall user experience and encouraging exploration.
-* **Product Cards:** Each product card displays the name, price, and available options (Buy New, Rent, Buy Pre-Owned). Hovering over a card on desktop zooms in on the image for smoother browsing. Pre-owned price is calculated as a discount off the retail price.
+![alt text](documentation/images/user-journey/image-15.png)
+![alt text](documentation/images/user-journey/image-16.png)
+![alt text](documentation/images/user-journey/image-17.png)
+![alt text](documentation/images/user-journey/image-18.png)
+![alt text](documentation/images/user-journey/image-19.png)
+![alt text](documentation/images/user-journey/image-37.png)
+* **Filtering & Sorting:** On the Shop page, users can filter by attributes (color, material, size) and sort by name and price. User can also explore only New Arrivals by toggling the "New Arrivals" filter which sorts products by creation date and displays the latest 100 items. Filters are build dynamically based on the attributes in the dataset, allowing for flexibility and scalability as new products and attributes are added. On mobile devices, filters are accessible via a dedicated button that opens a full-screen filter menu for better usability. The clear buttons allow users to easily reset their filters and start a new search, enhancing the overall user experience and encouraging exploration. Brand section has in scrolling carousel to accommodate a large number of brands.
+![alt text](documentation/images/user-journey/image-30.png)
+![alt text](documentation/images/user-journey/image-32.png)
+![alt text](documentation/images/user-journey/image-31.png)
+![alt text](documentation/images/user-journey/image-34.png)
+![alt text](documentation/images/user-journey/image-33.png)
+* **Product Cards:** Each product card displays the name, price, and available options (Buy New, Rent, Buy Pre-Owned). Hovering over a card on desktop zooms in on the image for smoother browsing. Pre-owned price is calculated as a discount off the retail price. On mobile, there are 2 columns of product cards to optimize screen space.
+![alt text](documentation/images/user-journey/image-23.png)
+![alt text](documentation/images/user-journey/image-24.png)
 * **Edit and Delete Buttons:** For admin users, Edit and Delete buttons are visible on product cards, allowing for quick management of inventory directly from the shop page. These buttons are hidden from regular users to prevent unauthorized access to product management features. If user clicks edit button, they are redirected to the product management page where they can update the product information. If user clicks delete button, a confirmation modal appears to prevent accidental deletion of products. This feature is designed to streamline the admin workflow while maintaining security and integrity of the product catalog.
+![alt text](documentation/images/user-journey/image-25.png)
+![alt text](documentation/images/user-journey/image-26.png)
 * **Pagination:** The shop page is paginated to show 20 products per page, with navigation controls to move between pages. This ensures that the page loads quickly and remains user-friendly, even with a large inventory. Pagination controls are designed to be intuitive and accessible on both desktop and mobile devices, allowing users to easily navigate through the product catalog without feeling overwhelmed.
-* **Products count:** The total number of products is displayed at the top of the shop page, providing users with a sense of the breadth of the inventory and encouraging exploration. This count updates dynamically based on applied filters and search queries, giving users real-time feedback on how their actions are affecting the product selection.
+![alt text](documentation/images/user-journey/image-27.png)
+![alt text](documentation/images/user-journey/image-28.png)
+* **Back to top button:** A floating button appears on long pages, allowing users to quickly return to the top of the page. This feature enhances navigation and improves user experience.
+![alt text](documentation/images/user-journey/image-29.png)
+* **Products count:** The total number of products is displayed at the top of the shop page, providing users with a sense of the breadth of the inventory and encouraging exploration. This count updates dynamically based on applied filters and search queries, giving users real-time feedback on how their actions are affecting the product selection. If there are no products found based on the current filters or search query, a friendly message is displayed to encourage users to adjust their criteria and continue exploring the catalog.
+![alt text](documentation/images/user-journey/image-35.png)
+![alt text](documentation/images/user-journey/image-36.png)
+</details>
 
 <details>
 
-<summary>Products page content</summary>
+<summary>Product Detail Page content</summary>
 
-![alt text](documentation/images/user-journey/products-page.png "Mockup image of Stocka products page on desktop")
-![alt text](documentation/images/user-journey/mobile-products-page.png "Mockup image of Stocka products page on mobile")
-
+![alt text](documentation/images/user-journey/image-40.png)
+![alt text](documentation/images/user-journey/image-41.png)
+* **Product Description with Clickable Tags:** The product detail page features a comprehensive description along with clickable tags for attributes like color, material, and size. Clicking on a tag takes users to the shop page filtered by that specific attribute, allowing for easy exploration of similar products. This interconnected tagging system enhances product discovery and encourages users to browse the catalog based on their preferences.
+![alt text](documentation/images/user-journey/image-42.png)
+* **Flexible Consumption:** On the Product Detail Page, users are presented with a choice:
+![alt text](documentation/images/user-journey/image-43.png)
+    * **Buy New:** Standard purchase with select size and quantity.
+    ![alt text](documentation/images/user-journey/image-44.png)
+    * **Rent:** (Requires Login) Select a rental period.
+    Users can still select size and quantity for rentals, but the price updates to reflect the rental cost based on the selected duration.
+    ![alt text](documentation/images/user-journey/image-46.png)
+    Rentals are allowed only for logged in users to ensure that the system can register products under user subscriptions page and track rental durations effectively. If user click rent button while not logged in, they are prompted to log in or create an account.
+    ![alt text](documentation/images/user-journey/image-56.png)
+    Rental period window provides 4 options (1-4 weeks) with clear pricing for each duration.
+    ![alt text](documentation/images/user-journey/image-45.png)
+    Start dates for rentals can be selected at least 3 days in advance to allow for processing and shipping. The date picker is designed to prevent selection earlier than 3 days from the current date.
+    ![alt text](documentation/images/user-journey/image-47.png)
+    End date and total rental cost are calculated based on the selected start date and rental duration.
+    ![alt text](documentation/images/user-journey/image-48.png)
+    * **Buy Pre-Owned:** A discounted purchase option for used items, clearly marked to differentiate from new purchases. This option allows users to make more sustainable choices while still enjoying the products they love.
+    ![alt text](documentation/images/user-journey/image-49.png)
+    The select size size and quantity are simulated to display 1 product and size available. In a real implementation, this would be based on actual stock levels for pre-owned items per size.
+    * **Keep shopping:** Users can easily return to browsing.
+    ![alt text](documentation/images/user-journey/image-50.png)
+    * **FAQs:** A small faq section.
+    ![alt text](documentation/images/user-journey/image-51.png)
+    * **Edit/Delete Buttons:** For admin users, Edit and Delete buttons are visible on the product detail page. If user clicks edit button, they are redirected to the product management page. If user clicks delete button, a confirmation modal appears to prevent accidental deletion.
+    ![alt text](documentation/images/user-journey/image-52.png)
+    ![alt text](documentation/images/user-journey/image-53.png)
+* **Visuals:** High-quality image galleries and detailed sizing guides.
+![alt text](documentation/images/user-journey/image-54.png)
+On mobile devices, the image gallery is designed to be swipeable with a small part of a next image visible to indicate more content, enhancing the user experience and encouraging interaction with the product visuals.
+![alt text](documentation/images/user-journey/image-55.png)
+* **Wishlist:** If user is logged in, they can favorite items for later consideration (saved to their profile). If not, clicking the heart icon prompts them to log in or create an account to access the wishlist feature. After adding to favorites, users receive a confirmation toast.
+![alt text](documentation/images/user-journey/image-57.png)
+![alt text](documentation/images/user-journey/image-58.png)
+* **Adding to Bag:** After adding to the bag, appropriate toast messages are shown. Toasts are showing if new item added or updated quantity of an existing item in the bag. It also separetes rentals from new or pre-owned items. New items are separeted by size.
+Rentals are separeted by size, rental period and start date to avoid confusion with regular purchases. This achieved by unique key generation for each type of item in the bag.
+![alt text](documentation/images/user-journey/image-59.png)
+![alt text](documentation/images/user-journey/image-60.png)
 </details>
 
-* **Flexible Consumption:** On the Product Detail Page, users are presented with a choice:
-    * **Buy New:** Standard purchase.
-    * **Rent:** (Requires Login) Select a rental period.
-    * **Pre-Owned:** Purchase used items at a discount.
-* **Visuals:** High-quality image galleries and detailed sizing guides.
-* **Wishlist:** Users can favorite items for later consideration (saved to their profile).
-
----
-
 ### Phase 3: The Transaction
-*The secure checkout flow and account creation.*
 
-![Bag and Checkout Flow](path/to/your/image.png)
+<details>
 
+<summary>Bag and Checkout content</summary>
+
+![alt text](documentation/images/user-journey/image-67.png)
+![alt text](documentation/images/user-journey/image-68.png)
 **Key Interactions:**
 * **Bag Drawer:** A non-intrusive side drawer allows users to check their total without leaving the shopping page.
-* **Authentication:** Checkout requires account creation (handled via Django-Allauth) to track rental durations.
-* **Payment:** Integrated **Stripe (Test Mode)** handles secure payments, differentiating between one-time purchases and recurring rental deposits.
+If there are items in the bag, total price is calculated and displayed in the navbar for easy reference. If bag is empty, it shows no price.
+![alt text](documentation/images/user-journey/image-61.png)
+![alt text](documentation/images/user-journey/image-62.png)
+![alt text](documentation/images/user-journey/image-63.png)
+By clicking on the bag icon, users can access a detailed view of their selected items, quantities, and total cost. 
+![alt text](documentation/images/user-journey/image-64.png)
+If bag is empty, the bag drawer displays a friendly message encouraging users to shopping.
+![alt text](documentation/images/user-journey/image-65.png)
+It also displays a free delivery treshold message to encourage users to add more items to their bag for free shipping.
+* **Bag adjustments:** Users can adjust quantities or remove items directly from the bag drawer, with real-time price updates. This allows for a seamless shopping experience without needing to navigate away from the current page.
+![alt text](documentation/images/user-journey/image-66.png)
+* **Total Calculation:** The bag calculates subtotals for each item, applies any discounts (e.g., pre-owned), and provides a clear total before checkout.
+![alt text](documentation/images/user-journey/image-69.png)
 
----
+**Checkout Process:** The checkout page collects necessary information for both purchases and rentals.
+![alt text](documentation/images/user-journey/image-70.png)
+![alt text](documentation/images/user-journey/image-71.png)
+
+**Stripe Integration:** The checkout process is integrated with Stripe for secure payment processing. Users can enter their payment details, and the system handles the transaction while providing feedback on success or failure. 
+
+**Save Info Option:** During checkout, users have the option to save their information for future purchases, which is stored in their user profile for a faster checkout experience next time. If user is not logged in, they are prompted to log in or create an account to access this feature. 
+![alt text](documentation/images/user-journey/image-72.png)
+
+**Order summary:** A summary of the order is displayed during checkout, including item details, rental periods (if applicable), and the total cost. This allows users to review their order before finalizing the purchase.
+![alt text](documentation/images/user-journey/image-73.png)
+
+**Thank You Page:** After a successful transaction, users are redirected to a thank you page that confirms their order and provides details about the next steps (e.g., shipping information, rental start dates, etc.).
+
 
 ### Phase 4: Retention (The Rental Lifecycle)
 *The post-purchase experience where the complex logic lives.*
@@ -680,6 +769,9 @@ At the very bottom of the footer, there is a small copyright notice and accepted
 * **Product Management:** Full CRUD capability for inventory.
 * **Order Oversight:** Admins can view active rentals and flag users or items.
 
+### Others
+**500 & 404 Pages:** Custom error pages provide a branded experience even when things go wrong.
+![alt text](documentation/images/user-journey/image-74.png)
 
 * **Safety:** Confirmation modals prevent accidental deletion of inventory or user data.
 
