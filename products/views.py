@@ -209,14 +209,14 @@ def product_detail(request, product_id):
             simulated_sizes = CLOTHING_RANGE
         elif check_val in SHOE_RANGE or check_val.isdigit():
             simulated_sizes = SHOE_RANGE
-        elif 'ONESIZE' in check_val:
-            simulated_sizes = ['Onesize']
+        elif 'ONESIZE' in check_val or 'OS' in check_val:
+            simulated_sizes = ['OS']
         else:
             # Fallback if it's a weird size not in the lists
             simulated_sizes = [real_size]
     else:
         # Default fallback if no size attribute exists
-        simulated_sizes = ['Onesize']
+        simulated_sizes = ['OS']
 
     discount = Decimal(str(settings.PREOWNED_DISCOUNT_RATE))
     preowned_price = (product.retail_price * discount).quantize(
