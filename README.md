@@ -772,8 +772,9 @@ It also displays a free delivery treshold message to encourage users to add more
 ### Others
 **500 & 404 Pages:** Custom error pages provide a branded experience even when things go wrong.
 ![alt text](documentation/images/user-journey/image-74.png)
-
-* **Safety:** Confirmation modals prevent accidental deletion of inventory or user data.
+![alt text](documentation/images/user-journey/image-75.png)
+![alt text](documentation/images/user-journey/image-76.png)
+![alt text](documentation/images/user-journey/image-77.png)
 
 ### User Feature Access
 

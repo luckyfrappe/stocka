@@ -18,9 +18,8 @@
                     <p class="x-small fw-bold text-uppercase mb-2">Available Sizes:</p>
                     <select class="form-control mb-2 text-uppercase" name="product_size" id='id_product_size_preowned'>
                         {% for size in simulated_sizes %}
-                        {% if size == real_size %}
-                        <option value="{{ size|slugify }}">{% if size %}{{ size }}{% else %}N/A{% endif %}</option>
-                        {% endif %}
+                        <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}
+                        </option>
                         {% endfor %}
                     </select>
                     {% endif %}
