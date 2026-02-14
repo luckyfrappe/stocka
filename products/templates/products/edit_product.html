@@ -69,7 +69,8 @@
                     {% if product.images.all %}
                     {% for image in product.images.all %}
                     <div class="col-4 text-center">
-                        <img src="{{ image.image.url }}" class="rounded-lg img-fluid mb-2" alt="{{ product.name }}">
+                        <img src="{{ image.image.url }}" class="rounded-lg img-fluid mb-2" alt="{{ product.name }}"
+                        crossorigin="anonymous">
                         <a href="{% url 'delete_image' image.id %}" class="btn btn-sm btn-outline-danger">
                             Delete
                         </a>

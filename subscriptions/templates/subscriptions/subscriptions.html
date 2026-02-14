@@ -47,7 +47,7 @@
                                     {% with sub.product.images.all|first as img %}
                                         <img class="img-fluid rounded border" 
                                              src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}" 
-                                             alt="{{ sub.product.name }}">
+                                             alt="{{ sub.product.name }}" crossorigin="anonymous">
                                     {% endwith %}
                                 </a>
                             </div>

@@ -101,7 +101,7 @@ Products
                                 {% with product.images.all|first as img %}
                                 <img class="card-img-top img-fluid"
                                     src="{% if img %}{{ img.image.url }}{% else %}{{ MEDIA_URL }}noimage.png{% endif %}"
-                                    alt="{{ product.name }}">
+                                    alt="{{ product.name }}" crossorigin="anonymous">
                                 {% endwith %}
                             </div>
                             <div class="product-info">

@@ -19,7 +19,7 @@
 {% block content %}
 <section class="position-relative p-0 w-100 overflow-hidden hero-height">
     <img src="{{ MEDIA_URL }}90A7B4A6-0447-4DEE-9A9A-D3CD06585449_1_201_a.jpeg" alt="Hero image" class="w-100 h-100"
-        style="object-fit: cover; object-position: center;">
+        style="object-fit: cover; object-position: center;" crossorigin="anonymous">
 
     <div class="position-absolute bottom-0 start-0 w-100 p-3 p-md-5 mb-md-4">
         <div class="container-fluid px-0">
@@ -64,9 +64,9 @@
                         <!-- Debugged with ChatGBT -->
                         {% with product.images.all|first as img %}
                         {% if img %}
-                        <img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ product.name }}">
+                        <img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ product.name }}" crossorigin="anonymous">
                         {% else %}
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" crossorigin="anonymous">
                         {% endif %}
                         {% endwith %}
                     </div>
@@ -129,7 +129,7 @@
 </section>
 
 <section class="py-5 bg-light stocka-loop-card"
-    style="background-image: url('{{ MEDIA_URL }}0a3f1f2d47dd4364ae5a36e110850906.jpg');">
+    style="background-image: url('{{ MEDIA_URL }}0a3f1f2d47dd4364ae5a36e110850906.jpg');" crossorigin="anonymous">
     <div class="text-center justify-content-center d-flex flex-column align-items-center h-100 px-3 px-md-0">
         <small class="text-uppercase fw-bold mb-3 d-block text-white">Stocka Loop</small>
         <h2 class="mb-4 text-white">Temporary Style,<br>Flexible and Sustainable</h2>
@@ -153,9 +153,9 @@
                         <!-- Debugged with ChatGBT -->
                         {% with product.images.all|first as img %}
                         {% if img %}
-                        <img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ product.name }}">
+                        <img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ product.name }}" crossorigin="anonymous">
                         {% else %}
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" crossorigin="anonymous">
                         {% endif %}
                         {% endwith %}
                     </div>
@@ -229,7 +229,7 @@
             </div>
         </div>
         <div class="col-md-6 order-1 order-md-2" style="max-height: 700px;">
-            <img src="{{ MEDIA_URL }}0a05c6e0932549c0821910444ff46704.jpg" class="w-100 h-100 object-fit-cover" alt="Reuse">
+            <img src="{{ MEDIA_URL }}0a05c6e0932549c0821910444ff46704.jpg" class="w-100 h-100 object-fit-cover" alt="Reuse" crossorigin="anonymous">
         </div>
     </div>
 </section>

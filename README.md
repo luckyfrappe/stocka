@@ -539,7 +539,11 @@ For administrative efficiency, the platform features a comprehensive backend man
 
 ![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
 
-* **Responsive Navigation:** Users can navigate via a sticky navbar that adapts to mobile (hamburger menu) or desktop.
+<details>
+
+<summary>Responsive Navigation</summary>
+
+ Users can navigate via a sticky navbar that adapts to mobile (hamburger menu) or desktop.
 Hero image includes a clear headline and CTA to guide users to the shop.
 
 1. The **Shop** dropdown provides quick access to product categories and featured collections. Categories are mirrored from the attribute system for consistency.
@@ -580,6 +584,8 @@ Search bar expands on click to provide a larger input area and better UX on desk
 * **Brand Marquee:** A rotating banner on the homepage and Values page shows brands from the actual dataset to build authenticity and connection to real products.
 
 ![alt text](documentation/images/user-journey/marquee.png "Mockup image of Stocka brand marquee on different devices")
+
+</details>
 
 <details>
 
@@ -837,7 +843,7 @@ After marking an item as returned, Rent Again button appears:
 
 The view uses priority logic to determine which order to display if user has multiple rentals. Logic shows overdue rentals first, then active rentals, then bought out and returned rentals.
 
-User can click extend rental button to extend the rental. A modal window appears with the available extension options (1-4 weeks). Price in the button updates based on the selected extension duration.
+User can click extend rental button to extend the rental. A modal window appears to type number of weeks to extend the rental. Price in the button updates based on the extension duration.
 ![alt text](documentation/images/user-journey/image-93.png)
 The button has safety logic to prevent users from writing 0 or negative numbers.Future implementation would be to add a calendar view to show the rental periods visually and make it easier for users to manage their rentals. Block product extension if buy out option would be cheaper than the extension to encourage users to buy out instead of extending indefinitely.
 
@@ -847,7 +853,7 @@ Main view has a logic to check if buy out option is cheaper than the extension a
 If user buys out the item, the rental status is updated to "bought_out" and the inventory is updated accordingly:
 ![alt text](documentation/images/user-journey/image-96.png)
 
-At the current state as there is no verification if extending rentals would be cheaper than buying out, there is a possibility for users to extend rentals indefinitely without buying out. This is a known issue and user might end up overpaying for the rental if they extend it multiple times. Current implementation allows users to buy out the item at 0 cost if total rental cost exceeds the buy out price:
+At the current state as there is no verification if extending rentals would be cheaper than buying out, there is a possibility for users to extend rentals indefinitely without buying out. This is a known issue and user might end up overpaying for the rental if they extend it multiple times. Current implementation allows users to buy out the item at 0 cost if total current rental cost exceeds the buy out price:
 ![alt text](documentation/images/user-journey/image-97.png)
 
 </details>
