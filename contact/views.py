@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import ContactMessageForm
 
 
-def contact(request, user=None):
+def contact(request):
     """
     Renders the contact page and processes customer inquiry submissions.
 
@@ -33,13 +33,6 @@ def contact(request, user=None):
             )
     else:
         form = ContactMessageForm()
-
-    if user.is_authenticated:
-        user = request.user
-        if user.email:
-            form.fields['email'].initial = user.email
-        if user.get_full_name():
-            form.fields['name'].initial = user.get_full_name()
 
     context = {
         'form': form,
