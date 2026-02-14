@@ -34,6 +34,12 @@ def contact(request):
     else:
         form = ContactMessageForm()
 
+    if user.is_authenticated:
+        if user.email:
+            form.fields['email'].initial = user.email
+        if user.get_full_name():
+        form.fields['name'].initial = user.get_full_name()
+
     context = {
         'form': form,
     }
