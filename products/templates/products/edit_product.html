@@ -32,52 +32,37 @@
                         </span>
                         <i class="fa-solid fa-chevron-down nav-chevron"></i>
                     </div>
-
                     <h3 class="d-none d-md-block">Change Attributes</h3>
-
                     <div class="collapse d-md-block" id="filterContent">
-
                         <div id="filterAccordion">
-
                             {% for field in form %}
                             {% if field.name|slice:":5" == "attr_" %}
-
                             <div class="mb-2 border-bottom pb-1">
-
                                 <!-- Attribute Header -->
                                 <div class="py-1 small d-flex justify-content-between align-items-center pointer fw-bold text-uppercase"
                                     data-bs-toggle="collapse" data-bs-target="#filter-{{ field.name }}">
                                     {{ field.label }}
                                     <i class="fa-solid fa-chevron-down nav-chevron" style="font-size: 0.7rem;"></i>
                                 </div>
-
                                 <!-- Attribute Values -->
                                 <div id="filter-{{ field.name }}" class="collapse" data-bs-parent="#filterAccordion">
                                     <div class="ps-1 small py-1">
-
                                         <div {% if field.name == "attr_brand" %}
                                             style="max-height: 180px; overflow-y: auto;" {% endif %}>
 
                                             <div style="column-count: 2; column-gap: 0.5rem;">
                                                 {{ field }}
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
-
                             </div>
-
                             {% endif %}
                             {% endfor %}
-
                         </div>
-
                     </div>
                 </div>
             </aside>
-
             <div class="col-12 col-md-6">
                 <h3>Gallery</h3>
                 <div class="row product-images-scroll g-2 mb-4 mb-lg-0">
@@ -101,9 +86,7 @@
                     </div>
                     {% endif %}
                 </div>
-
             </div>
-
             <div class="col-12 col-md-3 sticky-sidebar">
                 <h3>Product Information</h3>
                 <div class="product-info-container px-lg-3">
@@ -119,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div class="container d-flex flex-column flex-md-row gap-2">
+        <div class="container d-flex flex-column flex-md-row gap-2 mt-4">
             <a class="btn btn-outline-dark px-4 py-2 text-uppercase small fw-bold w-100 w-md-auto"
                 href="{% url 'product_detail' product.id %}"><i class="fa-solid fa-xmark me-2"></i>Cancel</a>
             <button type="button" class="btn btn-outline-danger px-4 py-2 text-uppercase small fw-bold w-100 w-md-auto"

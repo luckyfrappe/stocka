@@ -531,18 +531,15 @@ Restored accurate creation dates for all 15,649 products, enabling correct “Ne
 
 ## The User Journey
 
-I designed the application to guide users through a circular fashion lifecycle: from discovery to checkout, and finally, to managing their rentals. The user journey is structured to be intuitive and flexible, allowing users to easily explore their options and make informed decisions about how they want to engage with each product.
+The Stocka platform is engineered to guide users seamlessly through a circular fashion lifecycle: from discovery and flexible checkout to post-purchase rental management. The architecture prioritizes an intuitive user experience (UX) that empowers customers to engage with products on their terms—whether buying new, renting, or purchasing pre-owned. 
 
-This website uses CRUD for some features (Create, Read, Update, Delete) to manage products and favorites.
+For administrative efficiency, the platform features a comprehensive backend management system to handle inventory and user data.
 
 ### Phase 1: Discovery & Navigation
-*The entry point where users understand the brand value and find products.*
 
 ![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
 
-**Key Interactions:**
 * **Responsive Navigation:** Users can navigate via a sticky navbar that adapts to mobile (hamburger menu) or desktop.
-
 Hero image includes a clear headline and CTA to guide users to the shop.
 
 1. The **Shop** dropdown provides quick access to product categories and featured collections. Categories are mirrored from the attribute system for consistency.
@@ -623,14 +620,12 @@ At the very bottom of the footer, there is a small copyright notice and accepted
 </details>
 
 ### Phase 2: Evaluation & Engagement
-*How users interact with products and decide between Buying vs. Renting.*
 
 <details>
 <summary>Products page content</summary>
 ![alt text](documentation/images/user-journey/image-38.png)
 ![alt text](documentation/images/user-journey/image-39.png)
 
-**Key Interactions:**
 * **Dynamic Page Headers:** Depending on the applied filters, the Shop page header updates to reflect the current view (e.g., Products, New Arrivals, Category: Blouses, etc.). If several filters are applied, the header will show Filtered Results to avoid overwhelming the user with too much information. If search query is applied, it will show Search Results for "query" to provide clear feedback on the search action. If search query is applied with filters, it will display a message below "Refining your search for "bo" with selected filters." This dynamic header system is designed to provide users with clear context about their current browsing state, enhancing navigation and helping them understand how their actions are affecting the product display.
 ![alt text](documentation/images/user-journey/image-15.png)
 ![alt text](documentation/images/user-journey/image-16.png)
@@ -685,7 +680,7 @@ At the very bottom of the footer, there is a small copyright notice and accepted
     ![alt text](documentation/images/user-journey/image-48.png)
     * **Buy Pre-Owned:** A discounted purchase option for used items, clearly marked to differentiate from new purchases. This option allows users to make more sustainable choices while still enjoying the products they love.
     ![alt text](documentation/images/user-journey/image-49.png)
-    The select size size and quantity are simulated to display 1 product and size available. In a real implementation, this would be based on actual stock levels for pre-owned items per size.
+    The select size size and quantity are simulated to display 1 product and size available. In a real implementation, this would be based on actual stock levels for pre-owned items per size. Quantityt selection is limited to 1, but user still can add the product multiple times due to current stock simulation.
     * **Keep shopping:** Users can easily return to browsing.
     ![alt text](documentation/images/user-journey/image-50.png)
     * **FAQs:** A small faq section.
@@ -706,6 +701,53 @@ Rentals are separeted by size, rental period and start date to avoid confusion w
 ![alt text](documentation/images/user-journey/image-60.png)
 </details>
 
+<details>
+
+<summary>Favorites page content</summary>
+
+The Favorites page allows users to view and manage their saved items. If user select any filter the view transforms into the shop page with the selected filter applied.
+![alt text](documentation/images/user-journey/image-80.png)
+If no wishlist items, a friendly message encourages users to explore products and add favorites.
+![alt text](documentation/images/user-journey/image-81.png)
+If user is not logged in, they are prompted to log in or create an account to access the wishlist feature.
+
+</details>
+
+<details>
+
+<summary>Profile page content</summary>
+
+In order to acces profile page, user needs to be logged in.
+
+Profile registration:
+![alt text](documentation/images/user-journey/image-82.png)
+Form is validated and user receives feedback on successful registration or errors that need to be corrected.
+
+After submitting the form:
+![alt text](documentation/images/user-journey/image-83.png)
+An email is sent to the user to confirm their email address and activate their account. The user receives a confirmation message on the website and instructions to check their email for the activation link.
+
+After clicking the activation link in the email:
+![alt text](documentation/images/user-journey/image-84.png)
+
+Login page:
+![alt text](documentation/images/user-journey/image-85.png)
+
+Forgot password page:
+![alt text](documentation/images/user-journey/image-86.png)
+
+Password reset sent page:
+![alt text](documentation/images/user-journey/image-87.png)
+
+Create new password:
+![alt text](documentation/images/user-journey/image-88.png)
+![alt text](documentation/images/user-journey/image-89.png)
+
+Sign Out page:
+![alt text](documentation/images/user-journey/image-124.png)
+
+</details>
+
 ### Phase 3: The Transaction
 
 <details>
@@ -724,9 +766,12 @@ By clicking on the bag icon, users can access a detailed view of their selected 
 ![alt text](documentation/images/user-journey/image-64.png)
 If bag is empty, the bag drawer displays a friendly message encouraging users to shopping.
 ![alt text](documentation/images/user-journey/image-65.png)
+![alt text](documentation/images/user-journey/image-110.png)
 It also displays a free delivery treshold message to encourage users to add more items to their bag for free shipping.
 * **Bag adjustments:** Users can adjust quantities or remove items directly from the bag drawer, with real-time price updates. This allows for a seamless shopping experience without needing to navigate away from the current page.
 ![alt text](documentation/images/user-journey/image-66.png)
+If total order cost is below the free delivery threshold, a message is displayed to encourage users to add more items to their bag to qualify for free shipping calculating the remaining amount needed to reach the threshold.:
+![alt text](documentation/images/user-journey/image-98.png)
 * **Total Calculation:** The bag calculates subtotals for each item, applies any discounts (e.g., pre-owned), and provides a clear total before checkout.
 ![alt text](documentation/images/user-journey/image-69.png)
 
@@ -743,38 +788,193 @@ It also displays a free delivery treshold message to encourage users to add more
 ![alt text](documentation/images/user-journey/image-73.png)
 
 **Thank You Page:** After a successful transaction, users are redirected to a thank you page that confirms their order and provides details about the next steps (e.g., shipping information, rental start dates, etc.).
+![alt text](documentation/images/user-journey/image-78.png)
+![alt text](documentation/images/user-journey/image-79.png)
 
+An confirmation email is also sent to the user with their receipt, providing a record of the transaction and reinforcing trust in the platform.
+
+</details>
 
 ### Phase 4: Retention (The Rental Lifecycle)
-*The post-purchase experience where the complex logic lives.*
 
-![User Dashboard and Active Rentals](path/to/your/image.png)
+<details>
 
-**Key Interactions:**
-* **Dashboard:** The user profile aggregates Order History and Active Rentals.
-* **Rental Management:** This is the core logical engine where users can:
-    1.  **Extend:** Add 1-4 weeks to a rental (updates price automatically).
-    2.  **Buyout:** "Fall in love" with an item? Users can pay the difference to keep it.
-    3.  **Return:** A "Mark as Returned" flow removes the item from active duty.
-* **Risk-Free:** Logic exists to handle immediate returns if the fit isn't right.
+<summary>Order History content</summary>
 
----
+![alt text](documentation/images/user-journey/image-99.png)
+![alt text](documentation/images/user-journey/image-100.png)
+
+User can view their order history on the Order History page, which lists all past transactions with details such as order number, date, total amount. Each order entry can be expanded to show the individual items purchased, including any rentals with their respective periods and statuses. This allows users to keep track of their past purchases and rentals in one convenient location.
+
+User can also update their profile information from the order history page, providing a seamless experience for managing their account details without needing to navigate to a separate profile page.
+
+By clicking on an order, users can view more detailed information about that specific transaction, including the items purchased, rental periods, and any associated actions (e.g., extend rental, buy out, etc.). A toast message is shown "This is a past confirmation for order number". 
+
+![alt text](documentation/images/user-journey/image-101.png)
+
+At the bottom or order receipt there is navigation to subscriptions page to manage active rentals. 
+Another subscription button is shown on the main profile page for easier access to active rentals. 
+
+"Subscripe to out newsletter" button is also shown on the order history page to encourage users to stay engaged with the brand and receive updates on new products. No actual newsletter functionality is implemented, but this is a placeholder for future development where users can opt in to receive marketing emails and updates from Stocka.
+
+</details>
+
+<details>
+
+<summary>Subscriptions page content</summary>
+
+![alt text](documentation/images/user-journey/image-90.png)
+![alt text](documentation/images/user-journey/image-91.png)
+
+Users can view and manage their active rentals on the Subscriptions page. Each rental displays the product details, rental period, and status (active, returned, bought out, overdue). Users can extend their rental period or choose to buy out the item if they decide to keep it.
+
+If user clicks "Mark as Returned" button, as no real returns are processed in this project, the system simulates the return process by updating the rental status to "returned" and updating the inventory accordingly. This allows users to experience the full rental lifecycle, even without actual logistics in place.
+
+![alt text](documentation/images/user-journey/image-92.png)
+
+After marking an item as returned, Rent Again button appears:
+![alt text](documentation/images/user-journey/image-94.png)
+
+The view uses priority logic to determine which order to display if user has multiple rentals. Logic shows overdue rentals first, then active rentals, then bought out and returned rentals.
+
+User can click extend rental button to extend the rental. A modal window appears with the available extension options (1-4 weeks). Price in the button updates based on the selected extension duration.
+![alt text](documentation/images/user-journey/image-93.png)
+The button has safety logic to prevent users from writing 0 or negative numbers.Future implementation would be to add a calendar view to show the rental periods visually and make it easier for users to manage their rentals. Block product extension if buy out option would be cheaper than the extension to encourage users to buy out instead of extending indefinitely.
+
+Main view has a logic to check if buy out option is cheaper than the extension and if so, extend button is disabled:
+![alt text](documentation/images/user-journey/image-95.png)
+
+If user buys out the item, the rental status is updated to "bought_out" and the inventory is updated accordingly:
+![alt text](documentation/images/user-journey/image-96.png)
+
+At the current state as there is no verification if extending rentals would be cheaper than buying out, there is a possibility for users to extend rentals indefinitely without buying out. This is a known issue and user might end up overpaying for the rental if they extend it multiple times. Current implementation allows users to buy out the item at 0 cost if total rental cost exceeds the buy out price:
+![alt text](documentation/images/user-journey/image-97.png)
+
+</details>
+
+<details>
+
+<summary>Exclusive checkout content</summary>
+
+Exclusive checkout page is shown to users who have only rental extensions or buyouts in their bag. This is to prevent confusion for users who could have both regular purchases and rental extensions in their bag. User can only have one 1 item (rental extension or buyout) in their bag at a time. This is temporary solution to prevent users from extending or buying out the same rental multiple times in the same checkout. Future implementation would be a separate flow for checkout where the process ends if user leaves the exclusive checkout page where the main bag is not affected by the rental extension or buy out. 
+
+In the current state if user adds a rental extension or buy out to the bag while having other items in the bag, the bag session is cleared and only the rental extension or buy out item is added to the bag. If user adds another extension or buy out item to the bag, the previous one is removed and replaced with the new one. If user leaves the exclusive checkout page and tries to add a regular item to the bag, the user is taken back to the exclusive checkout page with a message "Please complete your current transaction or remove the item before adding new items.".
+
+![alt text](documentation/images/user-journey/image-102.png)
+
+Users can adjust bag after clicking adjust bag on exclusive checkout page to remove the extension/buyout which is a bit confusing and future implementation would fix this issue by creating a separate flow where the main bag is not affected by the rental extension or buy out. Quantity adjustment is not allowed and the number input is disabled.
+
+The shipping costs are also calculated differently for rental extensions and buy outs. For rental extensions, the shipping cost is always 0 as the item is already in the user's possession.
+
+![alt text](documentation/images/user-journey/image-103.png)
+
+</details>
 
 ### Phase 5: Admin & Operations
-*The backend tools used to manage the business.*
 
-![Admin Dashboard](path/to/your/image.png)
+<details>
 
-**Key Interactions:**
-* **Product Management:** Full CRUD capability for inventory.
-* **Order Oversight:** Admins can view active rentals and flag users or items.
+<summary>Product Management:</summary>
 
-### Others
-**500 & 404 Pages:** Custom error pages provide a branded experience even when things go wrong.
+Full CRUD capability for inventory. Admins can add new products, edit existing ones, and remove items that are no longer needed. 
+
+Add product page includes fields for all relevant product information, SKU, name, description, price, price per week for rentals and images. Admins can also assign attributes to products using the dynamic attribute system, allowing for flexible categorization and filtering. The form includes validation to ensure that all necessary information is provided and that the data is in the correct format.
+![alt text](documentation/images/user-journey/image-104.png)
+![alt text](documentation/images/user-journey/image-105.png)
+
+Select attribute is copied from the product filters on the shop page and allows admins to easily assign existing attributes to products without needing to create new ones. This ensures consistency in how products are categorized and makes it easier for admins to manage the inventory.
+
+![alt text](documentation/images/user-journey/image-106.png)
+![alt text](documentation/images/user-journey/image-107.png)
+
+Flush accordions showing only one open accordion at a time for better UX. This design choice helps to keep the interface clean and organized, allowing admins to focus on one section of the form at a time without being overwhelmed by too much information and endless scrolling to the bottom of the page. Mobile transformation of the form into a single column with accordions also enhances usability on smaller screens, ensuring that admins can manage products effectively from any device on the go. 
+
+Upload image button allows only 1 image to be uploaded at the start with the note "Note: Upload your primary image.
+You can add additional gallery photos individually on the Edit Product page after saving." This is temporary solution to allow admins to save the product first before adding more images as the image upload process is currently not optimized for handling multiple images at once and not reflecting changes in real time. Future implementation would be to optimize the image upload process to allow for multiple images to be uploaded at once and reflected in real time on the product detail page.
+
+</details>
+
+<details>
+
+<summary>Editing and Deleting Products:</summary>
+
+Admins can edit product details by clicking the Edit button on the product card or product detail page, which takes them to the product management form pre-filled with the existing information. After making changes, admins can save the updates, which will reflect immediately on the shop and product detail pages.
+![alt text](documentation/images/user-journey/image-108.png)
+![alt text](documentation/images/user-journey/image-109.png)
+
+Change attributes are copied from the product filters on the shop page to maintain consistency and make it easier for admins to manage product categorization. This allows for seamless updates to product attributes without needing to navigate away from the familiar interface used for filtering products on the shop page.
+
+By clicking the Delete button under an image, the changes are reflected immediately on the edit product page and the deleted image is removed from the product detail page. If user clicks delete product button, a confirmation modal appears to prevent accidental deletion of products. If user confirms the deletion, the product is removed from the inventory and will no longer be visible on the shop or product detail pages.
+
+Safety measure if clients have the current product in active rentals or in their bag, the product cannot be deleted and a message is shown. This is to prevent issues with inventory management and ensure that users who have already engaged with the product are not negatively impacted by its removal from the catalog.
+
+Admin can also change product name, description, price and other details from the edit product page. After saving the changes, the updated information is reflected on the shop and product detail pages, ensuring that customers see the most accurate and up-to-date information about the products. Admin can also upload new image, one at a time, and the new image will be added to the product gallery on the product detail page after saving the changes.
+
+Future implementation would be to upload several images at once and allowigng dynamically reordering show order of the images in the gallery. This would enhance the admin experience and allow for more efficient management of product visuals.
+
+The view is so simple so admin can easily manage products from their phone on the go without needing to access a desktop computer. This is especially useful for quick updates or when admins are away from their primary workspace but need to make urgent changes to the product catalog.
+
+Cancel button takes admin back to the product page. A message about unsaved changes would be a good future implementation. 
+
+</details>
+
+<details>
+
+<summary>Contact Form:</summary>
+
+The contact form allows users to reach out to the company with inquiries, feedback, or support requests. The form includes fields for the user's name, email address, subject, and message. Upon submission, the form validates the input and shows a success message if the submission is successful or an error message if there are issues with the input. The form is designed to be user-friendly and accessible, ensuring that users can easily get in touch with the company for any reason.
+
+![alt text](documentation/images/user-journey/image-111.png)
+![alt text](documentation/images/user-journey/image-112.png)
+
+</details>
+
+### Others and Branding
+
+<details>
+
+<summary>500 & 404 Pages:</summary>
+
+Custom error pages provide a branded experience even when things go wrong.
 ![alt text](documentation/images/user-journey/image-74.png)
 ![alt text](documentation/images/user-journey/image-75.png)
 ![alt text](documentation/images/user-journey/image-76.png)
 ![alt text](documentation/images/user-journey/image-77.png)
+
+</details>
+
+<details>
+
+<summary>Concept and legal Pages:</summary>
+
+All 4 pages are using the same template and sidebar navigation to keep the layout consistent and make it easy for users to find important information about the brand, policies, and legal terms. The sidebar navigation allows users to quickly jump between sections of the page, enhancing the user experience and ensuring that they can easily access the information they need. Original idea was to have a scrollspy navigation. 
+
+![alt text](documentation/images/user-journey/image-113.png)
+![alt text](documentation/images/user-journey/image-114.png)
+![alt text](documentation/images/user-journey/image-115.png)
+![alt text](documentation/images/user-journey/image-116.png)
+![alt text](documentation/images/user-journey/image-117.png)
+
+</details>
+
+<details>
+
+<summary>Branding Pages:</summary>
+
+About page:
+![alt text](documentation/images/user-journey/image-118.png)
+![alt text](documentation/images/user-journey/image-119.png)
+The main feature is typing text animation on scroll.
+
+Values page:
+![alt text](documentation/images/user-journey/image-120.png)
+![alt text](documentation/images/user-journey/image-121.png)
+
+Sustainability page:
+![alt text](documentation/images/user-journey/image-122.png)
+![alt text](documentation/images/user-journey/image-123.png)
+
+</details>
 
 ### User Feature Access
 
