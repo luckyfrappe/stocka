@@ -14,15 +14,13 @@
 
                     <p class="small text-muted mb-3">Carefully inspected, final sale item.</p>
                     <!-- Used to simulate fake availability of pre-owned items -->
-                    {% if simulated_sizes %}
                     <p class="x-small fw-bold text-uppercase mb-2">Available Sizes:</p>
                     <select class="form-control mb-2 text-uppercase" name="product_size" id='id_product_size_preowned'>
-                        {% for size in simulated_sizes %}
+                        {% if real_size %}
                         <option value="{{ size|slugify }}" {% if size == real_size %}selected{% endif %}>{{ size }}
                         </option>
-                        {% endfor %}
+                        {% endif %}
                     </select>
-                    {% endif %}
 
                     <div class="col-12 mb-4">
                         <label class="x-small fw-bold text-uppercase mb-2">Quantity</label>
