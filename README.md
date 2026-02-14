@@ -11,7 +11,17 @@ This project is built as an educational study project, demonstrating how a tradi
 
 🔗 [**Live site**](https://boutique-stocka-748274888aff.herokuapp.com/)
 
-Test Checkout (Stripe Sandbox)
+Key Engineering Challenges Solved
+
+- Mixed cart state handling (purchase, rental, extension, and buyout flows)
+- Rental lifecycle modeling and prioritization across active, extended, and returned items
+- Normalization of semi-structured product data into relational models
+- UX-safe admin controls to prevent invalid state changes
+- Temporary safeguards implemented with clearly documented exit paths
+
+<details>
+
+<summary>Test Checkout (Stripe Sandbox):</summary>
 
 This store uses **Stripe’s test environment** to simulate the purchasing process.  
 No real payments are processed and **no orders will be fulfilled**.
@@ -34,6 +44,7 @@ For more information about Stripe test payments, see the official documentation:
 
 👉 [Stripe Test Cards & Payments](https://stripe.com/docs/testing)
 
+</details>
 
 ## Contents
 
@@ -106,7 +117,7 @@ All user stories are listed in the [**GitHub Project board**](https://github.com
 
 ### Color Scheme
 
-The color palette for Stocka is inspired by the natural tones of sustainable fashion and the modern, minimalist aesthetic of contemporary design. Brand colors are used strategically to create a cohesive and inviting atmosphere while allowing the products to take center stage. 
+The color palette for Stocka is inspired by the bright colors and the modern, minimalist aesthetic of contemporary design. Brand colors are used strategically to create a cohesive and inviting atmosphere while allowing the products to take center stage. 
 
 ![Color Palette](documentation/images/design/color-theme.jpeg)
 
@@ -118,7 +129,7 @@ The body text is set in **[Inter](https://fonts.google.com/specimen/Inter)**, a 
 
 ### Imagery
 
-The design of Stocka focuses on a clean, modern aesthetic that allows the products to shine. The color palette is neutral and minimal, with soft accents to create a welcoming atmosphere. Typography is chosen for readability and style, complementing the overall brand identity.
+The imagery for Stocka is carefully curated to reflect the bright and vibrant brand identity. It features high-quality, lifestyle-focused photography that showcases products in a clean and modern setting, aligning with the brand's aesthetic and values. The images are designed to evoke a sense of joy and confidence.
 
 ### Wireframes
 
@@ -496,7 +507,11 @@ Stores inquiries from the "Contact Us" form.
 | `created_at` | DateTimeField | Timestamp of message |
 | `is_resolved` | BooleanField | Admin status flag |
 
-The Stocka database is built to support a flexible, scalable marketplace. While the system is centered around a core `Product` model, the most critical part of the work was transforming and structuring over 18,000 rows of semi-structured data from the Vibrent Kaggle Dataset into a clean, relational format.
+The Stocka database is built to support a flexible and scalable marketplace. While the system is centered around a core Product model, the most critical part of the work involved transforming and structuring over 18,000 rows of semi-structured data and sorting over 50000 images in the right order from the Vibrent Kaggle dataset into a clean, relational format.
+
+Although the original dataset represented real stock and tracked SKUs per physical product, the project uses simulated inventory sizes. To better match the intended project scale, the total number of products was reduced to under 9,000 by removing duplicates based on product names. A comprehensive data cleanup was also performed, removing products with missing names or images, eliminating irrelevant entries such as items marked as “sold,” correcting poorly formatted or inconsistent product names, and normalizing names to avoid invalid or unusual starting characters. To maintain diverse catalog, products missing retail prices were simulated price by multiplying price per week by 3. Products that missing any prices were removed from the dataset.
+
+As manually cleaning the entire dataset was not feasible, some individual items may still contain minor inconsistencies or errors. However, the overall structure and data quality were significantly improved to support the platform’s functionality and user experience. The current state provides a clean and enjoyable shopping experience, free from broken or misleading listings, while still maintaining a realistic and diverse product catalog.
 
 <details>
 
@@ -531,13 +546,13 @@ Restored accurate creation dates for all 15,649 products, enabling correct “Ne
 
 ## The User Journey
 
+This user journey demonstrates how Stocka supports circular fashion by combining traditional e-commerce flows with rental lifecycle management, while remaining intuitive for both customers and administrators.
+
 The Stocka platform is engineered to guide users seamlessly through a circular fashion lifecycle: from discovery and flexible checkout to post-purchase rental management. The architecture prioritizes an intuitive user experience (UX) that empowers customers to engage with products on their terms—whether buying new, renting, or purchasing pre-owned. 
 
-For administrative efficiency, the platform features a comprehensive backend management system to handle inventory and user data.
+For administrative efficiency, the platform features a comprehensive backend management system to handle catalog and user data.
 
 ### Phase 1: Discovery & Navigation
-
-![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
 
 <details>
 
@@ -546,11 +561,13 @@ For administrative efficiency, the platform features a comprehensive backend man
  Users can navigate via a sticky navbar that adapts to mobile (hamburger menu) or desktop.
 Hero image includes a clear headline and CTA to guide users to the shop.
 
+![alt text](documentation/images/user-journey/home.png "Mockup image of Stocka marketplace on different devices")
+
 1. The **Shop** dropdown provides quick access to product categories and featured collections. Categories are mirrored from the attribute system for consistency.
-New arrivals turns query param to filter by creation date. I was inspired by modern e-commerce sites that prioritize ease of navigation and product discovery. At the top level, 3 main tags Men, Women, All Products are shown for quick access. Although website is made only for female products, men section is mostly for gifts to him.
-On mobile device accordions are used for better UX. To save space on screen, only one accordion can be open at a time and the rest are flushed closed.
+New arrivals turns query param to filter by creation date. I was inspired by modern e-commerce sites that prioritize ease of navigation and product discovery. At the top level, 3 main tags Men, Women, All Products are shown for quick access. Although website is made mainly for female products, men section is mostly for gifts to him.
 ![alt text](documentation/images/user-journey/desktop-shop-dropdown.png "Mockup image of Stocka shop dropdown on desktop")
-![alt text](documentation/images/user-journey/mobile-shop-dropdown.png "Mockup image of Stocka shop dropdown on desktop")
+On mobile device accordions are used for better UX. To save space on screen, only one accordion can be open at a time and the rest are flushed closed.
+![alt text](documentation/images/user-journey/mobile-shop-dropdown.png "Mockup image of Stocka shop dropdown on mobile")
 
 2. Concept link in navbar leads to a dedicated page explaining the buying, renting, and pre-owned flows.
 
@@ -560,11 +577,17 @@ On mobile device accordions are used for better UX. To save space on screen, onl
 
 **User Profile Access:** Users can access their profile the navbar. The profile page allows users to manage their personal information, view order history manage rentals.
 
-If guest user, it displays Sign Up and Sign In options. If logged in:
-Product Management link is only visible to admin users and leads to a page where they can add a product.
-My Profile,
-Subscriptions,
-Logout
+If guest user, it displays Sign Up and Sign In options:
+
+![alt text](documentation/images/user-journey/image-125.png)
+
+If logged in:
+
+![alt text](documentation/images/user-journey/image-126.png)
+
+Product Management link is only visible to admin users and leads to a page where they can add a product:
+
+![alt text](documentation/images/user-journey/image-127.png)
 
 **Favorites / Wishlist:** A heart icon on product cards and detail pages allows users to view and manage their favorite items. This feature is designed to encourage users to save products they are interested in for later consideration. 
 
@@ -639,7 +662,7 @@ At the very bottom of the footer, there is a small copyright notice and accepted
 ![alt text](documentation/images/user-journey/image-18.png)
 ![alt text](documentation/images/user-journey/image-19.png)
 ![alt text](documentation/images/user-journey/image-37.png)
-* **Filtering & Sorting:** On the Shop page, users can filter by attributes (color, material, size) and sort by name and price. User can also explore only New Arrivals by toggling the "New Arrivals" filter which sorts products by creation date and displays the latest 100 items. Filters are build dynamically based on the attributes in the dataset, allowing for flexibility and scalability as new products and attributes are added. On mobile devices, filters are accessible via a dedicated button that opens a full-screen filter menu for better usability. The clear buttons allow users to easily reset their filters and start a new search, enhancing the overall user experience and encouraging exploration. Brand section has in scrolling carousel to accommodate a large number of brands.
+* **Filtering & Sorting:** On the Shop page, users can filter by attributes (color, material, size) and sort by name and price. User can also explore only New Arrivals by toggling the "New Arrivals" filter which sorts products by creation date and displays the latest 100 items. Filters are built dynamically from product attributes, allowing the system to scale as new products and attributes are added. On mobile devices, filters are accessible via a dedicated button that opens a full-screen filter menu for better usability. The clear buttons allow users to easily reset their filters and start a new search, enhancing the overall user experience and encouraging exploration. Brand section has in scrolling carousel to accommodate a large number of brands.
 ![alt text](documentation/images/user-journey/image-30.png)
 ![alt text](documentation/images/user-journey/image-32.png)
 ![alt text](documentation/images/user-journey/image-31.png)
