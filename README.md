@@ -60,8 +60,14 @@ For more information about Stripe test payments, see the official documentation:
   - [Wireframes](#wireframes)
   - [Database Schema & Data Engineering](#database-schema--data-engineering)
 - [The User Journey](#the-user-journey)
-  - [Core Features](#core-features)
-  - [Page-Specific Features](#page-specific-features)
+  - [Phase 1: Discovery & Navigation](#phase-1-discovery--navigation)
+  - [Phase 2: Evaluation & Engagement](#phase-2-product-exploration)
+  - [Phase 3: The Transaction](#phase-3-the-transaction)
+  - [Phase 4: Retention (The Rental Lifecycle)](#phase-4-retention-the-rental-lifecycle)
+  - [Phase 5: Admin & Operations](#phase-5-admin--operations)
+  - [Others and Branding](#others-and-branding)
+  - [User Feature Access](#user-feature-access)
+  - [Admin Feature Access](#admin-feature-access)
   - [Future Implementations](#future-implementations)
   - [Accessibility Considerations](#accessibility-considerations)
 - [Technologies Used](#technologies-used)
@@ -69,16 +75,19 @@ For more information about Stripe test payments, see the official documentation:
   - [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
 - [Deployment](#deployment)
 - [Local Development](#local-development)
-  - [Cloning and Forking](#cloning-and-forking)
-    - [Cloning](#cloning)
-    - [Forking](#forking)
-    - [Local vs Deployed Version](#local-vs-deployed-version)
+- [Cloning and Forking](#cloning-and-forking)
+  - [Cloning](#cloning)
+  - [Forking](#forking)
+  - [Local vs Deployed Version](#local-vs-deployed-version)
 - [Agile Development Process](#agile-development-process)
+  - [Sprints & Milestones](#sprints--milestones)
 - [Testing](#testing)
-- [Credits](#credits)
+-[Credits](#credits)
+  - [Code Used](#code-used)
   - [Data Sources](#data-sources)
+  - [Content](#content)
+  - [Media](#media)
   - [Acknowledgments](#acknowledgments)
-
 
 ## User Experience (UX)
 
@@ -1517,8 +1526,6 @@ See **[TESTING.md](TESTING.md)** for test cases, known issues, and resolved bugs
 The textual content and platform descriptions for this fictional fashion marketplace were created in collaboration with AI tools such as ChatGPT and Gemini. Page copy, product descriptions, and UX narratives were AI-assisted and inspired by real-world fashion e-commerce and rental platforms.
 
 ### Media
-
-#### General Imagery
 
 - **[Woman in blue bralette holding sunglasses putting on her eyes](https://unsplash.com/photos/woman-in-blue-bralette-holding-sunglasses-putting-on-her-eyes-_KaMTEmJnxY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)** – Photo by Atikh Bana on Unsplash.
 
