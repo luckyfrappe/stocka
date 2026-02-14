@@ -16,9 +16,7 @@
                     <!-- Used to simulate fake availability of pre-owned items -->
                     <p class="x-small fw-bold text-uppercase mb-2">Select Size:</p>
                     <select class="form-control mb-2 text-uppercase" name="product_size" id='id_product_size_new'>
-                        {% for size in in product.sizes.all %}
-                            <option value="{{ size|slugify }}">{{ size }}</option>
-                        {% endfor %}
+                        <option value="{{ real_size|slugify }}" selected>{{ real_size }}</option>
                     </select>
 
                     <div class="col-12 mb-4">
