@@ -1535,4 +1535,4 @@ Special thanks to Code Institute for the Boutique Ado walkthrough and ongoing su
 
 Finally, thanks to my closest friend and my cat James for emotional support and occasional “debugging” assistance 🐾
 
-[Back to Top](#stocka-a-modern-fashion-marketplace)
+[Back to Top](#stocka--a-modern-fashion-marketplace)
