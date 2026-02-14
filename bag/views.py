@@ -42,7 +42,7 @@ def add_to_bag(request, item_id):
     rental_period = int(request.POST.get('rental_period', 1))
     start_date = request.POST.get('start_date', None)
     size = request.POST.get('product_size')
-    if not size: 
+    if not size:
         size = 'OS'
 
     bag = request.session.get('bag', {})

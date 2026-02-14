@@ -96,6 +96,8 @@ I implemented semantic HTML and ARIA roles to ensure a seamless experience for s
 
 ### Manual Testing
 
+All functionality was manually tested during development and double-checked while creating the user journey. The following tables summarize the major features and manual testing performed across different sections of the site, including the home page, product listing, product detail, shopping bag, checkout, thank you page, subscriptions, extension & buyout flow, contact form, favorites, informational pages, branding pages, profile, past order confirmation, authentication, and product management.
+
 **Home Page Manual Testing**
 
 | Section | Test Action | Expected Result | Pass/Fail |
@@ -472,6 +474,12 @@ On info pages, the scrollspy functionality was not working correctly. When click
 
 The Fix:
 Scrollspy is changed to a static sidebar and scrollspy functionality can be added back in later if desired. 
+
+- Bug summary:
+Buying one size products from the product detail page was not working and giving 500 error because there were mismatch from Onesize and OS size naming in the product model and the logic was looking for "OS" instead of "Onesize".
+
+The Fix:
+I updated the logic to check for both "OS" and "Onesize" when determining if a product is one-size, ensuring that the correct size is added to the bag regardless of the naming convention used in the product model.
 
 ---
 

@@ -150,7 +150,7 @@ A clean, modern homepage featuring a full-width hero with headline and CTA, foll
 
 A grid-based product listing page with filtering and sorting options. The layout adapts to different screen sizes, ensuring easy navigation and product discovery on both desktop and mobile devices.
 
-Since real stock levels are not implemented, sizes in filters are showing real stock for pre-owned items only. Ideally it should show sizes available across all options (new, rent, pre-owned).
+Since real stock levels are not implemented, sizes in filters are showing redundant options. In a real implementation, these would be dynamically generated based on available stock.
 
 ![Desktop Home Page](documentation/images/wireframes/desktop-all.jpg)
 ![Mobile Home Page](documentation/images/wireframes/mobile-all.jpg)
@@ -709,7 +709,7 @@ At the very bottom of the footer, there is a small copyright notice and accepted
     ![alt text](documentation/images/user-journey/image-48.png)
     * **Buy Pre-Owned:** A discounted purchase option for used items, clearly marked to differentiate from new purchases. This option allows users to make more sustainable choices while still enjoying the products they love.
     ![alt text](documentation/images/user-journey/image-49.png)
-    The select size size and quantity are simulated to display 1 product and size available. In a real implementation, this would be based on actual stock levels for pre-owned items per size. Quantityt selection is limited to 1, but user still can add the product multiple times due to current stock simulation.
+    The select quantity is simulated to display 1 product and size available. In a real implementation, this would be based on actual stock levels. Quantity selection is limited to 1, but user still can add the product multiple times due to current stock simulation. This is known issue and ignored due to no real stock implementation.
     * **Keep shopping:** Users can easily return to browsing.
     ![alt text](documentation/images/user-journey/image-50.png)
     * **FAQs:** A small faq section.
@@ -1015,12 +1015,12 @@ Sustainability page:
 | Search, filter & sort products | ✅ Can search | ✅ Can search |
 | Product detail page | ✅ Viewable | ✅ Viewable |
 | Bag drawer (quick bag preview) | ✅ Accessible | ✅ Accessible |
-| Add items to bag | ⚠️ Only new and pre-owned items | ✅ Can add items |
+| Add items to bag | ⚠️ New & pre-owned only (rentals require login) | ✅ Can add items |
 | Favorites / wishlist | ⚠️ Prompted to log in | ✅ Can add, view & manage |
 | Rent items | ⚠️ Prompted to log in | ✅ Can rent |
-| Add products | ⚠️ Not visible for guests or registered users | ⚠️ Visible to admins only |
+| Add products | ❌ Admin only | ⚠️ Visible to admins only |
 | Edit products | ⚠️ Not visible for guests or registered users | ⚠️ Visible to admins only |
-| Delete products | ⚠️ Not visible for guests or registered users | ⚠️ Visible to admins only |
+| Delete products | ❌ Admin only | ⚠️ Visible to admins only |
 | Buy new items | ✅ Can purchase | ✅ Can purchase |
 | Buy pre-owned items | ✅ Can purchase | ✅ Can purchase |
 | Extend active rentals | ❌ Not allowed | ✅ Can extend |
@@ -1043,9 +1043,24 @@ Sustainability page:
 | Custom 404 page | ✅ Visible | ✅ Visible |
 | Custom 500 page | ✅ Visible | ✅ Visible |
 
-
 ### Admin Feature Access
 
+- Add, edit, and delete products
+- Manage inventory availability
+- View and manage orders and rentals
+- Mark rentals as returned
+- Access Django Admin panel
+
+| Feature | Access & Notes |
+|------|---------------|
+| Add / edit / delete products | ✅ Django Admin and website CRUD functionality |
+| Manage product images and pricing options | ✅ Django Admin |
+| View and manage orders | ✅ Django Admin |
+| View and manage rentals | ✅ Django Admin |
+| View user profiles and activity | ✅ Django Admin |
+| Manage subscriptions | ✅ Django Admin |
+| Manage static site content | ✅ Django Admin |
+| Delete confirmation modal | ✅ Website functionality – confirmation prompt before deletion |
 
 ### Future Implementations
 
@@ -1105,9 +1120,8 @@ Sustainability page:
 - **[Adobe Color](https://color.adobe.com/)** – Color scheme generation and inspiration.
 - **[Flake8 / Pylint](https://flake8.pycqa.org/)** – Python linting tools used to enforce PEP 8 style guides and code quality.
 - **[Prettier](https://prettier.io/)** – Code formatter ensuring consistent syntax style across the project.
-- **[Prettier](https://prettier.io/)** – Code formatter that ensures consistent style across your JavaScript, CSS, JSON, and other files.
 - **[Lucidchart](https://www.lucidchart.com/)** – Database schema design and ERD creation.
-- **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts.
+- **[ChatGPT (OpenAI)](https://chat.openai.com/)** and **[Gemini (Google)](https://gemini.google.com/)** were used for generating service descriptions, debugging support, exploring different solutions, and clarifying code concepts. This time Gemini was used more for brainstorming, exploring different approaches and creating import scripts for the database to match my idea of how the data should be structured and how the relationships between different models should work. ChatGPT was used more for debugging support and clarifying code concepts, especially when I was stuck on a specific issue or needed help understanding how to implement a certain feature. Both tools were valuable resources throughout the development process, providing insights and assistance as needed.
 - **[Django](https://www.djangoproject.com/)** – High-level Python web framework powering the backend of the application.  
 - **[Gunicorn](https://gunicorn.org/)** – Python WSGI HTTP server for running Django apps in production.
 - **psycopg2** – Adapter for Python, enabling Django to communicate with a PostgreSQL database.
